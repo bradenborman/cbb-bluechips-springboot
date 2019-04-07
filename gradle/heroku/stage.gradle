@@ -1,1 +1,1 @@
-task stage(dependsOn: ['clean', 'shadowJar'])
+task stage(dependsOn: ['clean'])
