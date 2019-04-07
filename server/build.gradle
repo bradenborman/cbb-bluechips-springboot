@@ -26,6 +26,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
 	
-	
-	
+}
+
+//Heroku needs
+task stage() {
+	dependsOn clean, war
 }
