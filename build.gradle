@@ -10,4 +10,7 @@ allprojects {
 
 subprojects {
     apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
+    tasks.withType(Jar) {
+        destinationDir = file("$rootDir/build/New_libs")
+    }
 }
