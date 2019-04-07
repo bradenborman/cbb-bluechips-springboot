@@ -1,21 +1,9 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.4.RELEASE'
-	id 'java'
-	id 'war'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 }
 
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.Borman'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+allprojects {
+    ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
 }

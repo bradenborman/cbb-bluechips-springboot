@@ -5,7 +5,9 @@ import com.Borman.cbbbluechips.services.TeamService;
 import com.Borman.cbbbluechips.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,7 +20,7 @@ public class ApiController {
     TeamService teamService;
 
 
-    @GetMapping("/")
+    @GetMapping("/api")
     public ResponseEntity<GameInfo> getData() {
         GameInfo gameInfo = new GameInfo();
         gameInfo.setAllUsers(userService.getUsers());
@@ -28,5 +30,6 @@ public class ApiController {
         gameInfo.setTeams(teamService.getTeams());
         return ResponseEntity.ok(gameInfo);
     }
+
 
 }
