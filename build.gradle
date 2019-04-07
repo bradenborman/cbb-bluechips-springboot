@@ -7,3 +7,7 @@ buildscript {
 allprojects {
     ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
 }
+
+subprojects {
+    apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
+}
