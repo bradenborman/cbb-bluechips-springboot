@@ -4,13 +4,35 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'java'
+    id 'war'
+}
+
 allprojects {
     ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
 }
 
-subprojects {
-    apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
-    tasks.withType(Jar) {
-        destinationDir = file("$rootDir/build/New_libs")
-    }
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.Borman'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }

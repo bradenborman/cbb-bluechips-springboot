@@ -4,4 +4,3 @@ pluginManagement {
 	}
 }
 rootProject.name = 'cbbbluechips'
-include 'server'
