@@ -4,13 +4,31 @@ import java.util.List;
 
 public class GameInfo {
 
+    private String gameLobby;
     private boolean isGameOver;
     private double moneyInPlay;
     private String highScore;
     private String roundOfPlay;
-    private List<Teams> teams;
+    private List<Team> teams;
     private List<User> allUsers;
+    private List<Transaction> allTransactions;
 
+
+    public String getGameLobby() {
+        return gameLobby;
+    }
+
+    public void setGameLobby(String gameLobby) {
+        this.gameLobby = gameLobby;
+    }
+
+    public String getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(String highScore) {
+        this.highScore = highScore;
+    }
 
     public boolean isGameOver() {
         return isGameOver;
@@ -44,11 +62,11 @@ public class GameInfo {
         this.roundOfPlay = roundOfPlay;
     }
 
-    public List<Teams> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<Teams> teams) {
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 
@@ -59,4 +77,13 @@ public class GameInfo {
     public void setAllUsers(List<User> allUsers) {
         this.allUsers = allUsers;
     }
+
+    public List<Transaction> getAllTransactions() {
+        return allTransactions;
+    }
+
+    public void setAllTransactions(List<Transaction> allTransactions) {
+        this.allTransactions = allTransactions;
+    }
+
 }

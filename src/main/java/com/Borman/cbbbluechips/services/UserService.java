@@ -1,6 +1,8 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.models.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +12,16 @@ import java.util.List;
 @Service
 public class UserService {
 
+    Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     private PortfolioService portfolioService;
 
     public List<User> getUsers() {
 
-        List<User> allUsers = new ArrayList<User>();
+        logger.info("Getting Users");
+
+        List<User> allUsers = new ArrayList<>();
 
         User user = new User();
         user.setFirstName("Braden");

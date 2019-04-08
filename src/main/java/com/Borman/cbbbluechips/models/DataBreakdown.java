@@ -1,6 +1,6 @@
 package com.Borman.cbbbluechips.models;
 
-public class TeamData {
+public class DataBreakdown {
 
     private int wins;
     private int losses;

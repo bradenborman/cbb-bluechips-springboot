@@ -12,7 +12,7 @@ class PortfolioService {
 
 
     public Portfolio getPortfolio() {
-        logger.info("Getting Portfolio");
+        logger.info("Getting Portfolio data");
         Portfolio portfolio = new Portfolio();
         portfolio.setCash(200000);
         return portfolio;
