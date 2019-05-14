@@ -2,12 +2,21 @@ package com.Borman.cbbbluechips.models;
 
 public class User {
 
+    private String ID;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String passwordHint;
     private Portfolio portfolio;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getFirstName() {
         return firstName;

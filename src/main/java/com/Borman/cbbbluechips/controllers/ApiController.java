@@ -4,15 +4,17 @@ import com.Borman.cbbbluechips.models.GameInfo;
 import com.Borman.cbbbluechips.services.TeamService;
 import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ApiController {
+
+    Logger logger = LoggerFactory.getLogger(ApiController.class);
 
     @Autowired
     UserService userService;
@@ -37,6 +39,7 @@ public class ApiController {
 
         gameInfo.getTeams().get(0).setTeamData(teamService.getTeamData());
 
+        logger.info("Request Complete\n");
         return ResponseEntity.ok(gameInfo);
     }
 

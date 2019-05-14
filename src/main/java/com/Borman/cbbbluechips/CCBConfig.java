@@ -3,13 +3,16 @@ package com.Borman.cbbbluechips;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
 @Configuration
-public class MainConfig {
+public class CCBConfig {
 
-    @Bean
+    @Bean(name = "dataSource")
+    @Primary
     public BasicDataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 

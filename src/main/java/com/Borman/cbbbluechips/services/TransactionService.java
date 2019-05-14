@@ -3,6 +3,7 @@ package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.models.Transaction;
 import com.Borman.cbbbluechips.models.User;
+import com.mysql.cj.jdbc.JdbcConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,10 @@ public class TransactionService {
 
     Logger logger = LoggerFactory.getLogger(TransactionService.class);
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     public List<Transaction> getAllTransactions() {
 
-        logger.info("Getting Transactions");
+        logger.info("Getting Transactions: FAKE DATA");
 
         User user = new User();
 

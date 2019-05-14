@@ -17,7 +17,7 @@ public class TeamService {
 
     public List<Team> getTeams() {
 
-        logger.info("Getting Teams");
+        logger.info("Getting Teams: FAKE DATA");
 
         AtomicInteger id = new AtomicInteger();
         id.set(0);
@@ -32,7 +32,7 @@ public class TeamService {
 
 
     public DataBreakdown getTeamData() {
-        logger.info("Getting Team's data");
+        logger.info("Getting Team's data: FAKE DATA");
         DataBreakdown breakdown = new DataBreakdown();
         breakdown.setCoach("Coach K");
         breakdown.setLosses(5);
