@@ -65,4 +65,18 @@ public class User {
     public void setPortfolio(Portfolio portfolio) {
         this.portfolio = portfolio;
     }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "ID='" + ID + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordHint='" + passwordHint + '\'' +
+                ", portfolio=" + portfolio +
+                '}';
+    }
 }

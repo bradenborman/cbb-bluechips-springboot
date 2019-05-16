@@ -22,14 +22,6 @@ public class GameInfo {
         this.gameLobby = gameLobby;
     }
 
-    public String getHighScore() {
-        return highScore;
-    }
-
-    public void setHighScore(String highScore) {
-        this.highScore = highScore;
-    }
-
     public boolean isGameOver() {
         return isGameOver;
     }
@@ -46,12 +38,12 @@ public class GameInfo {
         this.moneyInPlay = moneyInPlay;
     }
 
-    public String getHighSore() {
+    public String getHighScore() {
         return highScore;
     }
 
-    public void setHighSore(String highSore) {
-        this.highScore = highSore;
+    public void setHighScore(String highScore) {
+        this.highScore = highScore;
     }
 
     public String getRoundOfPlay() {
@@ -85,5 +77,4 @@ public class GameInfo {
     public void setAllTransactions(List<Transaction> allTransactions) {
         this.allTransactions = allTransactions;
     }
-
 }

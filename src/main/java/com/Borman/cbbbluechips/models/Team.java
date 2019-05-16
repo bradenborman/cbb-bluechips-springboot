@@ -7,20 +7,9 @@ public class Team {
     private int teamId;
     private boolean isEliminated;
     private String teamName;
-    private int seed;
-    private DataBreakdown dataBreakdown;
+    private String seed;
     private LocalDateTime nextGameTime;
-    private double nextPointSpead;
-
-    public Team() {}
-
-    public Team(boolean isEliminated, String teamName, int seed, int teamId, DataBreakdown dataBreakdown) {
-        this.isEliminated = isEliminated;
-        this.teamName = teamName;
-        this.teamId = teamId;
-        this.seed = seed;
-        this.dataBreakdown = dataBreakdown;
-    }
+    private String nextPointSpead;
 
     public int getTeamId() {
         return teamId;
@@ -46,20 +35,12 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public int getSeed() {
+    public String getSeed() {
         return seed;
     }
 
-    public void setSeed(int seed) {
+    public void setSeed(String seed) {
         this.seed = seed;
-    }
-
-    public DataBreakdown getTeamData() {
-        return dataBreakdown;
-    }
-
-    public void setTeamData(DataBreakdown dataBreakdown) {
-        this.dataBreakdown = dataBreakdown;
     }
 
     public LocalDateTime getNextGameTime() {
@@ -70,11 +51,11 @@ public class Team {
         this.nextGameTime = nextGameTime;
     }
 
-    public double getNextPointSpead() {
+    public String getNextPointSpead() {
         return nextPointSpead;
     }
 
-    public void setNextPointSpead(double nextPointSpead) {
+    public void setNextPointSpead(String nextPointSpead) {
         this.nextPointSpead = nextPointSpead;
     }
 }
