@@ -6,8 +6,3 @@ How to push and set up heroku:
     - In project, create "Profile" with no extension and add "web java $JAVA_OPTS -Dserver.port=$PORT -jar build/libs/*.war" [This will start up when pushed]
 
     - Enable when master is push, auto deploy
-
-
-
-    @Restcontroller for data
-    @controller for view
