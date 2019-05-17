@@ -27,8 +27,7 @@ public class UserDao {
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public List<User> getUsers() {
-        final String sql = "SELECT * FROM user;";
-        return jdbcTemplate.query(sql, new UserRowMapper());
+        return jdbcTemplate.query(UserSQL.getAllUsers, new UserRowMapper());
     }
 
     public boolean createNewUser(User user) {

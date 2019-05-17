@@ -26,4 +26,9 @@ public class TransactionService {
     public List<Transaction> getTransactionsByUser(String UserId) {
        return transactionDao.getAllTransactionByUser(UserId);
     }
+
+    public List<Transaction> getTransactionByTeam(String teamId) {
+        return transactionDao.getAllTransactionByTeam(teamId);
+    }
+
 }
