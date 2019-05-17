@@ -6,43 +6,42 @@ import java.time.LocalDateTime;
 
 public class Transaction {
 
-    private User user;
-    private String team;
-    private int volume;
-    private double cashAmount;
+    private String userId;
+    private String teamName;
+    private int volumeTraded;
+    private double cashTraded;
     private LocalDateTime timeOfTransaction;
 
-
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getTeam() {
-        return team;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
-    public int getVolume() {
-        return volume;
+    public int getVolumeTraded() {
+        return volumeTraded;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
+    public void setVolumeTraded(int volumeTraded) {
+        this.volumeTraded = volumeTraded;
     }
 
-    public double getCashAmount() {
-        return cashAmount;
+    public double getCashTraded() {
+        return cashTraded;
     }
 
-    public void setCashAmount(double cashAmount) {
-        this.cashAmount = cashAmount;
+    public void setCashTraded(double cashTraded) {
+        this.cashTraded = cashTraded;
     }
 
     public LocalDateTime getTimeOfTransaction() {

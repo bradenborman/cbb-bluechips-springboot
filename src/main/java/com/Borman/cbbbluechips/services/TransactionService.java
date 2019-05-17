@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.services;
 
 
+import com.Borman.cbbbluechips.daos.TransactionDao;
 import com.Borman.cbbbluechips.models.Transaction;
 import com.Borman.cbbbluechips.models.User;
 import com.mysql.cj.jdbc.JdbcConnection;
@@ -19,30 +20,10 @@ public class TransactionService {
 
     Logger logger = LoggerFactory.getLogger(TransactionService.class);
 
+    @Autowired
+    TransactionDao transactionDao;
 
-    public List<Transaction> getAllTransactions() {
-
-        logger.info("Getting Transactions: FAKE DATA");
-
-        User user = new User();
-
-        user.setFirstName("Braden");
-        user.setLastName("Borman");
-        user.setEmail("bradenborman@hotmail.com");
-
-        List<Transaction> allTransactions = new ArrayList<>();
-
-        Transaction transaction = new Transaction();
-        transaction.setCashAmount(34500);
-        transaction.setTeam("Duke");
-        transaction.setTimeOfTransaction(LocalDateTime.now().minusDays(2));
-        transaction.setUser(user);
-        transaction.setVolume(8);
-
-        allTransactions.add(transaction);
-
-
-        return allTransactions;
-
+    public List<Transaction> getTransactionsByUser(String UserId) {
+       return transactionDao.getAllTransactionByUser(UserId);
     }
 }
