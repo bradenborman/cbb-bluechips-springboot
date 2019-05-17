@@ -7,10 +7,13 @@ import java.time.LocalDateTime;
 public class Transaction {
 
     private String userId;
+    private String fullName;
     private String teamName;
     private int volumeTraded;
     private double cashTraded;
+    private String tradeAction;
     private LocalDateTime timeOfTransaction;
+
 
     public String getUserId() {
         return userId;
@@ -18,6 +21,14 @@ public class Transaction {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getTeamName() {
@@ -50,6 +61,14 @@ public class Transaction {
 
     public void setTimeOfTransaction(LocalDateTime timeOfTransaction) {
         this.timeOfTransaction = timeOfTransaction;
+    }
+
+    public String getTradeAction() {
+        return tradeAction;
+    }
+
+    public void setTradeAction(String tradeAction) {
+        this.tradeAction = tradeAction;
     }
 
     @Override

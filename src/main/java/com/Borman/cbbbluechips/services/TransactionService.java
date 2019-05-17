@@ -29,8 +29,8 @@ public class TransactionService {
         return transactionDao.getAllTransactionByUser(UserId);
     }
 
-    public List<Transaction> getTransactionByTeam(String teamId) {
-        return transactionDao.getAllTransactionByTeam(teamId);
+    public List<Transaction> getTransactionByTeam(String teamName) {
+        return transactionDao.getAllTransactionByTeam(teamName);
     }
 
     public void buyStockInTeam(TradeRequest tradeRequest) {

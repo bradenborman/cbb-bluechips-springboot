@@ -1,10 +1,13 @@
 package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.TradeRequest;
+import com.Borman.cbbbluechips.models.Transaction;
 import com.Borman.cbbbluechips.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -27,15 +30,13 @@ public class TransactionController {
     }
 
     @GetMapping("/transaction/user/{userId}")
-    public ResponseEntity<String> getTransactionByUser(@PathVariable String userId) {
-        transactionService.getTransactionsByUser(userId);
-        return ResponseEntity.ok("TRANSACTIONS RETURNED");
+    public ResponseEntity<List<Transaction>> getTransactionByUser(@PathVariable String userId) {
+        return ResponseEntity.ok(transactionService.getTransactionsByUser(userId));
     }
 
-    @GetMapping("/transaction/team/{teamId}")
-    public ResponseEntity<String> getTransactionByTeam(@PathVariable String teamId) {
-        transactionService.getTransactionByTeam(teamId);
-        return ResponseEntity.ok("TRANSACTIONS RETURNED");
+    @GetMapping("/transaction/team/{teamName}")
+    public ResponseEntity<List<Transaction>> getTransactionByTeam(@PathVariable String teamName) {
+        return ResponseEntity.ok(transactionService.getTransactionByTeam(teamName));
     }
 
 }

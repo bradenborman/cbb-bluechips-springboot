@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.mappers.rowMappers;
 
 import com.Borman.cbbbluechips.models.Transaction;
+import com.Borman.cbbbluechips.models.enums.TradeAction;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,12 +11,26 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
 
     @Override
     public Transaction mapRow(ResultSet rs, int rownumber) throws SQLException {
-        String timeOfTransaction = rs.getString("time_of_transaction");
+        //String timeOfTransaction = rs.getString("Time_of_Trade");
         Transaction transaction =new Transaction();
-        transaction.setTimeOfTransaction(LocalDateTime.parse(timeOfTransaction));
-        transaction.setTeamName(rs.getString("name"));
-        transaction.setCashTraded(rs.getDouble("amountTraded"));
-        transaction.setVolumeTraded(rs.getInt("amount"));
+        transaction.setUserId(rs.getString("User_ID"));
+        transaction.setTeamName(rs.getString("Team_Name"));
+        transaction.setCashTraded(rs.getDouble("Amount_Spent"));
+        transaction.setVolumeTraded(rs.getInt("Volume_Traded"));
+        //TODO map once set
+        transaction.setTimeOfTransaction(LocalDateTime.now());
+
+        if(transaction.getCashTraded() > 0)
+            transaction.setTradeAction(TradeAction.BUY.getCode());
+        else
+            transaction.setTradeAction(TradeAction.SELL.getCode());
+
+        try {
+            transaction.setFullName(rs.getString("First_Name") + " " + rs.getString("Last_Name"));
+        }catch (Exception e) {
+            System.out.println("Failed to get Full Name");
+        }
+
         return transaction;
     }
 }
