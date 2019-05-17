@@ -1,5 +1,7 @@
 package com.Borman.cbbbluechips.models;
 
+import java.util.List;
+
 public class User {
 
     private String ID;
@@ -8,7 +10,9 @@ public class User {
     private String email;
     private String password;
     private String passwordHint;
-    private Portfolio portfolio;
+    private double cash;
+    private List<Team> teamsOwned;
+    private List<Transaction> allTransactions;
 
     public String getID() {
         return ID;
@@ -58,25 +62,27 @@ public class User {
         this.passwordHint = passwordHint;
     }
 
-    public Portfolio getPortfolio() {
-        return portfolio;
+    public double getCash() {
+        return cash;
     }
 
-    public void setPortfolio(Portfolio portfolio) {
-        this.portfolio = portfolio;
+    public void setCash(double cash) {
+        this.cash = cash;
     }
 
+    public List<Team> getTeamsOwned() {
+        return teamsOwned;
+    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "ID='" + ID + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", passwordHint='" + passwordHint + '\'' +
-                ", portfolio=" + portfolio +
-                '}';
+    public void setTeamsOwned(List<Team> teamsOwned) {
+        this.teamsOwned = teamsOwned;
+    }
+
+    public List<Transaction> getAllTransactions() {
+        return allTransactions;
+    }
+
+    public void setAllTransactions(List<Transaction> allTransactions) {
+        this.allTransactions = allTransactions;
     }
 }

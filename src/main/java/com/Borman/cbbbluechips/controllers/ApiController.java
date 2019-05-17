@@ -22,9 +22,6 @@ public class ApiController {
     @Autowired
     TeamService teamService;
 
-    @Autowired
-    TransactionService transactionService;
-
     @GetMapping("/api")
     public ResponseEntity<GameInfo> getData() {
         GameInfo gameInfo = new GameInfo();
@@ -34,7 +31,6 @@ public class ApiController {
         gameInfo.setMoneyInPlay(2342352);
         gameInfo.setRoundOfPlay("Sweet Sixteen");
         gameInfo.setTeams(teamService.getTeams());
-        gameInfo.setAllTransactions(transactionService.getAllTransactions());
         logger.info("Request Complete\n");
         return ResponseEntity.ok(gameInfo);
     }

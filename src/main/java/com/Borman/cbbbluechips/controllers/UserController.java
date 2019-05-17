@@ -21,5 +21,11 @@ public class UserController {
         return ResponseEntity.ok("User Created");
     }
 
+    @PostMapping("/delete/{requestId}")
+    ResponseEntity<String> deleteUser(@PathVariable String requestId) {
+        userService.deleteUser(requestId);
+        return ResponseEntity.ok("User Deleted");
+    }
+
 
 }

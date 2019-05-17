@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,16 +23,17 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
+    public List<User> getAllUsers() { return userDao.getUsers(); }
 
-    public List<User> getAllUsers() {
-        logger.info("Getting All Users");
-        return userDao.getUsers();
-    }
-
-
+    @Transactional
     public void createNewUser(User user) {
-        logger.info("Prepping to create user: " + user.toString());
+        user.setCash(100000);
+        userDao.createNewUser(user);
     }
 
+    @Transactional
+    public void deleteUser(String UserId) {
+              userDao.deleteUser(UserId);
+    }
 
 }

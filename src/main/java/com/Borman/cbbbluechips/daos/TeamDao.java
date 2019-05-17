@@ -19,7 +19,6 @@ public class TeamDao {
     JdbcTemplate jdbcTemplate;
 
     public List<Team> getAllTeams() {
-        logger.info("Attempting to get all teams from database\n");
         final String sql = "SELECT * FROM teams;";
         return jdbcTemplate.query(sql, new TeamRowMapper());
     }

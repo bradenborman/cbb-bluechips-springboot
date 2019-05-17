@@ -11,8 +11,6 @@ public class GameInfo {
     private String roundOfPlay;
     private List<Team> teams;
     private List<User> allUsers;
-    private List<Transaction> allTransactions;
-
 
     public String getGameLobby() {
         return gameLobby;
@@ -70,11 +68,4 @@ public class GameInfo {
         this.allUsers = allUsers;
     }
 
-    public List<Transaction> getAllTransactions() {
-        return allTransactions;
-    }
-
-    public void setAllTransactions(List<Transaction> allTransactions) {
-        this.allTransactions = allTransactions;
-    }
 }
