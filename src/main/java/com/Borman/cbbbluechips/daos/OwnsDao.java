@@ -5,6 +5,7 @@ import com.Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapper;
 import com.Borman.cbbbluechips.mappers.rowMappers.TeamRowMapper;
 import com.Borman.cbbbluechips.models.Owns;
 import com.Borman.cbbbluechips.models.Team;
+import com.Borman.cbbbluechips.models.TradeRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,8 @@ public class OwnsDao {
         }
     }
 
+    public int getAmountOfSharesOwned(TradeRequest tradeRequest) {
+        SqlParameterSource params = new BeanPropertySqlParameterSource(tradeRequest);
+        return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getCurrentAmountOwned, params, Integer.class);
+    }
 }

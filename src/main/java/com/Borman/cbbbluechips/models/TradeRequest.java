@@ -7,7 +7,7 @@ public class TradeRequest {
 
     private String teamId;
     private String userId;
-    private String volume;
+    private int volume;
     private TradeAction tradeAction;
     private String projectedMoneyTransferred;
 
@@ -27,11 +27,11 @@ public class TradeRequest {
         this.userId = userId;
     }
 
-    public String getVolume() {
+    public int getVolume() {
         return volume;
     }
 
-    public void setVolume(String volume) {
+    public void setVolume(int volume) {
         this.volume = volume;
     }
 

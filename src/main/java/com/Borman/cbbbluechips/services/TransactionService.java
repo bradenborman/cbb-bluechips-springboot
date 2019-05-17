@@ -1,20 +1,17 @@
 package com.Borman.cbbbluechips.services;
 
 
+import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.daos.TransactionDao;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.Transaction;
-import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.models.enums.TradeAction;
-import com.mysql.cj.jdbc.JdbcConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +21,9 @@ public class TransactionService {
 
     @Autowired
     TransactionDao transactionDao;
+
+    @Autowired
+    TeamDao teamDao;
 
     public List<Transaction> getTransactionsByUser(String UserId) {
         return transactionDao.getAllTransactionByUser(UserId);
@@ -37,8 +37,14 @@ public class TransactionService {
         tradeRequest.setTradeAction(TradeAction.BUY);
     }
 
-    public void sellStockInTeam(TradeRequest tradeRequest) {
+    @Transactional
+    public void completeSell(TradeRequest tradeRequest) {
         tradeRequest.setTradeAction(TradeAction.SELL);
+        transactionDao.sellShares(tradeRequest);
+        double moneyToAdd = (teamDao.getCurrentMarketPrice(tradeRequest.getTeamId()) * tradeRequest.getVolume());
+        //TODO create Transaction object
+        //transactionDao.recordTransaction(new Transaction());
+        logger.info(String.format("Trade Request: %s => Made $%S", tradeRequest.toString(), moneyToAdd));
     }
 
 }

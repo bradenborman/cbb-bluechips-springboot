@@ -18,4 +18,10 @@ public class OwnsService {
         return ownsDao.getTeamsUserOwns(user);
     }
 
+    //Gets current amount before trade and then also prevents negative numbers to be passed in
+    public boolean validateOwnership(TradeRequest tradeRequest) {
+       return (tradeRequest.getVolume() <= ownsDao.getAmountOfSharesOwned(tradeRequest)) && tradeRequest.getVolume() > 0;
+    }
+
+
 }

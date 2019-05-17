@@ -2,6 +2,7 @@ package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.Transaction;
+import com.Borman.cbbbluechips.services.OwnsService;
 import com.Borman.cbbbluechips.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,13 @@ public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
+    @Autowired
+    OwnsService ownsService;
+
     @PostMapping("/sell")
     public ResponseEntity<String> sellTeam(@RequestBody TradeRequest tradeRequest) {
-        transactionService.sellStockInTeam(tradeRequest);
+        if(ownsService.validateOwnership(tradeRequest))
+            transactionService.completeSell(tradeRequest);
         return ResponseEntity.ok("SOLD");
     }
 
