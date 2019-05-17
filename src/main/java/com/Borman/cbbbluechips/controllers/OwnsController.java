@@ -15,7 +15,6 @@ public class OwnsController {
     @Autowired
     OwnsService ownsService;
 
-
     @GetMapping("/{userId}")
     public ResponseEntity<List<Owns>> getTeamsUserOwns(@PathVariable String userId) {
         return ResponseEntity.ok(ownsService.getTeamsUserOwns(userId));
