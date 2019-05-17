@@ -1,11 +1,9 @@
 package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.TransactionSQL;
-import com.Borman.cbbbluechips.daos.sql.UserSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.TransactionRowMapper;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.Transaction;
-import com.Borman.cbbbluechips.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
