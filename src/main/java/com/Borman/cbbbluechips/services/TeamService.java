@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.TeamDao;
+import com.Borman.cbbbluechips.models.PriceHistory;
 import com.Borman.cbbbluechips.models.Team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

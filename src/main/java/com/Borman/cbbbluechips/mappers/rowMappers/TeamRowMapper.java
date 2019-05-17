@@ -11,10 +11,10 @@ public class TeamRowMapper implements RowMapper<Team> {
     @Override
     public Team mapRow(ResultSet rs, int rownumber) throws SQLException {
         Team team =new Team();
-        team.setTeamId(rs.getInt("Team_ID"));
+        team.setTeamId(rs.getString("Team_ID"));
         team.setTeamName(rs.getString("name"));
         team.setSeed(rs.getString("seed"));
-        team.setNextPointSpead(rs.getString("point_spread"));
+        team.setNextPointSpread(rs.getString("point_spread"));
         team.setEliminated(rs.getBoolean("is_out"));
         return team;
     }

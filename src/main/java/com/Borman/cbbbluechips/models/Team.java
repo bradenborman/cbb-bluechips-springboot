@@ -6,18 +6,19 @@ import java.time.LocalDateTime;
 
 public class Team {
 
-    private int teamId;
+    private String teamId;
     private boolean isEliminated;
     private String teamName;
     private String seed;
     private LocalDateTime nextGameTime;
-    private String nextPointSpead;
+    private String nextPointSpread;
+    private double currentMarketPrice;
 
-    public int getTeamId() {
+    public String getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(int teamId) {
+    public void setTeamId(String teamId) {
         this.teamId = teamId;
     }
 
@@ -53,12 +54,20 @@ public class Team {
         this.nextGameTime = nextGameTime;
     }
 
-    public String getNextPointSpead() {
-        return nextPointSpead;
+    public String getNextPointSpread() {
+        return nextPointSpread;
     }
 
-    public void setNextPointSpead(String nextPointSpead) {
-        this.nextPointSpead = nextPointSpead;
+    public void setNextPointSpread(String nextPointSpread) {
+        this.nextPointSpread = nextPointSpread;
+    }
+
+    public double getCurrentMarketPrice() {
+        return currentMarketPrice;
+    }
+
+    public void setCurrentMarketPrice(double currentMarketPrice) {
+        this.currentMarketPrice = currentMarketPrice;
     }
 
     @Override

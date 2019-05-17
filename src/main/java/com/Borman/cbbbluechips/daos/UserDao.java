@@ -1,7 +1,7 @@
 package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.UserSQL;
-import com.Borman.cbbbluechips.mappers.UserRowMapper;
+import com.Borman.cbbbluechips.mappers.rowMappers.UserRowMapper;
 import com.Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 @Component
