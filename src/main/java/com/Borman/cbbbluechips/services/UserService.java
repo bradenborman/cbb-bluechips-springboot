@@ -5,6 +5,7 @@ import com.Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -19,21 +20,28 @@ import java.util.List;
 public class UserService {
 
     Logger logger = LoggerFactory.getLogger(UserService.class);
+    private UserDao userDao;
+    private final int STARTING_CASH;
 
-    @Autowired
-    UserDao userDao;
+    public UserService(UserDao userDao, @Qualifier("startingCash") final int STARTING_CASH) {
+        this.userDao = userDao;
+        this.STARTING_CASH = STARTING_CASH;
+    }
 
-    public List<User> getAllUsers() { return userDao.getUsers(); }
+    public List<User> getAllUsers() {
+        return userDao.getUsers();
+    }
 
     @Transactional
     public void createNewUser(User user) {
-        user.setCash(100000);
-        userDao.createNewUser(user);
+        user.setCash(STARTING_CASH);
+        if (userDao.createNewUser(user))
+            logger.info("User Created Successfully");
     }
 
     @Transactional
     public void deleteUser(String UserId) {
-              userDao.deleteUser(UserId);
+        userDao.deleteUser(UserId);
     }
 
 }

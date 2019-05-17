@@ -1,5 +1,7 @@
 package com.Borman.cbbbluechips.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.time.LocalDateTime;
 
 public class Transaction {
@@ -50,4 +52,15 @@ public class Transaction {
     public void setTimeOfTransaction(LocalDateTime timeOfTransaction) {
         this.timeOfTransaction = timeOfTransaction;
     }
+
+    @Override
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to write Transaction as string", e);
+        }
+    }
+
 }

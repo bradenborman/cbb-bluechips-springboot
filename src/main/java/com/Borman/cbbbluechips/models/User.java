@@ -1,5 +1,7 @@
 package com.Borman.cbbbluechips.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 
 public class User {
@@ -85,4 +87,15 @@ public class User {
     public void setAllTransactions(List<Transaction> allTransactions) {
         this.allTransactions = allTransactions;
     }
+
+    @Override
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to write User as string", e);
+        }
+    }
+
 }

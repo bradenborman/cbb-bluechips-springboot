@@ -1,5 +1,10 @@
 package com.Borman.cbbbluechips.models;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@JsonIgnoreProperties({"ownsId", "teamId", "userId"})
 public class Owns {
 
     private String ownsId;
@@ -74,4 +79,15 @@ public class Owns {
     public void setOut(boolean out) {
         isOut = out;
     }
+
+    @Override
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to write Owns as string", e);
+        }
+    }
+
 }

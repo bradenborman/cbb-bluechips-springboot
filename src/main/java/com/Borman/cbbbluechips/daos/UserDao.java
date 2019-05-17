@@ -1,5 +1,6 @@
 package com.Borman.cbbbluechips.daos;
 
+import com.Borman.cbbbluechips.daos.sql.UserSQL;
 import com.Borman.cbbbluechips.mappers.UserRowMapper;
 import com.Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
@@ -31,18 +32,10 @@ public class UserDao {
         return jdbcTemplate.query(sql, new UserRowMapper());
     }
 
-
     public boolean createNewUser(User user) {
-
-        final String insertUser = "INSERT INTO user (`First_Name`, `Last_Name`, `Email`, `Password`, `Password_Hint`,`Cash`) " +
-                "VALUES (:firstName, :lastName, :email, :password, :passwordHint, :cash);";
-
         try {
             SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-            if (namedParameterJdbcTemplate.update(insertUser, params) == 1) {
-                logger.info("User successfully created");
-                return true;
-            }
+            return namedParameterJdbcTemplate.update(UserSQL.insertUser, params) == 1;
         } catch (Exception e) {
             logger.error("Cannot Insert User" + user + "\n" + e);
         }
@@ -50,15 +43,13 @@ public class UserDao {
     }
 
     public void deleteUser(String userId) {
-        final String deleteUser = "DELETE FROM user WHERE User_ID = :userId;";
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-            namedParameterJdbcTemplate.update(deleteUser, params);
+            namedParameterJdbcTemplate.update(UserSQL.deleteUser, params);
             logger.info("Deleted User");
         } catch (Exception e) {
             logger.error("Cannot Delete User" + userId + "\n" + e);
         }
     }
-
 
 }

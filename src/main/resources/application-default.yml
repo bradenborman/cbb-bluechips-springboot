@@ -8,3 +8,6 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+
+game-rules:
+  starting-cash: 100000

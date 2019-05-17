@@ -1,5 +1,6 @@
 package com.Borman.cbbbluechips.daos;
 
+import com.Borman.cbbbluechips.daos.sql.TeamSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.TeamRowMapper;
 import com.Borman.cbbbluechips.models.Team;
 import org.slf4j.Logger;
@@ -19,8 +20,7 @@ public class TeamDao {
     JdbcTemplate jdbcTemplate;
 
     public List<Team> getAllTeams() {
-        final String sql = "SELECT * FROM teams;";
-        return jdbcTemplate.query(sql, new TeamRowMapper());
+        return jdbcTemplate.query(TeamSQL.getAllTeams, new TeamRowMapper());
     }
 
 }

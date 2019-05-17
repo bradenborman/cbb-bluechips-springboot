@@ -1,5 +1,7 @@
 package com.Borman.cbbbluechips.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.time.LocalDateTime;
 
 public class Team {
@@ -58,4 +60,15 @@ public class Team {
     public void setNextPointSpead(String nextPointSpead) {
         this.nextPointSpead = nextPointSpead;
     }
+
+    @Override
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to write Team as string", e);
+        }
+    }
+
 }

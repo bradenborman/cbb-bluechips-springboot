@@ -1,5 +1,7 @@
 package com.Borman.cbbbluechips.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 
 public class GameInfo {
@@ -66,6 +68,16 @@ public class GameInfo {
 
     public void setAllUsers(List<User> allUsers) {
         this.allUsers = allUsers;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to write GameInfo as string", e);
+        }
     }
 
 }
