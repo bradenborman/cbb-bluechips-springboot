@@ -1,6 +1,6 @@
 package com.Borman.cbbbluechips.daos;
 
-import com.Borman.cbbbluechips.daos.sql.TransactionSQL;
+import com.Borman.cbbbluechips.daos.sql.OwnsSQL;
 import com.Borman.cbbbluechips.daos.sql.UserSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.UserRowMapper;
 import com.Borman.cbbbluechips.models.User;
@@ -12,9 +12,12 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class UserDao {
@@ -31,14 +34,16 @@ public class UserDao {
         return jdbcTemplate.query(UserSQL.getAllUsers, new UserRowMapper());
     }
 
-    public boolean createNewUser(User user) {
+    public String createNewUser(User user) {
         try {
+            KeyHolder keyHolder = new GeneratedKeyHolder();
             SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-            return namedParameterJdbcTemplate.update(UserSQL.insertUser, params) == 1;
+            namedParameterJdbcTemplate.update(UserSQL.insertUser, params, keyHolder);
+            return Objects.requireNonNull(keyHolder.getKey()).toString();
         } catch (Exception e) {
             logger.error("Cannot Insert User" + user + "\n" + e);
+            return "0";
         }
-        return false;
     }
 
     public void deleteUser(String userId) {
@@ -64,5 +69,15 @@ public class UserDao {
                 .addValue("userId", userId)
                 .addValue("newMoney", moneyToRemove);
         namedParameterJdbcTemplate.update(UserSQL.removeMoneyFromUser, params);
+    }
+
+    public int countEmailAddressInDatabase(String email) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("email", email);
+            return namedParameterJdbcTemplate.queryForObject(OwnsSQL.countEmailAddress, params, Integer.class);
+        } catch (Exception e) {
+            logger.error("Failed to get User by Email\n" + e);
+        }
+        return 0;
     }
 }

@@ -4,16 +4,10 @@ import com.Borman.cbbbluechips.daos.UserDao;
 import com.Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,9 +28,11 @@ public class UserService {
 
     @Transactional
     public void createNewUser(User user) {
-        user.setCash(STARTING_CASH);
-        if (userDao.createNewUser(user))
-            logger.info("User Created Successfully");
+        if (!isUserAlreadyPresent(user.getEmail())) {
+            user.setCash(STARTING_CASH);
+            user.setID(userDao.createNewUser(user));
+        } else
+            logger.info(String.format("%s already in database", user.getEmail()));
     }
 
     @Transactional
@@ -54,5 +50,9 @@ public class UserService {
         userDao.removeCashFromUser(userId, moneyToRemove);
     }
 
+
+    private boolean isUserAlreadyPresent(String email) {
+        return userDao.countEmailAddressInDatabase(email) > 0;
+    }
 
 }

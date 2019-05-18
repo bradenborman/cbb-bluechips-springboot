@@ -14,4 +14,5 @@ public class OwnsSQL {
 
     public static final String getFundsAvailable = "SELECT Cash FROM user where User_ID = :userId";
 
+    public static final String countEmailAddress = "SELECT count(Email) FROM user WHERE Email = :email;";
 }

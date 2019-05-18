@@ -16,9 +16,10 @@ public class UserController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         userService.createNewUser(user);
-        return ResponseEntity.ok("User Created");
+        System.out.println(String.format("User Created: Id set to %s", user.getID()));
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/delete/{requestId}")
