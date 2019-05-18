@@ -24,4 +24,9 @@ public class OwnsService {
     }
 
 
+    public double getFundsAvailable(TradeRequest tradeRequest) {
+        return ownsDao.getFundsAvailable(tradeRequest.getUserId());
+    }
+
+
 }

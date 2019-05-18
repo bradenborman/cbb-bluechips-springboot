@@ -1,5 +1,6 @@
 package com.Borman.cbbbluechips.daos;
 
+import com.Borman.cbbbluechips.daos.sql.TransactionSQL;
 import com.Borman.cbbbluechips.daos.sql.UserSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.UserRowMapper;
 import com.Borman.cbbbluechips.models.User;
@@ -50,4 +51,18 @@ public class UserDao {
         }
     }
 
+    public void addCashToUser(String userId, double moneyToAdd) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("userId", userId)
+                .addValue("newMoney", moneyToAdd);
+        namedParameterJdbcTemplate.update(UserSQL.addMoneyToUser, params);
+    }
+
+
+    public void removeCashFromUser(String userId, double moneyToRemove) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("userId", userId)
+                .addValue("newMoney", moneyToRemove);
+        namedParameterJdbcTemplate.update(UserSQL.removeMoneyFromUser, params);
+    }
 }

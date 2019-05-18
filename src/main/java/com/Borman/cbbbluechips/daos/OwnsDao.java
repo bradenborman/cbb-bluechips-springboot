@@ -46,4 +46,9 @@ public class OwnsDao {
         SqlParameterSource params = new BeanPropertySqlParameterSource(tradeRequest);
         return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getCurrentAmountOwned, params, Integer.class);
     }
+
+    public double getFundsAvailable(String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+        return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getFundsAvailable, params, Double.class);
+    }
 }

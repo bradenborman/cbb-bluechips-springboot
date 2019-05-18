@@ -37,6 +37,16 @@ public class TransactionDao {
         }
     }
 
+    public void buyShares(TradeRequest tradeRequest) {
+        try {
+            SqlParameterSource params = new BeanPropertySqlParameterSource(tradeRequest);
+            namedParameterJdbcTemplate.update(TransactionSQL.buyShares, params);
+        } catch (Exception e) {
+            System.out.println("Error updating buy" + e);
+        }
+    }
+
+
     public void recordTransaction(Transaction transaction) {
         try {
             SqlParameterSource params = new BeanPropertySqlParameterSource(transaction);
@@ -45,5 +55,4 @@ public class TransactionDao {
             System.out.println("ERROR " + e);
         }
     }
-
 }

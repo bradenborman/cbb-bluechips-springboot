@@ -1,6 +1,15 @@
-//mysql://bec7307fc0fd01:54266375@us-cdbr-iron-east-02.cleardb.net/heroku_258579af3ea3b97?reconnect=true
+#spring:
+#  jpa:
+#    properties:
+#      hibernate:
+#        default_schema: heroku_f8c10a0dcaaf757
 
-//bec7307fc0fd01
-//54266375
+  main:
+    allow-bean-definition-overriding: true
 
-//heroku_258579af3ea3b97
+  output:
+    ansi:
+      enabled: ALWAYS
+
+game-rules:
+  starting-cash: 100000

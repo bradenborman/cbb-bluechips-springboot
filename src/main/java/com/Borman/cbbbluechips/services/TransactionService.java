@@ -25,6 +25,9 @@ public class TransactionService {
     @Autowired
     TeamDao teamDao;
 
+    @Autowired
+    UserService userService;
+
     public List<Transaction> getTransactionsByUser(String UserId) {
         return transactionDao.getAllTransactionByUser(UserId);
     }
@@ -33,18 +36,30 @@ public class TransactionService {
         return transactionDao.getAllTransactionByTeam(teamName);
     }
 
-    public void buyStockInTeam(TradeRequest tradeRequest) {
+    @Transactional
+    public void buyStockInTeam(TradeRequest tradeRequest, double fundsAvailable) {
         tradeRequest.setTradeAction(TradeAction.BUY);
+        double futureMoneySpent = getCurrentMarketPrice(tradeRequest);
+        if (fundsAvailable >= futureMoneySpent) {
+            transactionDao.buyShares(tradeRequest);
+            userService.removeProceedsFromUser(tradeRequest.getUserId(), fundsAvailable);
+            logger.info(String.format("Trade Request: %s => Spent $%S", tradeRequest.toString(), fundsAvailable));
+        } else {
+            logger.info(String.format("Trade Request: %s => Funds not available $%S required", tradeRequest.toString(), futureMoneySpent));
+        }
     }
 
     @Transactional
     public void completeSell(TradeRequest tradeRequest) {
         tradeRequest.setTradeAction(TradeAction.SELL);
+        double moneyToAdd = getCurrentMarketPrice(tradeRequest);
         transactionDao.sellShares(tradeRequest);
-        double moneyToAdd = (teamDao.getCurrentMarketPrice(tradeRequest.getTeamId()) * tradeRequest.getVolume());
-        //TODO create Transaction object
-        //transactionDao.recordTransaction(new Transaction());
+        userService.addProceedsToUser(tradeRequest.getUserId(), moneyToAdd);
         logger.info(String.format("Trade Request: %s => Made $%S", tradeRequest.toString(), moneyToAdd));
+    }
+
+    private double getCurrentMarketPrice(TradeRequest tradeRequest) {
+        return teamDao.getCurrentMarketPrice(tradeRequest.getTeamId()) * tradeRequest.getVolume();
     }
 
 }

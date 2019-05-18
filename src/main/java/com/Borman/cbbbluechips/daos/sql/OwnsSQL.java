@@ -12,4 +12,6 @@ public class OwnsSQL {
 
     public static final String getCurrentMarketPrice = "SELECT Current_Market_Price FROM teams where Team_ID = :teamId";
 
+    public static final String getFundsAvailable = "SELECT Cash FROM user where User_ID = :userId";
+
 }

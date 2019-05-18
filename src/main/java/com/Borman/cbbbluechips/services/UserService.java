@@ -44,4 +44,15 @@ public class UserService {
         userDao.deleteUser(UserId);
     }
 
+
+    void addProceedsToUser(String userId, double moneyToAdd) {
+        userDao.addCashToUser(userId, moneyToAdd);
+    }
+
+
+    void removeProceedsFromUser(String userId, double moneyToRemove) {
+        userDao.removeCashFromUser(userId, moneyToRemove);
+    }
+
+
 }

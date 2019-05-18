@@ -23,14 +23,17 @@ public class TransactionController {
 
     @PostMapping("/sell")
     public ResponseEntity<String> sellTeam(@RequestBody TradeRequest tradeRequest) {
-        if(ownsService.validateOwnership(tradeRequest))
+        if (ownsService.validateOwnership(tradeRequest))
             transactionService.completeSell(tradeRequest);
         return ResponseEntity.ok("SOLD");
     }
 
+
+    //TODO Try to update first => if result set is 0 then insert
     @PostMapping("/buy")
     public ResponseEntity<String> buyTeam(@RequestBody TradeRequest tradeRequest) {
-        transactionService.buyStockInTeam(tradeRequest);
+        double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
+            transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
         return ResponseEntity.ok("BOUGHT");
     }
 
