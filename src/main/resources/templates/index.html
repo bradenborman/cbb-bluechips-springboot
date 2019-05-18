@@ -5,24 +5,56 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Upcoming</h1>
-            <p>Cbb Bluechips 2020 in progress</p>
-    </div>
-    </div>
+<div class="jumbotron">
     <div class="container">
-    <p>New features to come!</p><p><code>Click the following Links to test API</p>
-        <ul>
-            <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/team/Kansas">transaction by team</a></li>
-            <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/user/2">transactions by user</a></li>
-            <li><a href="https://cbb-bluechips.herokuapp.com/api">game data</a></li>
-            <li><a href="https://cbb-bluechips.herokuapp.com/owns/2">user Owns by id</a></li>
-        </ul>
+        <h1>Upcoming</h1>
+        <p>Cbb Bluechips 2020 in progress</p>
     </div>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-5">
+            <p>New features to come!</p>
+            <p><code>Click the following Links to test API</p>
+            <ul>
+                <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/team/Kansas">transaction by team name URL Param</a>
+                </li>
+                <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/user/2">transactions by user</a></li>
+                <li><a href="https://cbb-bluechips.herokuapp.com/api">game data</a></li>
+                <li><a href="https://cbb-bluechips.herokuapp.com/owns/2">user Owns by id</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-7">
+           <p id="getTeam">CLICK ME FOR: Transaction by Team (Kansas)</p>
+            <br />
+            <code>
+                <p id="response"><br/></p>
+            </code>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+  $("#getTeam").click(function(){
+    $.get("/trade/transaction/team/Kansas", function(data, status){
+
+    console.log(data)
+     $("#response").html("")
+            for(var x = 0; x < data.length; x++) {
+                $("#response").append(data[x].fullName + "<br/>");
+                $("#response").append(data[x].tradeAction + "<br/>");
+                $("#response").append("Traded: " + data[x].volumeTraded + "<br/>");
+                $("#response").append(data[x].timeOfTransaction + "<br/>");
+                $("#response").append("<br/><br/>");
+            }
+    });
+  });
+});
+</script>
