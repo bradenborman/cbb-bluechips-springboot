@@ -36,4 +36,10 @@ public class TeamDao {
     }
 
 
+    public String getTeamName(String teamId) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+        return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamName, params, String.class);
+    }
+
+
 }

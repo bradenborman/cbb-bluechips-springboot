@@ -13,4 +13,7 @@ public class UserSQL {
 
     public static final String removeMoneyFromUser = "UPDATE user SET Cash = Cash - :newMoney WHERE (User_ID = :userId);";
 
+    public static final String getUserById = "SELECT * FROM user where User_ID = :userId;";
+
+
 }

@@ -14,7 +14,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         userService.createNewUser(user);
@@ -28,5 +27,5 @@ public class UserController {
         return ResponseEntity.ok("User Deleted");
     }
 
-
 }
+

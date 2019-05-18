@@ -80,4 +80,14 @@ public class UserDao {
         }
         return 0;
     }
+
+    public List<User> getUserById(String userId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+            return namedParameterJdbcTemplate.query(UserSQL.getUserById, params, new UserRowMapper());
+        } catch (Exception e) {
+            logger.error("Failed to get User by Email\n" + e);
+            return null;
+        }
+    }
 }

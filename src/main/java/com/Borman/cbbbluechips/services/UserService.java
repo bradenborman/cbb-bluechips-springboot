@@ -55,4 +55,8 @@ public class UserService {
         return userDao.countEmailAddressInDatabase(email) > 0;
     }
 
+    String getUserFullName(String userId) {
+        User user = userDao.getUserById(userId).get(0);
+        return String.format("%s %s", user.getFirstName(), user.getLastName());
+    }
 }
