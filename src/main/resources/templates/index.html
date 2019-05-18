@@ -16,7 +16,7 @@
         <h1>Upcoming</h1>
         <p>Cbb Bluechips 2020 in progress</p>
     </div>
-</div>
+</div>thymeleaf
 <div class="container">
 
     <div class="row">
@@ -24,7 +24,8 @@
             <p>New features to come!</p>
             <p><code>Click the following Links to test API</p>
             <ul>
-                <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/team/Kansas">transaction by team name URL Param</a>
+                <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/team/Kansas">transaction by team name
+                    URL Param</a>
                 </li>
                 <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/user/2">transactions by user</a></li>
                 <li><a href="https://cbb-bluechips.herokuapp.com/api">game data</a></li>
@@ -32,16 +33,25 @@
             </ul>
         </div>
         <div class="col-lg-7">
-           <p id="getTeam">CLICK ME FOR: Transaction by Team (Kansas)</p>
-            <br />
+            <p id="getTeam">CLICK ME FOR: Transaction by Team (Kansas)</p>
+            <br/>
             <code>
                 <p id="response"><br/></p>
             </code>
         </div>
     </div>
+
+    <div class="row">
+
+        <button onclick="post()">Post</button>
+
+    </div>
+
 </div>
 <script>
 $(document).ready(function(){
+
+
   $("#getTeam").click(function(){
     $.get("/trade/transaction/team/Kansas", function(data, status){
 
@@ -56,5 +66,31 @@ $(document).ready(function(){
             }
     });
   });
+
 });
+
+  function post() {
+
+        var buy = {teamId:"2", userId:"2", volume:"2"};
+
+    $.ajax({
+    url: '/trade/sell',
+    dataType: 'json',
+    type: 'post',
+    contentType: 'application/json',
+    data: JSON.stringify(buy),
+    processData: true,
+    success: function( data, textStatus, jQxhr ){
+        alert( JSON.stringify( data ) );
+    },
+    error: function( jqXhr, textStatus, errorThrown ){
+        console.log( errorThrown );
+    }
+});
+  }
+
+    function test() {
+     alert("test")
+    }
+
 </script>
