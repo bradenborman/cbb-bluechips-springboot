@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-sm-6" th:each="team : ${teams}">
             <div class="team">
-                <img class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}" title="${team.teamName} + 's logo'"/>
+                <img class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}" />
                 <span class="team_name" th:text="${team.teamName}"></span>
                 <span class="team_currentPrice" th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                 <div class="card">
