@@ -2,7 +2,6 @@ package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.GameInfo;
 import com.Borman.cbbbluechips.services.TeamService;
-import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +29,7 @@ public class ApiController {
         gameInfo.setHighScore("235,000");
         gameInfo.setMoneyInPlay(2342352);
         gameInfo.setRoundOfPlay("Sweet Sixteen");
-        gameInfo.setTeams(teamService.getTeams());
+        gameInfo.setTeams(teamService.getAllTeams());
         logger.info("Request Complete\n");
         return ResponseEntity.ok(gameInfo);
     }

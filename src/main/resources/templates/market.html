@@ -16,10 +16,23 @@
 
 <div class="container">
     <h1 th:text="${title}"></h1>
-    <div>
-        <div class="card item" th:each="team : ${teams}">
-            <p th:text="${team.teamName + ' (' + team.seed}+ ')'"></p>
-            <p th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></p>
+    <div class="row">
+        <div class="col-sm-6" th:each="team : ${teams}">
+            <div class="team">
+                <img class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}" title="${team.teamName} + 's logo'"/>
+                <span class="team_name" th:text="${team.teamName}"></span>
+                <span class="team_currentPrice" th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
+                <div class="card">
+                    <div th:text="'Next Point Spread: ' + ${team.nextPointSpread}" class="card-header"></div>
+                    <div class="card-body">
+                        <p>PLACE HODLER TEXT FOR BODY</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="seed" th:text="'Seed: ' + ${team.seed}"></span>
+                        <span class="outstanding" th:text="'Shares Outstanding: ' + ${team.sharesOutstanding}"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

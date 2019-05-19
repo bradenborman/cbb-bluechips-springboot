@@ -13,6 +13,7 @@ public class Team {
     private LocalDateTime nextGameTime;
     private String nextPointSpread;
     private double currentMarketPrice;
+    private String sharesOutstanding;
 
     public String getTeamId() {
         return teamId;
@@ -68,6 +69,14 @@ public class Team {
 
     public void setCurrentMarketPrice(double currentMarketPrice) {
         this.currentMarketPrice = currentMarketPrice;
+    }
+
+    public String getSharesOutstanding() {
+        return sharesOutstanding;
+    }
+
+    public void setSharesOutstanding(String sharesOutstanding) {
+        this.sharesOutstanding = sharesOutstanding;
     }
 
     @Override

@@ -2,6 +2,37 @@ body {
     background-color: #e6ffe6;
 }
 
-.item {
+.team {
+    background-color: white;
     margin-top: 20px;
+    border: 1px solid black;
+}
+
+.team_name {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.team_currentPrice {
+    margin-top: 20px;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 1.3em;
+    float: right;
+}
+
+.logo_header {
+    height: 70px;
+    width: 70px;
+    margin: auto;
+    display: inline-block;
+}
+
+.outstanding {
+    float: right;
+}
+
+
+.card-body {
+    min-height: 150px;
 }
