@@ -25,12 +25,10 @@
             <p>New features to come!</p>
             <p><code>Click the following Links to test API</p>
             <ul>
-                <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/team/Kansas">transaction by team name
-                    URL Param</a>
-                </li>
-                <li><a href="https://cbb-bluechips.herokuapp.com/trade/transaction/user/2">transactions by user</a></li>
-                <li><a href="https://cbb-bluechips.herokuapp.com/api">game data</a></li>
-                <li><a href="https://cbb-bluechips.herokuapp.com/owns/2">user Owns by id</a></li>
+                <li><a href="/trade/transaction/team/Kansas">transaction by team name URL Param</a></li>
+                <li><a href="/trade/transaction/user/2">transactions by user</a></li>
+                <li><a href="/api">game data</a></li>
+                <li><a href="/owns/2">user Owns by id</a></li>
             </ul>
         </div>
         <div class="col-lg-7">
@@ -41,13 +39,6 @@
             </code>
         </div>
     </div>
-
-    <div class="row">
-<br/>
-        <button onclick="post()">Post</button>
-
-    </div>
-
 </div>
 <script>
 $(document).ready(function(){
@@ -69,31 +60,4 @@ $(document).ready(function(){
   });
 
 });
-
-
-
-  function post() {
-
-        var buy = {teamId:"2", userId:"2", volume:"2"};
-
-    $.ajax({
-    url: '/trade/sell',
-    dataType: 'json',
-    type: 'post',
-    contentType: 'application/json',
-    data: JSON.stringify(buy),
-    processData: true,
-    success: function( data, textStatus, jQxhr ){
-        alert("Worked");
-    },
-    error: function( jqXhr, textStatus, errorThrown ){
-        console.log( errorThrown );
-    }
-});
-  }
-
-    function test() {
-     alert("test")
-    }
-
 </script>

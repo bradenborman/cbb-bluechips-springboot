@@ -8,13 +8,15 @@
             font-size: 1.4em;
             margin: 20px;
         }
+
     </style>
 </head>
 <body>
 <h1 th:text="${title}" id="${title}"></h1>
 
-All Items:
-<div class="card" th:each="li : ${list}" th:text="${li}"></div>
-
+<div>
+    All Playing:
+    <div class="card" th:each="li : ${list}" th:text="${li.firstName + ' ' + li.lastName}"></div>
+</div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.Borman.cbbbluechips.controllers;
 
+import com.Borman.cbbbluechips.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,10 @@ import java.util.List;
 @Controller
 public class ViewController {
 
+    @Autowired
+    UserService userService;
+
+
     @RequestMapping("/")
     public String welcome() {
         return "index";
@@ -18,10 +24,8 @@ public class ViewController {
 
     @RequestMapping("/2/{team}")
     public String welcome2(@PathVariable String team, Model model) {
-
-        List<String> allStrings = Arrays.asList("Test1", "Test", "Test3");
         model.addAttribute("title", team);
-        model.addAttribute("list", allStrings);
+        model.addAttribute("list", userService.getAllUsers());
         System.out.println(team);
         return "index2";
     }
