@@ -16,6 +16,7 @@ public class TeamRowMapper implements RowMapper<Team> {
         team.setSeed(rs.getString("seed"));
         team.setNextPointSpread(rs.getString("point_spread"));
         team.setEliminated(rs.getBoolean("is_out"));
+        team.setCurrentMarketPrice(rs.getDouble("Current_Market_Price"));
         return team;
     }
 }
