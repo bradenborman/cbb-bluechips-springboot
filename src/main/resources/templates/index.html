@@ -15,8 +15,9 @@
     <div class="container">
         <h1>Upcoming</h1>
         <p>Cbb Bluechips 2020 in progress</p>
+        <p><a href="/2/kansas">Test Page</a></p>
     </div>
-</div>thymeleaf
+</div>
 <div class="container">
 
     <div class="row">
@@ -42,7 +43,7 @@
     </div>
 
     <div class="row">
-
+<br/>
         <button onclick="post()">Post</button>
 
     </div>
@@ -69,6 +70,8 @@ $(document).ready(function(){
 
 });
 
+
+
   function post() {
 
         var buy = {teamId:"2", userId:"2", volume:"2"};
@@ -81,7 +84,7 @@ $(document).ready(function(){
     data: JSON.stringify(buy),
     processData: true,
     success: function( data, textStatus, jQxhr ){
-        alert( JSON.stringify( data ) );
+        alert("Worked");
     },
     error: function( jqXhr, textStatus, errorThrown ){
         console.log( errorThrown );
