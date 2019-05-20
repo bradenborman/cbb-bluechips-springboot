@@ -9,5 +9,10 @@ How to push and set up heroku:
 
 
 
-    @Restcontroller for data
-    @controller for view
+____
+EXAMPLE GET ENDPOINTS:
+
+- /trade/transaction/team/Kansas
+- /trade/transaction/user/2
+- /api
+- /owns/2

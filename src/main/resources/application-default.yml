@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: local
+
+  main:
+    allow-bean-definition-overriding: true
+
+  output:
+    ansi:
+      enabled: ALWAYS
+
+game-rules:
+  starting-cash: 100000

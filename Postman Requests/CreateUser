@@ -1,0 +1,9 @@
+//http://localhost:8080/user/create
+
+{
+	"firstName" : "Brent",
+	"lastName" : "Thoenen",
+	"email" : "brent@mail.com",
+	"password" : "Brent1234",
+	"passwordHint" : "name1234"
+}
