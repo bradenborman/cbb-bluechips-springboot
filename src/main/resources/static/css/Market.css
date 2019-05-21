@@ -31,3 +31,21 @@ body {
 .outstanding {
     float: right;
 }
+
+
+h6 {
+    margin-top: 150px;
+    margin-bottom: 12px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+    text-align: center;
+}
+
+th {
+    border-bottom: 1px solid black;
+}

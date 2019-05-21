@@ -18,16 +18,18 @@
     <div class="row">
         <div class="col-sm-6" th:each="team : ${teams}">
             <div class="team">
-                <img class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}" />
+                <img class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}"/>
                 <span class="team_name" th:text="${team.teamName}"></span>
-                <span class="team_currentPrice" th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
+                <span class="team_currentPrice"
+                      th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                 <div class="card">
                     <div th:text="'Next Point Spread: ' + ${team.nextPointSpread}" class="card-header"></div>
                     <div class="card-body">
+                        <h6>Price History by Round</h6>
                         <table style="width:100%">
+                            <tr><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th></tr>
                             <tr>
                                 <td th:each="mapEntry : ${team.priceHistory}">
-                                    <b><span th:text="${mapEntry.key}"></span>:</b>
                                     <span th:text="'$' + ${#numbers.formatDecimal(mapEntry.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                                 </td>
                             </tr>
@@ -41,6 +43,33 @@
             </div>
         </div>
     </div>
+
+
+    <br/>
+    <div id="chartContainer1"></div>
+    <script>
+
+       var chart1 = new CanvasJS.Chart("chartContainer1",{
+    title :{
+        text: "Live Data"
+    },
+    data: [{
+	type: "line",
+        dataPoints : [
+	    { label: "apple",  y: 10  },
+	    { label: "orange", y: 15  },
+	    { label: "banana", y: 25  },
+	    { label: "mango",  y: 30  },
+	    { label: "grape",  y: 28  }
+	]
+    }]
+});
+
+chart1.render();
+
+    </script>
+
+
 </div>
 </body>
 </html>
