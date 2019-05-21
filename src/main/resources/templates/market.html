@@ -15,6 +15,7 @@
 <body>
 <div class="container">
     <h1 th:text="${title}"></h1>
+    <hr />
     <div class="row">
         <div class="col-sm-6" th:each="team : ${teams}">
             <div class="team">
@@ -23,7 +24,7 @@
                 <span class="team_currentPrice"
                       th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                 <div class="card">
-                    <div th:text="'Next Point Spread: ' + ${team.nextPointSpread}" class="card-header"></div>
+                    <div th:text="'Next Point Spread: ' + ${team.nextPointSpread} + ' VS: ' + ${team.nextTeamPlaying}" class="card-header"></div>
                     <div class="card-body">
                         <h6>Price History by Round</h6>
                         <table style="width:100%">

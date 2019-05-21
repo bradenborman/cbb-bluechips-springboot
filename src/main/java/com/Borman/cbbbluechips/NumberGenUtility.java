@@ -8,7 +8,7 @@ public class NumberGenUtility {
 
     public static String getRandomNumber() {
         Random rand = new Random();
-        int x = rand.nextInt(30);
+        int x = rand.nextInt(75);
         return String.valueOf(x);
     }
 

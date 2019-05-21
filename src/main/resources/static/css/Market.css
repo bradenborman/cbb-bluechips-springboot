@@ -1,16 +1,21 @@
 body {
-    background-color: #e6ffe6;
+    background-color: #a9def4;
 }
 
 .team {
     background-color: white;
     margin-top: 20px;
     border: 1px solid black;
+    border-radius: 7px;
 }
 
 .team_name {
     font-weight: bold;
     font-size: 1.3em;
+}
+
+.card-header {
+    text-align: center;
 }
 
 .team_currentPrice {

@@ -24,8 +24,12 @@ public class TeamService {
     public List<Team> getAllTeams() {
         List<Team> allTeams = teamDao.getAllTeams();
         //Replace with actual value
-        allTeams.forEach(team -> team.setSharesOutstanding(NumberGenUtility.getRandomNumber()));
-        allTeams.forEach(team -> team.setPriceHistory(getPreviousPrices()));
+
+        allTeams.forEach(team -> {
+            team.setSharesOutstanding(NumberGenUtility.getRandomNumber());
+            team.setPriceHistory(getPreviousPrices());
+            team.setNextTeamPlaying("next team placeholder");
+        });
         return allTeams;
     }
 

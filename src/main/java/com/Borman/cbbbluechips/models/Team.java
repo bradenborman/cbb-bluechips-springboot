@@ -13,6 +13,7 @@ public class Team {
     private String teamName;
     private String seed;
     private LocalDateTime nextGameTime;
+    private String nextTeamPlaying;
     private String nextPointSpread;
     private double currentMarketPrice;
     private String sharesOutstanding;
@@ -56,6 +57,14 @@ public class Team {
 
     public void setNextGameTime(LocalDateTime nextGameTime) {
         this.nextGameTime = nextGameTime;
+    }
+
+    public String getNextTeamPlaying() {
+        return nextTeamPlaying;
+    }
+
+    public void setNextTeamPlaying(String nextTeamPlaying) {
+        this.nextTeamPlaying = nextTeamPlaying;
     }
 
     public String getNextPointSpread() {
