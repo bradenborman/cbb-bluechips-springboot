@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/Market.css"/>
     <title>Market</title>
     <style>
@@ -15,7 +16,7 @@
 <body>
 <div class="container">
     <h1 th:text="${title}"></h1>
-    <hr />
+    <hr/>
     <div class="row">
         <div class="col-sm-6" th:each="team : ${teams}">
             <div class="team">
@@ -24,17 +25,27 @@
                 <span class="team_currentPrice"
                       th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                 <div class="card">
-                    <div th:text="'Next Point Spread: ' + ${team.nextPointSpread} + ' VS: ' + ${team.nextTeamPlaying}" class="card-header"></div>
+                    <div th:text="${team.nextPointSpread} + ' VS: ' + ${team.nextTeamPlaying}"
+                         class="card-header"></div>
                     <div class="card-body">
-                        <h6>Price History by Round</h6>
-                        <table style="width:100%">
-                            <tr><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th></tr>
-                            <tr>
-                                <td th:each="mapEntry : ${team.priceHistory}">
-                                    <span th:text="'$' + ${#numbers.formatDecimal(mapEntry.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
-                                </td>
-                            </tr>
-                        </table>
+                        <h6 class="price_history_toggle">Price History by Round <i class="fas fa-caret-down"></i></h6>
+                        <div class="table_Wrapper">
+                            <table style="width:100%">
+                                <tr>
+                                    <th>64</th>
+                                    <th>32</th>
+                                    <th>16</th>
+                                    <th>8</th>
+                                    <th>4</th>
+                                    <th>2</th>
+                                </tr>
+                                <tr>
+                                    <td th:each="mapEntry : ${team.priceHistory}">
+                                        <span th:text="'$' + ${#numbers.formatDecimal(mapEntry.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <span class="seed" th:text="'Seed: ' + ${team.seed}"></span>
@@ -44,33 +55,14 @@
             </div>
         </div>
     </div>
-
-
-    <br/>
-    <div id="chartContainer1"></div>
     <script>
-
-       var chart1 = new CanvasJS.Chart("chartContainer1",{
-    title :{
-        text: "Live Data"
-    },
-    data: [{
-	type: "line",
-        dataPoints : [
-	    { label: "apple",  y: 10  },
-	    { label: "orange", y: 15  },
-	    { label: "banana", y: 25  },
-	    { label: "mango",  y: 30  },
-	    { label: "grape",  y: 28  }
-	]
-    }]
-});
-
-chart1.render();
-
+    $(document).ready(function(){
+      $(".price_history_toggle").click(function(){
+        //$(this).find(".fa-caret-down").css("transform": "rotate(180deg"));
+        $(this).siblings(".table_Wrapper").toggle(200)
+      });
+    });
     </script>
-
-
 </div>
 </body>
 </html>

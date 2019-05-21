@@ -1,4 +1,4 @@
-package com.Borman.cbbbluechips;
+package com.Borman.cbbbluechips.utilities;
 
 import java.util.Random;
 

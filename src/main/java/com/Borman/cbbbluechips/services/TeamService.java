@@ -1,6 +1,6 @@
 package com.Borman.cbbbluechips.services;
 
-import com.Borman.cbbbluechips.NumberGenUtility;
+import com.Borman.cbbbluechips.utilities.NumberGenUtility;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.Team;
 import org.slf4j.Logger;
@@ -8,10 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class TeamService {
