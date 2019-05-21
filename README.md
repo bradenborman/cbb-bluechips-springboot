@@ -9,10 +9,18 @@ How to push and set up heroku:
 
 
 
-____
 EXAMPLE GET ENDPOINTS:
 
 - /trade/transaction/team/Kansas
 - /trade/transaction/user/2
 - /api
 - /owns/2
+
+
+
+
+<select id="testId">
+        <option th:each="item: ${itemsMap}"
+                th:value="${item['key']}"
+                th:text="${item['value']}" />
+</select>

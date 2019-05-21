@@ -3,6 +3,8 @@ package com.Borman.cbbbluechips.models;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Team {
 
@@ -14,6 +16,7 @@ public class Team {
     private String nextPointSpread;
     private double currentMarketPrice;
     private String sharesOutstanding;
+    private LinkedHashMap<String, String> priceHistory;
 
     public String getTeamId() {
         return teamId;
@@ -77,6 +80,15 @@ public class Team {
 
     public void setSharesOutstanding(String sharesOutstanding) {
         this.sharesOutstanding = sharesOutstanding;
+    }
+
+
+    public LinkedHashMap<String, String> getPriceHistory() {
+        return priceHistory;
+    }
+
+    public void setPriceHistory(LinkedHashMap<String, String> priceHistory) {
+        this.priceHistory = priceHistory;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.Borman.cbbbluechips;
+package com.Borman.cbbbluechips.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;

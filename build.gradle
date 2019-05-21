@@ -14,12 +14,18 @@ allprojects {
     ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
 }
 
+test {
+    exclude '**/*integration/*'
+}
+
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.Borman'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+apply plugin: 'groovy'
 
 repositories {
     mavenCentral()
@@ -40,6 +46,7 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
 
 
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

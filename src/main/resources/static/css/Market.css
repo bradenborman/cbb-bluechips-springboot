@@ -31,8 +31,3 @@ body {
 .outstanding {
     float: right;
 }
-
-
-.card-body {
-    min-height: 150px;
-}
