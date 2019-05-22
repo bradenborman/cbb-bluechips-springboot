@@ -16,8 +16,8 @@ EXAMPLE GET ENDPOINTS:
 - /api
 - /owns/2
 
-
-
+- http://localhost:8080/market
+- http://localhost:8080/market?allTeams=true
 
 <select id="testId">
         <option th:each="item: ${itemsMap}"
