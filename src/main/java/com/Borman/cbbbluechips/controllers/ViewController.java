@@ -42,5 +42,10 @@ public class ViewController {
         return "market";
     }
 
+    @RequestMapping("/admin")
+    public String admin( Model model) {
+        model.addAttribute("team", teamService.getAllTeams(true).get(0));
+        return "admin_directory";
+    }
 
 }
