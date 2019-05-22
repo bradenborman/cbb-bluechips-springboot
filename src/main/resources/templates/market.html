@@ -21,6 +21,7 @@
         <div class="col-sm-6" th:each="team : ${teams}">
             <div class="team">
                 <img class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}"/>
+<!--                <img class="logo_header" th:src="${team.logoULR}"/>-->
                 <span class="team_name" th:text="${team.teamName}"></span>
                 <span class="team_currentPrice"
                       th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
@@ -29,7 +30,7 @@
                          class="card-header"></div>
                     <div class="card-body">
                         <h6 class="price_history_toggle">Price History by Round <i class="fas fa-caret-down"></i></h6>
-                        <div class="table_Wrapper">
+                        <div class="table_Wrapper" style="display: none;">
                             <table style="width:100%">
                                 <tr>
                                     <th>64</th>

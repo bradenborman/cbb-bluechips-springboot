@@ -12,6 +12,7 @@ public class Team {
     private boolean isEliminated;
     private String teamName;
     private String seed;
+    private String logoULR;
     private LocalDateTime nextGameTime;
     private String nextTeamPlaying;
     private String nextPointSpread;
@@ -49,6 +50,14 @@ public class Team {
 
     public void setSeed(String seed) {
         this.seed = seed;
+    }
+
+    public String getLogoULR() {
+        return logoULR;
+    }
+
+    public void setLogoULR(String logoULR) {
+        this.logoULR = logoULR;
     }
 
     public LocalDateTime getNextGameTime() {

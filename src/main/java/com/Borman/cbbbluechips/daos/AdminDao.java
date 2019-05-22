@@ -3,6 +3,7 @@ package com.Borman.cbbbluechips.daos;
 import com.Borman.cbbbluechips.daos.sql.AdminSQL;
 
 import com.Borman.cbbbluechips.daos.sql.TransactionSQL;
+import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.models.Team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +35,7 @@ public class AdminDao {
         }
     }
 
-    //TODO replace with SportsDataTeam team
-    public void insertTeamFromSportsData(Team team) {
+    public void insertTeamFromSportsData(SportsDataTeam team) {
         try {
             SqlParameterSource params = new BeanPropertySqlParameterSource(team);
             namedParameterJdbcTemplate.update(AdminSQL.insertFromSportsDataAPI, params);
