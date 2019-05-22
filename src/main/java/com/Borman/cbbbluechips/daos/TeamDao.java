@@ -25,6 +25,10 @@ public class TeamDao {
         return jdbcTemplate.query(TeamSQL.getAllTeams, new TeamRowMapper());
     }
 
+    public List<Team> onlyTeamsInTournament() {
+        return jdbcTemplate.query(TeamSQL.getTournamentTeams, new TeamRowMapper());
+    }
+
     public Team getTeamById(String teamId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
         return namedParameterJdbcTemplate.query(TeamSQL.getTeamById, params, new TeamRowMapper()).get(0);
@@ -40,6 +44,4 @@ public class TeamDao {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
         return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamName, params, String.class);
     }
-
-
 }

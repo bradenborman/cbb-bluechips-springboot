@@ -29,10 +29,9 @@ public class ApiController {
         gameInfo.setHighScore("235,000");
         gameInfo.setMoneyInPlay(2342352);
         gameInfo.setRoundOfPlay("Sweet Sixteen");
-        gameInfo.setTeams(teamService.getAllTeams());
+        gameInfo.setTeams(teamService.getAllTeams(true));
         logger.info("Request Complete\n");
         return ResponseEntity.ok(gameInfo);
     }
-
 
 }

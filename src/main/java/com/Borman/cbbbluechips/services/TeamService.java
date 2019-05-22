@@ -19,8 +19,8 @@ public class TeamService {
     @Autowired
     TeamDao teamDao;
 
-    public List<Team> getAllTeams() {
-        List<Team> allTeams = teamDao.getAllTeams();
+    public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
+        List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
         //Replace with actual value
 
         allTeams.forEach(team -> {
@@ -30,7 +30,6 @@ public class TeamService {
         });
         return allTeams;
     }
-
 
     private LinkedHashMap<String, String> getPreviousPrices() {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
@@ -42,5 +41,6 @@ public class TeamService {
         priceMap.put("2", NumberGenUtility.getRandomPrice());
         return priceMap;
     }
+
 
 }

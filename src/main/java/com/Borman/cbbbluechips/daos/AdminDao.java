@@ -17,8 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AdminDao {
 
-    Logger logger = LoggerFactory.getLogger(OwnsDao.class);
-
+    Logger logger = LoggerFactory.getLogger(AdminDao.class);
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -35,15 +34,12 @@ public class AdminDao {
         }
     }
 
-    public void insertTeamFromSportsData(SportsDataTeam team) {
+    public void updateTeamInfo(SportsDataTeam team) {
         try {
             SqlParameterSource params = new BeanPropertySqlParameterSource(team);
-            namedParameterJdbcTemplate.update(AdminSQL.insertFromSportsDataAPI, params);
+            namedParameterJdbcTemplate.update(AdminSQL.updateTeamInfo, params);
         } catch (Exception e) {
-            System.out.println("Failed to insert from SPORTS DATA API" + e);
+            System.out.println("Failed to update from SPORTS DATA API" + e);
         }
     }
-
-
-
 }

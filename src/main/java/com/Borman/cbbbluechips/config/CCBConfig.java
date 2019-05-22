@@ -29,15 +29,19 @@ public class CCBConfig {
         return basicDataSource;
     }
 
+    @Bean
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
+
     @Bean("startingCash")
     public int getStartingCash(@Value("${game-rules.starting-cash}") int startingCash) {
         return startingCash;
     }
 
-
-    @Bean
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
+    @Bean("sportsDataUrl")
+    public String getSportsDataUrl(@Value("${sports-data-api.url}") String sportsDataUrl) {
+        return sportsDataUrl;
     }
 
 }
