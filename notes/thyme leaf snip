@@ -1,5 +1,0 @@
-    <form action="#" th:action="@{/admin/update-price}" th:object="${team}" method="post">
-        <p>Id: <input type="text" th:field="*{teamId}" /></p>
-        <p>Name: <input type="text" th:field="*{teamName}" /></p>
-        <p><input type="submit" value="Submit" /> </p>
-    </form>

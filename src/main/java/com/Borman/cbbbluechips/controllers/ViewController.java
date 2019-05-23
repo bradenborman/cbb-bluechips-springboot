@@ -21,17 +21,14 @@ public class ViewController {
     @Autowired
     TransactionService transactionService;
 
-
     @RequestMapping("/")
     public String welcome() {
         return "apiHelp";
     }
 
-    //None of portfolio is right - -testing logic
+
     @RequestMapping("/portfolio")
     public String portfolio(Model model) {
-        model.addAttribute("title", "My Portfolio");
-        model.addAttribute("teams", teamService.getAllTeams(false));
         return "portfolio";
     }
 
@@ -40,12 +37,6 @@ public class ViewController {
         model.addAttribute("title", "Market");
         model.addAttribute("teams", allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true));
         return "market";
-    }
-
-    @RequestMapping("/admin")
-    public String admin( Model model) {
-        model.addAttribute("team", teamService.getAllTeams(true).get(0));
-        return "admin_directory";
     }
 
 }

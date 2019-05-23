@@ -6,11 +6,14 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+//TODO Update where ever to include new isLocked mapper sql database
+
 public class Team {
 
     private String teamId;
-    private boolean isEliminated;
     private String teamName;
+    private boolean isEliminated;
+    private boolean isLocked;
     private String seed;
     private String logoULR;
     private LocalDateTime nextGameTime;
@@ -34,6 +37,14 @@ public class Team {
 
     public void setEliminated(boolean eliminated) {
         isEliminated = eliminated;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 
     public String getTeamName() {

@@ -20,8 +20,9 @@ public class AdminController {
     }
 
     @PostMapping("/update-price")
-    public ResponseEntity<String> updateMarketPrice( @RequestParam(value="teamId") String teamId , @RequestParam(value="teamName") String teamName) {
-        return ResponseEntity.ok(String.format("Request send to update: %s %s", teamId, teamName));
+    public ResponseEntity<String> updateMarketPrice(@RequestParam(value="teamName") String teamName , @RequestParam(value="isLocked", defaultValue = "false") boolean isLocked,
+       @RequestParam(value="nextRoundPrice") double nextRoundPrice, @RequestParam(value = "roundSelector") int roundId) {
+        return ResponseEntity.ok(String.format("%s: %s %s %s\n\n<a href=\"/admin\">Back to Admin</a>", teamName, nextRoundPrice, isLocked, roundId));
     }
 
 }

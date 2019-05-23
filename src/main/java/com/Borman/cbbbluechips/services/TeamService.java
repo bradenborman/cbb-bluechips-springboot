@@ -42,5 +42,10 @@ public class TeamService {
         return priceMap;
     }
 
-
+    public Team getTeamById(String teamId) {
+        Team team = new Team();
+        team.setTeamName("Duke");
+        team.setCurrentMarketPrice(5000);
+        return team;
+    }
 }

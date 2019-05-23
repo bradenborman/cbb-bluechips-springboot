@@ -15,13 +15,9 @@
 <body>
 
 <div class="container">
-    <h1 th:text="${title}"></h1>
-    <div>
-        <div class="card item" th:each="team : ${teams}">
-            <p th:text="${team.teamName + ' (' + team.seed}+ ')'"></p>
-            <p th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></p>
-        </div>
-    </div>
+
+
+
 </div>
 </body>
 </html>

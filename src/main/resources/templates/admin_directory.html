@@ -16,7 +16,7 @@
 <body>
 <header class="header">
     <div id="logo"></div>
-    <h1>College Basketball's Blue Chips | ADMIN</h1>
+    <h1>College Basketball's Blue Chips ADMIN</h1>
 </header>
 <div class="container">
     <div class="row">
@@ -25,10 +25,9 @@
                <h4>Game Settings</h4>
             </div>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i>Edit Team</a>
+                <a href="/admin/update/teams" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i>Lock/Update Teams</a>
                 <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-minus"></i>Set Seeds</a>
-                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-marker"></i> Change Round
-                    <span class="badge badge-primary badge-pill">64</span></a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-marker"></i> Change Round<span th:text="${roundId}" class="badge badge-primary badge-pill"></span></a>
             </div>
         </div>
         <div class="col-sm-4">

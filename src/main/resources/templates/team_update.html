@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="/css/Portfolio.css"/>-->
+    <title>Update Team</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <select onchange="updateForm(this.value)" id="teamSelector">
+                <option disabled selected value> -- Select Team to Begin --</option>
+                <option th:each="team: ${teams}" th:value="${team['teamId']}" th:text="${team['teamName']}"/>
+            </select>
+        </div>
+        <div class="col-sm-8">
+            <form th:if="${selectedTeam != null}" action="/admin/update-price" method="post">
+                Team Name:<br>
+                <input th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" readonly="readonly"
+                       type="text" id="teamName" name="teamName"><br><br>
+                Locked Out:<br>
+                <input type="checkbox" id="isLocked" name="isLocked" checked><br><br>
+                Current Market Price:<br>
+                <input th:if="${selectedTeam != null}" th:value="${selectedTeam.currentMarketPrice}" type="text"
+                       id="currentPrice" name="currentPrice" readonly="readonly"><br><br>
+                Round Price:<br>
+                <input type="text" id="nextRoundPrice" name="nextRoundPrice">
+                <br/><br/>
+                <select id="roundSelector" name="roundSelector">
+                    <option disabled selected value> -- Select Team to Begin --</option>
+                    <option value="64">64</option>
+                    <option value="32">32</option>
+                    <option value="16">16</option>
+                    <option value="8">8</option>
+                    <option value="4">4</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+                <br/><br/>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function updateForm(id) { location.href = "?teamId=" + id; }
+
+</script>
+</body>
+</html>
