@@ -22,7 +22,7 @@
         <div class="col-sm-8">
             <form th:if="${selectedTeam != null}" action="/admin/update-price" method="post">
                 Team Name:<br>
-                <input th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" readonly="readonly"
+                <input required th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" readonly="readonly"
                        type="text" id="teamName" name="teamName"><br><br>
                 Locked Out:<br>
                 <input type="checkbox" id="isLocked" name="isLocked" checked><br><br>
@@ -30,9 +30,9 @@
                 <input th:if="${selectedTeam != null}" th:value="${selectedTeam.currentMarketPrice}" type="text"
                        id="currentPrice" name="currentPrice" readonly="readonly"><br><br>
                 Round Price:<br>
-                <input type="text" id="nextRoundPrice" name="nextRoundPrice">
+                <input required type="text" id="nextRoundPrice" name="nextRoundPrice">
                 <br/><br/>
-                <select id="roundSelector" name="roundSelector">
+                <select required id="roundSelector" name="roundSelector">
                     <option disabled selected value> -- Select Team to Begin --</option>
                     <option value="64">64</option>
                     <option value="32">32</option>
