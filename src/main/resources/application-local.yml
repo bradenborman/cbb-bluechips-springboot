@@ -3,3 +3,9 @@ spring:
     properties:
       hibernate:
         default_schema: heroku_f8c10a0dcaaf757
+
+game-rules:
+  starting-cash: 100000
+
+sports-data-api:
+  url: https://api.sportsdata.io/v3/cbb/scores/json/teams?key=df57fbe761424db78e5c16a103ceb0d0

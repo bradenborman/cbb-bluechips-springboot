@@ -8,20 +8,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/Admin.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <title>Admin Directory</title>
     <style>
     </style>
 </head>
 <body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Blue Chips | ADMIN</h1>
+</header>
 <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row setting_id">
+               <h4>Game Settings</h4>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i>Edit Team</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-minus"></i>Set Seeds</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-marker"></i> Change Round
+                    <span class="badge badge-primary badge-pill">64</span></a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row setting_id">
+                <h4>Team Settings</h4>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i>Edit Team</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-minus"></i>Set Seeds</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-edit"></i>Update API
+                    Data</a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row setting_id">
+                <h4>User Settings</h4>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i>Edit User</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-minus"></i>View User
+                    Portfolio</a>
+                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-edit"></i>Delete User</a>
+            </div>
+        </div>
+    </div>
 
-    <h2>Admin Page</h2>
-
-    <form action="#" th:action="@{/admin/update-price}" th:object="${team}" method="post">
-        <p>Id: <input type="text" th:field="*{teamId}" /></p>
-        <p>Name: <input type="text" th:field="*{teamName}" /></p>
-        <p><input type="submit" value="Submit" /> </p>
-    </form>
 
 </div>
 </body>
