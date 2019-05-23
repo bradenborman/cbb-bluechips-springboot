@@ -44,4 +44,9 @@ public class TeamDao {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
         return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamName, params, String.class);
     }
+
+    public Team getTeamByName(String teamId) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+        return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamById, params, new TeamRowMapper());
+    }
 }

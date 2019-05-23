@@ -31,6 +31,10 @@ public class TeamService {
         return allTeams;
     }
 
+    public Team getTeamById(String teamId) {
+        return teamDao.getTeamByName(teamId);
+    }
+
     private LinkedHashMap<String, String> getPreviousPrices() {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", NumberGenUtility.getRandomPrice());
@@ -42,10 +46,4 @@ public class TeamService {
         return priceMap;
     }
 
-    public Team getTeamById(String teamId) {
-        Team team = new Team();
-        team.setTeamName("Duke");
-        team.setCurrentMarketPrice(5000);
-        return team;
-    }
 }

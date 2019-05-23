@@ -13,7 +13,7 @@ public class Team {
     private String teamId;
     private String teamName;
     private boolean isEliminated;
-    private boolean isLocked;
+    private boolean locked;
     private String seed;
     private String logoULR;
     private LocalDateTime nextGameTime;
@@ -31,6 +31,14 @@ public class Team {
         this.teamId = teamId;
     }
 
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
     public boolean isEliminated() {
         return isEliminated;
     }
@@ -40,19 +48,11 @@ public class Team {
     }
 
     public boolean isLocked() {
-        return isLocked;
+        return locked;
     }
 
     public void setLocked(boolean locked) {
-        isLocked = locked;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+        this.locked = locked;
     }
 
     public String getSeed() {
@@ -110,7 +110,6 @@ public class Team {
     public void setSharesOutstanding(String sharesOutstanding) {
         this.sharesOutstanding = sharesOutstanding;
     }
-
 
     public LinkedHashMap<String, String> getPriceHistory() {
         return priceHistory;

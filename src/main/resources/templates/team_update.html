@@ -7,32 +7,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!--<link rel="stylesheet" type="text/css" href="/css/Portfolio.css"/>-->
+    <link rel="stylesheet" type="text/css" href="/css/Admin.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <title>Update Team</title>
 </head>
 <body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Blue Chips ADMIN</h1>
+</header>
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
+            <P th:text="'Current Round: ' + ${currentRound}"></P>
             <select onchange="updateForm(this.value)" id="teamSelector">
                 <option disabled selected value> -- Select Team to Begin --</option>
                 <option th:each="team: ${teams}" th:value="${team['teamId']}" th:text="${team['teamName']}"/>
             </select>
+            <br/>
+            <hr/>
+            <P style="font-size: 1.6em;" th:if="${selectedTeam != null}" th:text="'Team: ' + ${selectedTeam.teamName}"></P>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-4">
             <form th:if="${selectedTeam != null}" action="/admin/update-price" method="post">
-                Team Name:<br>
-                <input required th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" readonly="readonly"
-                       type="text" id="teamName" name="teamName"><br><br>
-                Locked Out:<br>
-                <input type="checkbox" id="isLocked" name="isLocked" checked><br><br>
+                <input required th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" style="display: none;" readonly="readonly" type="hidden" id="teamName" name="teamName"><br>
                 Current Market Price:<br>
-                <input th:if="${selectedTeam != null}" th:value="${selectedTeam.currentMarketPrice}" type="text"
-                       id="currentPrice" name="currentPrice" readonly="readonly"><br><br>
+                <input th:if="${selectedTeam != null}" th:value="${selectedTeam.currentMarketPrice}" type="text" id="currentPrice" name="currentPrice" readonly="readonly" class="form-control"><br>
                 Round Price:<br>
-                <input required type="text" id="nextRoundPrice" name="nextRoundPrice">
-                <br/><br/>
-                <select required id="roundSelector" name="roundSelector">
+                <input required type="text" id="nextRoundPrice" name="nextRoundPrice" class="form-control"><br/>
+                <select class="form-group" required id="roundSelector" name="roundSelector">
                     <option disabled selected value> -- Select Team to Begin --</option>
                     <option value="64">64</option>
                     <option value="32">32</option>
@@ -43,14 +46,26 @@
                     <option value="1">1</option>
                 </select>
                 <br/><br/>
-                <input type="submit" value="Submit">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <form style="text-align: right;" th:if="${selectedTeam != null}" action="/admin/update-locked" method="post">
+                <div class="form-group">
+                    <input required th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" readonly="readonly" type="hidden" id="teamName2" name="teamName">
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input th:checked="${selectedTeam.locked}" type="checkbox" id="isLocked" name="isLocked" class="form-check-input"> Locked
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
             </form>
         </div>
     </div>
 </div>
 <script>
     function updateForm(id) { location.href = "?teamId=" + id; }
-
 </script>
 </body>
 </html>
