@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
@@ -64,6 +65,15 @@ public class AdminDao {
         }
     }
 
-
-
+    public void updateLockedStatusAndEliminated(String teamName, boolean isEliminated, boolean isLocked) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("teamName", teamName)
+                    .addValue("out", isEliminated)
+                    .addValue("locked", isLocked);
+            namedParameterJdbcTemplate.update(AdminSQL.updateLockedAndEliminated, params);
+        } catch (Exception e) {
+            System.out.println("Failed to update Locked and Eliminated" + e);
+        }
+    }
 }

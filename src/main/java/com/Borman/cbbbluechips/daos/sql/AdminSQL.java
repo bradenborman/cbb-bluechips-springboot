@@ -13,4 +13,5 @@ public class AdminSQL {
 
     public static final String updateSeeds = "UPDATE teams SET seed = :newSeed WHERE Name = :teamName";
 
+    public static final String updateLockedAndEliminated = "UPDATE teams SET Is_Out = :out, Is_Locked = :locked WHERE Name = :teamName";
 }

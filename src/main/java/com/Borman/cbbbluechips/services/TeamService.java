@@ -21,8 +21,8 @@ public class TeamService {
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
-        //Replace with actual value
 
+        //Replace with actual value
         allTeams.forEach(team -> {
             team.setSharesOutstanding(NumberGenUtility.getRandomNumber());
             team.setPriceHistory(getPreviousPrices());

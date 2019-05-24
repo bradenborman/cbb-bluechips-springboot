@@ -26,12 +26,12 @@
     </div>
     <form class="form" action="/admin/update-seeds" method="post">
         <div class="row">
-            <div class="col-lg-6" style="margin-bottom: 15px;" th:each="team : ${allTeams}">
+            <div class="col-lg-4" style="margin-bottom: 15px;" th:each="team : ${allTeams}">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <input class="form-control" type="text" name="teamName" th:value="${team.teamName}" readonly/>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <input class="form-control" type="text" name="seed" th:value="${team.seed}"/>
                     </div>
                 </div>

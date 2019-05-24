@@ -6,7 +6,6 @@ import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -56,10 +55,12 @@ public class AdminService {
         for(int x = 0; x < allTeams.size(); x++)
             updates.add(UpdateSeedRequestBuilder.anUpdateSeedRequest().withTeamName(allTeams.get(x)).withNewSeed(seedsValue.get(x)).build());
         updates.removeIf(team -> Integer.valueOf(team.getNewSeed()) <= 0);
-       // adminDao.setSeedsToDefault();
+        adminDao.setSeedsToDefault();
         updates.forEach(team -> adminDao.updateSeedRequest(team));
-
     }
 
-
+    public void updateLockedAndEliminated(String teamName, boolean isEliminated, boolean isLocked) {
+        logger.info(String.format("Updating %s's Info. Locked: %s Out: %s", teamName, isEliminated, isLocked));
+        adminDao.updateLockedStatusAndEliminated(teamName, isEliminated, isLocked);
+    }
 }

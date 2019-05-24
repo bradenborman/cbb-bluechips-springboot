@@ -22,8 +22,10 @@ public class AdminController {
     }
 
     @PostMapping("/update-locked")
-    public ResponseEntity<String> updateLocked(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "isEliminated", defaultValue = "false") String isEliminated, @RequestParam(value = "isLocked", defaultValue = "false") boolean isLocked) {
-        return ResponseEntity.ok(String.format("%s %s %s\n\n<a href=\"/admin\">Back to Admin</a>", teamName, isLocked, isEliminated));
+    public ResponseEntity<String> updateLocked(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "isEliminated", defaultValue = "false") boolean isEliminated,
+                                               @RequestParam(value = "isLocked", defaultValue = "false") boolean isLocked) {
+        adminService.updateLockedAndEliminated(teamName, isEliminated, isLocked);
+        return ResponseEntity.ok("");
     }
 
     @PostMapping("/update-seeds")
