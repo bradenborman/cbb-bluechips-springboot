@@ -15,11 +15,6 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @GetMapping("/sports-data-api/update-teams")
-    public ResponseEntity<String> updateSportsDataApiTeamInfo() {
-        adminService.updateTeamsStoredInDataBase();
-        return ResponseEntity.ok("Updated Teams Wins Losses etc");
-    }
 
     @PostMapping("/update-price")
     public ResponseEntity<String> updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice, @RequestParam(value = "roundSelector") int roundId) {
