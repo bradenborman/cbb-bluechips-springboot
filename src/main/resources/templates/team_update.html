@@ -35,6 +35,7 @@
                 <input th:if="${selectedTeam != null}" th:value="${selectedTeam.currentMarketPrice}" type="text" id="currentPrice" name="currentPrice" readonly="readonly" class="form-control"><br>
                 Round Price:<br>
                 <input required type="text" id="nextRoundPrice" name="nextRoundPrice" class="form-control"><br/>
+                For Round (<span th:text="${currentRound}/ 2"></span>) :<br>
                 <select class="form-group" required id="roundSelector" name="roundSelector">
                     <option disabled selected value> -- Select Team to Begin --</option>
                     <option value="64">64</option>

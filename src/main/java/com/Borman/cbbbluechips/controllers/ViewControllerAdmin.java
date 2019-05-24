@@ -21,13 +21,12 @@ public class ViewControllerAdmin {
 
 
     @RequestMapping("")
-    public String admin( Model model) {
+    public String admin(Model model) {
         model.addAttribute("roundId", "32");
         return "admin_directory";
     }
 
 
-    //TODO Update row mappers to include is locked out and also database
     @RequestMapping("/update/teams")
     public String updateTeams(@RequestParam(required = false) String teamId, Model model) {
         model.addAttribute("teams", teamService.getAllTeams(true));
@@ -37,6 +36,13 @@ public class ViewControllerAdmin {
             model.addAttribute("selectedTeam", teamService.getTeamById(teamId));
         }
         return "team_update";
+    }
+
+
+    @RequestMapping("/set/seeds")
+    public String setSeeds(Model model) {
+        model.addAttribute("allTeams", teamService.getAllTeams(false));
+        return "set_seeds";
     }
 
 }
