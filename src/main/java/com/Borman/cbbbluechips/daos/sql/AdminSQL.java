@@ -9,4 +9,8 @@ public class AdminSQL {
 
     public static final String updateTeamInfo = "UPDATE teams SET Wins = :wins, Losses = :losses, Sports_Data_Team_ID = :teamId WHERE Name = :school";
 
+    public static final String resetSeeds = "UPDATE teams SET seed = '0' WHERE Team_ID > 0";
+
+    public static final String updateSeeds = "UPDATE teams SET seed = :newSeed WHERE Name = :teamName";
+
 }

@@ -24,15 +24,15 @@
             </div>
         </div>
     </div>
-    <form class="form">
+    <form class="form" action="/admin/update-seeds" method="post">
         <div class="row">
             <div class="col-lg-6" style="margin-bottom: 15px;" th:each="team : ${allTeams}">
                 <div class="row">
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" th:value="${team.teamName}" readonly/>
+                        <input class="form-control" type="text" name="teamName" th:value="${team.teamName}" readonly/>
                     </div>
                     <div class="col-lg-4">
-                        <input class="form-control" type="text" th:value="${team.seed}"/>
+                        <input class="form-control" type="text" name="seed" th:value="${team.seed}"/>
                     </div>
                 </div>
             </div>

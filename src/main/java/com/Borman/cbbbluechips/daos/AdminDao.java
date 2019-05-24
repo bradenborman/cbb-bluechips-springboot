@@ -5,6 +5,7 @@ import com.Borman.cbbbluechips.daos.sql.AdminSQL;
 import com.Borman.cbbbluechips.daos.sql.TransactionSQL;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.models.Team;
+import com.Borman.cbbbluechips.models.UpdateSeedRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class AdminDao {
@@ -42,4 +45,25 @@ public class AdminDao {
             System.out.println("Failed to update from SPORTS DATA API" + e);
         }
     }
+
+    public void setSeedsToDefault() {
+        try {
+            logger.info("Resetting All Teams to seed of 0");
+            jdbcTemplate.update(AdminSQL.resetSeeds);
+        } catch (Exception e) {
+            logger.error(e.toString());
+        }
+    }
+
+    public void updateSeedRequest(UpdateSeedRequest updateSeedRequest) {
+        try {
+            SqlParameterSource params = new BeanPropertySqlParameterSource(updateSeedRequest);
+            namedParameterJdbcTemplate.update(AdminSQL.updateSeeds, params);
+        } catch (Exception e) {
+            System.out.println("Failed to update seeds" + e);
+        }
+    }
+
+
+
 }
