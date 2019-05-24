@@ -34,4 +34,11 @@ public class AdminController {
         return ResponseEntity.ok("OKAY");
     }
 
+    @PostMapping("/update/current-round")
+    public ResponseEntity<String> updateRound(@RequestParam(value = "round") String round) {
+        System.out.println(round);
+        return ResponseEntity.ok("OKAY");
+    }
+
 }
+

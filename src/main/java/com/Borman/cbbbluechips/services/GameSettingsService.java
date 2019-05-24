@@ -11,7 +11,7 @@ public class GameSettingsService {
     GameSettingsDao settingsDao;
 
     //TODO
-    public String getRoundId() {
+    public String getCurrentRound() {
         return "16";
     }
 

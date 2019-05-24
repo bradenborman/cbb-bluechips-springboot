@@ -30,7 +30,7 @@ public class ViewControllerAdmin {
     @RequestMapping("/update/teams")
     public String updateTeams(@RequestParam(required = false) String teamId, Model model) {
         model.addAttribute("teams", teamService.getAllTeams(true));
-        model.addAttribute("currentRound", gameSettingsService.getRoundId());
+        model.addAttribute("currentRound", gameSettingsService.getCurrentRound());
         if(teamId != null) {
             System.out.println(String.format("Looking to get Team for updating: %s", teamId));
             model.addAttribute("selectedTeam", teamService.getTeamById(teamId));
@@ -38,11 +38,16 @@ public class ViewControllerAdmin {
         return "team_update";
     }
 
-
     @RequestMapping("/set/seeds")
     public String setSeeds(Model model) {
         model.addAttribute("allTeams", teamService.getAllTeams(false));
         return "set_seeds";
+    }
+
+    @RequestMapping("/set/round")
+    public String setRound(Model model) {
+        model.addAttribute("currentRound", gameSettingsService.getCurrentRound());
+        return "set_round";
     }
 
 }

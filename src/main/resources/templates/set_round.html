@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/Admin.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <title>Update Current Round</title>
+</head>
+<body>
+
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Blue Chips ADMIN</h1></header>
+
+<div class="container">
+    <form class="form" action="/admin/update/current-round" method="post">
+        <p th:text="'Currently: ' + ${currentRound}" ></p>
+        <select class="form-group" required id="round" name="round">
+            <option disabled selected value> -- Select Team to Begin --</option>
+            <option value="64">64</option>
+            <option value="32">32</option>
+            <option value="16">16</option>
+            <option value="8">8</option>
+            <option value="4">4</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<footer style=" margin-bottom: 100px; text-align: center; margin-top: 200px;">
+    <a href="/admin">Back to Admin Portal</a>
+</footer>
+</body>
+</html>
