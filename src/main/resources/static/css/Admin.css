@@ -35,6 +35,10 @@
 }
 
 
+.form {
+    padding: 50px;
+}
+
 
 @media screen and (max-width: 600px) {
 
@@ -52,4 +56,8 @@
 	    margin-top: 20px;
 	}
 
+
+    .form {
+        padding: 10px;
+    }
 }

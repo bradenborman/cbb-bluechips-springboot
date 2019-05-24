@@ -18,7 +18,7 @@
 </header>
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-lg-4">
             <P th:text="'Current Round: ' + ${currentRound}"></P>
             <select onchange="updateForm(this.value)" id="teamSelector">
                 <option disabled selected value> -- Select Team to Begin --</option>
@@ -28,8 +28,8 @@
             <hr/>
             <P style="font-size: 1.6em;" th:if="${selectedTeam != null}" th:text="'Team: ' + ${selectedTeam.teamName}"></P>
         </div>
-        <div class="col-sm-4">
-            <form th:if="${selectedTeam != null}" action="/admin/update-price" method="post">
+        <div class="col-lg-4">
+            <form class="form" th:if="${selectedTeam != null}" action="/admin/update-price" method="post">
                 <input required th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" style="display: none;" readonly="readonly" type="hidden" id="teamName" name="teamName"><br>
                 Current Market Price:<br>
                 <input th:if="${selectedTeam != null}" th:value="${selectedTeam.currentMarketPrice}" type="text" id="currentPrice" name="currentPrice" readonly="readonly" class="form-control"><br>
@@ -49,8 +49,9 @@
                 <input type="submit" class="btn btn-primary" value="Submit">
             </form>
         </div>
-        <div class="col-sm-4">
-            <form style="text-align: right;" th:if="${selectedTeam != null}" action="/admin/update-locked" method="post">
+        <div class="col-lg-4">
+            <br />
+            <form class="form" th:if="${selectedTeam != null}" action="/admin/update-locked" method="post">
                 <div class="form-group">
                     <input required th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" readonly="readonly" type="hidden" id="teamName2" name="teamName">
                 </div>
@@ -59,11 +60,19 @@
                         <input th:checked="${selectedTeam.locked}" type="checkbox" id="isLocked" name="isLocked" class="form-check-input"> Locked
                     </label>
                 </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input th:checked="${selectedTeam.eliminated}" type="checkbox" id="isEliminated" name="isEliminated" class="form-check-input"> Eliminated
+                    </label>
+                </div>
                 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
             </form>
         </div>
     </div>
 </div>
+<footer style="text-align: center; margin-top: 200px;">
+    <a href="/admin">Back to Admin Portal</a>
+</footer>
 <script>
     function updateForm(id) { location.href = "?teamId=" + id; }
 </script>

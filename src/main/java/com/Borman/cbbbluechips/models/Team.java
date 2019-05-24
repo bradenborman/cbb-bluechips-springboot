@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 //TODO Update where ever to include new isLocked mapper sql database
 
@@ -12,7 +11,7 @@ public class Team {
 
     private String teamId;
     private String teamName;
-    private boolean isEliminated;
+    private boolean eliminated;
     private boolean locked;
     private String seed;
     private String logoULR;
@@ -40,11 +39,11 @@ public class Team {
     }
 
     public boolean isEliminated() {
-        return isEliminated;
+        return eliminated;
     }
 
     public void setEliminated(boolean eliminated) {
-        isEliminated = eliminated;
+        this.eliminated = eliminated;
     }
 
     public boolean isLocked() {

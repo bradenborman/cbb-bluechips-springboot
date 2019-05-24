@@ -25,8 +25,8 @@ public class AdminController {
     }
 
     @PostMapping("/update-locked")
-    public ResponseEntity<String> updateLocked(@RequestParam(value="teamName") String teamName, @RequestParam(value="isLocked", defaultValue = "false") boolean isLocked) {
-        return ResponseEntity.ok(String.format("%s %s\n\n<a href=\"/admin\">Back to Admin</a>", teamName,  isLocked));
+    public ResponseEntity<String> updateLocked(@RequestParam(value="teamName") String teamName, @RequestParam(value="isEliminated", defaultValue = "false") String isEliminated, @RequestParam(value="isLocked", defaultValue = "false") boolean isLocked) {
+        return ResponseEntity.ok(String.format("%s %s %s\n\n<a href=\"/admin\">Back to Admin</a>", teamName,  isLocked, isEliminated));
     }
 
 }
