@@ -9,17 +9,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/Market.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Footer.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <title>Market</title>
     <style>
     </style>
 </head>
 <body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Blue Chips ADMIN</h1>
+</header>
 <div class="container">
-    <h1 th:text="${title}"></h1>
-    <hr/>
+
+<nav>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link" href="/portfolio">My Portfolio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+    </ul>
+</nav>
+
     <div class="row">
-        <div class="col-sm-6" th:each="team : ${teams}">
+        <div class="col-lg-6" th:each="team : ${teams}">
             <div class="team">
                 <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}"/>
 <!--                <img class="logo_header" th:src="${team.logoULR}"/>-->
@@ -60,6 +77,9 @@
             </div>
         </div>
     </div>
+    <footer>
+        Braden Borman Production &copy;
+    </footer>
     <script>
     $(document).ready(function(){
       $(".price_history_toggle").click(function(){

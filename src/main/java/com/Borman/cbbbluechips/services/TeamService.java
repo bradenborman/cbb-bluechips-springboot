@@ -27,6 +27,7 @@ public class TeamService {
             team.setSharesOutstanding(NumberGenUtility.getRandomNumber());
             team.setPriceHistory(getPreviousPrices());
             team.setNextTeamPlaying("next team placeholder");
+            team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
         });
         return allTeams;
     }

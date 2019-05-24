@@ -34,8 +34,8 @@ public class ViewController {
 
     @RequestMapping("/market")
     public String market(@RequestParam(defaultValue = "false") String allTeams, Model model) {
-        model.addAttribute("title", "Market");
-        model.addAttribute("teams", allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true));
+        model.addAttribute("teams", allTeams.toLowerCase().equals("true")
+                ? teamService.getAllTeams(false) : teamService.getAllTeams(true));
         return "market";
     }
 
