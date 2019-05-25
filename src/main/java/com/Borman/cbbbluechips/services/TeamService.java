@@ -39,12 +39,13 @@ public class TeamService {
 
     private String fetchHistoryDetails() {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
-        priceMap.put("64", NumberGenUtility.getRandomPrice());
+        priceMap.put("64", "5000");
         priceMap.put("32", NumberGenUtility.getRandomPrice());
         priceMap.put("16", NumberGenUtility.getRandomPrice());
-        priceMap.put("8", NumberGenUtility.getRandomPrice());
-        priceMap.put("4", NumberGenUtility.getRandomPrice());
-        priceMap.put("2", NumberGenUtility.getRandomPrice());
+//        priceMap.put("8", NumberGenUtility.getRandomPrice());
+//        priceMap.put("4", NumberGenUtility.getRandomPrice());
+//        priceMap.put("2", NumberGenUtility.getRandomPrice());
+//        priceMap.put("1", NumberGenUtility.getRandomPrice());
         return String.join(" ", priceMap.values());
     }
 
