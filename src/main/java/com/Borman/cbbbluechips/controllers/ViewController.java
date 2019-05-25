@@ -6,6 +6,7 @@ import com.Borman.cbbbluechips.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,5 +39,12 @@ public class ViewController {
                 ? teamService.getAllTeams(false) : teamService.getAllTeams(true));
         return "market";
     }
+
+    @RequestMapping("/trade/{team_Id}")
+    public String tradeCentral(@PathVariable("team_Id") String team_Id, Model model) {
+        model.addAttribute("team", teamService.getTeamById(team_Id));
+        return "trade";
+    }
+
 
 }

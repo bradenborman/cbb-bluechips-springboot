@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Trade.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <title>Trade Central</title>
+</head>
+<body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Blue Chips</h1>
+</header>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1 th:text="${team.teamName}"></h1><img class="logo"
+                                                     th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''"
+                                                     th:src="@{${'/img/' + team.teamName + '.png'}}"/>
+            <h3 th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"
+                id="costPerShare"></h3>
+            <br/>
+            <i class="fas fa-shopping-cart"></i> Money Spent: <span id="totalSpent">$0 </span>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Slide to the right to increase amount</h6>
+            <div class="row">
+                <div class="col-lg-6" id="BUY_SECTION">
+                    <form action="" method="post">
+                        <input class="slider" type="range" min="0" max="10" value="0" id="buySlider" name="buy">
+                        <input th:value="${team.teamId}" type="hidden" name="teamId">
+                        <br/>
+                        <button th:if="${!team.locked}" id="buyBTN" type="submit" class="sell btn btn-success tradeBTN">Buy</button>
+                        <button th:if="${team.locked}" disabled id="buyBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Buy</button>
+                    </form>
+                </div>
+                <div class="col-lg-6" id="SELL_SECTION">
+                    <form action="" method="post">
+                        <input class="slider" type="range" min="0" max="10" value="0" id="sellSlider" name="sell">
+                        <input th:value="${team.teamId}" type="hidden" name="teamId">
+                        <br/>
+                        <button th:if="${!team.locked}" id="sellBTN" type="submit" class="sell btn btn-success tradeBTN">Sell</button>
+                        <button th:if="${team.locked}" disabled id="sellBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Sell</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -49,7 +49,7 @@
                         <div class="card-img-top" th:id="${team.teamName}"></div>
                         <p th:text="${team.priceHistoryString}" class="hidden values d-none"></p>
                         <div class="tradeBTN" th:if="${!team.locked}">
-                            <a href="#" class="btn btn-primary" role="button">Trade</a>
+                            <a th:href="@{'/trade/' + ${team.teamId}}" class="btn btn-primary" role="button">Trade</a>
                         </div>
                         <div class="tradeBTN" th:if="${team.locked}">
                             <a href="#" class="btn btn-outline-primary disabled" role="button">Trade <i
@@ -67,8 +67,6 @@
     <footer>
         Braden Borman Production &copy;
     </footer>
-
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
@@ -93,22 +91,6 @@ google.charts.load('current', {'packages':['corechart']});
          chart.draw(data, options);
          });
 	 }
-
-
-
-
-
-    </script>
-
-
-    <script>
-    $(document).ready(function(){
-      $(".price_history_toggle").click(function(){
-        //$(this).find(".fa-caret-down").css("transform": "rotate(180deg"));
-        $(this).siblings(".table_Wrapper").toggle(200)
-      });
-    });
-
     </script>
 </div>
 </body>
