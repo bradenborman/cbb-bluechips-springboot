@@ -20,7 +20,7 @@ public class Team {
     private String nextPointSpread;
     private double currentMarketPrice;
     private String sharesOutstanding;
-    private LinkedHashMap<String, String> priceHistory;
+    private String priceHistoryString;
 
     public String getTeamId() {
         return teamId;
@@ -110,12 +110,12 @@ public class Team {
         this.sharesOutstanding = sharesOutstanding;
     }
 
-    public LinkedHashMap<String, String> getPriceHistory() {
-        return priceHistory;
+    public String getPriceHistoryString() {
+        return priceHistoryString;
     }
 
-    public void setPriceHistory(LinkedHashMap<String, String> priceHistory) {
-        this.priceHistory = priceHistory;
+    public void setPriceHistoryString(String priceHistoryString) {
+        this.priceHistoryString = priceHistoryString;
     }
 
     @Override

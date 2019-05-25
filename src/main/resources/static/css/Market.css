@@ -54,11 +54,6 @@ th {
     border-bottom: 1px solid black;
 }
 
-.priceChart {
-    padding: 3px;
-    height: 160px;
-}
-
 .tradeBTN {
     text-align: right;
     margin-top: 15px;

@@ -8,8 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class TeamService {
@@ -25,18 +30,14 @@ public class TeamService {
         //Replace with actual value
         allTeams.forEach(team -> {
             team.setSharesOutstanding(NumberGenUtility.getRandomNumber());
-            team.setPriceHistory(getPreviousPrices());
+            team.setPriceHistoryString(fetchHistoryDetails());
             team.setNextTeamPlaying("next team placeholder");
             team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
         });
         return allTeams;
     }
 
-    public Team getTeamById(String teamId) {
-        return teamDao.getTeamByName(teamId);
-    }
-
-    private LinkedHashMap<String, String> getPreviousPrices() {
+    private String fetchHistoryDetails() {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", NumberGenUtility.getRandomPrice());
         priceMap.put("32", NumberGenUtility.getRandomPrice());
@@ -44,7 +45,12 @@ public class TeamService {
         priceMap.put("8", NumberGenUtility.getRandomPrice());
         priceMap.put("4", NumberGenUtility.getRandomPrice());
         priceMap.put("2", NumberGenUtility.getRandomPrice());
-        return priceMap;
+        return String.join(" ", priceMap.values());
     }
+
+    public Team getTeamById(String teamId) {
+        return teamDao.getTeamByName(teamId);
+    }
+
 
 }
