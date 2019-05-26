@@ -2,17 +2,19 @@ package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.Transaction;
+import com.Borman.cbbbluechips.models.enums.TradeAction;
 import com.Borman.cbbbluechips.services.OwnsService;
 import com.Borman.cbbbluechips.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RestController
-@RequestMapping("/trade")
+@Controller
+@RequestMapping("/trade-action")
 public class TransactionController {
 
     @Autowired
@@ -21,11 +23,14 @@ public class TransactionController {
     @Autowired
     OwnsService ownsService;
 
+    private String userId = "2";
+
     @PostMapping("/sell")
-    public ResponseEntity<String> sellTeam(@RequestBody TradeRequest tradeRequest) {
+    public String sellTeam(@RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
+        TradeRequest tradeRequest = new TradeRequest(teamId, userId, volume, TradeAction.SELL);
         if (ownsService.validateOwnership(tradeRequest))
             transactionService.completeSell(tradeRequest);
-        return ResponseEntity.ok("SOLD");
+        return "confirmation";
     }
 
 

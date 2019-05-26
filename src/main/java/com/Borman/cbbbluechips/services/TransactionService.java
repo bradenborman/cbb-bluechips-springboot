@@ -54,7 +54,6 @@ public class TransactionService {
 
     @Transactional
     public void completeSell(TradeRequest tradeRequest) {
-        tradeRequest.setTradeAction(TradeAction.SELL);
         double moneyToAdd = getCurrentMarketPrice(tradeRequest);
         logger.info(String.format("Trade Request: %s => Made $%S", tradeRequest.toString(), moneyToAdd));
         Transaction transaction = buildTransaction(tradeRequest, moneyToAdd);

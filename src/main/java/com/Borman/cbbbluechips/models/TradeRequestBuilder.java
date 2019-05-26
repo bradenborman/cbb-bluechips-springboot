@@ -7,7 +7,6 @@ public final class TradeRequestBuilder {
     private String userId;
     private int volume;
     private TradeAction tradeAction;
-    private String projectedMoneyTransferred;
 
     private TradeRequestBuilder() {
     }
@@ -36,18 +35,12 @@ public final class TradeRequestBuilder {
         return this;
     }
 
-    public TradeRequestBuilder withProjectedMoneyTransferred(String projectedMoneyTransferred) {
-        this.projectedMoneyTransferred = projectedMoneyTransferred;
-        return this;
-    }
-
     public TradeRequest build() {
         TradeRequest tradeRequest = new TradeRequest();
         tradeRequest.setTeamId(teamId);
         tradeRequest.setUserId(userId);
         tradeRequest.setVolume(volume);
         tradeRequest.setTradeAction(tradeAction);
-        tradeRequest.setProjectedMoneyTransferred(projectedMoneyTransferred);
         return tradeRequest;
     }
 }

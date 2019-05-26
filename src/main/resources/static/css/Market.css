@@ -69,7 +69,7 @@ th {
 @media screen and (max-width: 600px) {
 
     nav {
-        margin-bottom: 8px;
+        margin-bottom: 0px;
     }
 
     .team_name {

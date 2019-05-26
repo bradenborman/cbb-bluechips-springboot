@@ -9,7 +9,15 @@ public class TradeRequest {
     private String userId;
     private int volume;
     private TradeAction tradeAction;
-    private String projectedMoneyTransferred;
+
+    public TradeRequest() { }
+
+    public TradeRequest(String teamId, String userId, int volume, TradeAction tradeAction) {
+        this.teamId = teamId;
+        this.userId = userId;
+        this.volume = volume;
+        this.tradeAction = tradeAction;
+    }
 
     public String getTeamId() {
         return teamId;
@@ -41,14 +49,6 @@ public class TradeRequest {
 
     public void setTradeAction(TradeAction tradeAction) {
         this.tradeAction = tradeAction;
-    }
-
-    public String getProjectedMoneyTransferred() {
-        return projectedMoneyTransferred;
-    }
-
-    public void setProjectedMoneyTransferred(String projectedMoneyTransferred) {
-        this.projectedMoneyTransferred = projectedMoneyTransferred;
     }
 
     @Override

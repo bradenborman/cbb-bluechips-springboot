@@ -113,11 +113,15 @@ input[type="range"] {
        width: 10vh;
     }
 
+    .card-title {
+        margin-bottom: 65px;
+    }
+
     #BUY_SECTION {
-        margin-bottom: 30px;
+        margin-bottom: 85px;
     }
 
     #SELL_SECTION {
-       margin-bottom: 30px;
+       margin-bottom: 85px;
     }
 }
