@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.UserDao;
+import com.Borman.cbbbluechips.models.TradeCentral;
 import com.Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +57,13 @@ public class UserService {
     }
 
     String getUserFullName(String userId) {
-        User user = userDao.getUserById(userId).get(0);
+        User user = userDao.getUserById(userId);
         return String.format("%s %s", user.getFirstName(), user.getLastName());
     }
+
+    public User getUser() {
+        String UserId = "2";
+        return userDao.getUserById(UserId);
+    }
+
 }

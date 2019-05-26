@@ -10,6 +10,7 @@ public class Owns {
     private String ownsId;
     private String teamId;
     private String userId;
+    private String fullName;
     private int amountOwned;
     private String teamName;
     private String nextPointSpread;
@@ -38,6 +39,14 @@ public class Owns {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public int getAmountOwned() {

@@ -20,6 +20,9 @@
     <h1>College Basketball's Blue Chips</h1>
 </header>
 <div class="container">
+
+   <h2 class="CapitalAvailable" th:text="'Capital Available: $' + ${#numbers.formatDecimal(user.cash, 1, 'DEFAULT', 0, 'DEFAULT')}"></h2>
+
     <div class="card">
         <div class="card-header">
             <h1 th:text="${team.teamName}"></h1><img class="logo"
@@ -33,23 +36,27 @@
         <div class="card-body">
             <h6 class="card-title">Slide to the right to increase amount</h6>
             <div class="row">
-                <div class="col-lg-6" id="BUY_SECTION">
+                <div class="col-lg-4" id="BUY_SECTION">
                     <form action="" method="post">
-                        <input class="slider" type="range" min="0" max="10" value="0" id="buySlider" name="buy">
+                        <input class="slider" type="range" min="0" th:max="${details.maximumCanPurchase}" value="0" id="buySlider" name="buy">
                         <input th:value="${team.teamId}" type="hidden" name="teamId">
                         <br/>
                         <button th:if="${!team.locked}" id="buyBTN" type="submit" class="sell btn btn-success tradeBTN">Buy</button>
                         <button th:if="${team.locked}" disabled id="buyBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Buy</button>
                     </form>
                 </div>
-                <div class="col-lg-6" id="SELL_SECTION">
+                <div class="col-lg-4" id="SELL_SECTION">
                     <form action="" method="post">
-                        <input class="slider" type="range" min="0" max="10" value="0" id="sellSlider" name="sell">
+                        <input class="slider" type="range" min="0" th:max="${details.availableToSell}" value="0" id="sellSlider" name="sell">
                         <input th:value="${team.teamId}" type="hidden" name="teamId">
                         <br/>
-                        <button th:if="${!team.locked}" id="sellBTN" type="submit" class="sell btn btn-success tradeBTN">Sell</button>
-                        <button th:if="${team.locked}" disabled id="sellBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Sell</button>
+                        <button th:if="${!team.locked and details.availableToSell &gt; 0}" id="sellBTN" type="submit" class="sell btn btn-success tradeBTN">Sell</button>
+                        <button th:if="${team.locked or details.availableToSell == 0}" disabled id="sellBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Sell</button>
                     </form>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <h3>Top Shareholders:</h3>
+                    <div th:each="shareHolder : ${details.topHolders}" th:text="${shareHolder}"></div>
                 </div>
             </div>
         </div>

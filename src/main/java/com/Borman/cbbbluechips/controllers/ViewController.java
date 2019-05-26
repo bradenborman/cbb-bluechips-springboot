@@ -1,6 +1,9 @@
 package com.Borman.cbbbluechips.controllers;
 
+import com.Borman.cbbbluechips.models.TradeCentral;
+import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.TeamService;
+import com.Borman.cbbbluechips.services.TradeCentralService;
 import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ViewController {
+
+    @Autowired
+    TradeCentralService tradeCentralService;
 
     @Autowired
     UserService userService;
@@ -41,8 +47,11 @@ public class ViewController {
     }
 
     @RequestMapping("/trade/{team_Id}")
-    public String tradeCentral(@PathVariable("team_Id") String team_Id, Model model) {
-        model.addAttribute("team", teamService.getTeamById(team_Id));
+    public String tradeCentral(@PathVariable("team_Id") String teamId, Model model) {
+        User user = userService.getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("team", teamService.getTeamById(teamId));
+        model.addAttribute("details", tradeCentralService.fillTradeCentralDetails(user, teamId));
         return "trade";
     }
 

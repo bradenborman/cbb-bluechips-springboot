@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.OwnsDao;
+import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.Owns;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class OwnsService {
 
     @Autowired
     OwnsDao ownsDao;
+
+    @Autowired
+    TeamDao teamDao;
 
     public List<Owns> getTeamsUserOwns(String user) {
         return ownsDao.getTeamsUserOwns(user);
@@ -27,5 +31,18 @@ public class OwnsService {
         return ownsDao.getFundsAvailable(tradeRequest.getUserId());
     }
 
+
+    int calculateAvailableCanSell(String userId, String teamId) {
+        return ownsDao.getAmountOfSharesOwned(userId, teamId);
+    }
+
+    int calculateAvailableCanPurchase(double cash, String teamId) {
+        double currentMarketPrice = teamDao.getCurrentMarketPrice(teamId);
+        return (int) Math.floor(cash / currentMarketPrice);
+    }
+
+    List<Owns> getTopShareHoldersForTeam(String teamId) {
+        return ownsDao.getUsersOwnsForTeam(teamId);
+    }
 
 }

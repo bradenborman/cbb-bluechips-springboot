@@ -1,12 +1,14 @@
 package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.OwnsSQL;
-import com.Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapper;
+import com.Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapperTeamJoin;
+import com.Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapperUserJoin;
 import com.Borman.cbbbluechips.models.Owns;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -26,7 +28,7 @@ public class OwnsDao {
     public List<Owns> getTeamsUserOwns(String userId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-            return namedParameterJdbcTemplate.query(OwnsSQL.getTeamsUserOwnsSQL, params, new OwnsRowMapper());
+            return namedParameterJdbcTemplate.query(OwnsSQL.getTeamsUserOwnsSQL, params, new OwnsRowMapperTeamJoin());
         } catch (Exception e) {
             logger.error("Failed to get Owns for " + userId + "\n" + e);
             return null;
@@ -47,8 +49,30 @@ public class OwnsDao {
         return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getCurrentAmountOwned, params, Integer.class);
     }
 
+    public int getAmountOfSharesOwned(String userId, String teamId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId).addValue("teamId", teamId);
+            return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getCurrentAmountOwned, params, Integer.class);
+        } catch (EmptyResultDataAccessException e) {
+            return 0;
+        }
+    }
+
     public double getFundsAvailable(String userId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
         return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getFundsAvailable, params, Double.class);
     }
+
+
+    public List<Owns> getUsersOwnsForTeam(String teamId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+            return namedParameterJdbcTemplate.query(OwnsSQL.getUserOwnsTeamsSQL, params, new OwnsRowMapperUserJoin());
+        } catch (Exception e) {
+            logger.error("Failed to get Owns for " + teamId + "\n" + e);
+            return null;
+        }
+    }
+
+
 }
