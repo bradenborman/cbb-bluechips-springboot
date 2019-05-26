@@ -2,6 +2,7 @@ package com.Borman.cbbbluechips.services;
 
 
 import com.Borman.cbbbluechips.builders.TransactionBuilder;
+import com.Borman.cbbbluechips.daos.OwnsDao;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.daos.TransactionDao;
 import com.Borman.cbbbluechips.models.TradeRequest;
@@ -30,6 +31,9 @@ public class TransactionService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    OwnsDao ownsDao;
+
     public List<Transaction> getTransactionsByUser(String UserId) {
         return transactionDao.getAllTransactionByUser(UserId);
     }
@@ -44,13 +48,21 @@ public class TransactionService {
         double futureMoneySpent = getCurrentMarketPrice(tradeRequest);
         logger.info(String.format("Trade Request: %s => Spent $%S", tradeRequest.toString(), futureMoneySpent));
         if (fundsAvailable >= futureMoneySpent) {
-            transactionDao.buyShares(tradeRequest);
+            buyShares(tradeRequest);
             Transaction transaction = buildTransaction(tradeRequest, futureMoneySpent);
-            userService.removeProceedsFromUser(tradeRequest.getUserId(), fundsAvailable);
+            userService.removeProceedsFromUser(tradeRequest.getUserId(), futureMoneySpent);
         } else {
             logger.info(String.format("Funds not available $%S required", futureMoneySpent));
         }
     }
+
+    private void buyShares(TradeRequest tradeRequest) {
+        if (ownsDao.getAmountOfSharesOwned(tradeRequest) >= 0)
+            transactionDao.buySharesAgain(tradeRequest);
+        else
+            transactionDao.buyShares(tradeRequest);
+    }
+
 
     @Transactional
     public void completeSell(TradeRequest tradeRequest) {

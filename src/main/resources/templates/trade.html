@@ -35,7 +35,7 @@
             <h6 class="card-title">Slide to the right to increase amount</h6>
             <div class="row">
                 <div class="col-lg-4" id="BUY_SECTION">
-                    <form action="" method="post">
+                    <form action="/trade-action/buy" method="post">
                         <input class="slider" onchange="updateBuyBTN(this.value)" type="range" min="0" th:max="${details.maximumCanPurchase}" value="0" id="buySlider" name="volume">
                         <input th:value="${team.teamId}" type="hidden" name="teamId">
                         <br/>
@@ -49,7 +49,7 @@
                         <input th:value="${team.teamId}" type="hidden" name="teamId">
                         <br/>
                         <button th:if="${!team.locked and details.availableToSell &gt; 0}" id="sellBTN" type="submit" class="sell btn btn-success tradeBTN">Sell</button>
-                        <button th:if="${team.locked or details.availableToSell == 0}" disabled id="sellBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Sell</button>
+                        <button th:if="${team.locked or details.availableToSell &lt; 1}" disabled id="sellBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Sell</button>
                     </form>
                 </div>
                 <div class="col-lg-4 text-center">

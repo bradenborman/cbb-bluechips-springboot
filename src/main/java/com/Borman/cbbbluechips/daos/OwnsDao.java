@@ -45,8 +45,7 @@ public class OwnsDao {
     }
 
     public int getAmountOfSharesOwned(TradeRequest tradeRequest) {
-        SqlParameterSource params = new BeanPropertySqlParameterSource(tradeRequest);
-        return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getCurrentAmountOwned, params, Integer.class);
+       return  getAmountOfSharesOwned(tradeRequest.getUserId(), tradeRequest.getTeamId());
     }
 
     public int getAmountOfSharesOwned(String userId, String teamId) {
@@ -54,7 +53,7 @@ public class OwnsDao {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId).addValue("teamId", teamId);
             return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getCurrentAmountOwned, params, Integer.class);
         } catch (EmptyResultDataAccessException e) {
-            return 0;
+            return -1;
         }
     }
 

@@ -17,7 +17,9 @@ public class TransactionSQL {
     public static final String sellShares = "UPDATE owns SET Amount_Owned = Amount_Owned - :volume " +
             "WHERE Team_ID = :teamId AND User_ID = :userId;";
 
-    public static final String buyShares = "UPDATE owns SET Amount_Owned = Amount_Owned + :volume " +
+    public static final String buySharesAgain = "UPDATE owns SET Amount_Owned = Amount_Owned + :volume " +
             "WHERE Team_ID = :teamId AND User_ID = :userId;";
+
+    public static final String buyShares = "INSERT INTO owns (Team_ID, User_ID, Amount_Owned) VALUES (:teamId, :userId, :volume)";
 
 }
