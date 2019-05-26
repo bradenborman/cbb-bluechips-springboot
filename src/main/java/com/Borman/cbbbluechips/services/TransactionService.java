@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class TransactionService {
         final String teamName = teamDao.getTeamName(request.getTeamId());
         final String userName = userService.getUserFullName(request.getUserId());
 
-        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
+        String now = LocalDateTime.now().atZone(ZoneId.of("America/Chicago")).format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
 
         Transaction transaction = TransactionBuilder.aTransaction()
                 .withFullName(userName)
