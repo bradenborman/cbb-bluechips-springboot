@@ -14,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -51,6 +54,7 @@ public class TransactionService {
             buyShares(tradeRequest);
             Transaction transaction = buildTransaction(tradeRequest, futureMoneySpent);
             userService.removeProceedsFromUser(tradeRequest.getUserId(), futureMoneySpent);
+            transactionDao.recordTransaction(transaction);
         } else {
             logger.info(String.format("Funds not available $%S required", futureMoneySpent));
         }
@@ -63,7 +67,6 @@ public class TransactionService {
             transactionDao.buyShares(tradeRequest);
     }
 
-
     @Transactional
     public void completeSell(TradeRequest tradeRequest) {
         double moneyToAdd = getCurrentMarketPrice(tradeRequest);
@@ -71,6 +74,8 @@ public class TransactionService {
         Transaction transaction = buildTransaction(tradeRequest, moneyToAdd);
         transactionDao.sellShares(tradeRequest);
         userService.addProceedsToUser(tradeRequest.getUserId(), moneyToAdd);
+        transaction.setCashTraded(transaction.getCashTraded() * -1);
+        transactionDao.recordTransaction(transaction);
     }
 
     private double getCurrentMarketPrice(TradeRequest tradeRequest) {
@@ -82,12 +87,14 @@ public class TransactionService {
         final String teamName = teamDao.getTeamName(request.getTeamId());
         final String userName = userService.getUserFullName(request.getUserId());
 
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a"));
+
         Transaction transaction = TransactionBuilder.aTransaction()
                 .withFullName(userName)
                 .withTeamName(teamName)
                 .withCashTraded(moneyTraded)
                 .withTradeAction(request.getTradeAction().getCode())
-                .withTimeOfTransaction(LocalDateTime.now())
+                .withStrTimeofTransaction(now)
                 .withVolumeTraded(request.getVolume())
                 .build();
 

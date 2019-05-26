@@ -13,6 +13,7 @@ public class Transaction {
     private double cashTraded;
     private String tradeAction;
     private LocalDateTime timeOfTransaction;
+    private String strTimeofTransaction;
 
 
     public String getUserId() {
@@ -69,6 +70,14 @@ public class Transaction {
 
     public void setTradeAction(String tradeAction) {
         this.tradeAction = tradeAction;
+    }
+
+    public String getStrTimeofTransaction() {
+        return strTimeofTransaction;
+    }
+
+    public void setStrTimeofTransaction(String strTimeofTransaction) {
+        this.strTimeofTransaction = strTimeofTransaction;
     }
 
     @Override

@@ -17,9 +17,7 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
         transaction.setTeamName(rs.getString("Team_Name"));
         transaction.setCashTraded(rs.getDouble("Amount_Spent"));
         transaction.setVolumeTraded(rs.getInt("Volume_Traded"));
-        //TODO map once set
-        transaction.setTimeOfTransaction(LocalDateTime.now());
-
+        transaction.setStrTimeofTransaction(rs.getString("Time_of_Trade"));
         if(transaction.getCashTraded() > 0)
             transaction.setTradeAction(TradeAction.BUY.getCode());
         else

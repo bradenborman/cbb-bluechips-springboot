@@ -12,6 +12,7 @@ public final class TransactionBuilder {
     private double cashTraded;
     private String tradeAction;
     private LocalDateTime timeOfTransaction;
+    private String strTimeofTransaction;
 
     private TransactionBuilder() {
     }
@@ -55,6 +56,11 @@ public final class TransactionBuilder {
         return this;
     }
 
+    public TransactionBuilder withStrTimeofTransaction(String strTimeofTransaction) {
+        this.strTimeofTransaction = strTimeofTransaction;
+        return this;
+    }
+
     public Transaction build() {
         Transaction transaction = new Transaction();
         transaction.setUserId(userId);
@@ -64,6 +70,7 @@ public final class TransactionBuilder {
         transaction.setCashTraded(cashTraded);
         transaction.setTradeAction(tradeAction);
         transaction.setTimeOfTransaction(timeOfTransaction);
+        transaction.setStrTimeofTransaction(strTimeofTransaction);
         return transaction;
     }
 }

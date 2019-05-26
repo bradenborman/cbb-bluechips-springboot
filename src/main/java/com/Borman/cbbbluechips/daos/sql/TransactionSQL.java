@@ -10,9 +10,8 @@ public class TransactionSQL {
             "WHERE User_ID = :userId;";
 
     public static final String insertIntoTransactionHistory = "INSERT INTO transaction_history " +
-            "(User_ID, Team_ID, Volume_Traded, Amount_Spent) " +
-            "VALUES (:userId, :teamName, :volumeTraded, :cashTraded);";
-
+            "(User_Name, Team_Name, Volume_Traded, Amount_Spent, Time_of_Trade) " +
+            "VALUES (:fullName, :teamName, :volumeTraded, :cashTraded, :strTimeofTransaction);";
 
     public static final String sellShares = "UPDATE owns SET Amount_Owned = Amount_Owned - :volume " +
             "WHERE Team_ID = :teamId AND User_ID = :userId;";

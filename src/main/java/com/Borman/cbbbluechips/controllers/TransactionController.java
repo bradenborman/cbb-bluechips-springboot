@@ -34,14 +34,14 @@ public class TransactionController {
     }
 
 
-    //TODO Try to update first => if result set is 0 then insert
     @PostMapping("/buy")
-    public ResponseEntity<String> buyTeam(@RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
+    public String buyTeam(@RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
         TradeRequest tradeRequest = new TradeRequest(teamId, userId, volume, TradeAction.BUY);
         double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
             transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
-        return ResponseEntity.ok("BOUGHT");
+        return "confirmation";
     }
+
 
     @GetMapping("/transaction/user/{userId}")
     public ResponseEntity<List<Transaction>> getTransactionByUser(@PathVariable String userId) {
