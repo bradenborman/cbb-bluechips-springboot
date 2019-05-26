@@ -21,7 +21,7 @@ function updateSpent(value, action) {
 
 		else {
 			var spent = value * cost
-			$('#totalSpent').html("$" + ReplaceNumberWithCommas(spent))
+			$('#totalSpent').html(" (-) $" + ReplaceNumberWithCommas(spent))
 		}
 
 }
