@@ -34,7 +34,6 @@ public class ViewController {
         return cookieService.isLoggedIn(request) ? "redirect:/portfolio" : "home";
     }
 
-
     @RequestMapping("/portfolio")
     public String portfolio(Model model, HttpServletRequest request, HttpServletResponse response) {
        return cookieService.isLoggedIn(request) ? "portfolio" : "redirect:/";
@@ -42,9 +41,6 @@ public class ViewController {
 
     @RequestMapping("/market")
     public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
-        Cookie cookie = new Cookie("test", "2");
-        cookie.setMaxAge(24*60*60);
-        response.addCookie(cookie);
         model.addAttribute("teams", allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true));
         return "market";
     }

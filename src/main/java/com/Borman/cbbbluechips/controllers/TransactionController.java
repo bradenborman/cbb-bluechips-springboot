@@ -30,7 +30,8 @@ public class TransactionController {
         TradeRequest tradeRequest = new TradeRequest(teamId, userId, volume, TradeAction.SELL);
         if (ownsService.validateOwnership(tradeRequest))
             transactionService.completeSell(tradeRequest);
-        return "confirmation";
+        return "redirect:../trade/" + teamId;
+        //return "confirmation";
     }
 
 
@@ -39,7 +40,7 @@ public class TransactionController {
         TradeRequest tradeRequest = new TradeRequest(teamId, userId, volume, TradeAction.BUY);
         double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
             transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
-        return "confirmation";
+        return "redirect:../trade/" + teamId;
     }
 
 
