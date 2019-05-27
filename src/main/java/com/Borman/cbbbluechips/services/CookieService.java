@@ -22,11 +22,13 @@ public class CookieService {
     //TODO redo inquire to check if exists so no one modified it
     public boolean isLoggedIn(HttpServletRequest request) {
         Cookie[] allCookies = request.getCookies();
-        for (Cookie allCookie : allCookies) {
-            if (allCookie.getName().equals("user_id") && allCookie.getValue() != null)
-                return true;
-        }
 
+        if(allCookies != null) {
+            for (Cookie allCookie : allCookies) {
+                if (allCookie.getName().equals("user_id") && allCookie.getValue() != null)
+                    return true;
+            }
+        }
         return false;
     }
 
