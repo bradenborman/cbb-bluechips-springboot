@@ -15,5 +15,6 @@ public class UserSQL {
 
     public static final String getUserById = "SELECT * FROM user where User_ID = :userId;";
 
+    public static final String getUserWithEmailAndPassword  = "SELECT * FROM user where Email = :email AND Password = :password;";
 
 }

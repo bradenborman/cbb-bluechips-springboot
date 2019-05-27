@@ -1,0 +1,330 @@
+html,
+body {
+    height: 100%;
+}
+
+ #MESSAGE {
+     font-size: 1em;
+     position: absolute;
+
+     left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 0px;
+
+     background-color: white;
+     padding-top: 75px;
+     text-align: center;
+
+     border: 2px solid black;
+     animation: .8s ease-out 1s 1 expand;
+        animation-fill-mode: forwards;
+    min-width: 600px;
+    min-height: 300px;
+ }
+
+
+ @keyframes expand {
+
+  100% {
+      left: 30%;
+     top: 15%;
+     width: 40%;
+     height: 30%;
+      border-radius: 155px;
+  }
+}
+
+ .form-group {
+  position: relative;
+  margin-bottom: 1.7rem;
+}
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  opacity: 0.5;
+}
+.form-control:focus + .form-control-placeholder, .form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  transform: translate3d(0, -115%, 0);
+  opacity: 1;
+}
+
+/*
+^^ FOR FLOATING PLACEHOLDERS
+*/
+
+ #recoverPassword:hover {
+	cursor: pointer;
+}
+
+ @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+.header {
+  padding: 15px 0 15px 0;
+  text-align: center;
+  background: linear-gradient(to      bottom,#1e5799,#326B9B);
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+  position: relative;
+}
+.header>h1{
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,.6);
+}
+.header .nav{
+  width: auto;
+}
+.header .nav ul{
+  padding: 0px;
+  height: 50px;
+  box-sizing: border-box;
+  list-style: none;
+  background-color: #326B9B;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+  border-radius: 10px;
+}
+.header .nav a{
+  outline: none;
+  margin: 0 25px;
+  margin-bottom: 0;
+  padding: 10px 12px;
+  width: auto;
+  text-decoration: none;
+  color: white;
+}
+.header .nav a:hover{
+  background-color: #204E7B;
+}
+.header .nav li{
+  flex: auto auto auto;
+  padding: 0px;
+  margin: 0px 0px;
+  height: auto;
+}
+.header .nav li:first-child>a{
+  border-bottom: 1px solid #FFD447;
+}
+
+
+ .header {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+	font-family: 'Alfa Slab One';
+}
+
+/*
+^^ HEADERS
+*/
+
+
+#logo {
+	display: inline-block;
+	height: 12vh;
+	width: 12vh;
+	 background-image:url('../logo.png');
+    background-repeat:no-repeat;
+    background-size:cover;
+ }
+
+
+
+
+
+
+
+  body {
+	    background-color: rgba(0,0,0,.07);
+  }
+
+  .app {
+	margin-top: 50px;
+	border-radius: 40px;
+	background-color: white;
+	padding: 60px;
+	margin-bottom: 40px;
+  }
+
+  input[type="text"] {
+	font-size: 1.4em;
+  }
+
+ .tab-content h2 {
+	margin-top: 40px;
+	font-family: 'Alfa Slab One';
+	text-align: center;
+ }
+
+	button {
+		margin-top: 16px;
+	}
+
+
+	.title {
+		display: inline-block;
+		font-size: 5vh;
+	}
+
+	.title i {
+		color: #3D9970;
+	}
+
+	.links {
+		float: right;
+	}
+
+	.left {
+		padding: 20px 30px;
+	}
+
+	.how2Play {
+		margin: auto;
+		float: right;
+		width: 94%;
+	}
+
+	.how2Play h4 {
+		margin-top: 7px;
+		font-family: 'Alfa Slab One';
+	}
+
+	.login {
+		margin: auto;
+		margin-top: 50px;
+		width: 75%;
+	}
+
+
+	.fa-cog {
+		color: grey;
+	}
+
+	.fa-dollar-sign {
+		color: green;
+	}
+
+	.fa-chart-line {
+		color: #4aa3e8;
+	}
+
+	.fa-user-plus, .fa-sign-in-alt {
+		color: grey;
+	}
+
+
+
+	footer {
+		padding: 40px;
+	}
+
+
+	.my-hr {
+		display: none;
+	}
+
+	.floatingLbl {cursor: text;}
+
+	@media screen and (max-width: 600px) {
+
+.header {
+	padding: 20px;
+	font-family: 'Alfa Slab One';
+}
+
+.header h1 {
+	font-size: 1.6em;
+}
+
+	.app {
+	margin: auto;
+	border-radius: 0px;
+	background-color: white;
+	padding: 10%;
+	width: 100%;
+  }
+
+	.how2Play {
+		margin: auto;
+		width: 100%;
+		float: none;
+		margin-top: 80px;
+	}
+	.login {
+		margin-top: 0px;
+		width: 94%;
+	}
+
+	.left {
+		margin: 0px;
+	}
+
+
+	.tab-content h2 {
+		margin: 30px;
+		font-size: 1.3em;
+		font-family: 'Alfa Slab One';
+		text-align: center;
+ }
+
+
+	.col-md-6 {
+		margin: 0px;
+		padding: 0px;
+	}
+
+
+}
+
+
+
+@media (max-width: 991.98px) {
+
+	.my-hr {
+
+	display: block;
+	--base-size: 160; /* Ð Ð°Ð·Ð¼ÐµÑ€ */
+	--base-color: darkblue; /* Ð¦Ð²ÐµÑ‚ */
+	--base-line-size: calc(var(--base-size) / 100 * 1px);
+	--base-circle-size: calc(var(--base-size) / 50 * 1px);
+	--line: linear-gradient(var(--base-color), var(--base-color));
+	--circle-center: radial-gradient(var(--base-circle-size) at 50% 50%, var(--base-color), var(--base-color) 85%, transparent);
+	--circle-left: radial-gradient(var(--base-circle-size) at 40% 50%, var(--base-color), var(--base-color) 85%, transparent);
+	--circle-right: radial-gradient(var(--base-circle-size) at 60% 50%, var(--base-color), var(--base-color) 85%, transparent);
+	--line-size: 25% var(--base-line-size);
+	--circle-size: auto;
+
+
+	margin: 1em auto;
+	width: calc(var(--base-size) * 1px);
+	height: calc(var(--base-size) / 10 * 1px);
+	background-image: var(--line), var(--circle-left), var(--circle-center), var(--circle-right), var(--line);
+	background-size: var(--line-size), var(--circle-size), var(--circle-size), var(--circle-size), var(--line-size);
+	background-position: left center, center center, center center, center center, right center;
+	background-repeat: no-repeat;
+	margin-top: 80px;
+}
+
+
+    #MESSAGE h1 {
+
+        font-size: 1.5em;
+    }
+
+ @keyframes expand {
+
+  100% {
+      left: 0%;
+     top: 0%;
+     width: 100%;
+     height: 100%;
+      border-radius: 0px;
+  }
+}
+ }

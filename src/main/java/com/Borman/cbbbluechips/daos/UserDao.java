@@ -90,4 +90,18 @@ public class UserDao {
             return null;
         }
     }
+
+    public User loginWithEmailAndPassword(String email, String password) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("email", email)
+                    .addValue("password", password);
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserWithEmailAndPassword, params, new UserRowMapper());
+        } catch (Exception e) {
+            logger.error("Failed to get User by Email\n" + e);
+            return null;
+        }
+    }
+
+
 }

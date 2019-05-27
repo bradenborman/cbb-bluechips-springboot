@@ -66,4 +66,9 @@ public class UserService {
         return userDao.getUserById(UserId);
     }
 
+    public User attemptToLogIn(String email, String password) {
+        return userDao.loginWithEmailAndPassword(email, password);
+    }
+
+
 }
