@@ -1,3 +1,104 @@
-.item {
-    margin-top: 20px;
+body {
+	    background-color: rgba(0,0,0,.07);
+  }
+
+.card h3, .card h2 {
+	font-size: 1.3em;
+}
+
+.fa-folder-open {
+	color: #f1d592
+}
+
+.fa-cog {
+	color: grey;
+}
+
+.fa-tachometer-alt {
+	color: lightblue;
+}
+
+
+
+#Networth, #Leader, #TotalMoney, td:nth-child(3), td:nth-child(4), .fa-money-bill-alt{
+	color: green;
+}
+
+.card {
+	margin-bottom: 20px;
+	font-size: 1.2em;
+	min-height: 200px;
+	border: 1px solid black;
+}
+
+.card-footer {
+	font-size: .7em;
+}
+
+.app {
+	margin-top: 30px;
+}
+
+
+
+.logo {
+	height: 3vh;
+	width: 3vh;
+	display: inline;
+}
+
+/* FOR LOGO IN TABLE */
+td:nth-child(1) {
+  text-align: left;
+}
+
+.optionLinks {
+	text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+.showSmall {
+	display: none;
+	text-align: center;
+}
+
+@media (max-width: 575.98px) {
+
+	.header>h1 {
+			font-size: 1.2em;
+		}
+
+
+	.card {
+		margin-bottom: 15px;
+		font-size: 1em;
+		min-height: 50px;
+	}
+	.card-body h3, .card-body h5 {
+		font-size: 1.2em;
+	}
+
+
+	.optionLinks {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+
+	.logo {
+	height: 10vh;
+	width: 10vh;
+	display: inline;
+}
+
+	.showSmall {
+		display: block;
+	}
+
+    .hideSmall {
+		display: none;
+	}
+
+
 }

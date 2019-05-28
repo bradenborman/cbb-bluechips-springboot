@@ -114,8 +114,8 @@ body {
 
 
  .header {
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	width: 100%;
 	font-family: 'Alfa Slab One';
 }
@@ -123,19 +123,6 @@ body {
 /*
 ^^ HEADERS
 */
-
-
-#logo {
-	display: inline-block;
-	height: 12vh;
-	width: 12vh;
-	 background-image:url('../logo.png');
-    background-repeat:no-repeat;
-    background-size:cover;
- }
-
-
-
 
 
 
