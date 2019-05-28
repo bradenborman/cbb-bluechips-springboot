@@ -74,7 +74,10 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card">
-                <div class="card-header"><h2><i class="fas fa-money-bill-alt"></i> My Investments</h2> $0						<div class="showSmall"><br />Click logo to trade</div>
+                <div class="card-header">
+                    <h2><i class="fas fa-money-bill-alt"></i> My Investments</h2>
+                    <span th:text="'$' + ${#numbers.formatDecimal(portfolio.portfolioValue, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
+                    <div class="showSmall"><br />Click logo to trade</div>
                 </div>
                 <div class="table-responsive-lg">
                     <table class="table table-hover table-striped text-center">
@@ -87,7 +90,15 @@
                             <th scope="col"></th>
                         </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                        <tr th:each="team : ${user.teamsOwned}">
+                            <td><img th:id="${team.teamId}" class="logo" th:src="@{${'/img/' + team.teamName + '.png'}}" /><span th:text="${team.teamName}" class="hideSmall"></span></td>
+                            <td th:text="${team.amountOwned}"></td>
+                            <td th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
+                            <td th:text="'$' + ${#numbers.formatDecimal((team.amountOwned * team.currentMarketPrice), 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
+                            <td class="hideSmall"><button th:id="${team.teamId + 'btn'}" type="button" class="tradeBTN btn btn-primary">Trade</button></td>
+                        </tr>
+                        </tbody>
                     </table>
                     <div class="card-footer"><i><b>As of: </b><span id="dateTime"></span></i></div>
                 </div>

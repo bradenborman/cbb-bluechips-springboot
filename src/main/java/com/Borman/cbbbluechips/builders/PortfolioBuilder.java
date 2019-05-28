@@ -12,7 +12,6 @@ public final class PortfolioBuilder {
     private String gameTotalTransactionCount;
     private String leadersValue;
     private String roundOfPlay;
-    private List<Owns> teamsOwned;
     private double totalMoneyInPlay;
 
     private PortfolioBuilder() {
@@ -52,11 +51,6 @@ public final class PortfolioBuilder {
         return this;
     }
 
-    public PortfolioBuilder withTeamsOwned(List<Owns> teamsOwned) {
-        this.teamsOwned = teamsOwned;
-        return this;
-    }
-
     public PortfolioBuilder withTotalMoneyInPlay(double totalMoneyInPlay) {
         this.totalMoneyInPlay = totalMoneyInPlay;
         return this;
@@ -70,7 +64,6 @@ public final class PortfolioBuilder {
         portfolio.setGameTotalTransactionCount(gameTotalTransactionCount);
         portfolio.setLeadersValue(leadersValue);
         portfolio.setRoundOfPlay(roundOfPlay);
-        portfolio.setTeamsOwned(teamsOwned);
         portfolio.setTotalMoneyInPlay(totalMoneyInPlay);
         return portfolio;
     }

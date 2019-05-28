@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,13 +21,15 @@ public class ViewController {
     private TeamService teamService ;
     private CookieService cookieService;
     private PortfolioService portfolioService;
+    private OwnsService ownsService;
 
-    public ViewController(TradeCentralService tradeCentralService, UserService userService, TeamService teamService, CookieService cookieService, PortfolioService portfolioService) {
+    public ViewController(TradeCentralService tradeCentralService, UserService userService, TeamService teamService, CookieService cookieService, PortfolioService portfolioService, OwnsService ownsService) {
         this.tradeCentralService = tradeCentralService;
         this.userService = userService;
         this.teamService = teamService;
         this.cookieService = cookieService;
         this.portfolioService = portfolioService;
+        this.ownsService = ownsService;
     }
 
     @RequestMapping("/")
@@ -41,9 +42,10 @@ public class ViewController {
         if(!cookieService.isLoggedIn(request)){
             return "redirect:/";
         }else{
-            String id = cookieService.getUserIdLoggedIn(request);
-            model.addAttribute("user", userService.getUser());
-            model.addAttribute("portfolio", portfolioService.getPortfolioDetails());
+            User user = userService.getUser(cookieService.getUserIdLoggedIn(request));
+            user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
+            model.addAttribute("user", user);
+            model.addAttribute("portfolio", portfolioService.getPortfolioDetails(user));
             return "portfolio";
         }
     }

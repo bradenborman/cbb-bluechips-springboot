@@ -22,6 +22,17 @@
 </header>
 <div class="container">
 
+    <nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/portfolio">My Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/market">Market</a>
+            </li>
+        </ul>
+    </nav>
+
    <h2 class="CapitalAvailable" th:text="'Capital Available: $' + ${#numbers.formatDecimal(user.cash, 1, 'DEFAULT', 0, 'DEFAULT')}"></h2>
 
     <div class="card">

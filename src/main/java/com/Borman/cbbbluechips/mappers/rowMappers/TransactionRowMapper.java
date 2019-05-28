@@ -13,7 +13,7 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
     public Transaction mapRow(ResultSet rs, int rownumber) throws SQLException {
         //String timeOfTransaction = rs.getString("Time_of_Trade");
         Transaction transaction =new Transaction();
-        transaction.setUserId(rs.getString("User_ID"));
+        transaction.setFullName(rs.getString("User_Name"));
         transaction.setTeamName(rs.getString("Team_Name"));
         transaction.setCashTraded(rs.getDouble("Amount_Spent"));
         transaction.setVolumeTraded(rs.getInt("Volume_Traded"));

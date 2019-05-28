@@ -5,6 +5,7 @@ import com.Borman.cbbbluechips.mappers.rowMappers.TransactionRowMapper;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,8 +19,11 @@ public class TransactionDao {
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public List<Transaction> getAllTransactionByUser(String UserId) {
-        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", UserId);
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    public List<Transaction> getAllTransactionByUser(String userName) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userName", userName);
         return namedParameterJdbcTemplate.query(TransactionSQL.getByUserId, params, new TransactionRowMapper());
     }
 
@@ -67,5 +71,10 @@ public class TransactionDao {
             System.out.println("ERROR " + e);
         }
     }
+
+    public String getTransactionCountTotal() {
+        return String.valueOf(jdbcTemplate.queryForObject(TransactionSQL.getCountTotalTransactions, Integer.class));
+    }
+
 
 }

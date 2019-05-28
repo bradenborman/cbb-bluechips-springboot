@@ -10,7 +10,6 @@ public class Portfolio {
     private String gameTotalTransactionCount;
     private String leadersValue;
     private String roundOfPlay;
-    private List<Owns> teamsOwned;
     private double totalMoneyInPlay;
 
     public double getPortfolioValue() {
@@ -59,14 +58,6 @@ public class Portfolio {
 
     public void setRoundOfPlay(String roundOfPlay) {
         this.roundOfPlay = roundOfPlay;
-    }
-
-    public List<Owns> getTeamsOwned() {
-        return teamsOwned;
-    }
-
-    public void setTeamsOwned(List<Owns> teamsOwned) {
-        this.teamsOwned = teamsOwned;
     }
 
     public double getTotalMoneyInPlay() {

@@ -18,6 +18,7 @@ public class OwnsRowMapperTeamJoin implements RowMapper<Owns> {
         owns.setSeed(rs.getInt("Seed"));
         owns.setNextPointSpread(rs.getString("Point_Spread"));
         owns.setOut(rs.getBoolean("Is_Out"));
+        owns.setCurrentMarketPrice(rs.getDouble("Current_Market_Price"));
         return owns;
     }
 }

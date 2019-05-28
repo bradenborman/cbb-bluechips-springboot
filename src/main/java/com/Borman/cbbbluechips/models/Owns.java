@@ -16,6 +16,7 @@ public class Owns {
     private String nextPointSpread;
     private int seed;
     private boolean isOut;
+    private double currentMarketPrice;
 
     public String getOwnsId() {
         return ownsId;
@@ -87,6 +88,14 @@ public class Owns {
 
     public void setOut(boolean out) {
         isOut = out;
+    }
+
+    public double getCurrentMarketPrice() {
+        return currentMarketPrice;
+    }
+
+    public void setCurrentMarketPrice(double currentMarketPrice) {
+        this.currentMarketPrice = currentMarketPrice;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class User {
     private String password;
     private String passwordHint;
     private double cash;
-    private List<Team> teamsOwned;
+    private List<Owns> teamsOwned;
     private List<Transaction> allTransactions;
 
     public String getID() {
@@ -72,11 +72,11 @@ public class User {
         this.cash = cash;
     }
 
-    public List<Team> getTeamsOwned() {
+    public List<Owns> getTeamsOwned() {
         return teamsOwned;
     }
 
-    public void setTeamsOwned(List<Team> teamsOwned) {
+    public void setTeamsOwned(List<Owns> teamsOwned) {
         this.teamsOwned = teamsOwned;
     }
 

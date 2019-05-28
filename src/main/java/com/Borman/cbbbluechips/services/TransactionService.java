@@ -39,7 +39,7 @@ public class TransactionService {
     OwnsDao ownsDao;
 
     public List<Transaction> getTransactionsByUser(String UserId) {
-        return transactionDao.getAllTransactionByUser(UserId);
+        return transactionDao.getAllTransactionByUser(userService.getUserFullName(UserId));
     }
 
     public List<Transaction> getTransactionByTeam(String teamName) {
@@ -104,4 +104,7 @@ public class TransactionService {
         return transaction;
     }
 
+    public String getTransactionCountTotal() {
+        return transactionDao.getTransactionCountTotal();
+    }
 }

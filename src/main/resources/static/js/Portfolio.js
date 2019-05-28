@@ -3,9 +3,13 @@ $(document).ready(function(){
 	var n = d.toLocaleTimeString();
 	document.getElementById("dateTime").innerHTML = d.toDateString() + " " + n
 
-});
+    $(".logo").click(function(){
+         location.href = "trade/" + this.id
+    });
 
-//TODO
-function goToTradeCentral(teamID) {
-	window.location.href = "../trade/?team=" + teamID;
-}
+     $(".tradeBTN").click(function(){
+             var id = this.id.replace('btn','');
+             location.href = "trade/" + id
+        });
+
+});

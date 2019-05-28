@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -24,6 +25,9 @@ public class OwnsDao {
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     public List<Owns> getTeamsUserOwns(String userId) {
         try {
@@ -74,4 +78,13 @@ public class OwnsDao {
     }
 
 
+    public double getPortfolioValue(String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+        return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getPortfolioValueByID, params, Double.class);
+    }
+
+
+    public double getTotalMoneyInPlay() {
+        return jdbcTemplate.queryForObject(OwnsSQL.getTotalMoneyInPlay, Double.class);
+    }
 }

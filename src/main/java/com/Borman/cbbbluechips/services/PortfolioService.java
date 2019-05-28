@@ -2,21 +2,32 @@ package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.builders.PortfolioBuilder;
 import com.Borman.cbbbluechips.models.Portfolio;
+import com.Borman.cbbbluechips.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PortfolioService {
 
-    public Portfolio getPortfolioDetails() {
+    @Autowired
+    OwnsService ownsService;
+
+    @Autowired
+    GameSettingsService gameSettingsService;
+
+    @Autowired
+    TransactionService transactionService;
+
+    public Portfolio getPortfolioDetails(User user) {
         return PortfolioBuilder.aPortfolio()
-                .withPortfolioValue(45000)
-                .withCash(5000)
-                .withLeadersValue("124000")
-                .withRoundOfPlay("Sweet Sixteen")
-                .withTeamsOwned(null)
-                .withGameTotalTransactionCount("60")
-                .withMyTransactionsCount("20")
-                .withTotalMoneyInPlay(360354)
+                .withPortfolioValue(ownsService.getPortfolioValue(user.getID()))
+                .withCash(user.getCash())
+                .withLeadersValue("0") //TODO
+                .withRoundOfPlay(gameSettingsService.getCurrentRound())
+                .withGameTotalTransactionCount(transactionService.getTransactionCountTotal())
+                .withMyTransactionsCount(String.valueOf(transactionService.getTransactionsByUser(user.getID()).size()))
+                .withTotalMoneyInPlay(ownsService.getTotalMoneyInPlay())
                 .build();
     }
+
 }
