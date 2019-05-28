@@ -33,4 +33,13 @@ public class CookieService {
     }
 
 
+    public void logout(HttpServletResponse response) {
+        if(response != null) {
+            Cookie cookie = new Cookie("user_id", "");
+            cookie.setPath("/");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+    }
+
 }

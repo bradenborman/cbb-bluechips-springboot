@@ -41,13 +41,11 @@ $(document).ready(function(){
 
 
 function forgotPassword() {
-
 	var email = $("#email").val();
-
+    //TODO
 	if (validateEmail(email)) {
- 		location.href="https://cbbbluechips.com/Php_Scripts/recoverPassword.php?email=" + email;
+ 		location.href="" + email;
 	}
-
 }
 
 function validateEmail(email) {

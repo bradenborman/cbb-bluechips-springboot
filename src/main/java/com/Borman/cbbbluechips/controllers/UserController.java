@@ -40,7 +40,6 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
-
         User user = userService.attemptToLogIn(email, password);
         if (user != null) {
             cookieService.login(user, response);
@@ -48,7 +47,12 @@ public class UserController {
         } else {
             return "redirect:../";
         }
+    }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        cookieService.logout(response);
+        return "redirect:../";
     }
 
 }
