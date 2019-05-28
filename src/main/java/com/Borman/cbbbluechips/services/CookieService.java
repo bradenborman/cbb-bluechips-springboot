@@ -42,4 +42,15 @@ public class CookieService {
         }
     }
 
+    public String getUserIdLoggedIn(HttpServletRequest request) {
+        Cookie[] allCookies = request.getCookies();
+
+        if(allCookies != null) {
+            for (Cookie cookie : allCookies) {
+                if (cookie.getName().equals("user_id") && cookie.getValue() != null)
+                    return cookie.getValue();
+            }
+        }
+        return null;
+    }
 }

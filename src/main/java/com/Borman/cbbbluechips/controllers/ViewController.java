@@ -21,12 +21,14 @@ public class ViewController {
     private UserService userService;
     private TeamService teamService ;
     private CookieService cookieService;
+    private PortfolioService portfolioService;
 
-    public ViewController(TradeCentralService tradeCentralService, UserService userService, TeamService teamService, CookieService cookieService) {
+    public ViewController(TradeCentralService tradeCentralService, UserService userService, TeamService teamService, CookieService cookieService, PortfolioService portfolioService) {
         this.tradeCentralService = tradeCentralService;
         this.userService = userService;
         this.teamService = teamService;
         this.cookieService = cookieService;
+        this.portfolioService = portfolioService;
     }
 
     @RequestMapping("/")
@@ -36,7 +38,14 @@ public class ViewController {
 
     @RequestMapping("/portfolio")
     public String portfolio(Model model, HttpServletRequest request, HttpServletResponse response) {
-       return cookieService.isLoggedIn(request) ? "portfolio" : "redirect:/";
+        if(!cookieService.isLoggedIn(request)){
+            return "redirect:/";
+        }else{
+            String id = cookieService.getUserIdLoggedIn(request);
+            model.addAttribute("user", userService.getUser());
+            model.addAttribute("portfolio", portfolioService.getPortfolioDetails());
+            return "portfolio";
+        }
     }
 
     @RequestMapping("/market")

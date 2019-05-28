@@ -12,16 +12,10 @@
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" type="text/css" href="css/Portfolio.css">
-    <script src="scripts/Portfolio.js"></script>
+    <script src="js/Portfolio.js"></script>
     <link rel="icon" href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
 </head>
 <body>
-<script>
-	var networth = '29100';
-	var leader =   '533725';
-	var totalMoney = '4460175';
-	var currentRound =  'Championship';
-</script>
 <header class="header"><div id="logo"></div>
     <h1>College Basketball's Blue Chips</h1>
 </header>
@@ -29,21 +23,21 @@
     <div class="row">
         <div class="col-lg-6 ">
             <div class="card">
-                <div class="card-header"><h2><i class="fas fa-folder-open"></i> Braden Borman's Snapshot</h2></div>
+                <div class="card-header"><h2><i class="fas fa-folder-open"></i><span th:text="${user.firstName + ' ' + user.lastName + ': Portfolio'}" ></span></h2></div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b><h3>My Networth:</b> <span id="Networth"></span></h3></p>
+                            <p><h3><b>My Networth:</b> <span th:text="'$' + ${#numbers.formatDecimal((portfolio.portfolioValue + portfolio.cash), 1, 'DEFAULT', 0, 'DEFAULT')}" id="Networth"></span></h3></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b><h5>Cash: <span style="color: green;">$29,100 </span></b><h5></p>
+                            <p><b><h5>Cash: <span th:text="'$' + ${#numbers.formatDecimal(portfolio.cash, 1, 'DEFAULT', 0, 'DEFAULT')}" style="color: green;"></span></h5></b></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b><h5>My Total Transactions: </b><span id="Transactions">72</span><h5></p>
+                            <p><h5><b>My Total Transactions: </b><span th:text="${portfolio.myTransactionsCount}" id="Transactions"></span><h5></p>
                         </div>
                     </div>
                 </div>
@@ -55,29 +49,29 @@
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Leader's Value:</b> <span id="Leader"></span></p>
+                            <p><b>Leader's Value:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.leadersValue, 1, 'DEFAULT', 0, 'DEFAULT')}" id="Leader"></span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Total Money in Play:</b> <span id="TotalMoney"></span></p>
+                            <p><b>Total Money in Play:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.totalMoneyInPlay, 1, 'DEFAULT', 0, 'DEFAULT')}" id="TotalMoney"></span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Current Round:</b> <span id="CurrentRound"></span></p>
+                            <p><b>Current Round:</b> <span th:text="${portfolio.roundOfPlay}" id="CurrentRound"></span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Total Transactions thus far:</b> <span id="GrandTransactions">1687</span></p>
+                            <p><b>Total Transactions thus far:</b> <span th:text="${portfolio.gameTotalTransactionCount}" id="GrandTransactions"></span></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row"><!-- FOR EACH TEAM -- PRINT JAVASCRIPT FUNCTION THAT TAKES IN TEAM NAME OR ID CREATE FUNCTION THAT HEADS TO TRADE PAGE WITH TEAM NAME SET-->
+    <div class="row">
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header"><h2><i class="fas fa-money-bill-alt"></i> My Investments</h2> $0						<div class="showSmall"><br />Click logo to trade</div>
