@@ -6,4 +6,5 @@ public class PriceHistorySQL {
     public static final String getTeamById = "SELECT * FROM price_history " +
             "WHERE Team_ID = :teamId;";
 
+    public static final String getTeamPriceByRound = "SELECT * FROM price_history WHERE Team_ID = :teamId AND Round_ID = :round";
 }

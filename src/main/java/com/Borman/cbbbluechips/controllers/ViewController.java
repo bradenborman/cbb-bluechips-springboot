@@ -1,9 +1,7 @@
 package com.Borman.cbbbluechips.controllers;
 
-import com.Borman.cbbbluechips.models.TradeCentral;
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -21,8 +21,13 @@ public class TeamService {
 
     Logger logger = LoggerFactory.getLogger(TeamService.class);
 
-    @Autowired
-    TeamDao teamDao;
+    private TeamDao teamDao;
+    private PriceHistoryService priceHistoryService;
+
+    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService) {
+        this.teamDao = teamDao;
+        this.priceHistoryService = priceHistoryService;
+    }
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
@@ -30,18 +35,18 @@ public class TeamService {
         //Replace with actual value
         allTeams.forEach(team -> {
             team.setSharesOutstanding(NumberGenUtility.getRandomNumber());
-            team.setPriceHistoryString(fetchHistoryDetails());
+            team.setPriceHistoryString(fetchHistoryDetails(team));
             team.setNextTeamPlaying("next team placeholder");
             team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
         });
         return allTeams;
     }
 
-    private String fetchHistoryDetails() {
+    private String fetchHistoryDetails(Team team) {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", "5000");
-        priceMap.put("32", NumberGenUtility.getRandomPrice());
-        priceMap.put("16", NumberGenUtility.getRandomPrice());
+        priceMap.put("32", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "32"));
+        priceMap.put("16", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "16"));
 //        priceMap.put("8", NumberGenUtility.getRandomPrice());
 //        priceMap.put("4", NumberGenUtility.getRandomPrice());
 //        priceMap.put("2", NumberGenUtility.getRandomPrice());

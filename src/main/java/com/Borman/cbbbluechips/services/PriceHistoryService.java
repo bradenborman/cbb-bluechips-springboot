@@ -2,6 +2,7 @@ package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.PriceHistoryDao;
 import com.Borman.cbbbluechips.daos.TeamDao;
+import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.PriceHistory;
 import com.Borman.cbbbluechips.models.Team;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,31 +14,16 @@ import java.util.List;
 @Service
 public class PriceHistoryService {
 
-    @Autowired
-    TeamDao teamDao;
+    private PriceHistoryDao priceHistoryDao;
 
-    @Autowired
-    PriceHistoryDao priceHistoryDao;
-
-    public PriceHistory getTeamWithPriceHistory(Team team) {
-        PriceHistory team_withHistory = new PriceHistory();
-        team_withHistory.setTeam(teamDao.getTeamById(team.getTeamId()));
-        team_withHistory.setPreviousMarketValues(priceHistoryDao.getPreviousValuesByTeamId(team.getTeamId()));
-        return team_withHistory;
+    public PriceHistoryService(PriceHistoryDao priceHistoryDao) {
+        this.priceHistoryDao = priceHistoryDao;
     }
 
-    public List<PriceHistory> getAllTeamsWithPriceHistory() {
-        List<PriceHistory> allTeamsWithHistory = new ArrayList<>();
-        List<Team> allTeams = teamDao.getAllTeams();
-        allTeams.forEach(
-                team -> {
-                    PriceHistory newPriceHistory = new PriceHistory();
-                    newPriceHistory.setTeam(team);
-                    newPriceHistory.setPreviousMarketValues(priceHistoryDao.getPreviousValuesByTeamId(team.getTeamId()));
-                    allTeamsWithHistory.add(newPriceHistory);
-                }
-        );
-        return allTeamsWithHistory;
+
+    String getPriceHistoryForRound(String teamId, String round) {
+        MarketValue marketValue = priceHistoryDao.getPriceForTeamByRound(teamId, round);
+        return String.valueOf(marketValue.getPrice());
     }
 
 }

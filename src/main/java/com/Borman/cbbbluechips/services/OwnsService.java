@@ -13,11 +13,13 @@ import java.util.List;
 @Service
 public class OwnsService {
 
-    @Autowired
-    OwnsDao ownsDao;
+    private OwnsDao ownsDao;
+    private TeamDao teamDao;
 
-    @Autowired
-    TeamDao teamDao;
+    public OwnsService(OwnsDao ownsDao, TeamDao teamDao) {
+        this.ownsDao = ownsDao;
+        this.teamDao = teamDao;
+    }
 
     public List<Owns> getTeamsUserOwns(String user) {
         return ownsDao.getTeamsUserOwns(user);

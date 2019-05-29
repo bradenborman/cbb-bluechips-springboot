@@ -50,5 +50,4 @@ public class TeamDao {
         return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamById, params, new TeamRowMapper());
     }
 
-
 }

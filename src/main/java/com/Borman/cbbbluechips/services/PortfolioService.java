@@ -9,14 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PortfolioService {
 
-    @Autowired
-    OwnsService ownsService;
 
-    @Autowired
-    GameSettingsService gameSettingsService;
+    private OwnsService ownsService;
+    private GameSettingsService gameSettingsService;
+    private TransactionService transactionService;
 
-    @Autowired
-    TransactionService transactionService;
+    public PortfolioService(OwnsService ownsService, GameSettingsService gameSettingsService, TransactionService transactionService) {
+        this.ownsService = ownsService;
+        this.gameSettingsService = gameSettingsService;
+        this.transactionService = transactionService;
+    }
 
     public Portfolio getPortfolioDetails(User user) {
         return PortfolioBuilder.aPortfolio()

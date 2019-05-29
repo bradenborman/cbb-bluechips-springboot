@@ -10,14 +10,9 @@ import com.Borman.cbbbluechips.models.Transaction;
 import com.Borman.cbbbluechips.models.enums.TradeAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -25,18 +20,17 @@ import java.util.List;
 public class TransactionService {
 
     Logger logger = LoggerFactory.getLogger(TransactionService.class);
+    private TransactionDao transactionDao;
+    private TeamDao teamDao;
+    private UserService userService;
+    private OwnsDao ownsDao;
 
-    @Autowired
-    TransactionDao transactionDao;
-
-    @Autowired
-    TeamDao teamDao;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    OwnsDao ownsDao;
+    public TransactionService(TransactionDao transactionDao, TeamDao teamDao, UserService userService, OwnsDao ownsDao) {
+        this.transactionDao = transactionDao;
+        this.teamDao = teamDao;
+        this.userService = userService;
+        this.ownsDao = ownsDao;
+    }
 
     public List<Transaction> getTransactionsByUser(String UserId) {
         return transactionDao.getAllTransactionByUser(userService.getUserFullName(UserId));
@@ -87,9 +81,7 @@ public class TransactionService {
 
         final String teamName = teamDao.getTeamName(request.getTeamId());
         final String userName = userService.getUserFullName(request.getUserId());
-
-       // String now = LocalDateTime.now().atZone(ZoneId.of("America/Chicago")).format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
-         String now = LocalDateTime.now().minusHours(5).format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
+        String now = LocalDateTime.now().minusHours(5).format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
 
         Transaction transaction = TransactionBuilder.aTransaction()
                 .withFullName(userName)
