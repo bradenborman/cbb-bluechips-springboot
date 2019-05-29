@@ -68,11 +68,6 @@ public class UserService {
         return String.format("%s %s", user.getFirstName(), user.getLastName());
     }
 
-    public User getUser() {
-        String UserId = "2";
-        return userDao.getUserById(UserId);
-    }
-
     public User getUser(String id) {
         return userDao.getUserById(id);
     }

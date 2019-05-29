@@ -15,7 +15,7 @@ allprojects {
 }
 
 test {
-    exclude '**/*integration/*'
+    exclude '**/*integration/**'
 }
 
 

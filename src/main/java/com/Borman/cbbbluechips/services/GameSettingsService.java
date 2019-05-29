@@ -10,10 +10,8 @@ public class GameSettingsService {
     @Autowired
     GameSettingsDao settingsDao;
 
-    //TODO
     public String getCurrentRound() {
-        return "16";
+        return settingsDao.getCurrentRound();
     }
-
 
 }
