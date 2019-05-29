@@ -79,8 +79,12 @@ public class OwnsDao {
 
 
     public double getPortfolioValue(String userId) {
-        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-        return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getPortfolioValueByID, params, Double.class);
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+            return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getPortfolioValueByID, params, Double.class);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
 

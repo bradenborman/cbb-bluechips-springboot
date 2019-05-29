@@ -24,10 +24,16 @@ public class UserController {
 
     //TODO
     @PostMapping("/create")
-    public String createUser(@RequestBody User user) {
-        userService.createNewUser(user);
-        System.out.println(String.format("User Created: Id set to %s", user.getID()));
-        return "portfolio";
+    public String createUser(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
+                             @RequestParam(value = "email_new") String email_new, @RequestParam(value = "password_new") String password_new) {
+        User user = userService.createNewUser(fname, lname, email_new, password_new);
+        if (user != null) {
+            if (user.getID() != null || user.getID().equals("0")) {
+                cookieService.login(user, response);
+                return "redirect:../portfolio";
+            }
+        }
+        return "redirect:../";
     }
 
     //TODO
@@ -39,7 +45,8 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
+    public String login(HttpServletRequest request, HttpServletResponse
+            response, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
         User user = userService.attemptToLogIn(email, password);
         if (user != null) {
             cookieService.login(user, response);

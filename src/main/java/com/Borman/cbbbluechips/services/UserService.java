@@ -28,13 +28,20 @@ public class UserService {
     }
 
     @Transactional
-    public void createNewUser(User user) {
+    public User createNewUser(String fname, String lname, String email_new, String password_new) {
+
+        User user = new User(fname, lname, email_new, password_new);
+
         if (!isUserAlreadyPresent(user.getEmail())) {
             user.setCash(STARTING_CASH);
             user.setID(userDao.createNewUser(user));
+            return user;
         } else
             logger.info(String.format("%s already in database", user.getEmail()));
+
+        return null;
     }
+
 
     @Transactional
     public void deleteUser(String UserId) {

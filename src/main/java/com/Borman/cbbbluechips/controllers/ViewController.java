@@ -18,7 +18,7 @@ public class ViewController {
 
     private TradeCentralService tradeCentralService;
     private UserService userService;
-    private TeamService teamService ;
+    private TeamService teamService;
     private CookieService cookieService;
     private PortfolioService portfolioService;
     private OwnsService ownsService;
@@ -39,9 +39,9 @@ public class ViewController {
 
     @RequestMapping("/portfolio")
     public String portfolio(Model model, HttpServletRequest request, HttpServletResponse response) {
-        if(!cookieService.isLoggedIn(request)){
+        if (!cookieService.isLoggedIn(request)) {
             return "redirect:/";
-        }else{
+        } else {
             User user = userService.getUser(cookieService.getUserIdLoggedIn(request));
             user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
             model.addAttribute("user", user);
@@ -57,13 +57,16 @@ public class ViewController {
     }
 
     @RequestMapping("/trade/{team_Id}")
-    public String tradeCentral(@PathVariable("team_Id") String teamId, Model model) {
-        User user = userService.getUser();
-        model.addAttribute("user", user);
-        model.addAttribute("team", teamService.getTeamById(teamId));
-        model.addAttribute("details", tradeCentralService.fillTradeCentralDetails(user, teamId));
-        return "trade";
+    public String tradeCentral(HttpServletRequest request, @PathVariable("team_Id") String teamId, Model model) {
+        if (!cookieService.isLoggedIn(request)) {
+            return "redirect:/";
+        } else {
+                User user = userService.getUser(cookieService.getUserIdLoggedIn(request));
+                model.addAttribute("user", user);
+                model.addAttribute("team", teamService.getTeamById(teamId));
+                model.addAttribute("details", tradeCentralService.fillTradeCentralDetails(user, teamId));
+                return "trade";
+        }
     }
-
 
 }

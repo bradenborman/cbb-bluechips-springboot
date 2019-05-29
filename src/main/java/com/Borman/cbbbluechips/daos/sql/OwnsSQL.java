@@ -8,7 +8,7 @@ public class OwnsSQL {
 
     public static final String getUserOwnsTeamsSQL = "SELECT Owns_ID, Team_ID, user.User_ID, Amount_Owned, First_Name, Last_Name, Email FROM owns " +
             "Right JOIN user ON user.User_ID = owns.User_ID " +
-            "Where Team_ID = :teamId limit 3";
+            "Where Team_ID = :teamId ORDER BY Amount_Owned desc limit 3";
 
 
     public static final String insertIntoOwns = "INSERT INTO owns (Owns_ID, Team_ID, User_ID, Amount_Owned) VALUES (null, :teamId, :userId, :amountOwned)";

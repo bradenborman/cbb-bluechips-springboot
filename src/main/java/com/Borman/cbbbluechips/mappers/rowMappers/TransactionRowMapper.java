@@ -25,9 +25,7 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
 
         try {
             transaction.setFullName(rs.getString("First_Name") + " " + rs.getString("Last_Name"));
-        }catch (Exception e) {
-            System.out.println("Failed to get Full Name");
-        }
+        }catch (Exception e) {}
 
         return transaction;
     }
