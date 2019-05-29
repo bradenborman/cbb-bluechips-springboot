@@ -34,9 +34,9 @@ public class TeamService {
 
         //Replace with actual value
         allTeams.forEach(team -> {
-            team.setSharesOutstanding(NumberGenUtility.getRandomNumber());
+            team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
             team.setPriceHistoryString(fetchHistoryDetails(team));
-            team.setNextTeamPlaying("next team placeholder");
+            team.setNextTeamPlaying("next-team");
             team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
         });
         return allTeams;
@@ -45,8 +45,8 @@ public class TeamService {
     private String fetchHistoryDetails(Team team) {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", "5000");
-        priceMap.put("32", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "32"));
-        priceMap.put("16", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "16"));
+//        priceMap.put("32", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "32"));
+//        priceMap.put("16", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "16"));
 //        priceMap.put("8", NumberGenUtility.getRandomPrice());
 //        priceMap.put("4", NumberGenUtility.getRandomPrice());
 //        priceMap.put("2", NumberGenUtility.getRandomPrice());

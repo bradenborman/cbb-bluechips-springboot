@@ -50,4 +50,14 @@ public class TeamDao {
         return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamById, params, new TeamRowMapper());
     }
 
+    public String getSharesOutstandingForTeam(String teamId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+            return namedParameterJdbcTemplate.queryForObject(TeamSQL.getSharesOutstanding, params, String.class);
+        }catch (Exception e) {
+            System.out.println(e);
+            return "0";
+        }
+    }
+
 }

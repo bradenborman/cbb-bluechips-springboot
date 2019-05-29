@@ -10,5 +10,8 @@ public class TeamSQL {
 
     public static final String getTeamName = "SELECT Name FROM teams where Team_ID = :teamId;";
 
+    public static final String getSharesOutstanding = "SELECT Sum(Amount_Owned) FROM owns " +
+            "Right JOIN teams ON teams.Team_ID = owns.Team_ID " +
+            "Where teams.Team_ID = :teamId";
 
 }
