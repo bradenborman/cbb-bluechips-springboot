@@ -15,10 +15,13 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
         Transaction transaction =new Transaction();
         transaction.setFullName(rs.getString("User_Name"));
         transaction.setTeamName(rs.getString("Team_Name"));
-        transaction.setCashTraded(rs.getDouble("Amount_Spent"));
+
+        double cashTraded = rs.getDouble("Amount_Spent");
+        transaction.setCashTraded(cashTraded >= 0 ? cashTraded : cashTraded * -1);
         transaction.setVolumeTraded(rs.getInt("Volume_Traded"));
         transaction.setStrTimeofTransaction(rs.getString("Time_of_Trade"));
-        if(transaction.getCashTraded() > 0)
+
+        if(cashTraded > 0)
             transaction.setTradeAction(TradeAction.BUY.getCode());
         else
             transaction.setTradeAction(TradeAction.SELL.getCode());

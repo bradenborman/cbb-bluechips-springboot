@@ -67,6 +67,7 @@ public class ViewController {
     @RequestMapping("/transactions")
     public String transactions(HttpServletRequest request, HttpServletResponse response, Model model) {
         List<Transaction> allTrans = transactionService.getAllTransactions();
+        model.addAttribute("transactions", allTrans);
         return "transaction";
     }
 
