@@ -22,7 +22,7 @@ public class ViewControllerAdmin {
 
     @RequestMapping("")
     public String admin(Model model) {
-        model.addAttribute("roundId", "32");
+        model.addAttribute("roundId", gameSettingsService.getCurrentRound());
         return "admin_directory";
     }
 

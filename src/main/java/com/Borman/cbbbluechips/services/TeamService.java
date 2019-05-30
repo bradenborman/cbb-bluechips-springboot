@@ -21,11 +21,11 @@ public class TeamService {
     Logger logger = LoggerFactory.getLogger(TeamService.class);
 
     private TeamDao teamDao;
-    private OwnsService ownsService;
+    private PriceHistoryService priceHistoryService;
 
-    public TeamService(TeamDao teamDao, OwnsService ownsService) {
+    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService) {
         this.teamDao = teamDao;
-        this.ownsService = ownsService;
+        this.priceHistoryService = priceHistoryService;
     }
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
@@ -44,8 +44,8 @@ public class TeamService {
     private String fetchHistoryDetails(Team team) {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", "5000");
-//        priceMap.put("32", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "32"));
-//        priceMap.put("16", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "16"));
+        priceMap.put("32", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "32"));
+        priceMap.put("16", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "16"));
 //        priceMap.put("8", NumberGenUtility.getRandomPrice());
 //        priceMap.put("4", NumberGenUtility.getRandomPrice());
 //        priceMap.put("2", NumberGenUtility.getRandomPrice());

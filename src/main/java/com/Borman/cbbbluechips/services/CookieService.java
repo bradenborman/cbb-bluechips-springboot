@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class CookieService {
 
+    private final String disguiseCookieString = "H4PS2NHTIIX5J13OFEG6ZC7GRSO2H5F01VWHLDBP.";
+
+
     public void login(User user, HttpServletResponse response) {
         if (user != null) {
-            Cookie cookie = new Cookie("user_id", user.getID());
+            Cookie cookie = new Cookie("_t1zd", disguiseCookieString + user.getID());
             cookie.setPath("/");
             cookie.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(cookie);
@@ -25,8 +28,10 @@ public class CookieService {
 
         if(allCookies != null) {
             for (Cookie allCookie : allCookies) {
-                if (allCookie.getName().equals("user_id") && allCookie.getValue() != null)
+                if (allCookie.getName().equals("_t1zd") && allCookie.getValue() != null){
+                    String userID = allCookie.getValue().replace(disguiseCookieString, "");
                     return true;
+                }
             }
         }
         return false;
@@ -35,7 +40,7 @@ public class CookieService {
 
     public void logout(HttpServletResponse response) {
         if(response != null) {
-            Cookie cookie = new Cookie("user_id", "");
+            Cookie cookie = new Cookie("_t1zd", "");
             cookie.setPath("/");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
@@ -47,8 +52,9 @@ public class CookieService {
 
         if(allCookies != null) {
             for (Cookie cookie : allCookies) {
-                if (cookie.getName().equals("user_id") && cookie.getValue() != null)
-                    return cookie.getValue();
+                if (cookie.getName().equals("_t1zd") && cookie.getValue() != null) {
+                    return cookie.getValue().replace(disguiseCookieString, "");
+                }
             }
         }
         return null;

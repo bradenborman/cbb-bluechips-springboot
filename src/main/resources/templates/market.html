@@ -37,10 +37,14 @@
     </nav>
     <div class="row">
         <div class="col-lg-6" th:each="team : ${teams}">
-            <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'" class="team">
-                <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}"/>
-                <span class="team_name identifier" th:text="${team.teamName}" th:style="${team.eliminated} ? ' text-decoration: line-through;' : ''"></span>
-                <span class="team_currentPrice" th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
+            <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
+                 class="team">
+                <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header"
+                     th:src="@{${'/img/' + team.teamName + '.png'}}"/>
+                <span class="team_name identifier" th:text="${team.teamName}"
+                      th:style="${team.eliminated} ? ' text-decoration: line-through;' : ''"></span>
+                <span class="team_currentPrice"
+                      th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                 <div class="card">
                     <h5 style="display: none;" class="identifier d-none" th:text="${team.teamName}"></h5>
                     <div th:text="'(' + ${team.nextPointSpread} + ') VS: ' + ${team.nextTeamPlaying}"
@@ -78,9 +82,15 @@ google.charts.load('current', {'packages':['corechart']});
 	 var valueArray = values.split(" ")
 
 	 var data = google.visualization.arrayToDataTable([
-	 ['Round', 'Value'],
-	 ['64',  parseInt(valueArray[0])],
-	['32',  parseInt(valueArray[1])],	['16',  parseInt(valueArray[2])],	['8',  parseInt(valueArray[3])],	['4',  parseInt(valueArray[4])],	['2',  parseInt(valueArray[5])],	['1',  parseInt(valueArray[6])]	 ]);
+         ['Round', 'Value'],
+         ['64',  parseInt(valueArray[0])],
+        ['32',  parseInt(valueArray[1])],
+        ['16',  parseInt(valueArray[2])],
+        ['8',  parseInt(valueArray[3])],
+        ['4',  parseInt(valueArray[4])],
+        ['2',  parseInt(valueArray[5])],
+        ['1',  parseInt(valueArray[6])]
+	]);
 
          var options = {
                  curveType: 'function',
@@ -91,6 +101,8 @@ google.charts.load('current', {'packages':['corechart']});
          chart.draw(data, options);
          });
 	 }
+
+
     </script>
 </div>
 </body>
