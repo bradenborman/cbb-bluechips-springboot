@@ -31,13 +31,14 @@ public class TeamService {
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
 
-        //Replace with actual value
-        allTeams.forEach(team -> {
-            team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
-            team.setPriceHistoryString(fetchHistoryDetails(team));
-            team.setNextTeamPlaying("next-team");
-            team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
-        });
+        if(onlyTeamsInTournament) {
+            allTeams.forEach(team -> {
+                team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
+                team.setPriceHistoryString(fetchHistoryDetails(team));
+                team.setNextTeamPlaying("next-team");
+                team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
+            });
+        }
         return allTeams;
     }
 
