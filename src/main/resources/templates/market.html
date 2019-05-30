@@ -37,7 +37,7 @@
     </nav>
     <div class="row">
         <div class="col-lg-6" th:each="team : ${teams}">
-            <div class="team">
+            <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'" class="team">
                 <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}"/>
                 <span class="team_name identifier" th:text="${team.teamName}" th:style="${team.eliminated} ? ' text-decoration: line-through;' : ''"></span>
                 <span class="team_currentPrice" th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>

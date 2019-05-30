@@ -21,6 +21,8 @@ public class Team {
     private double currentMarketPrice;
     private String sharesOutstanding;
     private String priceHistoryString;
+    private boolean doesUserOwn;
+
 
     public String getTeamId() {
         return teamId;
@@ -102,12 +104,21 @@ public class Team {
         this.currentMarketPrice = currentMarketPrice;
     }
 
+
     public String getSharesOutstanding() {
         return sharesOutstanding;
     }
 
     public void setSharesOutstanding(String sharesOutstanding) {
         this.sharesOutstanding = sharesOutstanding;
+    }
+
+    public boolean isDoesUserOwn() {
+        return doesUserOwn;
+    }
+
+    public void setDoesUserOwn(boolean doesUserOwn) {
+        this.doesUserOwn = doesUserOwn;
     }
 
     public String getPriceHistoryString() {

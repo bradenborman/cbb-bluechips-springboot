@@ -1,5 +1,6 @@
 package com.Borman.cbbbluechips.controllers;
 
+import com.Borman.cbbbluechips.models.Team;
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.*;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class ViewController {
@@ -50,9 +52,14 @@ public class ViewController {
 
     @RequestMapping("/market")
     public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
-        model.addAttribute("teams", allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true));
+        String userId = cookieService.getUserIdLoggedIn(request);
+        List<Team> teamsToReturn = allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true);
+        if(cookieService.isLoggedIn(request))
+            ownsService.setTeamsUserOwns(teamsToReturn, cookieService.getUserIdLoggedIn(request));
+        model.addAttribute("teams", teamsToReturn);
         return "market";
     }
+
 
     @RequestMapping("/trade/{team_Id}")
     public String tradeCentral(HttpServletRequest request, @PathVariable("team_Id") String teamId, Model model) {

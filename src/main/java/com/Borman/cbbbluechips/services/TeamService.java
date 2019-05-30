@@ -1,5 +1,7 @@
 package com.Borman.cbbbluechips.services;
 
+import com.Borman.cbbbluechips.daos.OwnsDao;
+import com.Borman.cbbbluechips.models.Owns;
 import com.Borman.cbbbluechips.utilities.NumberGenUtility;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.Team;
@@ -8,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -22,11 +21,11 @@ public class TeamService {
     Logger logger = LoggerFactory.getLogger(TeamService.class);
 
     private TeamDao teamDao;
-    private PriceHistoryService priceHistoryService;
+    private OwnsService ownsService;
 
-    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService) {
+    public TeamService(TeamDao teamDao, OwnsService ownsService) {
         this.teamDao = teamDao;
-        this.priceHistoryService = priceHistoryService;
+        this.ownsService = ownsService;
     }
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {

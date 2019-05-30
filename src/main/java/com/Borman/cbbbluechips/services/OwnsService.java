@@ -3,6 +3,7 @@ package com.Borman.cbbbluechips.services;
 import com.Borman.cbbbluechips.daos.OwnsDao;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.Owns;
+import com.Borman.cbbbluechips.models.Team;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class OwnsService {
 
     //Gets current amount before trade and then also prevents negative numbers to be passed in
     public boolean validateOwnership(TradeRequest tradeRequest) {
-       return (tradeRequest.getVolume() <= ownsDao.getAmountOfSharesOwned(tradeRequest)) && tradeRequest.getVolume() > 0;
+        return (tradeRequest.getVolume() <= ownsDao.getAmountOfSharesOwned(tradeRequest)) && tradeRequest.getVolume() > 0;
     }
 
     public double getFundsAvailable(TradeRequest tradeRequest) {
@@ -56,4 +57,16 @@ public class OwnsService {
     public double getTotalMoneyInPlay() {
         return ownsDao.getTotalMoneyInPlay();
     }
+
+
+    public void setTeamsUserOwns(List<Team> teamsToReturn, String userIdLoggedIn) {
+        List<Owns> userOwns = ownsDao.getTeamsUserOwns(userIdLoggedIn);
+
+        for (Team team : teamsToReturn) {
+            if (userOwns.stream().anyMatch(owns -> owns.getTeamName().equals(team.getTeamName())))
+                team.setDoesUserOwn(true);
+        }
+
+    }
+
 }
