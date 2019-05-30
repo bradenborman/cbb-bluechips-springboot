@@ -11,7 +11,7 @@ padding:10px;
 </style>
 </head>
 <body>
-<h1>My Thymeleaf Error Page</h1>
+<h1>Error</h1>
 <table>
     <tr>
         <td>Date</td>
@@ -37,12 +37,12 @@ padding:10px;
         <td>Exception</td>
         <td th:text="${exception}"/>
     </tr>
-    <tr>
-        <td>Trace</td>
-        <td>
-            <pre th:text="${trace}"/>
-        </td>
-    </tr>
+    <!--<tr>-->
+        <!--<td>Trace</td>-->
+        <!--<td>-->
+            <!--<pre th:text="${trace}"/>-->
+        <!--</td>-->
+    <!--</tr>-->
 </table>
 </body>
 </html>
