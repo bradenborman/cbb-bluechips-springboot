@@ -23,6 +23,7 @@ public class TransactionSQL {
 
     public static final String getCountTotalTransactions = "SELECT count(Transaction_ID) FROM transaction_history";
 
-
+    //TODO order by latest
+    public static final String getAllTransactions = "SELECT * FROM transaction_history";
 
 }

@@ -77,4 +77,8 @@ public class TransactionDao {
     }
 
 
+    public List<Transaction> getAllTransactions() {
+        return namedParameterJdbcTemplate.query(TransactionSQL.getAllTransactions, new TransactionRowMapper());
+    }
+
 }

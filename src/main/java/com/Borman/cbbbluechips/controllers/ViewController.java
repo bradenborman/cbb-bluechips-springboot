@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.Team;
+import com.Borman.cbbbluechips.models.Transaction;
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.*;
 import org.springframework.stereotype.Controller;
@@ -22,14 +23,17 @@ public class ViewController {
     private CookieService cookieService;
     private PortfolioService portfolioService;
     private OwnsService ownsService;
+    private TransactionService transactionService;
 
-    public ViewController(TradeCentralService tradeCentralService, UserService userService, TeamService teamService, CookieService cookieService, PortfolioService portfolioService, OwnsService ownsService) {
+    public ViewController(TradeCentralService tradeCentralService, UserService userService, TeamService teamService, CookieService cookieService,
+                          PortfolioService portfolioService, OwnsService ownsService, TransactionService transactionService) {
         this.tradeCentralService = tradeCentralService;
         this.userService = userService;
         this.teamService = teamService;
         this.cookieService = cookieService;
         this.portfolioService = portfolioService;
         this.ownsService = ownsService;
+        this.transactionService = transactionService;
     }
 
     @RequestMapping("/")
@@ -60,6 +64,11 @@ public class ViewController {
         return "market";
     }
 
+    @RequestMapping("/transactions")
+    public String transactions(HttpServletRequest request, HttpServletResponse response, Model model) {
+        List<Transaction> allTrans = transactionService.getAllTransactions();
+        return "transaction";
+    }
 
     @RequestMapping("/trade/{team_Id}")
     public String tradeCentral(HttpServletRequest request, @PathVariable("team_Id") String teamId, Model model) {

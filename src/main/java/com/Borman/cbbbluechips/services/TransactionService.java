@@ -99,4 +99,8 @@ public class TransactionService {
     public String getTransactionCountTotal() {
         return transactionDao.getTransactionCountTotal();
     }
+
+    public List<Transaction> getAllTransactions() {
+        return transactionDao.getAllTransactions();
+    }
 }
