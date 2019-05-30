@@ -14,4 +14,12 @@ public class AdminSQL {
     public static final String updateSeeds = "UPDATE teams SET seed = :newSeed WHERE Name = :teamName";
 
     public static final String updateLockedAndEliminated = "UPDATE teams SET Is_Out = :out, Is_Locked = :locked WHERE Name = :teamName";
+
+    public static final String updateMarketPriceByTeam = "UPDATE teams SET Current_Market_Price = :price WHERE Name = :teamName";
+
+    //TODO teamId needs to be added to model and set
+    public static final String archivePriceUpdateCreate = "UPDATE price_history SET ______ = :price WHERE Team_ID = :teamId AND Round_ID = :round";
+
+    //TODO
+    public static final String archivePriceUpdateRenew = "INSERT INTO price_history () VALUES () ";
 }

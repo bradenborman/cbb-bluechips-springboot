@@ -1,10 +1,8 @@
 package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.AdminSQL;
-
-import com.Borman.cbbbluechips.daos.sql.TransactionSQL;
+import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
-import com.Borman.cbbbluechips.models.Team;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +13,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class AdminDao {
@@ -76,4 +72,34 @@ public class AdminDao {
             System.out.println("Failed to update Locked and Eliminated" + e);
         }
     }
+
+
+    public void updateMarketPriceByTeamAndRound(MarketValue newMarketValue) {
+        try {
+            SqlParameterSource params = new BeanPropertySqlParameterSource(newMarketValue);
+            namedParameterJdbcTemplate.update(AdminSQL.updateMarketPriceByTeam, params);
+        } catch (Exception e) {
+            System.out.println("Failed to update Market Price By Team And Round" + e);
+        }
+    }
+
+    public void archivePriceUpdateCreate(MarketValue newMarketValue) {
+        try {
+            SqlParameterSource params = new BeanPropertySqlParameterSource(newMarketValue);
+            namedParameterJdbcTemplate.update(AdminSQL.archivePriceUpdateCreate, params);
+        } catch (Exception e) {
+            System.out.println("Failed to archive Price Update" + e);
+        }
+    }
+
+    public void archivePriceUpdateRenew(MarketValue newMarketValue) {
+        try {
+            SqlParameterSource params = new BeanPropertySqlParameterSource(newMarketValue);
+            namedParameterJdbcTemplate.update(AdminSQL.archivePriceUpdateRenew, params);
+        } catch (Exception e) {
+            System.out.println("Failed to archive Price Update" + e);
+        }
+    }
+
+
 }

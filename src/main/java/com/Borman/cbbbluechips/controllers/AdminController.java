@@ -20,7 +20,9 @@ public class AdminController {
     GameSettingsService settingsService;
 
     @PostMapping("/update-price")
-    public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice, @RequestParam(value = "roundSelector") int roundId) {
+    public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice,
+                                    @RequestParam(value = "roundSelector") int roundId) {
+        adminService.updateMarketPrice(teamName, nextRoundPrice, roundId);
         return "redirect:/admin/update/teams";
     }
 

@@ -92,11 +92,11 @@
                         </thead>
                         <tbody>
                         <tr th:each="team : ${user.teamsOwned}">
-                            <td><img th:id="${team.teamId}" class="logo" th:src="@{${'/img/' + team.teamName + '.png'}}" /><span th:text="${team.teamName}" class="hideSmall"></span></td>
+                            <td><img th:id="${team.teamName}" class="logo" th:src="@{${'/img/' + team.teamName + '.png'}}" /><span th:text="${team.teamName}" class="hideSmall"></span></td>
                             <td th:text="${team.amountOwned}"></td>
                             <td th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
                             <td th:text="'$' + ${#numbers.formatDecimal((team.amountOwned * team.currentMarketPrice), 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
-                            <td class="hideSmall"><button th:id="${team.teamId + 'btn'}" type="button" class="tradeBTN btn btn-primary">Trade</button></td>
+                            <td class="hideSmall"><button th:id="${team.teamName + 'btn'}" type="button" class="tradeBTN btn btn-primary">Trade</button></td>
                         </tr>
                         </tbody>
                     </table>

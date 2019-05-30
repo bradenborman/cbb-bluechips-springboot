@@ -1,11 +1,8 @@
 package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.PriceHistorySQL;
-import com.Borman.cbbbluechips.daos.sql.TeamSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.PriceHistoryRowMapper;
-import com.Borman.cbbbluechips.mappers.rowMappers.TeamRowMapper;
 import com.Borman.cbbbluechips.models.MarketValue;
-import com.Borman.cbbbluechips.models.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

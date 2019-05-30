@@ -1,7 +1,9 @@
 package com.Borman.cbbbluechips.services;
 
+import com.Borman.cbbbluechips.builders.MarketValueBuilder;
 import com.Borman.cbbbluechips.builders.UpdateSeedRequestBuilder;
 import com.Borman.cbbbluechips.daos.AdminDao;
+import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
 import org.slf4j.Logger;
@@ -63,4 +65,21 @@ public class AdminService {
         logger.info(String.format("Updating %s's Info. Locked: %s Out: %s", teamName, isEliminated, isLocked));
         adminDao.updateLockedStatusAndEliminated(teamName, isEliminated, isLocked);
     }
+
+    @Transactional
+    public void updateMarketPrice(String teamName, double nextRoundPrice, int roundId) {
+        MarketValue newMarketValue = MarketValueBuilder.aMarketValue()
+                .withPrice(nextRoundPrice)
+                .withRoundId(String.valueOf(roundId))
+                .withTeamName(teamName)
+                .build();
+        logger.info(String.format("New Price submitted: %s", newMarketValue.toString()));
+        adminDao.updateMarketPriceByTeamAndRound(newMarketValue);
+
+        //TODO
+        //if not there insert else update
+        adminDao.archivePriceUpdateCreate(newMarketValue);
+    }
+
+
 }

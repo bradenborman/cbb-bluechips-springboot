@@ -48,7 +48,7 @@
                 <div class="col-lg-4" id="BUY_SECTION">
                     <form action="/trade-action/buy" method="post">
                         <input class="slider" onchange="updateBuyBTN(this.value)" type="range" min="0" th:max="${details.maximumCanPurchase}" value="0" id="buySlider" name="volume">
-                        <input th:value="${team.teamId}" type="hidden" name="teamId">
+                        <input th:value="${team.teamName}" type="hidden" name="teamName">
                         <br/>
                         <button th:if="${!team.locked}" id="buyBTN" type="submit" class="sell btn btn-success tradeBTN">Buy</button>
                         <button th:if="${team.locked}" disabled id="buyBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Buy</button>
@@ -57,7 +57,7 @@
                 <div class="col-lg-4" id="SELL_SECTION">
                     <form action="/trade-action/sell" method="post">
                         <input class="slider" onchange="updateSellBTN(this.value)" type="range" min="0" th:max="${details.availableToSell}" value="0" id="sellSlider" name="volume">
-                        <input th:value="${team.teamId}" type="hidden" name="teamId">
+                        <input th:value="${team.teamName}" type="hidden" name="teamName">
                         <br/>
                         <button th:if="${!team.locked and details.availableToSell &gt; 0}" id="sellBTN" type="submit" class="sell btn btn-success tradeBTN">Sell</button>
                         <button th:if="${team.locked or details.availableToSell &lt; 1}" disabled id="sellBTN" type="submit" class="sell btn btn-success tradeBTN"><i class="fas fa-lock"></i> Sell</button>

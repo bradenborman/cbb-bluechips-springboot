@@ -53,7 +53,7 @@
                         <div class="card-img-top" th:id="${team.teamName}"></div>
                         <p th:text="${team.priceHistoryString}" class="hidden values d-none"></p>
                         <div class="tradeBTN" th:if="${!team.locked}">
-                            <a th:href="@{'/trade/' + ${team.teamId}}" class="btn btn-primary" role="button">Trade</a>
+                            <a th:href="@{'/trade/' + ${team.teamName}}" class="btn btn-primary" role="button">Trade</a>
                         </div>
                         <div class="tradeBTN" th:if="${team.locked}">
                             <a href="#" class="btn btn-outline-primary disabled" role="button">Trade <i

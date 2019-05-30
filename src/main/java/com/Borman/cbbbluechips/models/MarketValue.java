@@ -1,9 +1,11 @@
 package com.Borman.cbbbluechips.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class MarketValue {
 
     private String marketValueId;
-    private String teamId;
+    private String teamName;
     private String roundId;
     private double price;
 
@@ -15,12 +17,12 @@ public class MarketValue {
         this.marketValueId = marketValueId;
     }
 
-    public String getTeamId() {
-        return teamId;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setTeamId(String teamId) {
-        this.teamId = teamId;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public String getRoundId() {
@@ -38,4 +40,15 @@ public class MarketValue {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to write MarketValue as string", e);
+        }
+    }
+
 }
