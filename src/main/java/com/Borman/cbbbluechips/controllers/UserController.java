@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 public class UserController {
 
+    private UserService userService;
+    private CookieService cookieService;
 
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    CookieService cookieService;
+    public UserController(UserService userService, CookieService cookieService) {
+        this.userService = userService;
+        this.cookieService = cookieService;
+    }
 
     //TODO
     @PostMapping("/create")
@@ -28,7 +29,7 @@ public class UserController {
                              @RequestParam(value = "email_new") String email_new, @RequestParam(value = "password_new") String password_new) {
         User user = userService.createNewUser(fname, lname, email_new, password_new);
         if (user != null) {
-            if (user.getID() != null || user.getID().equals("0")) {
+            if (user.getID() != null) {
                 cookieService.login(user, response);
                 return "redirect:../portfolio";
             }
