@@ -4,6 +4,8 @@ spring:
       hibernate:
         default_schema: heroku_f8c10a0dcaaf757
 
+admins: bradenborman@hotmail.com
+
 game-rules:
   starting-cash: 100000
 

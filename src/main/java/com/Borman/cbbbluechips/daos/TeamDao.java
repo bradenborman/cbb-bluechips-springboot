@@ -40,14 +40,14 @@ public class TeamDao {
     }
 
 
-    public String getTeamName(String teamId) {
+    public String getTeamNameById(String teamId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
         return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamName, params, String.class);
     }
 
-    public Team getTeamByName(String teamId) {
-        MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
-        return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamById, params, new TeamRowMapper());
+    public Team getTeamByName(String teamName) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamName", teamName);
+        return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamByName, params, new TeamRowMapper());
     }
 
     public String getSharesOutstandingForTeam(String teamId) {

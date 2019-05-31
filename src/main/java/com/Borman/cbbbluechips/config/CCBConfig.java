@@ -9,6 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class CCBConfig {
@@ -43,5 +45,11 @@ public class CCBConfig {
     public String getSportsDataUrl(@Value("${sports-data-api.url}") String sportsDataUrl) {
         return sportsDataUrl;
     }
+
+    @Bean("admins")
+    public List<String> getAdmins(@Value("${admins}") String[] admins) {
+        return Arrays.asList(admins);
+    }
+
 
 }

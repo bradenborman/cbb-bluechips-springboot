@@ -5,6 +5,7 @@ import com.Borman.cbbbluechips.models.MarketValue;
 public final class MarketValueBuilder {
     private String marketValueId;
     private String teamName;
+    private String teamId;
     private String roundId;
     private double price;
 
@@ -25,6 +26,11 @@ public final class MarketValueBuilder {
         return this;
     }
 
+    public MarketValueBuilder withTeamId(String teamId) {
+        this.teamId = teamId;
+        return this;
+    }
+
     public MarketValueBuilder withRoundId(String roundId) {
         this.roundId = roundId;
         return this;
@@ -39,6 +45,7 @@ public final class MarketValueBuilder {
         MarketValue marketValue = new MarketValue();
         marketValue.setMarketValueId(marketValueId);
         marketValue.setTeamName(teamName);
+        marketValue.setTeamId(teamId);
         marketValue.setRoundId(roundId);
         marketValue.setPrice(price);
         return marketValue;

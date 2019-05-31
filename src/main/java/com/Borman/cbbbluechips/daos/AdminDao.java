@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.AdminSQL;
+import com.Borman.cbbbluechips.mappers.rowMappers.PriceHistoryRowMapper;
 import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
@@ -13,6 +14,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class AdminDao {
@@ -102,4 +105,17 @@ public class AdminDao {
     }
 
 
+    public boolean checkForRoundPriceExists(MarketValue newMarketValue) {
+        try {
+            SqlParameterSource params = new BeanPropertySqlParameterSource(newMarketValue);
+            List<MarketValue> marketValue =  namedParameterJdbcTemplate.query(AdminSQL.checkForRoundPriceExists, params, new PriceHistoryRowMapper());
+            return marketValue.get(0).getMarketValueId() != null;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+        catch (Exception e) {
+            System.out.println("Failed to checkForRoundPriceExists" + e);
+            return false;
+        }
+    }
 }

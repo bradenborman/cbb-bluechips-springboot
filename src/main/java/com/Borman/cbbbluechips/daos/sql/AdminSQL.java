@@ -17,9 +17,10 @@ public class AdminSQL {
 
     public static final String updateMarketPriceByTeam = "UPDATE teams SET Current_Market_Price = :price WHERE Name = :teamName";
 
-    //TODO teamId needs to be added to model and set
-    public static final String archivePriceUpdateCreate = "UPDATE price_history SET ______ = :price WHERE Team_ID = :teamId AND Round_ID = :round";
+    public static final String archivePriceUpdateRenew = "UPDATE price_history SET Price = :price WHERE Team_ID = :teamId AND Round_ID = :roundId";
 
-    //TODO
-    public static final String archivePriceUpdateRenew = "INSERT INTO price_history () VALUES () ";
+    public static final String archivePriceUpdateCreate = "INSERT INTO price_history (Team_ID, Round_ID, Price) VALUES (:teamId, :roundId, :price)";
+
+    public static final String checkForRoundPriceExists = "SELECT * FROM price_history Where Team_ID = :teamId AND Round_ID = :roundId";
+
 }

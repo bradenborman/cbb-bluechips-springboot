@@ -14,4 +14,6 @@ public class TeamSQL {
             "Right JOIN teams ON teams.Team_ID = owns.Team_ID " +
             "Where teams.Team_ID = :teamId";
 
+    public static final String getTeamByName = "SELECT * FROM teams WHERE Name = :teamName;";
+
 }

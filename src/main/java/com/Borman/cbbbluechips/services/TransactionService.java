@@ -81,7 +81,7 @@ public class TransactionService {
 
     private Transaction buildTransaction(TradeRequest request, final double moneyTraded) {
 
-        final String teamName = teamDao.getTeamName(request.getTeamId());
+        final String teamName = teamDao.getTeamNameById(request.getTeamId());
         final String userName = userService.getUserFullName(request.getUserId());
         String now = LocalDateTime.now().minusHours(5).format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
 

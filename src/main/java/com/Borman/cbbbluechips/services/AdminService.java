@@ -3,6 +3,7 @@ package com.Borman.cbbbluechips.services;
 import com.Borman.cbbbluechips.builders.MarketValueBuilder;
 import com.Borman.cbbbluechips.builders.UpdateSeedRequestBuilder;
 import com.Borman.cbbbluechips.daos.AdminDao;
+import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
@@ -27,11 +28,13 @@ public class AdminService {
     private RestTemplate restTemplate;
     private AdminDao adminDao;
     private String sportsDataUrl;
+    private TeamDao teamDao;
 
-    public AdminService(RestTemplate restTemplate, AdminDao adminDao, @Qualifier("sportsDataUrl") String sportsDataUrl) {
+    public AdminService(RestTemplate restTemplate, AdminDao adminDao, @Qualifier("sportsDataUrl") String sportsDataUrl, TeamDao teamDao) {
         this.restTemplate = restTemplate;
         this.adminDao = adminDao;
         this.sportsDataUrl = sportsDataUrl;
+        this.teamDao = teamDao;
     }
 
     @Transactional
@@ -51,10 +54,10 @@ public class AdminService {
     }
 
     public void processUpdateSeedRequest(List<String> allTeams, List<String> seedsValue) {
-        if(allTeams.size() != seedsValue.size())
+        if (allTeams.size() != seedsValue.size())
             System.out.println("Error. Not same size");
         List<UpdateSeedRequest> updates = new ArrayList<>();
-        for(int x = 0; x < allTeams.size(); x++)
+        for (int x = 0; x < allTeams.size(); x++)
             updates.add(UpdateSeedRequestBuilder.anUpdateSeedRequest().withTeamName(allTeams.get(x)).withNewSeed(seedsValue.get(x)).build());
         updates.removeIf(team -> Integer.valueOf(team.getNewSeed()) <= 0);
         adminDao.setSeedsToDefault();
@@ -66,19 +69,26 @@ public class AdminService {
         adminDao.updateLockedStatusAndEliminated(teamName, isEliminated, isLocked);
     }
 
-    @Transactional
+
     public void updateMarketPrice(String teamName, double nextRoundPrice, int roundId) {
         MarketValue newMarketValue = MarketValueBuilder.aMarketValue()
                 .withPrice(nextRoundPrice)
                 .withRoundId(String.valueOf(roundId))
                 .withTeamName(teamName)
+                .withTeamId(teamDao.getTeamByName(teamName).getTeamId())
                 .build();
         logger.info(String.format("New Price submitted: %s", newMarketValue.toString()));
         adminDao.updateMarketPriceByTeamAndRound(newMarketValue);
 
-        //TODO
-        //if not there insert else update
-        adminDao.archivePriceUpdateCreate(newMarketValue);
+        boolean isThere = adminDao.checkForRoundPriceExists(newMarketValue);
+
+
+
+        if (isThere)
+            adminDao.archivePriceUpdateRenew(newMarketValue);
+        else
+            adminDao.archivePriceUpdateCreate(newMarketValue);
+
     }
 
 

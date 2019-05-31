@@ -6,6 +6,7 @@ public class MarketValue {
 
     private String marketValueId;
     private String teamName;
+    private String teamId;
     private String roundId;
     private double price;
 
@@ -23,6 +24,14 @@ public class MarketValue {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    public String getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
     }
 
     public String getRoundId() {
