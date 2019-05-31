@@ -23,7 +23,7 @@
             <P th:text="'Current Round: ' + ${currentRound}"></P>
             <select onchange="updateForm(this.value)" id="teamSelector">
                 <option disabled selected value> -- Select Team to Begin --</option>
-                <option th:each="team: ${teams}" th:value="${team['teamName']}" th:text="${team['teamName']}"/>
+                <option th:each="team: ${teams}" th:value="${team['teamId']}" th:text="${team['teamName']}"/>
             </select>
             <br/>
             <hr/>
@@ -76,7 +76,7 @@
     <a href="/admin">Back to Admin Portal</a>
 </footer>
 <script>
-    function updateForm(id) { location.href = "?teamName=" + id; }
+    function updateForm(id) { location.href = "?teamId=" + id; }
 </script>
 </body>
 </html>
