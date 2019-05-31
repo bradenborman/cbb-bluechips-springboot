@@ -13,17 +13,8 @@ function updateBuyBTN(value) {
 function updateSpent(value, action) {
 	  var y = $("#costPerShare").text()
 	  var cost = y.replace(/\D+/g, '');
-
-        if(action == "BUY") {
-			var spent = value * cost
-			$('#totalSpent').html("$" + ReplaceNumberWithCommas(spent))
-		}
-
-		else {
-			var spent = value * cost
-			$('#totalSpent').html(" (-) $" + ReplaceNumberWithCommas(spent))
-		}
-
+	var spent = value * cost
+	$('#totalSpent').html("$" + ReplaceNumberWithCommas(spent))
 }
 
 
