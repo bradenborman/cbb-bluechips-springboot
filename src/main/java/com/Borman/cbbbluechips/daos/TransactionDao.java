@@ -81,4 +81,7 @@ public class TransactionDao {
         return namedParameterJdbcTemplate.query(TransactionSQL.getAllTransactions, new TransactionRowMapper());
     }
 
+    public List<Transaction> getFilteredTransactions(String sql) {
+        return namedParameterJdbcTemplate.query(sql, new TransactionRowMapper());
+    }
 }

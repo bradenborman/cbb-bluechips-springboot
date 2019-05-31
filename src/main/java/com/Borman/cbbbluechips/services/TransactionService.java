@@ -8,10 +8,12 @@ import com.Borman.cbbbluechips.daos.TransactionDao;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.Transaction;
 import com.Borman.cbbbluechips.models.enums.TradeAction;
+import com.Borman.cbbbluechips.utilities.FilteredSearchUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -102,5 +104,10 @@ public class TransactionService {
 
     public List<Transaction> getAllTransactions() {
         return transactionDao.getAllTransactions();
+    }
+
+    public List<Transaction> getFilteredTransaction(String teamName, String userName) {
+        String sql = FilteredSearchUtility.buildSQL(teamName, userName);
+        return transactionDao.getFilteredTransactions(sql);
     }
 }
