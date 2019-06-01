@@ -7,6 +7,7 @@ import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
+import com.Borman.cbbbluechips.twilio.TwiloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,12 +30,14 @@ public class AdminService {
     private AdminDao adminDao;
     private String sportsDataUrl;
     private TeamDao teamDao;
+    private TwiloService twiloService;
 
-    public AdminService(RestTemplate restTemplate, AdminDao adminDao, @Qualifier("sportsDataUrl") String sportsDataUrl, TeamDao teamDao) {
+    public AdminService(RestTemplate restTemplate, AdminDao adminDao, @Qualifier("sportsDataUrl") String sportsDataUrl, TeamDao teamDao, TwiloService twiloService) {
         this.restTemplate = restTemplate;
         this.adminDao = adminDao;
         this.sportsDataUrl = sportsDataUrl;
         this.teamDao = teamDao;
+        this.twiloService = twiloService;
     }
 
     @Transactional
@@ -86,6 +89,10 @@ public class AdminService {
             adminDao.archivePriceUpdateRenew(newMarketValue);
         else
             adminDao.archivePriceUpdateCreate(newMarketValue);
+
+
+        //Sends alert to anyone with a valid Phone number and has checked service in setting TODO
+        twiloService.sendPriceChangeAlert(newMarketValue);
 
     }
 

@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 public class TwiloBodyBuilderUtility {
 
 
-    public static String buildGameCompletedMessage(String teamName, String sharesOwned) {
-        return String.format("CBB BLUECHIPS UPDATE: %s has completed their game. You own %s shares that are now open for trading", teamName, sharesOwned);
+    public static String buildGameCompletedMessage(String teamName, int sharesOwned, double newPrice) {
+        return String.format("CBB BLUECHIPS UPDATE:\n%s has completed their game. You own %s shares that are now open for trading at %s", teamName, sharesOwned, newPrice);
     }
 
     public static String buildUpdateLeadersBody(List<String> leaders) {

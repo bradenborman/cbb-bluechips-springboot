@@ -8,13 +8,14 @@ class TwiloBodyBuilderUtilityTest extends Specification {
 
         given:
         String teamName = "Duke"
-        String amountOwned = "20"
-
+        int amountOwned = 20
+        double newPrice = 5000;
         when:
-        String body = TwiloBodyBuilderUtility.buildGameCompletedMessage(teamName, amountOwned)
+        String body = TwiloBodyBuilderUtility.buildGameCompletedMessage(teamName, amountOwned, newPrice)
 
         then:
-        body == "CBB BLUECHIPS UPDATE: Duke has completed their game. You own 20 shares that are now open for trading"
+        body == "CBB BLUECHIPS UPDATE:\n" +
+                "Duke has completed their game. You own 20 shares that are now open for trading at 5000.0"
 
     }
 

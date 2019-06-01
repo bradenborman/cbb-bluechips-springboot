@@ -3,7 +3,9 @@ package com.Borman.cbbbluechips.daos;
 import com.Borman.cbbbluechips.daos.sql.OwnsSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapperTeamJoin;
 import com.Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapperUserJoin;
+import com.Borman.cbbbluechips.mappers.rowMappers.SMS_AlertRowMapper;
 import com.Borman.cbbbluechips.models.Owns;
+import com.Borman.cbbbluechips.models.SMS_Alert;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,10 +69,10 @@ public class OwnsDao {
     }
 
 
-    public List<Owns> getUsersOwnsForTeam(String teamId) {
+    public List<Owns> getTopShareHoldersForTeam(String teamId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
-            return namedParameterJdbcTemplate.query(OwnsSQL.getUserOwnsTeamsSQL, params, new OwnsRowMapperUserJoin());
+            return namedParameterJdbcTemplate.query(OwnsSQL.getUserOwnsTeamsSQL_Limit3, params, new OwnsRowMapperUserJoin());
         } catch (Exception e) {
             logger.error("Failed to get Owns for " + teamId + "\n" + e);
             return null;
@@ -91,4 +93,15 @@ public class OwnsDao {
     public double getTotalMoneyInPlay() {
         return jdbcTemplate.queryForObject(OwnsSQL.getTotalMoneyInPlay, Double.class);
     }
+
+    public List<SMS_Alert> getUsersWhoOwnedTeamWithTextAlertOn(String teamId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+            return namedParameterJdbcTemplate.query(OwnsSQL.getUsersWhoOwnedTeamWithTextAlertOn, params, new SMS_AlertRowMapper());
+        } catch (Exception e) {
+            logger.error("Failed to get Owns for " + teamId + "\n" + e);
+            return null;
+        }
+    }
+
 }

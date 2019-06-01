@@ -3,10 +3,9 @@ package com.Borman.cbbbluechips.services;
 import com.Borman.cbbbluechips.daos.OwnsDao;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.Owns;
+import com.Borman.cbbbluechips.models.SMS_Alert;
 import com.Borman.cbbbluechips.models.Team;
 import com.Borman.cbbbluechips.models.TradeRequest;
-import com.Borman.cbbbluechips.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,7 +45,7 @@ public class OwnsService {
     }
 
     List<Owns> getTopShareHoldersForTeam(String teamId) {
-        return ownsDao.getUsersOwnsForTeam(teamId);
+        return ownsDao.getTopShareHoldersForTeam(teamId);
     }
 
     public double getPortfolioValue(String user_id) {
@@ -67,6 +66,10 @@ public class OwnsService {
                 team.setDoesUserOwn(true);
         }
 
+    }
+
+    public List<SMS_Alert> getUsersWhoOwnedTeamWithTextAlertOn(String teamId) {
+        return ownsDao.getUsersWhoOwnedTeamWithTextAlertOn(teamId);
     }
 
 }

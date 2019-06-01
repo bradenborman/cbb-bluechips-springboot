@@ -6,9 +6,15 @@ public class OwnsSQL {
             "Right JOIN teams ON owns.Team_ID = teams.Team_ID " +
             "WHERE User_ID = :userId AND Amount_Owned > 0;";
 
-    public static final String getUserOwnsTeamsSQL = "SELECT Owns_ID, Team_ID, user.User_ID, Amount_Owned, First_Name, Last_Name, Email FROM owns " +
+    public static final String getUserOwnsTeamsSQL_Limit3 = "SELECT Owns_ID, Team_ID, user.User_ID, Amount_Owned, First_Name, Last_Name, Email FROM owns " +
             "Right JOIN user ON user.User_ID = owns.User_ID " +
             "Where Team_ID = :teamId ORDER BY Amount_Owned desc limit 3";
+
+
+    public static final String getUsersWhoOwnedTeamWithTextAlertOn = "SELECT Owns_ID, Team_ID, user.User_ID, Amount_Owned, First_Name, Last_Name, Email, Phone_Number, Send_Alerts " +
+            "FROM owns " +
+            "Right JOIN user ON user.User_ID = owns.User_ID " +
+            "Where Team_ID = '6032' AND Send_Alerts != 0 AND Amount_Owned > 0";
 
 
     public static final String insertIntoOwns = "INSERT INTO owns (Owns_ID, Team_ID, User_ID, Amount_Owned) VALUES (null, :teamId, :userId, :amountOwned)";
