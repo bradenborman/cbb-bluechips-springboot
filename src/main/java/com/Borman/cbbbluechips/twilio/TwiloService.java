@@ -8,6 +8,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,11 @@ public class TwiloService {
 
     private final String applicationsPhoneNumber = "15732791590";
     private final String ACCOUNT_SID = "AC6af1055b717a97f8dee68ce32b01b6fb";
-    private final String AUTH_TOKEN = "f42c86dbe4705c6eb8fe88f8642e82a8";
+
+
+    @Autowired
+    @Qualifier("Twilio_Auth")
+    private String AUTH_TOKEN;
 
 
     public void sendMessage(String phoneNumber, String Body) {

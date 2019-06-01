@@ -31,6 +31,11 @@ public class CCBConfig {
         return basicDataSource;
     }
 
+    @Bean("Twilio_Auth")
+    public String getTwilio_Auth(String admins) {
+        return System.getenv("Twilio_Auth");
+    }
+
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
