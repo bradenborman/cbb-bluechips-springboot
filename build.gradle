@@ -35,7 +35,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile group: "com.twilio.sdk", name: "twilio", version: "7.38.0"
 
+    
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
 
