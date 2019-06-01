@@ -3,6 +3,7 @@ body {
   }
 
 .card h3, .card h2 {
+	margin-bottom: 20px;
 	font-size: 1.3em;
 }
 
@@ -70,12 +71,17 @@ td:nth-child(1) {
 		}
 
 
+    div.card-body {
+        padding-top: 0px;
+    }
+
 	.card {
 		margin-bottom: 15px;
 		font-size: 1em;
 		min-height: 50px;
 	}
 	.card-body h3, .card-body h5 {
+	    margin: 3px;
 		font-size: 1.2em;
 	}
 

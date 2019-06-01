@@ -27,17 +27,17 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><h3><b>My Networth:</b> <span th:text="'$' + ${#numbers.formatDecimal((portfolio.portfolioValue + portfolio.cash), 1, 'DEFAULT', 0, 'DEFAULT')}" id="Networth"></span></h3></p>
+                            <h3><b>My Networth:</b> <span th:text="'$' + ${#numbers.formatDecimal((portfolio.portfolioValue + portfolio.cash), 1, 'DEFAULT', 0, 'DEFAULT')}" id="Networth"></span></h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b><h5>Cash: <span th:text="'$' + ${#numbers.formatDecimal(portfolio.cash, 1, 'DEFAULT', 0, 'DEFAULT')}" style="color: green;"></span></h5></b></p>
+                            <h5><b>Cash:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.cash, 1, 'DEFAULT', 0, 'DEFAULT')}" style="color: green;"></span></h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><h5><b>My Total Transactions: </b><span th:text="${portfolio.myTransactionsCount}" id="Transactions"></span><h5></p>
+                            <h5><b>My Total Transactions: </b><span th:text="${portfolio.myTransactionsCount}" id="Transactions"></span></h5>
                         </div>
                     </div>
                 </div>
@@ -49,22 +49,22 @@
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Leader's Value:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.leadersValue, 1, 'DEFAULT', 0, 'DEFAULT')}" id="Leader"></span></p>
+                            <b>Leader's Value:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.leadersValue, 1, 'DEFAULT', 0, 'DEFAULT')}" id="Leader"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Total Money in Play:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.totalMoneyInPlay, 1, 'DEFAULT', 0, 'DEFAULT')}" id="TotalMoney"></span></p>
+                            <b>Total Money in Play:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.totalMoneyInPlay, 1, 'DEFAULT', 0, 'DEFAULT')}" id="TotalMoney"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Current Round:</b> <span th:text="${portfolio.roundOfPlay}" id="CurrentRound"></span></p>
+                            <b>Current Round:</b> <span th:text="${portfolio.roundOfPlay}" id="CurrentRound"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><b>Total Transactions thus far:</b> <span th:text="${portfolio.gameTotalTransactionCount}" id="GrandTransactions"></span></p>
+                            <b>Total Transactions thus far:</b> <span th:text="${portfolio.gameTotalTransactionCount}" id="GrandTransactions"></span>
                         </div>
                     </div>
                 </div>
