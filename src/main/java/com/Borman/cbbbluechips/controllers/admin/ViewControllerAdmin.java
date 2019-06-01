@@ -1,5 +1,6 @@
 package com.Borman.cbbbluechips.controllers.admin;
 
+import com.Borman.cbbbluechips.services.CookieService;
 import com.Borman.cbbbluechips.services.GameSettingsService;
 import com.Borman.cbbbluechips.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -19,9 +22,13 @@ public class ViewControllerAdmin {
     @Autowired
     GameSettingsService gameSettingsService;
 
+    @Autowired
+    CookieService cookieService;
 
     @RequestMapping("")
-    public String admin(Model model) {
+    public String admin(HttpServletRequest request, Model model) {
+        boolean isAdmin = cookieService.isUserAdmin(request);
+        System.out.println(String.format("IS ADMIN: %s", isAdmin));
         model.addAttribute("roundId", gameSettingsService.getCurrentRound());
         return "admin_directory";
     }

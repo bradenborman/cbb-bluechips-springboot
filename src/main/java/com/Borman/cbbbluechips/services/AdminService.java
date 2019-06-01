@@ -70,6 +70,7 @@ public class AdminService {
     }
 
 
+    @Transactional
     public void updateMarketPrice(String teamName, double nextRoundPrice, int roundId) {
         MarketValue newMarketValue = MarketValueBuilder.aMarketValue()
                 .withPrice(nextRoundPrice)
@@ -81,9 +82,6 @@ public class AdminService {
         adminDao.updateMarketPriceByTeamAndRound(newMarketValue);
 
         boolean isThere = adminDao.checkForRoundPriceExists(newMarketValue);
-
-
-
         if (isThere)
             adminDao.archivePriceUpdateRenew(newMarketValue);
         else

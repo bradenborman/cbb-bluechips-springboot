@@ -47,10 +47,10 @@ public class TeamService {
         priceMap.put("64", "5000");
         priceMap.put("32", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "32"));
         priceMap.put("16", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "16"));
-        priceMap.put("8", NumberGenUtility.getRandomPrice());
-        priceMap.put("4", NumberGenUtility.getRandomPrice());
-        priceMap.put("2", NumberGenUtility.getRandomPrice());
-        priceMap.put("1", NumberGenUtility.getRandomPrice());
+        priceMap.put("8", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "8"));
+        priceMap.put("4", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "4"));
+        priceMap.put("2", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "2"));
+        priceMap.put("1", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "1"));
         return String.join(" ", priceMap.values());
     }
 
