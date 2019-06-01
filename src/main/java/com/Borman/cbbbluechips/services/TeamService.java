@@ -1,5 +1,6 @@
 package com.Borman.cbbbluechips.services;
 
+import com.Borman.cbbbluechips.daos.GameSettingsDao;
 import com.Borman.cbbbluechips.daos.OwnsDao;
 import com.Borman.cbbbluechips.models.Owns;
 import com.Borman.cbbbluechips.utilities.NumberGenUtility;
@@ -22,16 +23,18 @@ public class TeamService {
 
     private TeamDao teamDao;
     private PriceHistoryService priceHistoryService;
+    private GameSettingsDao gameSettingsDao;
 
-    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService) {
+    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService, GameSettingsDao gameSettingsDao) {
         this.teamDao = teamDao;
         this.priceHistoryService = priceHistoryService;
+        this.gameSettingsDao = gameSettingsDao;
     }
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
 
-        if(onlyTeamsInTournament) {
+        if (onlyTeamsInTournament) {
             allTeams.forEach(team -> {
                 team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
                 team.setPriceHistoryString(fetchHistoryDetails(team));
@@ -43,16 +46,21 @@ public class TeamService {
     }
 
     private String fetchHistoryDetails(Team team) {
+
+        int Current_Round = Integer.valueOf(gameSettingsDao.getCurrentRound());
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", "5000");
-        priceMap.put("32", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "32"));
-        priceMap.put("16", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "16"));
-        priceMap.put("8", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "8"));
-        priceMap.put("4", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "4"));
-        priceMap.put("2", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "2"));
-        priceMap.put("1", priceHistoryService.getPriceHistoryForRound(team.getTeamId(), "1"));
+        List<Integer> rounds = Arrays.asList(32, 16, 8, 4, 2);
+        rounds.forEach(round -> {
+            if (Current_Round <= (round * 2)) {
+                String latestPrice = priceHistoryService.getPriceHistoryForRound(team.getTeamId(), String.valueOf(round));
+                if (!latestPrice.equals("0.0"))
+                    priceMap.put(String.valueOf(round), latestPrice);
+            }
+        });
         return String.join(" ", priceMap.values());
     }
+
 
     public Team getTeamById(String teamId) {
         return teamDao.getTeamById(teamId);
