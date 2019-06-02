@@ -104,4 +104,8 @@ public class UserDao {
     }
 
 
+    public boolean doesUserSubscribeToTextAlerts(String userId) {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.doesUserSubscribeToTextAlerts, params, Integer.class) > 0;
+    }
 }

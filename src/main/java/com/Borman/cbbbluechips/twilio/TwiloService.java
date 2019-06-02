@@ -1,7 +1,6 @@
 package com.Borman.cbbbluechips.twilio;
 
 import com.Borman.cbbbluechips.models.MarketValue;
-import com.Borman.cbbbluechips.models.Owns;
 import com.Borman.cbbbluechips.models.SMS_Alert;
 import com.Borman.cbbbluechips.services.OwnsService;
 import com.twilio.Twilio;

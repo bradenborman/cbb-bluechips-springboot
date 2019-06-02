@@ -18,14 +18,26 @@ import java.util.List;
 public class HomeController {
 
     private CookieService cookieService;
+    private UserService userService;
 
-    public HomeController(CookieService cookieService) {
+    public HomeController(CookieService cookieService, UserService userService) {
         this.cookieService = cookieService;
+        this.userService = userService;
     }
 
     @RequestMapping("/")
     public String welcome(HttpServletRequest request, HttpServletResponse response) {
         return cookieService.isLoggedIn(request) ? "redirect:/portfolio" : "home";
+    }
+
+
+    @RequestMapping("/settings")
+    public String settings(HttpServletRequest request, HttpServletResponse response, Model model) {
+        if (!cookieService.isLoggedIn(request))
+            return "redirect:/";
+        String userid = cookieService.getUserIdLoggedIn(request);
+        model.addAttribute("textAlert", userService.doesUserSubscribeToTextAlerts(userid));
+        return "settings";
     }
 
 }

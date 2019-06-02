@@ -17,4 +17,7 @@ public class UserSQL {
 
     public static final String getUserWithEmailAndPassword  = "SELECT * FROM user where Email = :email AND Password = :password;";
 
+    public static final String doesUserSubscribeToTextAlerts = "SELECT Send_Alerts FROM user WHERE User_ID = :userId;";
+
+
 }

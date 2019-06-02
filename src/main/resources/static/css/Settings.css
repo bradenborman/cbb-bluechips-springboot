@@ -1,0 +1,110 @@
+body {
+	    background-color: rgba(0,0,0,.07);
+  }
+
+.app {
+	margin-top: 30px;
+}
+
+
+.settings h2 {
+    text-align: center;
+}
+
+.checked {
+  color: orange;
+}
+
+.rating {
+    display: block;
+    padding: 25px;
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+.fa-star {
+    visibility: hidden;
+}
+
+
+.fa-star:nth-of-type(1) {
+    animation: 1s ease-out .3s 1 slideInFromLeft;
+    animation-fill-mode: forwards;
+}
+.fa-star:nth-of-type(2) {
+    animation: 1s ease-out .5s 1 slideInFromLeft;
+    animation-fill-mode: forwards;
+}
+.fa-star:nth-of-type(3) {
+    animation: 1s ease-out .7s 1 slideInFromLeft;
+    animation-fill-mode: forwards;
+}
+.fa-star:nth-of-type(4) {
+    animation: 1s ease-out .9s 1 slideInFromLeft;
+    animation-fill-mode: forwards;
+}
+.fa-star:nth-of-type(5) {
+    animation: 1s ease-out 1.1s 1 slideInFromLeft;
+    animation-fill-mode: forwards;
+}
+
+.fa-star:hover {
+    cursor: pointer;
+}
+
+.DELETE_TEXT {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.DELETE_TEXT:hover {
+    cursor: pointer;
+}
+
+#DELETE {
+    margin-top: 20px;
+}
+
+.page_links {
+    float: right;
+}
+
+
+/*
+    Remove the rotate to have it slide in on load
+*/
+
+@keyframes slideInFromLeft {
+  0% {
+      visibility: visible;
+    transform: translateX(-2000px);
+    transform: rotate(0deg);
+  }
+
+   50% {
+     transform: rotate(360deg);
+  }
+
+  100% {
+    transform: translateX(0);
+    visibility: visible;
+
+  }
+}
+
+
+@media (max-width: 575.98px) {
+
+    .rating {
+        text-align: center;
+        font-size: 1.4em;
+    }
+
+    .page_links {
+        margin-top: 20px;
+        float: center;
+        text-align: center;
+        margin-bottom: 100px;
+    }
+
+}
