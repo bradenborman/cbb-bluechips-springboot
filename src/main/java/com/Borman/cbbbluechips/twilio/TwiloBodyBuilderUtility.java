@@ -7,7 +7,7 @@ public class TwiloBodyBuilderUtility {
 
 
     public static String buildGameCompletedMessage(String teamName, int sharesOwned, double newPrice) {
-        return String.format("CBB BLUECHIPS UPDATE:\n%s has completed their game. You own %s shares that are now open for trading at %s", teamName, sharesOwned, newPrice);
+        return String.format("CBB BLUECHIPS UPDATE:\n%s has completed their game. You own %s shares that are now open for trading at $%,.0f Per-Share", teamName, sharesOwned, newPrice);
     }
 
     public static String buildUpdateLeadersBody(List<String> leaders) {

@@ -15,7 +15,7 @@ class TwiloBodyBuilderUtilityTest extends Specification {
 
         then:
         body == "CBB BLUECHIPS UPDATE:\n" +
-                "Duke has completed their game. You own 20 shares that are now open for trading at 5000.0"
+                "Duke has completed their game. You own 20 shares that are now open for trading at \$5,000 Per-Share"
 
     }
 
