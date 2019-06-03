@@ -80,4 +80,10 @@ public class UserService {
         return userDao.doesUserSubscribeToTextAlerts(userId);
     }
 
+    public void toggleTextAlertSubscription(boolean textStatus, String userIdLoggedIn) {
+        if (textStatus)
+            userDao.subscribeUserToTextAlerts(userIdLoggedIn);
+        else
+            userDao.unSubscribeUserToTextAlerts(userIdLoggedIn);
+    }
 }

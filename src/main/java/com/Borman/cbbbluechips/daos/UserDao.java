@@ -108,4 +108,13 @@ public class UserDao {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
             return namedParameterJdbcTemplate.queryForObject(UserSQL.doesUserSubscribeToTextAlerts, params, Integer.class) > 0;
     }
+
+    public void subscribeUserToTextAlerts(String userId) {
+        jdbcTemplate.update("UPDATE user SET Send_Alerts = 1 WHERE User_ID = " + userId + ";");
+    }
+
+    public void unSubscribeUserToTextAlerts(String userId) {
+        jdbcTemplate.update("UPDATE user SET Send_Alerts = 0 WHERE User_ID = " + userId + ";");
+    }
+
 }

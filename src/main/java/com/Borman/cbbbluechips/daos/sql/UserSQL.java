@@ -19,5 +19,8 @@ public class UserSQL {
 
     public static final String doesUserSubscribeToTextAlerts = "SELECT Send_Alerts FROM user WHERE User_ID = :userId;";
 
+    public static final String subscribeUserToTextAlerts = "UPDATE user SET Send_Alerts = 1 WHERE User_ID = :userId;";
+
+    public static final String unSubscribeUserToTextAlerts = "UPDATE user SET Send_Alerts = 0 WHERE User_ID = :userId;";
 
 }
