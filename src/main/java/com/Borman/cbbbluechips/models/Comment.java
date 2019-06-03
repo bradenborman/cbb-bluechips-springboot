@@ -8,6 +8,7 @@ public class Comment {
     private String commentId;
     private String author;
     private String commentValue;
+    private String authorId;
     private List<Comment> subComments;
     private LocalDateTime timeOfComment;
 
@@ -33,6 +34,14 @@ public class Comment {
 
     public void setCommentValue(String commentValue) {
         this.commentValue = commentValue;
+    }
+
+    public String getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     public List<Comment> getSubComments() {

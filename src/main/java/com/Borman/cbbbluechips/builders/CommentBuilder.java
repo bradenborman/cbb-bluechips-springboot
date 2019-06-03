@@ -9,6 +9,7 @@ public final class CommentBuilder {
     private String commentId;
     private String author;
     private String commentValue;
+    private String authorId;
     private List<Comment> subComments;
     private LocalDateTime timeOfComment;
 
@@ -34,6 +35,11 @@ public final class CommentBuilder {
         return this;
     }
 
+    public CommentBuilder withAuthorId(String authorId) {
+        this.authorId = authorId;
+        return this;
+    }
+
     public CommentBuilder withSubComments(List<Comment> subComments) {
         this.subComments = subComments;
         return this;
@@ -49,6 +55,7 @@ public final class CommentBuilder {
         comment.setCommentId(commentId);
         comment.setAuthor(author);
         comment.setCommentValue(commentValue);
+        comment.setAuthorId(authorId);
         comment.setSubComments(subComments);
         comment.setTimeOfComment(timeOfComment);
         return comment;

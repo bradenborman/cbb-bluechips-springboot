@@ -27,8 +27,23 @@ public class CommentsDao {
     }
 
 
+
     public List<Comment> getSubComments(String parentId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("parentId", parentId);
         return namedParameterJdbcTemplate.query("SELECT * FROM sub_comments WHERE Parent_ID = :parentId;", params, new SubCommentRowMapper());
     }
+
+
+    public void createReplyToParentComment(String userId, String reply, String parentId, String fullName) {
+
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("userId", userId)
+                .addValue("reply", reply)
+                .addValue("parentId", parentId)
+                .addValue("author", fullName);
+
+        String sql = "INSERT INTO sub_comments (Parent_ID, Author, Sub_Comment, Author_ID) VALUES (:parentId, :author, :reply, :userId);";
+        namedParameterJdbcTemplate.update(sql, params);
+    }
+
 }

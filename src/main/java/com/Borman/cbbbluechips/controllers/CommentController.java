@@ -2,6 +2,7 @@ package com.Borman.cbbbluechips.controllers;
 
 
 import com.Borman.cbbbluechips.services.CommentService;
+import com.Borman.cbbbluechips.services.CookieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
+    @Autowired
+    CookieService cookieService;
 
     @RequestMapping("")
     public String comments(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -29,7 +32,9 @@ public class CommentController {
 
     //TODO
     @PostMapping("/submitReply")
-    public String submitReply(@RequestParam("reply") String reply, @RequestParam("commentId") String parentId) {
+    public String submitReply(HttpServletRequest request, @RequestParam("reply") String reply, @RequestParam("commentId") String parentId) {
+        String userId = cookieService.getUserIdLoggedIn(request);
+        commentService.createReplyToParentComment(userId, reply, parentId);
         return "redirect:/comments";
     }
 
