@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
+    <style>
+         .Parent {
+			 margin-bottom: 65px;
+			 border-radius: 20px;
+			 background-color: #f2f3f3;
+         }
+         .media-body {
+			 margin-top: 18px;
+			 margin-left: 18px;
+         }
+         .nested {
+			 margin-left: 8vh;
+			 margin-right: 10%;
+			 padding-left: 8px;
+
+         }
+
+		 .comment {
+			border-left: 2px solid #0ebe17;
+
+		 }
+
+         hr {
+			 margin-top: 10px;
+			 width: 70%;
+         }
+
+		 .parentTextArea {
+			margin-right: 2%;
+		 }
+
+		 button {
+			margin-bottom: 20px;
+		 }
+
+
+    </style>
+</head>
+<body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Blue Chips</h1>
+</header>
+<div class="container mt-3">
+    <nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/portfolio">My Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="media border Parent">
+        <div class="media-body">
+            <h4>John Doe
+                <small><i>Posted on February 19, 2016</i></small>
+            </h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.</p>
+            <hr/>
+            <div class="media">
+                <div class="media-body nested comment">
+                    <h4>Jane Doe
+                        <small><i>Posted on February 20 2016</i></small>
+                    </h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <hr/>
+            <div class="media ">
+                <div class="media-body nested comment">
+                    <h4>Jane Doe
+                        <small><i>Posted on February 20 2016</i></small>
+                    </h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <hr/>
+            <div class="media-body nested">
+                <div class="form-group nestTextArea">
+                    <label for="comment">Reply:</label>
+                    <textarea class="form-control" rows="2" id="comment"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="media border Parent">
+        <div class="media-body">
+            <div class="form-group parentTextArea">
+                <label for="comment">Create New comment:</label>
+                <textarea class="form-control" rows="3" id="comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

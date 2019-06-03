@@ -26,6 +26,11 @@ public class HomeController {
     }
 
 
+    @RequestMapping("/comments")
+    public String comments(HttpServletRequest request, HttpServletResponse response) {
+        return "comments";
+    }
+
     @RequestMapping("/settings")
     public String settings(HttpServletRequest request, HttpServletResponse response, Model model) {
         if (!cookieService.isLoggedIn(request))
@@ -41,5 +46,6 @@ public class HomeController {
             userService.toggleTextAlertSubscription(textStatus, cookieService.getUserIdLoggedIn(request));
         return ResponseEntity.ok("OKAY");
     }
+
 
 }
