@@ -42,9 +42,17 @@
 		 }
 
 		 button {
+
 			margin-bottom: 20px;
 		 }
 
+@media (max-width: 575.98px) {
+
+    .nested {
+			 margin-left: 4vh;
+         }
+
+}
 
     </style>
 </head>
@@ -68,33 +76,23 @@
         <div class="media-body">
             <h4 th:text="${comment.author}"></h4><i th:text="${'Posted on ' + comment.timeOfComment}"></i>
             <p th:text="${comment.commentValue}"></p>
-            <hr/>
-            <div th:each="subComment : ${comment.subComments}" class="media">
+            <div th:if="${comment.subComments != null}" th:each="subComment : ${comment.subComments}" class="media">
                 <div class="media-body nested comment">
-                    <h4>Jane Doe
-                        <small><i>Posted on February 20 2016</i></small>
-                    </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
+                    <h4 th:text="${subComment.author}"></h4> <i
+                        th:text="${'Posted on ' + subComment.timeOfComment}"></i>
+                    <p th:text="${subComment.commentValue}"></p>
                 </div>
             </div>
-            <hr/>
-            <div class="media ">
-                <div class="media-body nested comment">
-                    <h4>Jane Doe
-                        <small><i>Posted on February 20 2016</i></small>
-                    </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                </div>
-            </div>
-            <hr/>
+            <hr />
             <div class="media-body nested">
-                <div class="form-group nestTextArea">
-                    <label for="comment">Reply:</label>
-                    <textarea class="form-control" rows="2" id="comment"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <form action="/comments/submitReply" method="post">
+                    <div class="form-group nestTextArea">
+                        <label for="comment">Reply:</label>
+                        <textarea class="form-control" rows="2" name="reply"></textarea>
+                    </div>
+                    <input type="hidden" name="commentId" th:value="${comment.commentId}"/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
     </div>
@@ -103,10 +101,13 @@
     <div class="media border Parent">
         <div class="media-body">
             <div class="form-group parentTextArea">
-                <label for="comment">Create New comment:</label>
-                <textarea class="form-control" rows="3" id="comment"></textarea>
+                <form action="/comments/submitNew" method="post">
+                    <label for="comment">Create New comment:</label>
+                    <textarea name="comment" class="form-control" rows="3" id="comment"></textarea>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 
     </div>

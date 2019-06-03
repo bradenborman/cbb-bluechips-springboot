@@ -9,31 +9,21 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @Controller
 public class HomeController {
 
     private CookieService cookieService;
     private UserService userService;
-    private CommentService commentService;
 
-    public HomeController(CookieService cookieService, UserService userService, CommentService commentService) {
+    public HomeController(CookieService cookieService, UserService userService) {
         this.cookieService = cookieService;
         this.userService = userService;
-        this.commentService = commentService;
     }
 
     @RequestMapping("/")
     public String welcome(HttpServletRequest request, HttpServletResponse response) {
         return cookieService.isLoggedIn(request) ? "redirect:/portfolio" : "home";
-    }
-
-
-    @RequestMapping("/comments")
-    public String comments(HttpServletRequest request, HttpServletResponse response, Model model) {
-        model.addAttribute("comments", commentService.getComments());
-        return "comments";
     }
 
     @RequestMapping("/settings")
