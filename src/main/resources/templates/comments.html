@@ -64,16 +64,12 @@
             </li>
         </ul>
     </nav>
-    <div class="media border Parent">
+    <div th:each="comment : ${comments}" class="media border Parent">
         <div class="media-body">
-            <h4>John Doe
-                <small><i>Posted on February 19, 2016</i></small>
-            </h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
+            <h4 th:text="${comment.author}"></h4><i th:text="${'Posted on ' + comment.timeOfComment}"></i>
+            <p th:text="${comment.commentValue}"></p>
             <hr/>
-            <div class="media">
+            <div th:each="subComment : ${comment.subComments}" class="media">
                 <div class="media-body nested comment">
                     <h4>Jane Doe
                         <small><i>Posted on February 20 2016</i></small>

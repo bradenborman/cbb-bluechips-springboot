@@ -1,5 +1,6 @@
 package com.Borman.cbbbluechips.controllers;
 
+import com.Borman.cbbbluechips.models.Comment;
 import com.Borman.cbbbluechips.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,16 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     private CookieService cookieService;
     private UserService userService;
+    private CommentService commentService;
 
-    public HomeController(CookieService cookieService, UserService userService) {
+    public HomeController(CookieService cookieService, UserService userService, CommentService commentService) {
         this.cookieService = cookieService;
         this.userService = userService;
+        this.commentService = commentService;
     }
 
     @RequestMapping("/")
@@ -27,7 +31,8 @@ public class HomeController {
 
 
     @RequestMapping("/comments")
-    public String comments(HttpServletRequest request, HttpServletResponse response) {
+    public String comments(HttpServletRequest request, HttpServletResponse response, Model model) {
+        model.addAttribute("comments", commentService.getComments());
         return "comments";
     }
 
