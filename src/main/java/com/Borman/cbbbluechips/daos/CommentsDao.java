@@ -4,7 +4,6 @@ import com.Borman.cbbbluechips.mappers.rowMappers.CommentRowMapper;
 import com.Borman.cbbbluechips.mappers.rowMappers.SubCommentRowMapper;
 import com.Borman.cbbbluechips.models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -13,10 +12,6 @@ import java.util.List;
 
 @Component
 public class CommentsDao {
-
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -43,6 +38,16 @@ public class CommentsDao {
                 .addValue("author", fullName);
 
         String sql = "INSERT INTO sub_comments (Parent_ID, Author, Sub_Comment, Author_ID) VALUES (:parentId, :author, :reply, :userId);";
+        namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    public void createParentComment(String userId, String comment, String fullName) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("userId", userId)
+                .addValue("comment", comment)
+                .addValue("author", fullName);
+
+        String sql = "INSERT INTO comments (Author, Comment, Author_ID) VALUES (:author, :comment, :userId);";
         namedParameterJdbcTemplate.update(sql, params);
     }
 

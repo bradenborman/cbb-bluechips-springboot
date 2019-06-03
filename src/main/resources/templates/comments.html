@@ -72,13 +72,14 @@
             </li>
         </ul>
     </nav>
+    <br />
     <div th:each="comment : ${comments}" class="media border Parent">
         <div class="media-body">
             <h4 th:text="${comment.author}"></h4><i th:text="${'Posted on ' + comment.timeOfComment}"></i>
             <p th:text="${comment.commentValue}"></p>
             <div th:if="${comment.subComments != null}" th:each="subComment : ${comment.subComments}" class="media">
                 <div class="media-body nested comment">
-                    <h4 th:text="${subComment.author}"></h4> <i
+                    <h5 th:text="${subComment.author}"></h5> <i
                         th:text="${'Posted on ' + subComment.timeOfComment}"></i>
                     <p th:text="${subComment.commentValue}"></p>
                 </div>

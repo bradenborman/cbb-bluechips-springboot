@@ -26,11 +26,13 @@ public class CommentController {
 
     @RequestMapping("")
     public String comments(HttpServletRequest request, HttpServletResponse response, Model model) {
+        if(!cookieService.isLoggedIn(request))
+            return "redirect:/";
         model.addAttribute("comments", commentService.getComments());
         return "comments";
     }
 
-    //TODO
+
     @PostMapping("/submitReply")
     public String submitReply(HttpServletRequest request, @RequestParam("reply") String reply, @RequestParam("commentId") String parentId) {
         String userId = cookieService.getUserIdLoggedIn(request);
@@ -38,9 +40,11 @@ public class CommentController {
         return "redirect:/comments";
     }
 
-    //TODO
+
     @PostMapping("/submitNew")
-    public String submitNew(@RequestParam("comment") String comment) {
+    public String submitNew(HttpServletRequest request, @RequestParam("comment") String comment) {
+        String userId = cookieService.getUserIdLoggedIn(request);
+        commentService.createParentComment(userId, comment);
         return "redirect:/comments";
     }
 
