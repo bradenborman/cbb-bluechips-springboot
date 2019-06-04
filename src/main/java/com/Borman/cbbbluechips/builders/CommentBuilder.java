@@ -12,6 +12,7 @@ public final class CommentBuilder {
     private String authorId;
     private List<Comment> subComments;
     private LocalDateTime timeOfComment;
+    private boolean userOwnsComment;
 
     private CommentBuilder() {
     }
@@ -50,6 +51,11 @@ public final class CommentBuilder {
         return this;
     }
 
+    public CommentBuilder withUserOwnsComment(boolean userOwnsComment) {
+        this.userOwnsComment = userOwnsComment;
+        return this;
+    }
+
     public Comment build() {
         Comment comment = new Comment();
         comment.setCommentId(commentId);
@@ -58,6 +64,7 @@ public final class CommentBuilder {
         comment.setAuthorId(authorId);
         comment.setSubComments(subComments);
         comment.setTimeOfComment(timeOfComment);
+        comment.setUserOwnsComment(userOwnsComment);
         return comment;
     }
 }

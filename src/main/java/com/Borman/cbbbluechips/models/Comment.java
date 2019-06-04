@@ -11,6 +11,7 @@ public class Comment {
     private String authorId;
     private List<Comment> subComments;
     private LocalDateTime timeOfComment;
+    private boolean userOwnsComment;
 
     public String getCommentId() {
         return commentId;
@@ -58,5 +59,13 @@ public class Comment {
 
     public void setTimeOfComment(LocalDateTime timeOfComment) {
         this.timeOfComment = timeOfComment;
+    }
+
+    public boolean isUserOwnsComment() {
+        return userOwnsComment;
+    }
+
+    public void setUserOwnsComment(boolean userOwnsComment) {
+        this.userOwnsComment = userOwnsComment;
     }
 }

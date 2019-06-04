@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.controllers;
 
 
+import com.Borman.cbbbluechips.models.Comment;
 import com.Borman.cbbbluechips.services.CommentService;
 import com.Borman.cbbbluechips.services.CookieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("/comments")
@@ -28,7 +30,8 @@ public class CommentController {
     public String comments(HttpServletRequest request, HttpServletResponse response, Model model) {
         if(!cookieService.isLoggedIn(request))
             return "redirect:/";
-        model.addAttribute("comments", commentService.getComments());
+        String userId = cookieService.getUserIdLoggedIn(request);
+        model.addAttribute("comments", commentService.getComments(userId));
         return "comments";
     }
 

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Comments</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
     <style>
@@ -35,6 +37,7 @@
          hr {
 			 margin-top: 10px;
 			 width: 70%;
+			 margin: auto;
          }
 
 		 .parentTextArea {
@@ -45,6 +48,20 @@
 
 			margin-bottom: 20px;
 		 }
+    .icon-remove {
+            color: #bbc4c3;
+         -webkit-transition: -webkit-transform .5s ease-in-out;
+                  transition:         transform .5s ease-in-out;
+    }
+
+    .icon-remove:hover {
+        cursor: pointer;
+        color: #728382;
+        transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    }
+
+
 
 @media (max-width: 575.98px) {
 
@@ -75,12 +92,13 @@
     <br />
     <div th:each="comment : ${comments}" class="media border Parent">
         <div class="media-body">
-            <h4 th:text="${comment.author}"></h4><i th:text="${'Posted on ' + comment.timeOfComment}"></i>
+            <h4 style="display: inline"  th:text="${comment.author}"></h4><i th:if="${comment.userOwnsComment}" style="float: right; margin-right: 7%;" class="icon-remove"></i>
+            <i th:text="${'Posted on ' + comment.timeOfComment}"></i>
             <p th:text="${comment.commentValue}"></p>
             <div th:if="${comment.subComments != null}" th:each="subComment : ${comment.subComments}" class="media">
                 <div class="media-body nested comment">
-                    <h5 th:text="${subComment.author}"></h5> <i
-                        th:text="${'Posted on ' + subComment.timeOfComment}"></i>
+                    <h5 style="display: inline" th:text="${subComment.author}"></h5><i th:if="${subComment.userOwnsComment}" style="float: right;" class="icon-remove"></i>
+                    <i th:text="${'Posted on ' + subComment.timeOfComment}"></i>
                     <p th:text="${subComment.commentValue}"></p>
                 </div>
             </div>
