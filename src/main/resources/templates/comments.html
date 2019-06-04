@@ -12,6 +12,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
+    <script src="js/Comments.js"></script>
     <style>
          .Parent {
 			 margin-bottom: 65px;
@@ -92,12 +93,12 @@
     <br />
     <div th:each="comment : ${comments}" class="media border Parent">
         <div class="media-body">
-            <h4 style="display: inline"  th:text="${comment.author}"></h4><i th:if="${comment.userOwnsComment}" style="float: right; margin-right: 7%;" class="icon-remove"></i>
+            <h4 style="display: inline"  th:text="${comment.author}"></h4><i th:id="${'par' + comment.commentId}" th:if="${comment.userOwnsComment}" style="float: right; margin-right: 7%;" class="icon-remove"></i>
             <i th:text="${'Posted on ' + comment.timeOfComment}"></i>
             <p th:text="${comment.commentValue}"></p>
             <div th:if="${comment.subComments != null}" th:each="subComment : ${comment.subComments}" class="media">
                 <div class="media-body nested comment">
-                    <h5 style="display: inline" th:text="${subComment.author}"></h5><i th:if="${subComment.userOwnsComment}" style="float: right;" class="icon-remove"></i>
+                    <h5 style="display: inline" th:text="${subComment.author}"></h5><i th:id="${'sub' + subComment.commentId}" th:if="${subComment.userOwnsComment}" style="float: right;" class="icon-remove"></i>
                     <i th:text="${'Posted on ' + subComment.timeOfComment}"></i>
                     <p th:text="${subComment.commentValue}"></p>
                 </div>
