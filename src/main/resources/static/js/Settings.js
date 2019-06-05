@@ -8,7 +8,7 @@
                 $("#phoneNumber").css({
                     "background-color" : "#bffdc3"
                 })
-            makeRequestToUpdatePhoneNumber($(this).value())
+            makeRequestToUpdatePhoneNumber($(this).val())
        }
        else {
                 $("#phoneNumber").css({
@@ -18,8 +18,9 @@
 
       });
 
+        //TODO
         function makeRequestToUpdatePhoneNumber(phoneNumber) {
-            alert(phoneNumber)
+
         }
 
 
