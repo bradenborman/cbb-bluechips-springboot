@@ -40,15 +40,11 @@
                             <input type="checkbox" th:checked="${textAlert}" class="form-check-input" id="textAlertCheck" name="option2" > Send Text Alerts?
                         </label>
                     </div>
-                    <!--<div class="rating">-->
-                        <!--<h3>Rate the site</h3>-->
-                        <!--<span class="fa fa-star"></span>-->
-                        <!--<span class="fa fa-star"></span>-->
-                        <!--<span class="fa fa-star"></span>-->
-                        <!--<span class="fa fa-star"></span>-->
-                        <!--<span class="fa fa-star"></span>-->
-                        <!--<br /><br /><div id="avgRatingArea"> Average rating: <span  id="avgRating">3.5</span></div>-->
-                    <!--</div>-->
+                    <br />
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input type="text" placeholder="10 digits necessary" pattern="[1-9]{1}[0-9]{9}" name="phoneNumber" id="phoneNumber">
+                    </div>
                     <hr />
                     <span class="DELETE_TEXT">Delete Account</span>
                     <p id="DELETE">If you really want to delete, <a href="Php_Scripts/deleteUser.php?userID=69">Click me.</a></p>

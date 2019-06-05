@@ -1,17 +1,36 @@
-
    var defualt = [1, 1, 1, 1, 1]
 
     $(document).ready(function(){
 
+      $("#phoneNumber").keyup(function(){
+
+       if($("#phoneNumber")[0].checkValidity()) {
+                $("#phoneNumber").css({
+                    "background-color" : "#bffdc3"
+                })
+            makeRequestToUpdatePhoneNumber($(this).value())
+       }
+       else {
+                $("#phoneNumber").css({
+                   "background-color" : "#ffb8b8"
+               })
+       }
+
+      });
+
+        function makeRequestToUpdatePhoneNumber(phoneNumber) {
+            alert(phoneNumber)
+        }
+
 
      $('#textAlertCheck').change(function() {
         $.post("/settings/updateTextAlert",
-        {
-          textStatus: this.checked
-        },
-        function(data,status){
-          console.log("Data: " + data + "\nStatus: " + status);
-        });
+                   {
+                     textStatus: this.checked
+                   },
+                   function(data,status){
+                     console.log("Data: " + data + "\nStatus: " + status);
+                   });
     });
 
         $("#DELETE").hide()
