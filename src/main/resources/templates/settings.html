@@ -42,8 +42,8 @@
                     </div>
                     <br />
                     <div class="form-group">
-                        <label for="phoneNumber">Phone Number (format: xxxxxxxxxx):</label><br/>
-                        <input type="text" placeholder="10 digits necessary"  pattern="^\d{10}$" name="phoneNumber" id="phoneNumber">
+                        <label for="phoneNumber">Phone Number</label><br/>
+                        <input th:value="${phoneNumber != null ? phoneNumber : ''}" type="text" placeholder="(Format: xxxxxxxxxx):"  pattern="^\d{10}$" name="phoneNumber" id="phoneNumber">
                     </div>
                     <hr />
                     <span class="DELETE_TEXT">Delete Account</span>

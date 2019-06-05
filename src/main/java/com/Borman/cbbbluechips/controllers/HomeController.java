@@ -32,6 +32,7 @@ public class HomeController {
             return "redirect:/";
         String userid = cookieService.getUserIdLoggedIn(request);
         model.addAttribute("textAlert", userService.doesUserSubscribeToTextAlerts(userid));
+        model.addAttribute("phoneNumber", userService.getUserPhoneNumber(userid));
         return "settings";
     }
 
@@ -42,5 +43,12 @@ public class HomeController {
         return ResponseEntity.ok("OKAY");
     }
 
+    @PostMapping("/settings/updatePhoneNumber")
+    public ResponseEntity<String> updatePhoneNumber(HttpServletRequest request, @RequestParam(value = "phoneNumber") String phoneNumber) {
+        System.out.println(String.format("Request to change Phone Number: %s", phoneNumber));
+        if (cookieService.isLoggedIn(request))
+            userService.updatePhoneNumber(phoneNumber, cookieService.getUserIdLoggedIn(request));
+        return ResponseEntity.ok("OKAY");
+    }
 
 }

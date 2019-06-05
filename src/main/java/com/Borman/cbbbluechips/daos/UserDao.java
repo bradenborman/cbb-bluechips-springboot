@@ -117,4 +117,17 @@ public class UserDao {
         jdbcTemplate.update("UPDATE user SET Send_Alerts = 0 WHERE User_ID = " + userId + ";");
     }
 
+    public String getUserPhoneNumber(String userid) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userid);
+        return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserPhoneNumber, params, String.class);
+    }
+
+    public void updatePhoneNumber(String phoneNumber, String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("phoneNumber", phoneNumber)
+                .addValue("userId", userId);
+        namedParameterJdbcTemplate.update(UserSQL.updateUsersPhoneNumber, params);
+    }
+
+
 }

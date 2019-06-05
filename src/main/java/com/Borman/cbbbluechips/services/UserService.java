@@ -86,4 +86,12 @@ public class UserService {
         else
             userDao.unSubscribeUserToTextAlerts(userIdLoggedIn);
     }
+
+    public void updatePhoneNumber(String phoneNumber, String UserId) {
+        userDao.updatePhoneNumber(phoneNumber, UserId);
+    }
+
+    public String getUserPhoneNumber(String userid) {
+        return userDao.getUserPhoneNumber(userid);
+    }
 }

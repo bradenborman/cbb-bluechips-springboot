@@ -23,4 +23,7 @@ public class UserSQL {
 
     public static final String unSubscribeUserToTextAlerts = "UPDATE user SET Send_Alerts = 0 WHERE User_ID = :userId;";
 
+    public static final String getUserPhoneNumber = "SELECT Phone_Number FROM user where User_ID = :userId";
+
+    public static final String updateUsersPhoneNumber = "UPDATE user SET Phone_Number = :phoneNumber WHERE User_ID = :userId;";
 }

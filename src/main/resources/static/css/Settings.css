@@ -93,6 +93,22 @@ body {
 }
 
 
+input[type=text] {
+  width: 200px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 5px;
+  background-color: white;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+
 @media (max-width: 575.98px) {
 
     .rating {

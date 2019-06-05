@@ -18,8 +18,16 @@
 
       });
 
-        //TODO
+
         function makeRequestToUpdatePhoneNumber(phoneNumber) {
+
+               $.post("/settings/updatePhoneNumber",
+                   {
+                     phoneNumber: phoneNumber
+                   },
+                   function(data,status){
+                     console.log("Data: " + data + "\nStatus: " + status);
+                   });
 
         }
 
