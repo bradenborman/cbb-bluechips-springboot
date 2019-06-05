@@ -10,7 +10,8 @@ $(document).ready(function(){
              CommentId = ID.substring(3)
 
              console.log("Is parent: " + isParentComment + " CommentId: " + CommentId)
-             requestDeleteComment(isParentComment, CommentId);
+            requestDeleteComment(isParentComment, CommentId);
+            $(this).closest('.media-body').css({"color": "red"});
    });
 
 });

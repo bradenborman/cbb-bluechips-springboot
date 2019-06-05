@@ -35,7 +35,7 @@ public class CommentService {
 
     private void isCommentUserCreatedCheck(List<Comment> comments, String userId) {
         comments.forEach(comment -> {
-            if(comment.getAuthorId() != null && comment.getAuthorId().equals(userId))
+            if (comment.getAuthorId() != null && comment.getAuthorId().equals(userId))
                 comment.setUserOwnsComment(true);
         });
     }
@@ -51,6 +51,14 @@ public class CommentService {
         String fullName = userService.getUserFullName(userId);
         if (commentHasValue.test(comment))
             commentsDao.createParentComment(userId, comment, fullName);
+    }
+
+
+    public void deleteComment(String commentId, boolean isParentComment) {
+        if (isParentComment)
+            commentsDao.deleteParentCommentById(commentId);
+        else
+            commentsDao.deleteSubCommentById(commentId);
     }
 
 

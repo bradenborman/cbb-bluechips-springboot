@@ -51,4 +51,17 @@ public class CommentsDao {
         namedParameterJdbcTemplate.update(sql, params);
     }
 
+    public void deleteParentCommentById(String commentId) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("commentId", commentId);
+        String sql = "DELETE FROM comments WHERE Comment_Id = :commentId;";
+        namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    public void deleteSubCommentById(String commentId) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("commentId", commentId);
+        String sql = "DELETE FROM sub_comments WHERE Sub_Comment_ID = :commentId;";
+        namedParameterJdbcTemplate.update(sql, params);
+    }
 }
