@@ -3,6 +3,10 @@ body {
     height: 100%;
 }
 
+.tab-content {
+    min-height: 425px;
+}
+
  #MESSAGE {
      font-size: 1em;
      position: absolute;
@@ -24,6 +28,9 @@ body {
     min-height: 300px;
  }
 
+.feature {
+    margin-top: 45px;
+}
 
  @keyframes expand {
 
@@ -60,69 +67,6 @@ body {
  #recoverPassword:hover {
 	cursor: pointer;
 }
-
- @import url('https://fonts.googleapis.com/css?family=Ubuntu');
-
-.header {
-  padding: 15px 0 15px 0;
-  text-align: center;
-  background: linear-gradient(to      bottom,#1e5799,#326B9B);
-  box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
-  position: relative;
-}
-.header>h1{
-  color: white;
-  text-shadow: 0 0 10px rgba(0,0,0,.6);
-}
-.header .nav{
-  width: auto;
-}
-.header .nav ul{
-  padding: 0px;
-  height: 50px;
-  box-sizing: border-box;
-  list-style: none;
-  background-color: #326B9B;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
-  border-radius: 10px;
-}
-.header .nav a{
-  outline: none;
-  margin: 0 25px;
-  margin-bottom: 0;
-  padding: 10px 12px;
-  width: auto;
-  text-decoration: none;
-  color: white;
-}
-.header .nav a:hover{
-  background-color: #204E7B;
-}
-.header .nav li{
-  flex: auto auto auto;
-  padding: 0px;
-  margin: 0px 0px;
-  height: auto;
-}
-.header .nav li:first-child>a{
-  border-bottom: 1px solid #FFD447;
-}
-
-
- .header {
-	padding-top: 15px;
-	padding-bottom: 15px;
-	width: 100%;
-	font-family: 'Alfa Slab One';
-}
-
-/*
-^^ HEADERS
-*/
 
 
 
@@ -205,6 +149,15 @@ body {
 		color: grey;
 	}
 
+    #newFeatures h4 {
+        font-family: 'Alfa Slab One';
+        	text-align: center;
+    }
+
+    #newFeatures {
+        text-align: center;
+        padding: 25px;
+    }
 
 
 	footer {
@@ -237,12 +190,6 @@ body {
 	width: 100%;
   }
 
-	.how2Play {
-		margin: auto;
-		width: 100%;
-		float: none;
-		margin-top: 80px;
-	}
 	.login {
 		margin-top: 0px;
 		width: 94%;
@@ -251,7 +198,6 @@ body {
 	.left {
 		margin: 0px;
 	}
-
 
 	.tab-content h2 {
 		margin: 30px;
@@ -269,6 +215,10 @@ body {
 
 }
 
+.forgotPassword {
+    margin-top: 60px;
+    text-align: center;
+}
 
 
 @media (max-width: 991.98px) {
@@ -295,13 +245,22 @@ body {
 	background-size: var(--line-size), var(--circle-size), var(--circle-size), var(--circle-size), var(--line-size);
 	background-position: left center, center center, center center, center center, right center;
 	background-repeat: no-repeat;
-	margin-top: 80px;
+	margin-top: 30px;
 }
 
 
     #MESSAGE h1 {
 
         font-size: 1.5em;
+    }
+
+    .forgotPassword {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .feature {
+        margin-top: 25px;
     }
 
  @keyframes expand {

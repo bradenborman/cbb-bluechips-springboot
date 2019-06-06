@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" type="text/css" href="css/Home.css">
-    <link rel="icon" href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link rel="icon"
+          href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
     <script src="scripts/Home.js"></script>
-    <meta name="description" content="Sign up | Login for CBB BLuechips. The BEST Postseason College Basketball Investing game. " />
-    <meta name="google" content="nositelinkssearchbox" />
-    <meta name="google" content="notranslate" />
+    <meta name="description"
+          content="Sign up | Login for CBB BLuechips. The BEST Postseason College Basketball Investing game. "/>
+    <meta name="google" content="nositelinkssearchbox"/>
+    <meta name="google" content="notranslate"/>
     <meta name="keywords" content="MARCHMADNESS, CBB, COLLEGE, BASKETBALL, INVESTING, FANTASY">
     <meta name="author" content="Braden Borman">
 </head>
@@ -32,37 +36,78 @@
         <div class="col-lg-6">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-user-plus"></i> Sign Up</a>
-                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-sign-in-alt"></i> Log In</a>
+                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                       role="tab"
+                       aria-controls="nav-profile" aria-selected="true"><i class="fas fa-sign-in-alt"></i> Log In</a>
+                    <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                       aria-controls="nav-home" aria-selected="false"><i class="fas fa-user-plus"></i> Sign Up</a>
+
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+                     aria-labelledby="nav-profile-tab">
+                    <form action="/user/login" method="post">
+                        <h2>Returning Users</h2>
+                        <div class="row login">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="email" id="email" class="form-control" required>
+                                    <label class="form-control-placeholder floatingLbl" id="emailLBL"
+                                           for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="password" maxlength="12" name="password" id="password"
+                                           class="form-control" required>
+                                    <label class="form-control-placeholder floatingLbl" id="passwordLBL" for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <button type="submit" class="btn btn-primary btn-block form-control-lg">Submit</button>
+                            </div>
+                            <div class="col-md-12 forgotPassword">
+                                <span onClick="forgotPassword()" id="recoverPassword"><i class='fas fa-directions'></i> Enter valid Email for password recovery</span>
+                            </div>
+                            <br><br>
+                        </div>
+                    </form>
+                    <br/><br/>
+                </div>
+                <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <form action="/user/create" method="post">
                         <h2 style="margin-bottom: 30px;">New Users</h2>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" maxlength="30"  name="fname" id="fname" class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="fnameLBL" for="fname">First Name</label>
+                                    <input type="text" maxlength="30" name="fname" id="fname" class="form-control"
+                                           required>
+                                    <label class="form-control-placeholder floatingLbl" id="fnameLBL" for="fname">First
+                                        Name</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" maxlength="30"  name="lname" id="lname" class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="lnameLBL" for="lname">Last Name</label>
+                                    <input type="text" maxlength="30" name="lname" id="lname" class="form-control"
+                                           required>
+                                    <label class="form-control-placeholder floatingLbl" id="lnameLBL" for="lname">Last
+                                        Name</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text"  name="email_new" id="email_new" class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="email_newLBL" for="email_new">Email</label>
+                                    <input type="text" name="email_new" id="email_new" class="form-control" required>
+                                    <label class="form-control-placeholder floatingLbl" id="email_newLBL"
+                                           for="email_new">Email</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="password" maxlength="12"  name="password_new" id="password_new" class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="password_newLBL" for="password_new">Password</label>
+                                    <input type="password" maxlength="12" name="password_new" id="password_new"
+                                           class="form-control" required>
+                                    <label class="form-control-placeholder floatingLbl" id="password_newLBL"
+                                           for="password_new">Password</label>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -71,77 +116,42 @@
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <form action="/user/login" method="post">
-                        <h2>Returning Users</h2>
-                        <div class="row login">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text"   name="email" id="email" class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="emailLBL" for="email">Email</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="password" maxlength="12" name="password" id="password" class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="passwordLBL" for="password">Password</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <button type="submit" class="btn btn-primary btn-block form-control-lg">Submit</button>
-                            </div>
-                            <div style="margin-top: 20px; text-align: center;" class="col-md-12">
-                                <span onClick="forgotPassword()" id="recoverPassword">Enter valid Email for password recovery</span>
-                            </div>
-                            <br><br>
-                        </div>
-                    </form>
-                    <br /><br /><br />
-                    <p style="text-align: center; font-size: 1.3em;">"Price is what you pay. Value is what you get.”</p>
-                </div>
             </div>
         </div>
         <!-- END LEFT -->
 
         <div class="my-hr"></div>
-
         <div class="col-lg-6">
-            <div class="how2Play">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Quick intro</h4>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-title"><i class="fas fa-cog"></i> Setup</h6>
-                        <p class="card-text">
-                        <ul>
-                            <li>Each user that signs up is given <b>$100,000</b> of cash.</li>
-                            <li>Every college team that made the turnement is now available to invest in.</li>
-                            <li>Scout for potential <i>'Big Gainers'</i></li>
-                        </ul>
-                        </p>
-                        <h6 class="card-title"><i class="fas fa-dollar-sign"></i> Making a profit</h6>
-                        <p class="card-text">
-                        <ul>
-                            <li>When a team covers the Vegas Spread, thier values <b>increases!</b></li>
-                            <li>When a team fails to cover, thier values <b>decreases!</b></li>
-                        </ul>
-                        </p>
-                        <h6 class="card-title"><i class="fas fa-chart-line"></i> Trading</h6>
-                        <p class="card-text">
-                        <ul>
-                            <li>You may only buy the shares if you can afford to.</li>
-                            <li>You may only sell shares you own.</li>
-                            <li>Trading teams is only opened before the start of their respected game for the current round.</li>
-                        </ul>
-                        </p>
-                        <h6 class="card-title">Further detailed rules: <a href="https://cbbbluechips.com/rules.pdf">Click me</a></h6>
-                    </div>
+            <div id="newFeatures">
+                <h4 style="margin-bottom: 30px;">2020 New Features</h4>
+                <div class="feature"><i style="color: green; font-size: 1.3em" class='fas fa-sms'></i> <b>Text
+                    Alerts</b>
+                    <p>Subscribe to "text alerts" for instant price changing text notifications once games have been
+                        played!</p></div>
+                <div class="feature">
+                    <i style="font-size: 1.3em" class='fab fa-rocketchat'></i> <b>Comment Threads</b>
+                    <p>Smack Talk with the best of them or even post a question where others may reply</p>
+                </div>
+                <div class="feature">
+                    <i style="color: #3ad1df; font-size: 1.3em" class='fas fa-chart-bar'></i> <b>Posted Point Spread</b>
+                    <p>No longer will a trip to ESPN be necessary for gathering information on the on the point
+                        spread</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<footer><center>For issues, please contact: <br /><b>Braden Borman</b> | (573) 826-1903</center></footer>
+
+<div class="container ">
+    <div class="row">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-8">
+        </div>
+    </div>
+</div>
+<footer>
+    <center>For issues, please contact: <br/><b>Braden Borman</b> | (573) 826-1903</center>
+</footer>
 </body>
 </html>
