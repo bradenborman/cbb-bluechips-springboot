@@ -33,7 +33,6 @@ public class CookieService {
         }
     }
 
-    //TODO redo inquire to check if exists so no one modified it
     public boolean isLoggedIn(HttpServletRequest request) {
         Cookie[] allCookies = request.getCookies();
 

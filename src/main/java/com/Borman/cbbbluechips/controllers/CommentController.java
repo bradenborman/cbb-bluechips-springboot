@@ -51,7 +51,6 @@ public class CommentController {
         return "redirect:/comments";
     }
 
-    //TODO
     @PostMapping("/deleteComment")
     public String deleteComment(HttpServletRequest request, @RequestParam("CommentId") String CommentId, @RequestParam("isParentComment") boolean isParentComment) {
         System.out.println(CommentId + " " + isParentComment);

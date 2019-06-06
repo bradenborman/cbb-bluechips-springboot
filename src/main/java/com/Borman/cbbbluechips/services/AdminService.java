@@ -90,8 +90,6 @@ public class AdminService {
         else
             adminDao.archivePriceUpdateCreate(newMarketValue);
 
-
-        //Sends alert to anyone with a valid Phone number and has checked service in setting TODO
         twiloService.sendPriceChangeAlert(newMarketValue);
 
     }

@@ -2,23 +2,25 @@ package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.OwnsDao;
 import com.Borman.cbbbluechips.daos.TeamDao;
-import com.Borman.cbbbluechips.models.Owns;
-import com.Borman.cbbbluechips.models.SMS_Alert;
-import com.Borman.cbbbluechips.models.Team;
-import com.Borman.cbbbluechips.models.TradeRequest;
+import com.Borman.cbbbluechips.daos.UserDao;
+import com.Borman.cbbbluechips.models.*;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OwnsService {
 
     private OwnsDao ownsDao;
     private TeamDao teamDao;
+    private UserDao userDao;
 
-    public OwnsService(OwnsDao ownsDao, TeamDao teamDao) {
+    public OwnsService(OwnsDao ownsDao, TeamDao teamDao, UserDao userDao) {
         this.ownsDao = ownsDao;
         this.teamDao = teamDao;
+        this.userDao = userDao;
     }
 
     public List<Owns> getTeamsUserOwns(String user) {
@@ -70,6 +72,15 @@ public class OwnsService {
 
     public List<SMS_Alert> getUsersWhoOwnedTeamWithTextAlertOn(String teamId) {
         return ownsDao.getUsersWhoOwnedTeamWithTextAlertOn(teamId);
+    }
+
+
+    //Sets Networth as CASH even though not all is cash
+    public String getLeadersValue() {
+        List<User> playersId = userDao.getUsers();
+        playersId.forEach(player -> player.setCash(ownsDao.getPortfolioValue(player.getID()) + ownsDao.getFundsAvailable(player.getID())));
+        Optional<User> leader = playersId.stream().max(Comparator.comparing(User::getCash));
+        return leader.map(user -> String.valueOf(user.getCash())).orElse("0");
     }
 
 }

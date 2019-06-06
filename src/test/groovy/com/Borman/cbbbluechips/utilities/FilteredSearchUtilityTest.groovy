@@ -10,6 +10,7 @@ class FilteredSearchUtilityTest extends Specification {
         setup:
             String sql = FilteredSearchUtility.buildSQL(teamName, userName)
         expect:
+        println "FilteredSearchUtility ran"
             expect == sql
         where:
             teamName | userName | expect

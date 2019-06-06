@@ -3,6 +3,7 @@ package com.Borman.cbbbluechips.daos;
 import com.Borman.cbbbluechips.mappers.rowMappers.CommentRowMapper;
 import com.Borman.cbbbluechips.mappers.rowMappers.SubCommentRowMapper;
 import com.Borman.cbbbluechips.models.Comment;
+import com.Borman.cbbbluechips.utilities.CommentTimeStampUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -35,9 +36,11 @@ public class CommentsDao {
                 .addValue("userId", userId)
                 .addValue("reply", reply)
                 .addValue("parentId", parentId)
-                .addValue("author", fullName);
+                .addValue("author", fullName)
+                .addValue("date", CommentTimeStampUtility.getDate())
+                .addValue("time", CommentTimeStampUtility.getTime());;
 
-        String sql = "INSERT INTO sub_comments (Parent_ID, Author, Sub_Comment, Author_ID) VALUES (:parentId, :author, :reply, :userId);";
+        String sql = "INSERT INTO sub_comments (Parent_ID, Author, Sub_Comment, Author_ID, Sub_Date, Sub_Time) VALUES (:parentId, :author, :reply, :userId, :date, :time);";
         namedParameterJdbcTemplate.update(sql, params);
     }
 
@@ -45,9 +48,11 @@ public class CommentsDao {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("userId", userId)
                 .addValue("comment", comment)
-                .addValue("author", fullName);
+                .addValue("author", fullName)
+                .addValue("date", CommentTimeStampUtility.getDate())
+                .addValue("time", CommentTimeStampUtility.getTime());
 
-        String sql = "INSERT INTO comments (Author, Comment, Author_ID) VALUES (:author, :comment, :userId);";
+        String sql = "INSERT INTO comments (Author, Comment, Author_ID, Date, Time) VALUES (:author, :comment, :userId, :date, :time);";
         namedParameterJdbcTemplate.update(sql, params);
     }
 

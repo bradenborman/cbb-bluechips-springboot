@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 
-//TODO Update where ever to include new isLocked mapper sql database
-
 public class Team {
 
     private String teamId;

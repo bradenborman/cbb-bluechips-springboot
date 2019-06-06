@@ -3,11 +3,10 @@ package com.Borman.cbbbluechips.mappers.rowMappers;
 import com.Borman.cbbbluechips.models.Comment;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CommentRowMapper implements RowMapper<Comment> {
 
@@ -19,16 +18,13 @@ public class CommentRowMapper implements RowMapper<Comment> {
         comment.setCommentValue(rs.getString("Comment"));
         comment.setAuthorId(rs.getString("Author_ID"));
 
-        //TODO
         try {
-            Date date = rs.getDate("Date");
-            Time time = rs.getTime("Time");
-            comment.setTimeOfComment(LocalDateTime.now());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
+            LocalDateTime localDateTime = LocalDateTime.parse(rs.getString("Date") + " " + rs.getString("Time"), formatter);
+            comment.setTimeOfComment(localDateTime);
         } catch (Exception e) {
-            System.out.println("Failed to make date");
+            comment.setTimeOfComment(LocalDateTime.now());
         }
-
-
         return comment;
     }
 

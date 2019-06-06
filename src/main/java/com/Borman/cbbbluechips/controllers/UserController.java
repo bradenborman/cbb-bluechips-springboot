@@ -23,7 +23,7 @@ public class UserController {
         this.cookieService = cookieService;
     }
 
-    //TODO
+
     @PostMapping("/create")
     public String createUser(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
                              @RequestParam(value = "email_new") String email_new, @RequestParam(value = "password_new") String password_new) {

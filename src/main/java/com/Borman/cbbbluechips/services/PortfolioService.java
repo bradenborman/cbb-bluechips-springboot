@@ -24,7 +24,7 @@ public class PortfolioService {
         return PortfolioBuilder.aPortfolio()
                 .withPortfolioValue(ownsService.getPortfolioValue(user.getID()))
                 .withCash(user.getCash())
-                .withLeadersValue("0") //TODO
+                .withLeadersValue(ownsService.getLeadersValue())
                 .withRoundOfPlay(gameSettingsService.getCurrentRound())
                 .withGameTotalTransactionCount(transactionService.getTransactionCountTotal())
                 .withMyTransactionsCount(String.valueOf(transactionService.getTransactionsByUser(user.getID()).size()))

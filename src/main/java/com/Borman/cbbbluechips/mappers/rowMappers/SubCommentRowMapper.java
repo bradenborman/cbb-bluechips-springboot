@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SubCommentRowMapper implements RowMapper<Comment> {
 
@@ -19,13 +20,12 @@ public class SubCommentRowMapper implements RowMapper<Comment> {
         comment.setAuthorId(rs.getString("Author_ID"));
         comment.setCommentValue(rs.getString("Sub_Comment"));
 
-        //TODO
         try {
-            Date date = rs.getDate("Sub_Date");
-            Time time = rs.getTime("Sub_TIme");
-            comment.setTimeOfComment(LocalDateTime.now());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
+            LocalDateTime localDateTime = LocalDateTime.parse(rs.getString("Sub_Date") + " " + rs.getString("Sub_Time"), formatter);
+            comment.setTimeOfComment(localDateTime);
         } catch (Exception e) {
-            System.out.println("Failed to make date");
+            comment.setTimeOfComment(LocalDateTime.now());
         }
 
 
