@@ -54,5 +54,6 @@ dependencies {
 
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.1.5.RELEASE'
 }

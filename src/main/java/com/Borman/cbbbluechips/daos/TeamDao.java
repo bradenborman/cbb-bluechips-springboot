@@ -61,4 +61,17 @@ public class TeamDao {
     }
 
 
+    public void updateNextTeamPlayingByTeamID(String teamToUpdateId, String teamPlayingShortName) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("teamToUpdateId", teamToUpdateId)
+                    .addValue("teamPlayingShortName", teamPlayingShortName);
+
+            namedParameterJdbcTemplate.update(TeamSQL.updateNextTeamPlaying, params);
+        }catch (Exception e) {
+            System.out.println("Failed to Update Next TeamPlaying");
+        }
+    }
+
+
 }

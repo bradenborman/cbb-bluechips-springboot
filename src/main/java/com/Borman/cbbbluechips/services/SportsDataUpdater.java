@@ -16,16 +16,19 @@ public class SportsDataUpdater {
         this.sportsDataApiService = sportsDataApiService;
     }
 
+
 //    @Scheduled(cron = "0/20 * * * * ?")
 //    public void updateTeamsRecords() {
 //        logger.info("Scheduled task hit: updateTeamData.");
 //        sportsDataApiService.updateTeamsRecords();
 //    }
 
-//    @Scheduled(cron = "0 0 5 * * ?") //Every day at 5am
-//    public void updateNextTeamPlayingAndOdds() {
-//        logger.info("Scheduled task hit: updateTeamData.");
-//        sportsDataApiService.updateTeamsRecords();
-//    }
+
+    @Scheduled(cron = "0 0 5 * * ?") //Every day at 5am
+    public void updateNextTeamPlayingAndOdds() {
+        logger.info("Scheduled task hit: updateTeamsPlayingToday.");
+        sportsDataApiService.updateTeamsPlayingToday();
+    }
+
 
 }

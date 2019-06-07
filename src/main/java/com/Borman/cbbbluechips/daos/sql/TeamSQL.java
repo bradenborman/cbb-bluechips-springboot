@@ -16,4 +16,5 @@ public class TeamSQL {
 
     public static final String getTeamByName = "SELECT * FROM teams WHERE Name = :teamName;";
 
+    public static final String updateNextTeamPlaying = "UPDATE teams SET Next_Team_Playing = :teamPlayingShortName WHERE (Sports_Data_Team_ID = :teamToUpdateId)";
 }
