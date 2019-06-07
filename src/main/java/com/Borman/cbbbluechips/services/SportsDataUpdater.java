@@ -17,10 +17,10 @@ public class SportsDataUpdater {
     }
 
 
-    @Scheduled(cron = "0/20 * * * * ?")
-    public void updateTeamsRecords() {
-        logger.info("\n\nTEST CRON\n\n");
-    }
+//    @Scheduled(cron = "0/20 * * * * ?")
+//    public void updateTeamsRecords() {
+//        logger.info("\n\nTEST CRON\n\n");
+//    }
 
 
     @Scheduled(cron = "0 0 5 * * ?") //Every day at 5am
