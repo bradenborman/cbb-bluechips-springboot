@@ -4,7 +4,7 @@ import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataGamesToday;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.utilities.SportsDataApiRoutes;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Borman.cbbbluechips.utilities.SportsDataDateUtility;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -47,8 +47,7 @@ public class SportsDataApiService {
 
 
 
-
-    public void updateTeamsPlayingToday() {
+    void updateTeamsPlayingToday() {
         List<SportsDataGamesToday> updatedTeamInfo = callGamesByDay();
         updatedTeamInfo.forEach(game -> {
             updateTeamNextGame(game.getAwayTeam(), game.getHomeTeamId());
@@ -56,8 +55,11 @@ public class SportsDataApiService {
         });
     }
 
-    public List<SportsDataGamesToday> callGamesByDay() {
-        UriComponentsBuilder url = UriComponentsBuilder.fromHttpUrl(SportsDataApiRoutes.getGamesByDay + "2019-Apr-08")
+    private List<SportsDataGamesToday> callGamesByDay() {
+
+        String todayParam = SportsDataDateUtility.getTodayDateString();
+
+        UriComponentsBuilder url = UriComponentsBuilder.fromHttpUrl(SportsDataApiRoutes.getGamesByDay + todayParam)
                 .queryParam("key", apiKey);
         ResponseEntity<SportsDataGamesToday[]> response = restTemplate.getForEntity(url.build().toUriString(), SportsDataGamesToday[].class);
         return Arrays.asList(Objects.requireNonNull(response.getBody()));

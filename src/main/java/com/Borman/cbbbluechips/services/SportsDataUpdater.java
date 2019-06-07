@@ -23,7 +23,7 @@ public class SportsDataUpdater {
 //    }
 
 
-    @Scheduled(cron = "0 0 5 * * ?") //Every day at 5am
+    @Scheduled(cron = "0 0 8 * * ?") //Every day at 8am
     public void updateNextTeamPlayingAndOdds() {
         logger.info("Scheduled task hit: updateTeamsPlayingToday.");
         sportsDataApiService.updateTeamsPlayingToday();
