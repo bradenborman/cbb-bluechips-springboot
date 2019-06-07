@@ -28,6 +28,8 @@ public class ViewControllerAdmin {
     @RequestMapping("")
     public String admin(HttpServletRequest request, Model model) {
         boolean isAdmin = cookieService.isUserAdmin(request);
+       if(!isAdmin)
+           return "redirect:/";
         System.out.println(String.format("IS ADMIN: %s", isAdmin));
         model.addAttribute("roundId", gameSettingsService.getCurrentRound());
         return "admin_directory";

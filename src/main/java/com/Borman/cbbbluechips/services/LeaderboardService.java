@@ -1,6 +1,5 @@
 package com.Borman.cbbbluechips.services;
 
-import com.Borman.cbbbluechips.daos.LeaderboardDao;
 import com.Borman.cbbbluechips.models.LeaderboardUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +10,11 @@ import java.util.List;
 public class LeaderboardService {
 
     @Autowired
-    LeaderboardDao leaderboardDao;
+    OwnsService ownsService;
 
 
-    public List<LeaderboardUser> getTopFiftyScores() {
-        return leaderboardDao.getTopFiftyScores();
+    public List<LeaderboardUser> getLeaders() {
+        return ownsService.getLeaders();
     }
 
 

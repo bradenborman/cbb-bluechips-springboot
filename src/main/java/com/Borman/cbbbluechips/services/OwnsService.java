@@ -6,6 +6,7 @@ import com.Borman.cbbbluechips.daos.UserDao;
 import com.Borman.cbbbluechips.models.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -75,12 +76,29 @@ public class OwnsService {
     }
 
 
-    //Sets Networth as CASH even though not all is cash
-    public String getLeadersValue() {
-        List<User> playersId = userDao.getUsers();
-        playersId.forEach(player -> player.setCash(ownsDao.getPortfolioValue(player.getID()) + ownsDao.getFundsAvailable(player.getID())));
+
+    String getLeadersValue() {
+        List<User> playersId = getUsersWithSetNetworth();
         Optional<User> leader = playersId.stream().max(Comparator.comparing(User::getCash));
         return leader.map(user -> String.valueOf(user.getCash())).orElse("0");
+    }
+
+    List<LeaderboardUser> getLeaders() {
+        List<User> playersId = getUsersWithSetNetworth();
+        playersId.sort(Comparator.comparing(User::getCash).reversed());
+        List<LeaderboardUser> leaders = new ArrayList<>();
+        for (int i = 1, playersIdSize = playersId.size(); i < playersIdSize; i++) {
+            User user = playersId.get(i - 1);
+            leaders.add(new LeaderboardUser(user.getFirstName() + " " + user.getLastName(), i, user.getCash()));
+        }
+        return leaders;
+    }
+
+    //Sets Networth as CASH even though not all is cash
+    private List<User> getUsersWithSetNetworth() {
+        List<User> playersId = userDao.getUsers();
+        playersId.forEach(player -> player.setCash(ownsDao.getPortfolioValue(player.getID()) + ownsDao.getFundsAvailable(player.getID())));
+        return playersId;
     }
 
 }

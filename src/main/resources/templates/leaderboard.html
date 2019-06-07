@@ -26,8 +26,8 @@
             </li>
         </ul>
     </nav>
-    <div class="row">
-        <div class="col-lg-6">
+    <div class="row leaders">
+        <div class="col-lg-8">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -37,80 +37,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Jacob Meller<br></td>
-                    <td>$533,725</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Brent Thoenen<br></td>
-                    <td>$405,600</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Baylie Borman<br></td>
-                    <td>$371,200</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Judy English<br></td>
-                    <td>$270,625</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Michael Pezold<br></td>
-                    <td>$191,725</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>Brent Bates<br></td>
-                    <td>$175,125</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td>Cory Loeffelman<br></td>
-                    <td>$168,250</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td>Richard English<br></td>
-                    <td>$161,900</td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td>Patrick Steuber<br></td>
-                    <td>$144,750</td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td>Harlan Borman<br></td>
-                    <td>$128,725</td>
-                </tr>
-                <tr>
-                    <th scope="row">11</th>
-                    <td>Kolten Navarro<br></td>
-                    <td>$100,000</td>
-                </tr>
-                <tr>
-                    <th scope="row">12</th>
-                    <td>Kegan Brown<br></td>
-                    <td>$100,000</td>
-                </tr>
-                <tr>
-                    <th scope="row">13</th>
-                    <td>Test Blah<br></td>
-                    <td>$100,000</td>
-                </tr>
-                <tr>
-                    <th scope="row">14</th>
-                    <td>Dan Martin<br></td>
-                    <td>$100,000</td>
+                <tr th:each="leader : ${leaderboard}">
+                    <td th:text=" ${leader.ranking}"></td>
+                    <td th:text=" ${leader.userName}"></td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(leader.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div style="padding: 20px;" class="card">
                 <h4>Previous Winners:</h4>
                 <ul>

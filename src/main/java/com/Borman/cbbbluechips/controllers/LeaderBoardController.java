@@ -18,7 +18,7 @@ public class LeaderBoardController {
 
     @RequestMapping("")
     public String portfolio(Model model, HttpServletRequest request, HttpServletResponse response) {
-            model.addAttribute("user", leaderboardService.getTopFiftyScores());
+            model.addAttribute("leaderboard", leaderboardService.getLeaders());
             return "leaderboard";
     }
 

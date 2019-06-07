@@ -3,8 +3,14 @@ package com.Borman.cbbbluechips.models;
 public class LeaderboardUser {
 
     private String userName;
-    private String ranking;
+    private int ranking;
     private double value;
+
+    public LeaderboardUser(String userName, int ranking, double value) {
+        this.userName = userName;
+        this.ranking = ranking;
+        this.value = value;
+    }
 
     public String getUserName() {
         return userName;
@@ -14,11 +20,11 @@ public class LeaderboardUser {
         this.userName = userName;
     }
 
-    public String getRanking() {
+    public int getRanking() {
         return ranking;
     }
 
-    public void setRanking(String ranking) {
+    public void setRanking(int ranking) {
         this.ranking = ranking;
     }
 
