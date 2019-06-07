@@ -38,7 +38,7 @@ public class TeamService {
             allTeams.forEach(team -> {
                 team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
                 team.setPriceHistoryString(fetchHistoryDetails(team));
-                team.setNextTeamPlaying("next-team");
+                team.setNextTeamPlaying(teamDao.getTeamPlayingNext(team.getTeamId()));
                 team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
             });
         }

@@ -74,4 +74,14 @@ public class TeamDao {
     }
 
 
+    public String getTeamPlayingNext(String teamId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+           return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamPlayingNext, params, String.class);
+        }catch (Exception e) {
+            System.out.println("Failed to getTeamPlayingNext");
+            return "";
+        }
+    }
+
 }
