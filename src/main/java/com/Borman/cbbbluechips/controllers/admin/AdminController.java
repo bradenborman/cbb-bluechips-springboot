@@ -46,10 +46,12 @@ public class AdminController {
     }
 
 
-    //TODO Update Point spread view and logic
-    public String updatePointSpread() {
-        settingsService.updatePointSpread();
+    @PostMapping("/update-pointspread")
+    public String updatePointSpread(@RequestParam(value = "teamName") String[] teamName, @RequestParam(value = "nextPointSpread") String[] nextPointSpread) {
+        System.out.println("updating " + nextPointSpread.length + " point spreads");
+        adminService.processUpdatePointSpreadRequest(Arrays.asList(teamName), Arrays.asList(nextPointSpread));
         return "redirect:/admin";
     }
+
 }
 

@@ -1,11 +1,13 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.builders.MarketValueBuilder;
+import com.Borman.cbbbluechips.builders.UpdatePointSpreadRequestBuilder;
 import com.Borman.cbbbluechips.builders.UpdateSeedRequestBuilder;
 import com.Borman.cbbbluechips.daos.AdminDao;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
+import com.Borman.cbbbluechips.models.UpdatePointSpreadRequest;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
 import com.Borman.cbbbluechips.twilio.TwiloService;
 import org.slf4j.Logger;
@@ -94,5 +96,16 @@ public class AdminService {
 
     }
 
+
+    public void processUpdatePointSpreadRequest(List<String> teamNames, List<String> pointSpreads) {
+        if (teamNames.size() != pointSpreads.size())
+            System.out.println("Error. PointSpreadRequest Not same size");
+
+        List<UpdatePointSpreadRequest> updates = new ArrayList<>();
+        for (int x = 0; x < teamNames.size(); x++)
+            updates.add(UpdatePointSpreadRequestBuilder.anUpdatePointSpreadRequest().withTeamName(teamNames.get(x)).withNextPointSpread(pointSpreads.get(x)).build());
+
+        updates.forEach(team -> adminDao.updatePointSpreadRequest(team));
+    }
 
 }

@@ -59,5 +59,12 @@ public class ViewControllerAdmin {
         return "set_round";
     }
 
+    @RequestMapping("/set/pointspread")
+    public String setPointspread(Model model) {
+        model.addAttribute("teams", gameSettingsService.getTeamsPlayingTodayWithNoPointSpreadSet());
+        return "set_pointspread";
+    }
+
+
 }
 

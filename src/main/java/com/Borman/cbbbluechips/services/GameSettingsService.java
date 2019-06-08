@@ -1,9 +1,11 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.GameSettingsDao;
+import com.Borman.cbbbluechips.models.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -22,11 +24,14 @@ public class GameSettingsService {
             settingsDao.updateCurrentRound(round);
     }
 
+    //TODO
     public void updatePointSpread() {
 
-        settingsDao.updatePointSpreadByTeam("teamID", "nextPointSpread");
+       // settingsDao.updatePointSpreadByTeam("teamID", "nextPointSpread");
     }
 
 
-
+    public List<Team> getTeamsPlayingTodayWithNoPointSpreadSet() {
+       return settingsDao.getTeamsPlayingTodayWithNoPointSpreadSet();
+    }
 }

@@ -4,6 +4,7 @@ import com.Borman.cbbbluechips.daos.sql.AdminSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.PriceHistoryRowMapper;
 import com.Borman.cbbbluechips.models.MarketValue;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
+import com.Borman.cbbbluechips.models.UpdatePointSpreadRequest;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -108,14 +109,27 @@ public class AdminDao {
     public boolean checkForRoundPriceExists(MarketValue newMarketValue) {
         try {
             SqlParameterSource params = new BeanPropertySqlParameterSource(newMarketValue);
-            List<MarketValue> marketValue =  namedParameterJdbcTemplate.query(AdminSQL.checkForRoundPriceExists, params, new PriceHistoryRowMapper());
+            List<MarketValue> marketValue = namedParameterJdbcTemplate.query(AdminSQL.checkForRoundPriceExists, params, new PriceHistoryRowMapper());
             return marketValue.get(0).getMarketValueId() != null;
         } catch (IndexOutOfBoundsException e) {
             return false;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Failed to checkForRoundPriceExists" + e);
             return false;
         }
     }
+
+    public void updatePointSpreadRequest(UpdatePointSpreadRequest team) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("pointSpread", team.getNextPointSpread())
+                    .addValue("teamName", team.getTeamName());
+
+            String sql = "UPDATE teams SET Point_Spread = :pointSpread WHERE Name = :teamName";
+            namedParameterJdbcTemplate.update(sql, params);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
 }
