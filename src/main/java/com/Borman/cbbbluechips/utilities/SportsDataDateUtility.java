@@ -11,11 +11,22 @@ public class SportsDataDateUtility {
         LocalDate date = LocalDate.now();
 
         String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
-        int day = date.getDayOfWeek().getValue();
+        int day = date.getDayOfMonth();
 
-        return String.format("%s-%s-%s", date.getYear(), month, day);
+        
+        //TODO hardcoded for testing
+        return SECOND_ROUND_2019;
+
+        //return String.format("%s-%s-%s", date.getYear(), month, day);
 
     }
 
+    private static final String SECOND_ROUND_2019 = "2019-MAR-24";
+
+    private static final String SWEET_SIXTEEN_2019_1 = "2019-MAR-28";
+
+    private static final String SWEET_SIXTEEN_2019_2 = "2019-MAR-29";
+    
+    
 }
 

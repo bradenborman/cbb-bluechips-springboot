@@ -32,15 +32,15 @@ public class PortfolioController {
 
     @RequestMapping("")
     public String portfolio(Model model, HttpServletRequest request, HttpServletResponse response) {
-        if (!cookieService.isLoggedIn(request)) {
-            return "redirect:/";
-        } else {
-            User user = userService.getUser(cookieService.getUserIdLoggedIn(request));
-            user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
-            model.addAttribute("user", user);
-            model.addAttribute("portfolio", portfolioService.getPortfolioDetails(user));
-            return "portfolio";
-        }
+            if (!cookieService.isLoggedIn(request)) {
+                return "redirect:/";
+            } else {
+                User user = userService.getUser(cookieService.getUserIdLoggedIn(request));
+                user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
+                model.addAttribute("user", user);
+                model.addAttribute("portfolio", portfolioService.getPortfolioDetails(user));
+                return "portfolio";
+            }
     }
 
 }

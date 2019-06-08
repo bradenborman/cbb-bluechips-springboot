@@ -21,4 +21,12 @@ public class GameSettingsService {
         if (validRounds.anyMatch(x -> x.equals(round)))
             settingsDao.updateCurrentRound(round);
     }
+
+    public void updatePointSpread() {
+
+        settingsDao.updatePointSpreadByTeam("teamID", "nextPointSpread");
+    }
+
+
+
 }

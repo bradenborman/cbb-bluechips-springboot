@@ -16,6 +16,15 @@ public class GameSettingsDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+
+    //TODO
+    String getTeamsPlayingForSettingsPointSpread = "SELECT * FROM teams WHERE Next_Team_Playing is not null;";
+
+
+
 
     public String getCurrentRound() {
         return jdbcTemplate.queryForObject(GameSettingsSQL.getCurrentRound, String.class);
@@ -25,5 +34,16 @@ public class GameSettingsDao {
         String sql = "UPDATE game_info SET Current_Round = " + round + " WHERE Year = '2019';";
         jdbcTemplate.update(sql);
     }
+
+    public void updatePointSpreadByTeam(String teamID, String nextPointSpread) {
+
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("pointSpread", nextPointSpread)
+                .addValue("teamId", teamID);
+
+        String sql = "UPDATE teams SET Point_Spread = :pointSpread WHERE TEAM_ID = :teamId";
+        namedParameterJdbcTemplate.update(sql, params);
+    }
+
 
 }

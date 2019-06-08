@@ -53,9 +53,10 @@ public class TeamDao {
     public String getSharesOutstandingForTeam(String teamId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
-            return namedParameterJdbcTemplate.queryForObject(TeamSQL.getSharesOutstanding, params, String.class);
+            String amount = namedParameterJdbcTemplate.queryForObject(TeamSQL.getSharesOutstanding, params, String.class);
+            return amount != null ? amount : "0";
         }catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.toString());
             return "0";
         }
     }
@@ -84,4 +85,18 @@ public class TeamDao {
         }
     }
 
+    public void resetNextTeamPlayingForAll() {
+        jdbcTemplate.update(TeamSQL.resetNextTeamPlayingForAll);
+    }
+
+    public String getNextPointSpread(String teamId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+            String ps = namedParameterJdbcTemplate.queryForObject(TeamSQL.getNextPointSpread, params, String.class);
+            return ps != null ? ps : "0";
+        }catch (Exception e) {
+            System.out.println("Failed to getNextPointSpread");
+            return "0";
+        }
+    }
 }

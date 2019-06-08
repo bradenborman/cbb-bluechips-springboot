@@ -48,6 +48,9 @@ public class SportsDataApiService {
 
 
     void updateTeamsPlayingToday() {
+
+        teamDao.resetNextTeamPlayingForAll();
+
         List<SportsDataGamesToday> updatedTeamInfo = callGamesByDay();
         updatedTeamInfo.forEach(game -> {
             updateTeamNextGame(game.getAwayTeam(), game.getHomeTeamId());
@@ -58,6 +61,8 @@ public class SportsDataApiService {
     private List<SportsDataGamesToday> callGamesByDay() {
 
         String todayParam = SportsDataDateUtility.getTodayDateString();
+
+        System.out.println("Getting Games and next to play for " + todayParam);
 
         UriComponentsBuilder url = UriComponentsBuilder.fromHttpUrl(SportsDataApiRoutes.getGamesByDay + todayParam)
                 .queryParam("key", apiKey);

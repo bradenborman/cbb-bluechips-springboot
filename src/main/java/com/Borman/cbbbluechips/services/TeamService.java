@@ -39,7 +39,7 @@ public class TeamService {
                 team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
                 team.setPriceHistoryString(fetchHistoryDetails(team));
                 team.setNextTeamPlaying(teamDao.getTeamPlayingNext(team.getTeamId()));
-                team.setNextPointSpread(NumberGenUtility.getRandomPointSpread());
+                team.setNextPointSpread(teamDao.getNextPointSpread(team.getTeamId()));
             });
         }
         return allTeams;

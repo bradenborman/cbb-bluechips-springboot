@@ -95,6 +95,9 @@ function deleteUser() {
        function(data,status){
          console.log("Data: " + data + "\nStatus: " + status);
    });
+
+   location.href = "/"
+
 }
 
 
@@ -107,6 +110,8 @@ function getNewAvg() {
 
 function returnToDefualt() {
     $(".fa-star").removeClass("checked");
+
+
        for(var x = 0; x < defualt.length; x++) {
           if(defualt[x] == 0) {
               $(".fa-star").eq(x).removeClass("checked");

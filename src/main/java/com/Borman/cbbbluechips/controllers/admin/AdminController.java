@@ -45,5 +45,11 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+
+    //TODO Update Point spread view and logic
+    public String updatePointSpread() {
+        settingsService.updatePointSpread();
+        return "redirect:/admin";
+    }
 }
 

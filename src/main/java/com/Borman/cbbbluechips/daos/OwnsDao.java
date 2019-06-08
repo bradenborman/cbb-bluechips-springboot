@@ -91,7 +91,12 @@ public class OwnsDao {
 
 
     public double getTotalMoneyInPlay() {
-        return jdbcTemplate.queryForObject(OwnsSQL.getTotalMoneyInPlay, Double.class);
+        try {
+            return jdbcTemplate.queryForObject(OwnsSQL.getTotalMoneyInPlay, Double.class);
+        } catch (Exception e) {
+            logger.info("No one owns anything" + e.toString());
+        }
+        return 0;
     }
 
     public List<SMS_Alert> getUsersWhoOwnedTeamWithTextAlertOn(String teamId) {

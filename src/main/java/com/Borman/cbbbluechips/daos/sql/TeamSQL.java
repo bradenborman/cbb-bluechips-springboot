@@ -4,7 +4,7 @@ public class TeamSQL {
 
     public static final String getAllTeams = "SELECT * FROM teams order by name asc;";
 
-    public static final String getTournamentTeams = "SELECT * FROM teams WHERE seed > 0 ORDER by is_out ASC, seed asc;";
+    public static final String getTournamentTeams = "SELECT * FROM teams WHERE seed > 0 ORDER by Next_Team_Playing is not null desc, is_out ASC, seed asc;";
 
     public static final String getTeamById = "SELECT * FROM teams WHERE Team_ID = :teamId;";
 
@@ -20,4 +20,7 @@ public class TeamSQL {
 
     public static final String getTeamPlayingNext = "SELECT Next_Team_Playing FROM teams where Team_ID = :teamId;";
 
+    public static final String resetNextTeamPlayingForAll = "UPDATE teams SET Next_Team_Playing = null, Point_Spread = null";
+
+    public static final String getNextPointSpread = "SELECT Point_Spread FROM teams where Team_ID = :teamId";
 }

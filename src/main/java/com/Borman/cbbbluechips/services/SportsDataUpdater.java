@@ -17,9 +17,10 @@ public class SportsDataUpdater {
     }
 
 
-//    @Scheduled(cron = "0/20 * * * * ?")
-//    public void updateTeamsRecords() {
-//        logger.info("\n\nTEST CRON\n\n");
+//    @Scheduled(cron = "0/30 * * * * ?")
+//    public void updateNextTeamPlayingAndOddsQuick() {
+//        logger.info("Scheduled task hit: updateTeamsPlayingToday.");
+//        sportsDataApiService.updateTeamsPlayingToday();
 //    }
 
 

@@ -87,9 +87,11 @@ public class OwnsService {
         List<User> playersId = getUsersWithSetNetworth();
         playersId.sort(Comparator.comparing(User::getCash).reversed());
         List<LeaderboardUser> leaders = new ArrayList<>();
-        for (int i = 1, playersIdSize = playersId.size(); i < playersIdSize; i++) {
+        int i = 1, playersIdSize = playersId.size();
+        while (i <= playersIdSize) {
             User user = playersId.get(i - 1);
             leaders.add(new LeaderboardUser(user.getFirstName() + " " + user.getLastName(), i, user.getCash()));
+            i++;
         }
         return leaders;
     }

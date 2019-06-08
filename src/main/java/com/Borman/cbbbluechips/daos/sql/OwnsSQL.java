@@ -8,7 +8,7 @@ public class OwnsSQL {
 
     public static final String getUserOwnsTeamsSQL_Limit3 = "SELECT Owns_ID, Team_ID, user.User_ID, Amount_Owned, First_Name, Last_Name, Email FROM owns " +
             "Right JOIN user ON user.User_ID = owns.User_ID " +
-            "Where Team_ID = :teamId ORDER BY Amount_Owned desc limit 3";
+            "Where Team_ID = :teamId AND Amount_Owned > 0 ORDER BY Amount_Owned desc limit 3";
 
 
     public static final String getUsersWhoOwnedTeamWithTextAlertOn = "SELECT Owns_ID, Team_ID, user.User_ID, Amount_Owned, First_Name, Last_Name, Email, Phone_Number, Send_Alerts " +
