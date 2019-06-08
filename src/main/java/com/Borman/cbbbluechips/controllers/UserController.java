@@ -48,9 +48,10 @@ public class UserController {
     String deleteUser(HttpServletRequest request, HttpServletResponse response) {
         if(cookieService.isLoggedIn(request)) {
             String userId = cookieService.getUserIdLoggedIn(request);
-            System.out.println("Detlete Account Request for: " + userId);
+            System.out.println("Delete Account Request for: " + userId);
             deleteAllTracesFromUser(userId);
             cookieService.logout(response);
+            return "redirect:../";
         }
         return "redirect:../";
     }
