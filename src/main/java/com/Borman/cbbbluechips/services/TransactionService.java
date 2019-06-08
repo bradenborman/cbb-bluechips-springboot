@@ -110,4 +110,12 @@ public class TransactionService {
         String sql = FilteredSearchUtility.buildSQL(teamName, userName);
         return transactionDao.getFilteredTransactions(sql);
     }
+
+
+    public void deleteUser(String userId) {
+        String fullName = userService.getUserFullName(userId);
+        transactionDao.deleteUsersTransactions(fullName);
+    }
+
+
 }

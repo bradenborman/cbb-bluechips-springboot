@@ -101,4 +101,7 @@ public class OwnsService {
         return playersId;
     }
 
+    public void deleteUser(String userId) {
+        ownsDao.deleteUserOwns(userId);
+    }
 }

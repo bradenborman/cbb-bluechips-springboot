@@ -2,10 +2,13 @@ package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.CookieService;
+import com.Borman.cbbbluechips.services.OwnsService;
+import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +20,15 @@ public class UserController {
 
     private UserService userService;
     private CookieService cookieService;
+    private OwnsService ownsService;
+    private TransactionService transactionService;
 
-    public UserController(UserService userService, CookieService cookieService) {
+    public UserController(UserService userService, CookieService cookieService, OwnsService ownsService, TransactionService transactionService) {
         this.userService = userService;
         this.cookieService = cookieService;
+        this.ownsService = ownsService;
+        this.transactionService = transactionService;
     }
-
 
     @PostMapping("/create")
     public String createUser(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
@@ -37,11 +43,16 @@ public class UserController {
         return "redirect:../";
     }
 
-    //TODO
-    @PostMapping("/delete/{requestId}")
-    ResponseEntity<String> deleteUser(@PathVariable String requestId) {
-        userService.deleteUser(requestId);
-        return ResponseEntity.ok("User Deleted");
+
+    @PostMapping("/delete")
+    String deleteUser(HttpServletRequest request, HttpServletResponse response) {
+        if(cookieService.isLoggedIn(request)) {
+            String userId = cookieService.getUserIdLoggedIn(request);
+            System.out.println("Detlete Account Request for: " + userId);
+            deleteAllTracesFromUser(userId);
+            cookieService.logout(response);
+        }
+        return "redirect:../";
     }
 
 
@@ -62,6 +73,15 @@ public class UserController {
         cookieService.logout(response);
         return "redirect:../";
     }
+
+
+    @Transactional
+    private void deleteAllTracesFromUser(String userId) {
+        transactionService.deleteUser(userId);
+        ownsService.deleteUser(userId);
+        userService.deleteUser(userId);
+    }
+
 
 }
 

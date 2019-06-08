@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.TransactionSQL;
+import com.Borman.cbbbluechips.daos.sql.UserSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.TransactionRowMapper;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import com.Borman.cbbbluechips.models.Transaction;
@@ -84,4 +85,16 @@ public class TransactionDao {
     public List<Transaction> getFilteredTransactions(String sql) {
         return namedParameterJdbcTemplate.query(sql, new TransactionRowMapper());
     }
+
+
+    //TODO
+    public void deleteUsersTransactions(String fullName) {
+        try {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("fullName", fullName);
+        namedParameterJdbcTemplate.update(TransactionSQL.deleteUsersTransactions, params);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }

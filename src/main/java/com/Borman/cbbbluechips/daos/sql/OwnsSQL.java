@@ -36,4 +36,5 @@ public class OwnsSQL {
     public static final String getTotalMoneyInPlay = "SELECT SUM(Amount_Owned * Current_Market_Price) + (Select Sum(Cash) From User) " +
             "FROM owns Right JOIN teams ON owns.Team_ID = teams.Team_ID;";
 
+    public static final String deleteUserOwns = "DELETE FROM owns WHERE User_ID = :userId";
 }

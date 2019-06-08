@@ -104,4 +104,15 @@ public class OwnsDao {
         }
     }
 
+    //TODO
+    public void deleteUserOwns(String userId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+            namedParameterJdbcTemplate.update(OwnsSQL.deleteUserOwns, params);
+        } catch (Exception e) {
+            logger.info(e.toString());
+        }
+    }
+
+
 }
