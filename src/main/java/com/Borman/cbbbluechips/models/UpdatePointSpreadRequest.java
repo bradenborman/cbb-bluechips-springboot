@@ -3,7 +3,15 @@ package com.Borman.cbbbluechips.models;
 public class UpdatePointSpreadRequest {
 
     private String teamName;
-    private String nextPointSpread;
+    private double nextPointSpread;
+
+    public UpdatePointSpreadRequest() { }
+
+    public UpdatePointSpreadRequest(String teamName, double nextPointSpread) {
+        this.teamName = teamName;
+        this.nextPointSpread = nextPointSpread;
+    }
+
 
     public String getTeamName() {
         return teamName;
@@ -13,11 +21,11 @@ public class UpdatePointSpreadRequest {
         this.teamName = teamName;
     }
 
-    public String getNextPointSpread() {
+    public double getNextPointSpread() {
         return nextPointSpread;
     }
 
-    public void setNextPointSpread(String nextPointSpread) {
+    public void setNextPointSpread(double nextPointSpread) {
         this.nextPointSpread = nextPointSpread;
     }
 }

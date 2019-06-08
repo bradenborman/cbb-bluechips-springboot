@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.BiPredicate;
 
 @Service
 public class AdminService {
@@ -103,9 +104,29 @@ public class AdminService {
 
         List<UpdatePointSpreadRequest> updates = new ArrayList<>();
         for (int x = 0; x < teamNames.size(); x++)
-            updates.add(UpdatePointSpreadRequestBuilder.anUpdatePointSpreadRequest().withTeamName(teamNames.get(x)).withNextPointSpread(pointSpreads.get(x)).build());
+            updates.add(UpdatePointSpreadRequestBuilder.anUpdatePointSpreadRequest().withTeamName(teamNames.get(x)).withNextPointSpread(Double.valueOf(pointSpreads.get(x))).build());
 
+        validateChangeOfPointSpread(updates);
         updates.forEach(team -> adminDao.updatePointSpreadRequest(team));
     }
+
+
+
+    private void validateChangeOfPointSpread(List<UpdatePointSpreadRequest> updates) {
+
+        BiPredicate<UpdatePointSpreadRequest, UpdatePointSpreadRequest> hasOpposite = (request, bulk) -> (swapPointSpreadToOppo(request.getNextPointSpread()).equals(String.valueOf(bulk.getNextPointSpread())));
+
+        updates.forEach(updateRequest -> {
+            if(updates.stream().noneMatch(bulk -> hasOpposite.test(updateRequest, bulk)))
+                throw new RuntimeException("Point Spreads do not match up");
+        });
+
+    }
+
+
+    private String swapPointSpreadToOppo(double pointSpread) {
+        return  String.valueOf((pointSpread * -1));
+    }
+
 
 }

@@ -4,7 +4,7 @@ import com.Borman.cbbbluechips.models.UpdatePointSpreadRequest;
 
 public final class UpdatePointSpreadRequestBuilder {
     private String teamName;
-    private String nextPointSpread;
+    private double nextPointSpread;
 
     private UpdatePointSpreadRequestBuilder() {
     }
@@ -18,7 +18,7 @@ public final class UpdatePointSpreadRequestBuilder {
         return this;
     }
 
-    public UpdatePointSpreadRequestBuilder withNextPointSpread(String nextPointSpread) {
+    public UpdatePointSpreadRequestBuilder withNextPointSpread(double nextPointSpread) {
         this.nextPointSpread = nextPointSpread;
         return this;
     }
