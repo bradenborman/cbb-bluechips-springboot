@@ -32,6 +32,9 @@ repositories {
 }
 
 dependencies {
+
+    compile "cglib:cglib:2.2"
+    
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
