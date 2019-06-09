@@ -112,7 +112,7 @@ public class AdminService {
 
 
 
-    private void validateChangeOfPointSpread(List<UpdatePointSpreadRequest> updates) {
+    public void validateChangeOfPointSpread(List<UpdatePointSpreadRequest> updates) {
 
         BiPredicate<UpdatePointSpreadRequest, UpdatePointSpreadRequest> hasOpposite = (request, bulk) -> (swapPointSpreadToOppo(request.getNextPointSpread()).equals(String.valueOf(bulk.getNextPointSpread())));
 
