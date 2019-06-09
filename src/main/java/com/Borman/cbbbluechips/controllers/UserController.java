@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,14 +59,13 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(HttpServletRequest request, HttpServletResponse
-            response, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
+    public String login(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
         User user = userService.attemptToLogIn(email, password);
         if (user != null) {
             cookieService.login(user, response);
             return "redirect:../portfolio";
         } else {
-            return "redirect:../";
+            return "redirect:../?wasError=true";
         }
     }
 

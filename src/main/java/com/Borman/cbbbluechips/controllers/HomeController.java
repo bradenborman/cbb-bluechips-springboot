@@ -22,7 +22,10 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String welcome(HttpServletRequest request, HttpServletResponse response) {
+    public String welcome(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(defaultValue = "false") String wasError) {
+
+        if(!wasError.equals("false"))
+            model.addAttribute("error", "Failed");
         return cookieService.isLoggedIn(request) ? "redirect:/portfolio" : "home";
     }
 
@@ -51,4 +54,10 @@ public class HomeController {
         return ResponseEntity.ok("OKAY");
     }
 
+    //OPENS IN NEW TAB
+    @GetMapping("/forgotPassword/{email}")
+    public String forgotPassword(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable("email") String email) {
+        model.addAttribute("email", email);
+       return "forgotpasswordnotice";
+    }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Log in | Register</title>
     <meta charset="utf-8">
@@ -53,15 +53,14 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" name="email" id="email" class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="emailLBL"
-                                           for="email">Email</label>
+                                    <label th:style="${error} ? 'color:red' : ''" class="form-control-placeholder floatingLbl" id="emailLBL" for="email">Email</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="password" maxlength="12" name="password" id="password"
                                            class="form-control" required>
-                                    <label class="form-control-placeholder floatingLbl" id="passwordLBL" for="password">Password</label>
+                                    <label th:style="${error} ? 'color:red' : ''" class="form-control-placeholder floatingLbl" id="passwordLBL" for="password">Password</label>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -81,10 +80,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" maxlength="30" name="fname" id="fname" class="form-control"
-                                           required>
-                                    <label class="form-control-placeholder floatingLbl" id="fnameLBL" for="fname">First
-                                        Name</label>
+                                    <input type="text" maxlength="30" name="fname" id="fname" class="form-control" required>
+                                    <label class="form-control-placeholder floatingLbl" id="fnameLBL" for="fname">First Name</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -153,5 +150,73 @@
 <footer>
     <center>For issues, please contact: <br/><b>Braden Borman</b> | (573) 826-1903</center>
 </footer>
+
+<script>
+
+setTimeout(function(){
+ shouldShowPasswordRecovery($("#email").val())
+ }, 350);
+
+$(document).ready(function(){
+
+	$("#email").keyup(function() {
+		  shouldShowPasswordRecovery($(this).val())
+	});
+
+
+	$('#fnameLBL').click(function(){
+	  	$('#fname').focus()
+	});
+
+	$('#lnameLBL').click(function(){
+	  	$('#lname').focus()
+	});
+
+	$('#email_newLBL').click(function(){
+	  	$('#email_new').focus()
+	});
+
+
+	$('#password_newLBL').click(function(){
+	  	$('#password_new').focus()
+	});
+
+
+	$('#emailLBL').click(function(){
+	  	$('#email').focus()
+	});
+
+
+	$('#passwordLBL').click(function(){
+	  	$('#password').focus()
+	});
+});
+
+
+
+function forgotPassword() {
+	var email = $("#email").val();
+    //TODO
+	if (validateEmail(email)) {
+	    window.open("/forgotPassword/" + email,'_blank');
+	}
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+function shouldShowPasswordRecovery(email) {
+
+	if (validateEmail(email)) {
+ 		$("#recoverPassword").html("Forgot Password? Click me")
+	}else {
+		$("#recoverPassword").html("Enter valid Email for password recovery")
+	}
+}
+
+</script>
+
 </body>
 </html>
