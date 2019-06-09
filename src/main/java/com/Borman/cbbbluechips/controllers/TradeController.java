@@ -50,7 +50,7 @@ public class TradeController {
     }
 
     @PostMapping("/trade-action/sell")
-    public String sellTeam(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
+    public synchronized String sellTeam(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
         if (cookieService.isLoggedIn(request)) {
             TradeRequest tradeRequest = new TradeRequest(teamId, cookieService.getUserIdLoggedIn(request), volume, TradeAction.SELL);
             if (ownsService.validateOwnership(tradeRequest))
@@ -62,7 +62,7 @@ public class TradeController {
     }
 
     @PostMapping("/trade-action/buy")
-    public String buyTeam(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
+    public synchronized String buyTeam(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
         if (cookieService.isLoggedIn(request)) {
             TradeRequest tradeRequest = new TradeRequest(teamId, cookieService.getUserIdLoggedIn(request), volume, TradeAction.BUY);
             double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
