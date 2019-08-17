@@ -21,7 +21,10 @@ public class TwiloService {
     OwnsService ownsService;
 
     private final String applicationsPhoneNumber = "15732791590";
-    private final String ACCOUNT_SID = "AC6af1055b717a97f8dee68ce32b01b6fb";
+
+    @Autowired
+    @Qualifier("Twilio_ACCOUNT_SID")
+    private String ACCOUNT_SID;
 
 
     @Autowired

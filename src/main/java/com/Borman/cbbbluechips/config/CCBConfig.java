@@ -32,8 +32,13 @@ public class CCBConfig {
     }
 
     @Bean("Twilio_Auth")
-    public String getTwilio_Auth(String admins) {
+    public String getTwilio_Auth() {
         return System.getenv("Twilio_Auth");
+    }
+
+    @Bean("Twilio_ACCOUNT_SID")
+    public String getTwilio_ACCOUNT_SID() {
+        return System.getenv("Twilio_ACCOUNT_SID");
     }
 
     @Bean

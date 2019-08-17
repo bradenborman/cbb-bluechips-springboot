@@ -104,7 +104,7 @@ public class AdminService {
 
         List<UpdatePointSpreadRequest> updates = new ArrayList<>();
         for (int x = 0; x < teamNames.size(); x++)
-            updates.add(UpdatePointSpreadRequestBuilder.anUpdatePointSpreadRequest().withTeamName(teamNames.get(x)).withNextPointSpread(Double.valueOf(pointSpreads.get(x))).build());
+            updates.add(UpdatePointSpreadRequestBuilder.anUpdatePointSpreadRequest().withTeamName(teamNames.get(x)).withNextPointSpread(attemptToGetPointSpread(pointSpreads.get(x))).build());
 
         validateChangeOfPointSpread(updates);
         updates.forEach(team -> adminDao.updatePointSpreadRequest(team));
@@ -116,10 +116,10 @@ public class AdminService {
 
         BiPredicate<UpdatePointSpreadRequest, UpdatePointSpreadRequest> hasOpposite = (request, bulk) -> (swapPointSpreadToOppo(request.getNextPointSpread()).equals(String.valueOf(bulk.getNextPointSpread())));
 
-        updates.forEach(updateRequest -> {
-            if(updates.stream().noneMatch(bulk -> hasOpposite.test(updateRequest, bulk)))
-                throw new RuntimeException("Point Spreads do not match up");
-        });
+//        updates.forEach(updateRequest -> {
+//            if(updates.stream().noneMatch(bulk -> hasOpposite.test(updateRequest, bulk)))
+//                throw new RuntimeException("Point Spreads do not match up");
+//        });
 
     }
 
@@ -128,5 +128,15 @@ public class AdminService {
         return  String.valueOf((pointSpread * -1));
     }
 
+
+    private double attemptToGetPointSpread(String pointSpread) {
+
+        try {
+           return Double.parseDouble(pointSpread);
+        }
+        catch (Exception e) {
+            return 0;
+        }
+    }
 
 }
