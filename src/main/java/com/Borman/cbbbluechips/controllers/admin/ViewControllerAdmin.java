@@ -30,7 +30,7 @@ public class ViewControllerAdmin {
         boolean isAdmin = cookieService.isUserAdmin(request);
        if(!isAdmin)
            return "redirect:/";
-        System.out.println(String.format("IS ADMIN: %s", isAdmin));
+        //System.out.println(String.format("IS ADMIN: %s", isAdmin));
         model.addAttribute("roundId", gameSettingsService.getCurrentRound());
         return "admin_directory";
     }
