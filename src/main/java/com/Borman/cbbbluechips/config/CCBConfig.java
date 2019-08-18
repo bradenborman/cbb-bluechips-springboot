@@ -41,6 +41,11 @@ public class CCBConfig {
         return System.getenv("Twilio_ACCOUNT_SID");
     }
 
+    @Bean("SportsDataApiKey")
+    public String getSportsDataApiKey() {
+        return System.getenv("SportsDataApiKey");
+    }
+
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();

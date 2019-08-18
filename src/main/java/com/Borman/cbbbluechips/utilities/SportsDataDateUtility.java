@@ -14,8 +14,8 @@ public class SportsDataDateUtility {
         int day = date.getDayOfMonth();
 
         //TODO hardcoded for testing
-       // return SECOND_ROUND_2019;
-        return String.format("%s-%s-%s", date.getYear(), month, day);
+       //return SECOND_ROUND_2019;
+       return String.format("%s-%s-%s", date.getYear(), month, day);
 
     }
 

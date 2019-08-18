@@ -5,6 +5,8 @@ import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataGamesToday;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import com.Borman.cbbbluechips.utilities.SportsDataApiRoutes;
 import com.Borman.cbbbluechips.utilities.SportsDataDateUtility;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,7 +21,10 @@ public class SportsDataApiService {
 
     private RestTemplate restTemplate;
     private TeamDao teamDao;
-    private final String apiKey = "df57fbe761424db78e5c16a103ceb0d0";
+
+    @Autowired
+    @Qualifier("SportsDataApiKey")
+    private String apiKey;
 
 
     public SportsDataApiService(RestTemplate restTemplate, TeamDao teamDao) {
