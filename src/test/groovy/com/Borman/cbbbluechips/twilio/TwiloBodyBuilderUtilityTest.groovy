@@ -15,7 +15,9 @@ class TwiloBodyBuilderUtilityTest extends Specification {
 
         then:
         body == "CBB BLUECHIPS UPDATE:\n" +
-                "Duke has completed their game. You own 20 shares that are now open for trading at \$5,000 Per-Share"
+                "Duke has completed their game. You own 20 shares that are now open for trading at \$5,000 Per-Share.\n" +
+                "\n" +
+                "Duke's value in your portfolio: \$100,000"
 
     }
 
@@ -29,6 +31,17 @@ class TwiloBodyBuilderUtilityTest extends Specification {
 
         then:
         body == "Current Leaders: \nKeaton\nJake\nTyler"
+
+    }
+
+    def "buildTotalValueString"() {
+
+
+        when:
+        String body = TwiloBodyBuilderUtility.buildTotalValueString("Duke", 10, 4000.00)
+
+        then:
+        body == "\n\nDuke's value in your portfolio: \$40,000"
 
     }
 

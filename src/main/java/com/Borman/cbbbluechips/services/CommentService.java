@@ -20,7 +20,23 @@ public class CommentService {
 
     private Predicate<String> commentHasValue = i -> (i.length() > 0);
 
-    public List<Comment> getComments(String userId) {
+    public List<Comment> getComments(String userId, boolean userAdmin) {
+        List<Comment> comments =  getComments(userId);
+
+        //give admin ability to delete comments
+        if(userAdmin)
+            comments.forEach(comment -> {
+                comment.getSubComments().forEach(subComment -> {
+                    subComment.setUserOwnsComment(true);
+                });
+                comment.setUserOwnsComment(true);
+            });
+
+        return comments;
+    }
+
+
+    private List<Comment> getComments(String userId) {
         List<Comment> baseComments = commentsDao.getComments();
         baseComments.forEach(comment -> comment.setSubComments(getSubComments(comment.getCommentId(), userId)));
         isCommentUserCreatedCheck(baseComments, userId);
@@ -60,6 +76,5 @@ public class CommentService {
         else
             commentsDao.deleteSubCommentById(commentId);
     }
-
 
 }

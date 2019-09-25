@@ -3,6 +3,7 @@ package com.Borman.cbbbluechips.services;
 import com.Borman.cbbbluechips.daos.UserDao;
 import com.Borman.cbbbluechips.models.TradeCentral;
 import com.Borman.cbbbluechips.models.User;
+import com.Borman.cbbbluechips.utilities.UserNameUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,7 +31,7 @@ public class UserService {
     @Transactional
     public User createNewUser(String fname, String lname, String email_new, String password_new) {
 
-        User user = new User(fname, lname, email_new, password_new);
+        User user = new User(UserNameUtility.titleCaseConversion(fname), UserNameUtility.titleCaseConversion(lname), email_new, password_new);
 
         if (!isUserAlreadyPresent(user.getEmail())) {
             user.setCash(STARTING_CASH);

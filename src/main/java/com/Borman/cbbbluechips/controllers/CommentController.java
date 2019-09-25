@@ -31,7 +31,7 @@ public class CommentController {
         if(!cookieService.isLoggedIn(request))
             return "redirect:/";
         String userId = cookieService.getUserIdLoggedIn(request);
-        model.addAttribute("comments", commentService.getComments(userId));
+        model.addAttribute("comments", commentService.getComments(userId, cookieService.isUserAdmin(request)));
         return "comments";
     }
 
@@ -53,7 +53,6 @@ public class CommentController {
 
     @PostMapping("/deleteComment")
     public String deleteComment(HttpServletRequest request, @RequestParam("CommentId") String CommentId, @RequestParam("isParentComment") boolean isParentComment) {
-        System.out.println(CommentId + " " + isParentComment);
         commentService.deleteComment(CommentId, isParentComment);
         return "redirect:/comments";
     }
