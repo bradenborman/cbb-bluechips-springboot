@@ -26,7 +26,7 @@ public class CookieService {
 
     public void login(User user, HttpServletResponse response) {
         if (user != null) {
-            Cookie cookie = new Cookie("_t1zd", disguiseCookieString + user.getID());
+            Cookie cookie = new Cookie("_t1zd", disguiseCookieString + disguisedId(user.getID()));
             cookie.setPath("/");
             cookie.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(cookie);
@@ -63,7 +63,7 @@ public class CookieService {
         if (allCookies != null) {
             for (Cookie cookie : allCookies) {
                 if (cookie.getName().equals("_t1zd") && cookie.getValue() != null) {
-                    return cookie.getValue().replace(disguiseCookieString, "");
+                    return getDisguisedId(cookie.getValue().replace(disguiseCookieString, ""));
                 }
             }
         }
@@ -79,5 +79,14 @@ public class CookieService {
         return false;
     }
 
+    private String disguisedId(String id) {
+        int idx = Integer.parseInt(id);
+        return String.valueOf(idx * 250);
+    }
+
+    private String getDisguisedId(String id) {
+        int idx = Integer.parseInt(id);
+        return String.valueOf(idx / 250);
+    }
 
 }
