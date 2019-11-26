@@ -66,5 +66,10 @@ public class CCBConfig {
         return Arrays.asList(admins);
     }
 
+    @Bean("make_api_call")
+    public boolean getMakeApiCall() {
+        return Boolean.parseBoolean(System.getenv("Make_Api_Call"));
+    }
+
 
 }

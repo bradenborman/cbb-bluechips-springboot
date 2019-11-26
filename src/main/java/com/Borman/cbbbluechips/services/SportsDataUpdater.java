@@ -11,13 +11,14 @@ public class SportsDataUpdater {
     private final Logger logger = LoggerFactory.getLogger(SportsDataUpdater.class);
 
     private SportsDataApiService sportsDataApiService;
+    private boolean shouldMakeApiCall;
 
-    public SportsDataUpdater(SportsDataApiService sportsDataApiService) {
+    public SportsDataUpdater(SportsDataApiService sportsDataApiService, boolean shouldMakeApiCall) {
         this.sportsDataApiService = sportsDataApiService;
+        this.shouldMakeApiCall = shouldMakeApiCall;
     }
 
-
-//    @Scheduled(cron = "0/30 * * * * ?")
+    //    @Scheduled(cron = "0/30 * * * * ?")
 //    public void updateNextTeamPlayingAndOddsQuick() {
 //        logger.info("Scheduled task hit: updateTeamsPlayingToday.");
 //        sportsDataApiService.updateTeamsPlayingToday();
@@ -27,7 +28,10 @@ public class SportsDataUpdater {
     @Scheduled(cron = "0 0 8 * * ?") //Every day at 8am
     public void updateNextTeamPlayingAndOdds() {
         logger.info("Scheduled task hit: updateTeamsPlayingToday.");
-        sportsDataApiService.updateTeamsPlayingToday();
+        if(shouldMakeApiCall)
+            sportsDataApiService.updateTeamsPlayingToday();
+        else
+            logger.info("ENV VAR Make_Api_Call set to false");
     }
 
 
