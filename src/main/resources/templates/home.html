@@ -139,6 +139,18 @@
     </div>
 </div>
 </div>
+<!-- Modal -->
+<div class="modale" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h2>Password Recovery</h2>
+        </div>
+        <div class="modal-body">
+            <p id="emailFeedback">Attempting to send email...</p>
+        </div>
+    </div>
+</div>
+<!-- /Modal -->
 <footer>
     <center>For issues, please contact: <br/><b>Braden Borman</b> | (573) 826-1903</center>
 </footer>
@@ -190,13 +202,19 @@ function forgotPassword() {
 
 
 	if (validateEmail(email)) {
-
+          $('.modale').addClass('opened');
           $.post("/email/recover",
           {
             emailToRecover: email
           },
           function(returnString, status){
-            alert(returnString);
+
+            $("#emailFeedback").html(returnString)
+
+            setTimeout(function(){
+                $('.modale').removeClass('opened');
+            }, 5000);
+
           });
 
 	}
