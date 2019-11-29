@@ -130,4 +130,14 @@ public class UserDao {
     }
 
 
+    public User getUserByEmail(String emailToRecover) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("email", emailToRecover);
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserWithEmail, params, new UserRowMapper());
+        } catch (Exception e) {
+            logger.error("Failed to get User by Email\n" + e);
+            return null;
+        }
+
+    }
 }

@@ -95,4 +95,9 @@ public class UserService {
     public String getUserPhoneNumber(String userid) {
         return userDao.getUserPhoneNumber(userid);
     }
+
+    User getUserByEmail(String emailToRecover) {
+        return userDao.getUserByEmail(emailToRecover);
+    }
+
 }

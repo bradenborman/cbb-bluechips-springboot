@@ -54,11 +54,4 @@ public class HomeController {
         return ResponseEntity.ok("OKAY");
     }
 
-    //TODO
-    //OPENS IN NEW TAB
-    @GetMapping("/forgotPassword/{email}")
-    public String forgotPassword(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable("email") String email) {
-        model.addAttribute("email", email);
-       return "forgotpasswordnotice";
-    }
 }

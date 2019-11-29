@@ -3,8 +3,10 @@ package com.Borman.cbbbluechips.integration
 import com.Borman.cbbbluechips.twilio.TwiloBodyBuilderUtility
 import com.Borman.cbbbluechips.twilio.TwiloService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
+@SpringBootTest
 class TwiloServiceTest extends Specification {
 
 

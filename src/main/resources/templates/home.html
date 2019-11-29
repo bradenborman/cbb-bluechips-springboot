@@ -138,14 +138,6 @@
         </div>
     </div>
 </div>
-
-<div class="container ">
-    <div class="row">
-        <div class="col-md-5">
-        </div>
-        <div class="col-md-8">
-        </div>
-    </div>
 </div>
 <footer>
     <center>For issues, please contact: <br/><b>Braden Borman</b> | (573) 826-1903</center>
@@ -162,7 +154,6 @@ $(document).ready(function(){
 	$("#email").keyup(function() {
 		  shouldShowPasswordRecovery($(this).val())
 	});
-
 
 	$('#fnameLBL').click(function(){
 	  	$('#fname').focus()
@@ -196,10 +187,20 @@ $(document).ready(function(){
 
 function forgotPassword() {
 	var email = $("#email").val();
-    //TODO
+
+
 	if (validateEmail(email)) {
-	    window.open("/forgotPassword/" + email,'_blank');
+
+          $.post("/email/recover",
+          {
+            emailToRecover: email
+          },
+          function(returnString, status){
+            alert(returnString);
+          });
+
 	}
+
 }
 
 function validateEmail(email) {
