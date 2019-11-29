@@ -17,6 +17,7 @@ public class Owns {
     private int seed;
     private boolean isOut;
     private double currentMarketPrice;
+    private boolean locked;
 
     public String getOwnsId() {
         return ownsId;
@@ -96,6 +97,14 @@ public class Owns {
 
     public void setCurrentMarketPrice(double currentMarketPrice) {
         this.currentMarketPrice = currentMarketPrice;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     @Override

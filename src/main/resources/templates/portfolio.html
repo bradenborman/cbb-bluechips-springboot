@@ -96,7 +96,10 @@
                             <td th:text="${team.amountOwned}"></td>
                             <td th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
                             <td th:text="'$' + ${#numbers.formatDecimal((team.amountOwned * team.currentMarketPrice), 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
-                            <td class="hideSmall"><button th:id="${team.teamId + 'btn'}" type="button" class="tradeBTN btn btn-primary">Trade</button></td>
+                            <td class="hideSmall">
+                                <button th:if="${team.locked}" th:id="${team.teamId + 'btn'}" type="button" class="tradeBTN btn btn-primary disabled">Trade <i class="fas fa-lock"></i></button>
+                                <button th:if="${!team.locked}" th:id="${team.teamId + 'btn'}" type="button" class="tradeBTN btn btn-primary">Trade</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
