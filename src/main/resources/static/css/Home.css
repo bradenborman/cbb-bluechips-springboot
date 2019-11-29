@@ -290,6 +290,10 @@ body {
 
 @media (max-width: 991.98px) {
 
+    #emailFeedback {
+        font-size: .7em;
+    }
+
 
     .modal-dialog {
         position: absolute;
