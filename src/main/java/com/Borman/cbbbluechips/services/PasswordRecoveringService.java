@@ -19,7 +19,7 @@ public class PasswordRecoveringService {
     Logger logger = LoggerFactory.getLogger(PasswordRecoveringService.class);
 
     private static String GENERIC_SUCCESS_MESSAGE = "An Email containing the password for the requested account has been sent. " +
-            "Please check inbox for password. <br /><br />Try searching inbox for: <b>cbb.bluechips.donotreply@gmail.com</b>";
+            "<br /><br />Try searching inbox for: <b>cbb.bluechips.donotreply@gmail.com</b>";
 
     private static String GENERIC_FAILED_MESSAGE = "Failed to recover password. <br /><br /> Ply try again and validate email.";
 
