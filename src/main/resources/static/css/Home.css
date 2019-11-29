@@ -290,11 +290,25 @@ body {
 
 @media (max-width: 991.98px) {
 
+
+    .modal-dialog {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    .tab-content {
+        min-height: 0px;
+    }
+
 	.my-hr {
 
 	display: block;
-	--base-size: 160; /* Ð Ð°Ð·Ð¼ÐµÑ€ */
-	--base-color: darkblue; /* Ð¦Ð²ÐµÑ‚ */
+	--base-size: 160;
+	--base-color: darkblue;
 	--base-line-size: calc(var(--base-size) / 100 * 1px);
 	--base-circle-size: calc(var(--base-size) / 50 * 1px);
 	--line: linear-gradient(var(--base-color), var(--base-color));
@@ -312,7 +326,6 @@ body {
 	background-size: var(--line-size), var(--circle-size), var(--circle-size), var(--circle-size), var(--line-size);
 	background-position: left center, center center, center center, center center, right center;
 	background-repeat: no-repeat;
-	margin-top: 30px;
 }
 
 
