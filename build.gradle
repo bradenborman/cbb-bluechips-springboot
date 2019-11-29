@@ -54,6 +54,8 @@ dependencies {
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
 
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.1.6.RELEASE'
 
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
     implementation 'org.codehaus.groovy:groovy-all:2.4.11'
