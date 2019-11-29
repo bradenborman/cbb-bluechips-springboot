@@ -53,7 +53,7 @@ public class EmailService {
         }
 
         logger.info("Sending Email to " + email);
-        //javaMailSender.send(message);
+        javaMailSender.send(message);
 
     }
 
