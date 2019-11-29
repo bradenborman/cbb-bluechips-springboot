@@ -16,6 +16,7 @@ body {
 .DELETE_TEXT {
     font-weight: bold;
     margin-top: 50px;
+    cursor: pointer;
     color: red;
     margin-bottom: 20px;
 }
