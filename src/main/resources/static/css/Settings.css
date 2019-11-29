@@ -14,7 +14,10 @@ body {
 
 
 #DELETE_TEXT {
+    font-weight: bold;
     margin-top: 50px;
+    color: red;
+    margin-bottom: 20px;
 }
 
 input[type=text] {
