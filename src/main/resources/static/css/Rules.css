@@ -47,6 +47,7 @@ a:hover {
 }
 
 .sticky {
+  z-index: 99;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -76,6 +77,41 @@ a.anchor {
     visibility: hidden;
 }
 
+#pointSpreadCalHeader {
+    margin-top: 50px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#pointSpreadCal {
+    margin: auto;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 130px;
+    width: 80%;
+    background-color: #fafafa;
+}
+
+.spreads {
+    margin-top: 15px;
+}
+
+#CoverdTeam {
+    margin-top: 25px;
+}
+
+.result {
+    font-weight: bold;
+}
+
+input {
+    z-index: -99;
+    text-align: center;
+    padding: 6px;
+}
 
 @media screen and (max-width: 600px) {
 
