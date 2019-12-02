@@ -15,9 +15,9 @@ public class KeepAliveDatabase {
         Hopefully runs to keep database alive
      */
 
-//    @Scheduled(cron = "0 0/10 * * * ?")
-//    public void updateNextTeamPlayingAndOddsQuick() {
-//        gameSettingsDao.getCurrentRound();
-//    }
+    @Scheduled(cron = "0 0/3 * * * ?")
+    public void updateNextTeamPlayingAndOddsQuick() {
+        gameSettingsDao.getCurrentRound();
+    }
 
 }
