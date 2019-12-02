@@ -35,25 +35,16 @@ public class UserDao {
     }
 
     public String createNewUser(User user) {
-        try {
             KeyHolder keyHolder = new GeneratedKeyHolder();
             SqlParameterSource params = new BeanPropertySqlParameterSource(user);
             namedParameterJdbcTemplate.update(UserSQL.insertUser, params, keyHolder);
             return Objects.requireNonNull(keyHolder.getKey()).toString();
-        } catch (Exception e) {
-            logger.error("Cannot Insert User" + user + "\n" + e);
-            return "0";
-        }
     }
 
     public void deleteUser(String userId) {
-        try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
             namedParameterJdbcTemplate.update(UserSQL.deleteUser, params);
             logger.info("Deleted User");
-        } catch (Exception e) {
-            logger.error("Cannot Delete User" + userId + "\n" + e);
-        }
     }
 
     public void addCashToUser(String userId, double moneyToAdd) {
@@ -72,35 +63,20 @@ public class UserDao {
     }
 
     public int countEmailAddressInDatabase(String email) {
-        try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("email", email);
             return namedParameterJdbcTemplate.queryForObject(OwnsSQL.countEmailAddress, params, Integer.class);
-        } catch (Exception e) {
-            logger.error("Failed to get User by Email\n" + e);
-        }
-        return 0;
     }
 
     public User getUserById(String userId) {
-        try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
             return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());
-        } catch (Exception e) {
-            logger.error("Failed to get User by Email\n" + e);
-            return null;
-        }
     }
 
     public User loginWithEmailAndPassword(String email, String password) {
-        try {
             MapSqlParameterSource params = new MapSqlParameterSource()
                     .addValue("email", email)
                     .addValue("password", password);
             return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserWithEmailAndPassword, params, new UserRowMapper());
-        } catch (Exception e) {
-            logger.error("Failed to get User by Email\n" + e);
-            return null;
-        }
     }
 
 

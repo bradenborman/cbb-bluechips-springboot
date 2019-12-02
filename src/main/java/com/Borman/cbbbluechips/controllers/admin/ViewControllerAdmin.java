@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.EOFException;
 
 
 @Controller
@@ -65,6 +66,10 @@ public class ViewControllerAdmin {
         return "set_pointspread";
     }
 
+//    @RequestMapping("/throwError")
+//    public String throwError() throws EOFException {
+//        throw new java.io.EOFException();
+//    }
 
 }
 
