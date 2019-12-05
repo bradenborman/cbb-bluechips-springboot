@@ -27,10 +27,8 @@ public class PasswordRecoveringService {
         logger.info("Attempting to recover password for: " + emailToRecover);
         User user = userService.getUserByEmail(emailToRecover);
 
-        if(user != null && user.getPassword() != null) {
-            emailService.sendPasswordRecoveryEmail(emailToRecover, user.getPassword());
-            return GENERIC_SUCCESS_MESSAGE;
-        }
+        if (user != null && user.getPassword() != null)
+            return emailService.sendPasswordRecoveryEmail(emailToRecover, user.getPassword()) ? GENERIC_SUCCESS_MESSAGE : GENERIC_FAILED_MESSAGE;
         else
             return GENERIC_FAILED_MESSAGE;
     }

@@ -41,7 +41,7 @@ public class EmailService {
     }
 
 
-    public void sendPasswordRecoveryEmail(String email, String password) {
+    public boolean sendPasswordRecoveryEmail(String email, String password) {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
@@ -53,7 +53,15 @@ public class EmailService {
         }
 
         logger.info("Sending Email to " + email);
-        javaMailSender.send(message);
+
+        try {
+            javaMailSender.send(message);
+            logger.info("Mail sent");
+            return true;
+        }catch (Exception e) {
+            logger.info(e.getMessage());
+            return false;
+        }
 
     }
 

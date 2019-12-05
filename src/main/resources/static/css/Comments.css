@@ -1,0 +1,57 @@
+   .Parent {
+			 margin-bottom: 65px;
+			 border-radius: 20px;
+			 background-color: #f2f3f3;
+         }
+         .media-body {
+			 margin-top: 18px;
+			 margin-left: 18px;
+         }
+         .nested {
+			 margin-left: 8vh;
+			 margin-right: 10%;
+			 padding-left: 8px;
+
+         }
+
+		 .comment {
+			border-left: 2px solid #0ebe17;
+
+		 }
+
+         hr {
+			 margin-top: 10px;
+			 width: 70%;
+			 margin: auto;
+         }
+
+		 .parentTextArea {
+			margin-right: 2%;
+		 }
+
+		 button {
+
+			margin-bottom: 20px;
+		 }
+    .icon-remove {
+            color: #bbc4c3;
+         -webkit-transition: -webkit-transform .5s ease-in-out;
+                  transition:         transform .5s ease-in-out;
+    }
+
+    .icon-remove:hover {
+        cursor: pointer;
+        color: #728382;
+        transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    }
+
+
+
+@media (max-width: 575.98px) {
+
+    .nested {
+			 margin-left: 4vh;
+         }
+
+}
