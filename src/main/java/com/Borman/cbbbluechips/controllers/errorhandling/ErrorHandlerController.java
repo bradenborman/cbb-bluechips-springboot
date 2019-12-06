@@ -27,7 +27,7 @@ public class ErrorHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NoUserPresent.class)
     public String noUserPresent(final NoUserPresent e) {
-        return "redirect:../?wasError=true%emailAttempted=" + e.getEmailAttempted();
+        return "redirect:../?wasError=true&emailAttempted=" + e.getEmailAttempted();
     }
 
 }
