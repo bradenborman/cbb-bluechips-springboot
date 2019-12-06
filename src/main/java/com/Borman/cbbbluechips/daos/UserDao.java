@@ -2,11 +2,13 @@ package com.Borman.cbbbluechips.daos;
 
 import com.Borman.cbbbluechips.daos.sql.OwnsSQL;
 import com.Borman.cbbbluechips.daos.sql.UserSQL;
+import com.Borman.cbbbluechips.exceptions.NoUserPresent;
 import com.Borman.cbbbluechips.mappers.rowMappers.UserRowMapper;
 import com.Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -73,12 +75,15 @@ public class UserDao {
     }
 
     public User loginWithEmailAndPassword(String email, String password) {
-            MapSqlParameterSource params = new MapSqlParameterSource()
-                    .addValue("email", email)
-                    .addValue("password", password);
-            return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserWithEmailAndPassword, params, new UserRowMapper());
+           try {
+               MapSqlParameterSource params = new MapSqlParameterSource()
+                       .addValue("email", email)
+                       .addValue("password", password);
+               return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserWithEmailAndPassword, params, new UserRowMapper());
+           }catch (EmptyResultDataAccessException e) {
+               throw new NoUserPresent(e.getMessage(), email);
+           }
     }
-
 
     public boolean doesUserSubscribeToTextAlerts(String userId) {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);

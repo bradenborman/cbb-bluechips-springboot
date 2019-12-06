@@ -21,8 +21,11 @@ public class HomeController {
         this.userService = userService;
     }
 
+    //TODO could add the emailAttempted to template but at least it shows in url.
     @RequestMapping("/")
-    public String welcome(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(defaultValue = "false") String wasError) {
+    public String welcome(HttpServletRequest request, HttpServletResponse response, Model model,
+                          @RequestParam(defaultValue = "false") String wasError,
+                          @RequestParam(defaultValue = "") String emailAttempted) {
 
         if(!wasError.equals("false"))
             model.addAttribute("error", "Failed");
