@@ -63,26 +63,27 @@
         <div class="row">
             <div class="col-sm-6">
                 Team 1's final score:<br>
-                <input maxlength="3" size="3" type="text" value="80" name="firstname">
+                <input maxlength="3" size="3" class="scoreInput" type="text" id="team1Score">
             </div>
             <div class="col-sm-6">
                 Team 2's final score:<br>
-                <input maxlength="3" size="3" type="text" value="72" name="lastname">
+                <input maxlength="3" size="3" class="scoreInput" type="text" id="team2Score">
             </div>
         </div>
         <div class="row spreads">
             <div class="col-sm-6">
                 Point spread for T1:<br>
-                <input maxlength="2" size="2" type="text" value="-5" name="lastname">
+                <input maxlength="5" size="4" type="text" id="team1ps" pattern="^-?\d+(\.\d{1,2})?$">
             </div>
             <div class="col-sm-6">
                 Point spread for T2:<br>
-                <input maxlength="2" size="2" type="text" value="5" name="lastname" readonly>
+                <input maxlength="5" size="4" type="text" id="team2ps" readonly>
             </div>
         </div>
 
-        <p id="CoverdTeam">Covered: <span class="result">Team 1</span></p>
-        <p id="CoveredBy">Covered By: <span class="result">3</span></p>
+        <p id="CoverdTeam">Covered: <span class="result"></span></p>
+        <p id="CoveredBy">Covered By: <span class="result"></span></p>
+        <p id="NewValue">1 share pre-game of Team 1 valued at $5,000<br />would now be valued at: <span class="result"></span></p>
     </div>
 
 
@@ -115,5 +116,74 @@
     </p>
 
 </div>
+<script>
+
+
+$(document).ready(function(){
+
+$(document).on('keyup', '#team1ps', function () {
+var inputValue = $('#team1ps').val()
+var inpObj = document.getElementById("team1ps");
+    if (inpObj.checkValidity()) {
+    $('#team2ps').val(inputValue * -1)
+    showOutcome()
+    }
+    else {
+    $('#team2ps').val("")
+    updateOutcome("", "")
+    }
+});
+
+$(document).on('keyup', '.scoreInput', function () {
+    showOutcome()
+});
+
+
+});
+
+
+function updateOutcome(coveredBy, coveredTeam) {
+$('#CoveredBy .result').text(coveredBy)
+$('#CoverdTeam .result').text(coveredTeam)
+}
+
+function showOutcome() {
+
+var team1 = parseFloat($('#team1Score').val())
+var team2 = parseFloat($('#team2Score').val())
+var pointspread = parseFloat($('#team1ps').val())
+
+if(!isNaN(team1) && !isNaN(team2) && !isNaN(pointspread))
+{
+    if(((team1 + pointspread) != team2))
+    {
+
+        var pointspread = parseFloat($('#team1ps').val())
+        var didTeamOneWin = ((team1 + pointspread) > team2)
+        var winningTeam = didTeamOneWin ? "Team 1" : "Team 2"
+        var coveredBy = parseFloat(((team1 + pointspread) - team2))
+
+        updateOutcome(coveredBy < 0 ? coveredBy * -1 : coveredBy, winningTeam)
+        $('#NewValue .result').text("$" + ReplaceNumberWithCommas((5000 + (coveredBy * 100))))
+    }
+    else {
+        updateOutcome("0", "SPLIT")
+        $('#NewValue .result').text("$5,000")
+    }
+}else
+{
+    updateOutcome("", "")
+    $('#NewValue .result').text("")
+}
+
+}
+
+function ReplaceNumberWithCommas(yourNumber) {
+    var n= yourNumber.toString().split(".");
+    n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return n.join(".");
+}
+
+</script>
 </body>
 </html>
