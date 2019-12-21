@@ -23,20 +23,21 @@
     <div class="row">
         <div class="col-lg-6 ">
             <div class="card">
-                <div class="card-header"><h2><i class="fas fa-folder-open"></i><span th:text="${user.firstName + ' ' + user.lastName + ': Portfolio'}" ></span></h2></div>
-                <div class="card-body">
+                <div class="card-header"><h2><i class="fas fa-folder-open"></i>
+                    <span th:text="${user.firstName + ' ' + user.lastName + ': Portfolio'}" ></span></h2></div>
+                <div class="card-body mainItem">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <h3><b>My Networth:</b> <span th:text="'$' + ${#numbers.formatDecimal((portfolio.portfolioValue + portfolio.cash), 1, 'DEFAULT', 0, 'DEFAULT')}" id="Networth"></span></h3>
+                        <div class="col-lg-12 PortfolioItem">
+                            <h2 class="networthh2"><b>My Networth:</b> <span th:text="'$' + ${#numbers.formatDecimal((portfolio.portfolioValue + portfolio.cash), 1, 'DEFAULT', 0, 'DEFAULT')}" id="Networth"></span></h2>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 PortfolioItem">
                             <h5><b>Cash:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.cash, 1, 'DEFAULT', 0, 'DEFAULT')}" style="color: green;"></span></h5>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 PortfolioItem">
                             <h5><b>My Total Transactions: </b><span th:text="${portfolio.myTransactionsCount}" id="Transactions"></span></h5>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
         <div class="col-lg-6">
             <div class="card text-justify">
                 <div class="card-header"><h2><i class="fas fa-tachometer-alt"></i> Game flow</h2></div>
-                <div class="card-body ">
+                <div class="card-body mainItem">
                     <div class="row">
                         <div class="col-lg-12 gameFlowItem">
                             <b>Leader's Value:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.leadersValue, 1, 'DEFAULT', 0, 'DEFAULT')}" id="Leader"></span>
@@ -76,7 +77,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2><i class="fas fa-money-bill-alt"></i> My Investments</h2>
-                    <span th:text="'$' + ${#numbers.formatDecimal(portfolio.portfolioValue, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
+                    <span id="investmentTOTAL" th:text="'$' + ${#numbers.formatDecimal(portfolio.portfolioValue, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                     <div class="showSmall"><br />Click logo to trade</div>
                 </div>
                 <div class="table-responsive-lg">

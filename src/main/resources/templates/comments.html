@@ -2,19 +2,17 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Comments</title>
-    <style type="text/css">* { padding: 0; margin: 0; }</style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!--    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">-->
-    <link href='https://fonts.googleapis.com/css?family=Overlock' rel='stylesheet'>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Comments.css"/>
     <script src="js/Comments.js"></script>
-
 </head>
 <body>
 <header class="header">
@@ -37,7 +35,7 @@
         <div class="media-body">
             <h4 style="display: inline"  th:text="${comment.author}"></h4><i th:id="${'par' + comment.commentId}" th:if="${comment.userOwnsComment}" style="float: right; margin-right: 7%;" class="icon-remove"></i>
             <i th:text="${'Posted on ' + comment.timeOfComment}"></i>
-            <p th:text="${comment.commentValue}" class="mainComment"></p>
+            <p th:text="${comment.commentValue}"></p>
             <div th:if="${comment.subComments != null}" th:each="subComment : ${comment.subComments}" class="media">
                 <div class="media-body nested comment">
                     <h5 style="display: inline" th:text="${subComment.author}"></h5><i th:id="${'sub' + subComment.commentId}" th:if="${subComment.userOwnsComment}" style="float: right;" class="icon-remove"></i>
