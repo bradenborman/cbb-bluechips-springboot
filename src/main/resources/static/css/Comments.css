@@ -2,6 +2,7 @@
 			 margin-bottom: 65px;
 			 border-radius: 20px;
 			 background-color: #f2f3f3;
+            font-family: 'Overlock';
          }
          .media-body {
 			 margin-top: 18px;
@@ -47,6 +48,11 @@
     }
 
 
+.mainComment {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
 
 @media (max-width: 575.98px) {
 
