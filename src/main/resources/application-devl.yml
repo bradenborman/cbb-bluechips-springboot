@@ -1,6 +1,7 @@
 spring:
   datasource:
     testOnBorrow: true
+    maxActive: 5
     testWhileIdle: true
     timeBetweenEvictionRunsMillis: 60000
     validationQuery: SELECT 1
