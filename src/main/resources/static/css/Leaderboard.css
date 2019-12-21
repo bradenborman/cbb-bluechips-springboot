@@ -14,6 +14,21 @@
 	}
 
 
+#payoutsTable {
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+#payoutsTable, #payoutsTable th, #payoutsTable td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+
+
 @media screen and (max-width: 600px) {
 
     .leaders {

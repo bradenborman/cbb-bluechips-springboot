@@ -31,6 +31,17 @@ spring:
 
 game-rules:
   starting-cash: 100000
+  payoutMap:
+    1: $200
+    2: $100
+    3: $50
+    4: $20 Giftcard
+    5: $20 Giftcard
+    6: $20 Giftcard
+    7: $20 Giftcard
+    8: $20 Giftcard
+    9: $20 Giftcard
+    10: $20 Giftcard
 
 admins: bradenborman@hotmail.com, bradenborman00@gmail.com
 

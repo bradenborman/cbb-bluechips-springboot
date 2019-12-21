@@ -47,7 +47,7 @@
                       th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                 <div class="card">
                     <h5 style="display: none;" class="identifier d-none" th:text="${team.teamName}"></h5>
-                    <div th:if="${team.nextTeamPlaying != null}" th:text="'(' + ${team.nextPointSpread} + ') VS: ' + ${team.nextTeamPlaying}" class="card-header"></div>
+                    <div th:if="${team.nextTeamPlaying != null}" th:utext="'(<span class=\'overunder\'>' + ${team.nextPointSpread} + '</span>) VS: ' + ${team.nextTeamPlaying}" class="card-header"></div>
                     <div class="card-body">
                         <div class="card-img-top" th:id="${team.teamName}"></div>
                         <p th:text="${team.priceHistoryString}" class="hidden values d-none"></p>
@@ -100,6 +100,18 @@ google.charts.load('current', {'packages':['corechart']});
          chart.draw(data, options);
          });
 	 }
+
+
+
+
+
+        $(".overunder").each(function() {
+           if($(this).text() >= 1)
+                $(this).css("color", "red");
+           else
+                $(this).css("color", "green");
+        });
+
 
 
     </script>

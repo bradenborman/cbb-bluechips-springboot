@@ -54,6 +54,19 @@
                     <li>Richard English 2017</li>
                 </ul>
             </div>
+            <div style="padding: 20px; margin-top: 25px;" class="card">
+                <h4>Payouts:</h4>
+                <table id="payoutsTable">
+                    <tr>
+                        <th>Rank</th>
+                        <th>Reward</th>
+                    </tr>
+                    <tr th:each="instance : ${payouts}">
+                        <td th:text="${instance.key}">keyvalue</td>
+                        <td th:text="${instance.value}">num</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 
