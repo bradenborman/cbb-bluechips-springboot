@@ -51,9 +51,9 @@ public class HomeController {
 
     @PostMapping("/settings/updatePhoneNumber")
     public ResponseEntity<String> updatePhoneNumber(HttpServletRequest request, @RequestParam(value = "phoneNumber") String phoneNumber) {
-        System.out.println(String.format("Request to change Phone Number: %s", phoneNumber));
-        if (cookieService.isLoggedIn(request))
+        if (cookieService.isLoggedIn(request)) {
             userService.updatePhoneNumber(phoneNumber, cookieService.getUserIdLoggedIn(request));
+        }
         return ResponseEntity.ok("OKAY");
     }
 

@@ -89,6 +89,7 @@ public class UserService {
     }
 
     public void updatePhoneNumber(String phoneNumber, String UserId) {
+        System.out.println(String.format("Request to change Phone Number: %s by user: %s", phoneNumber, UserId));
         userDao.updatePhoneNumber(phoneNumber, UserId);
     }
 

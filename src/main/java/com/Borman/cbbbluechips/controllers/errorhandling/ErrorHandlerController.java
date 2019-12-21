@@ -2,6 +2,7 @@ package com.Borman.cbbbluechips.controllers.errorhandling;
 
 import com.Borman.cbbbluechips.exceptions.NoUserPresent;
 import com.Borman.cbbbluechips.services.CookieService;
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ErrorHandlerController extends ResponseEntityExceptionHandler {
 
     Logger logger = LoggerFactory.getLogger(ErrorHandlerController.class);
 
-    @ExceptionHandler(java.io.EOFException.class)
+    @ExceptionHandler(CommunicationsException.class)
     public String catchError(final java.io.EOFException e) {
         logger.info("ERROR WAS CAUGHT WITH CONNECTION TO DATABASE -- sending to portfolio");
         return "redirect:/portfolio";
