@@ -1,0 +1,69 @@
+.Parent {
+     margin-bottom: 65px;
+     border-radius: 20px;
+     background-color: white;
+     border: 1px solid black;
+     box-shadow: 2px 4px #1e5799;
+}
+
+.media-body {
+    margin-top: 18px;
+    margin-left: 18px;
+    overflow: auto;
+}
+
+.actualComment {
+    font-size: 1.4em;
+}
+
+.actualSubComment {
+    font-size: 1.2em;
+}
+
+.fa-trash-o {
+    float: right;
+    font-size: 1.2em;
+    margin-top: 7px;
+    margin-right: 3%;
+}
+
+.fa-trash-o:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.subcommentArea {
+    border-left: 2px solid #0ebe17;
+    padding-left: 8px;
+}
+
+.subcommentsGrouped {
+    padding: 7px;
+}
+
+.reply {
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.createComment {
+    margin-bottom: 65px;
+    border-radius: 20px;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid black;
+    box-shadow: 2px 4px #1e5799;
+}
+
+@media (max-width: 575.98px) {
+
+    .Parent {
+        padding: 4px;
+    }
+
+   .fa-trash-o {
+       float: right;
+       margin-right: 7%;
+   }
+
+}

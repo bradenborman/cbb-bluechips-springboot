@@ -5,8 +5,10 @@ import com.Borman.cbbbluechips.models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -31,6 +33,9 @@ public class CommentService {
                 });
                 comment.setUserOwnsComment(true);
             });
+
+        //Get newer comments first
+        Collections.reverse(comments);
 
         return comments;
     }

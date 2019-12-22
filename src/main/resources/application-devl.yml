@@ -1,14 +1,14 @@
 spring:
   datasource:
-    testOnBorrow: true
-    maxActive: 5
-    testWhileIdle: true
-    timeBetweenEvictionRunsMillis: 60000
-    validationQuery: SELECT 1
-    tomcat:
-      testWhileIdle: true
-      timeBetweenEvictionRunsMillis: 60000
-      validationQuery: SELECT 1
+#    testOnBorrow: true
+#    maxActive: 5
+#    testWhileIdle: true
+#    timeBetweenEvictionRunsMillis: 60000
+#    validationQuery: SELECT 1
+#    tomcat:
+#      testWhileIdle: true
+#      timeBetweenEvictionRunsMillis: 60000
+#      validationQuery: SELECT 1
   jpa:
     properties:
       hibernate:

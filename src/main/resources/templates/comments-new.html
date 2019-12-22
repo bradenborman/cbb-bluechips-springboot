@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Comments</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Comments-new.css"/>
+    <script src="js/Comments.js"></script>
+</head>
+<body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Bluechips</h1>
+</header>
+<div class="container">
+    <nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/portfolio">My Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+    </nav>
+    <br />
+    <div th:each="comment : ${comments}" class="Parent">
+        <div class="media-body">
+            <h4 style="display: inline"  th:text="${comment.author}"></h4>
+            <i th:id="${'par' + comment.commentId}" th:if="${comment.userOwnsComment}" class="fa fa-trash-o icon-remove"></i>
+            <br />
+            <i th:text="${'Posted:' + comment.timeOfComment}"></i>
+            <p class="actualComment" th:text="${comment.commentValue}"></p>
+            <div th:if="${comment.subComments != null}" th:each="subComment : ${comment.subComments}" class="subcommentsGrouped">
+                <div class="media-body subcommentArea">
+                    <h5 style="display: inline" th:text="${subComment.author}"></h5><i th:id="${'sub' + subComment.commentId}" th:if="${subComment.userOwnsComment}" class="fa fa-trash-o icon-remove"></i>
+                    <i th:text="${'Posted:' + subComment.timeOfComment}"></i>
+                    <br />
+                    <p class="actualSubComment" th:text="${subComment.commentValue}"></p>
+                </div>
+            </div>
+            <hr />
+            <div class="media-body reply">
+                <form action="/comments/submitReply" method="post">
+                    <div class="form-group nestTextArea">
+                        <label for="comment">Reply:</label>
+                        <textarea class="form-control" rows="2" name="reply"></textarea>
+                    </div>
+                    <input type="hidden" name="commentId" th:value="${comment.commentId}"/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="createComment">
+        <div class="media-body">
+            <div class="form-group parentTextArea">
+                <form action="/comments/submitNew" method="post">
+                    <label for="comment">Create New comment:</label>
+                    <textarea name="comment" class="form-control" rows="3" id="comment"></textarea>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

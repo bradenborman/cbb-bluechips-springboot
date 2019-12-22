@@ -32,7 +32,7 @@ public class CommentController {
             return "redirect:/";
         String userId = cookieService.getUserIdLoggedIn(request);
         model.addAttribute("comments", commentService.getComments(userId, cookieService.isUserAdmin(request)));
-        return "comments";
+        return "comments-new";
     }
 
 
