@@ -44,11 +44,19 @@
 
     <h2 id="Payouts">Payouts & Winnings</h2>
     <p>
-        There will be x amount of payouts this year with the top 10 players receiving a prize. First place will be given $200, Second place will be awarded $100,
+        As a thank you for giving my game a chance, I will be giving out cash prizes. The top 10 players receiving a prize totaling $490 in all.
+        <br />
+        First place will be given $200, Second place will be awarded $100,
         3rd will get $50. The remaining players in the rop ten will each get a $20.
     </p>
 
     <h2 id="Pointspread">Point spread</h2>
+
+    <br/>
+    <p><center><b>EVERY 1 POINT THAT BEATS THE SPREAD WILL <br />RAISE THE TEAM'S VALUE BY $200 IN GAME PLAY CASH </b></center></p>
+    <p><center><b>EVERY 1 POINT THAT LOOSES THE SPREAD WILL <br />LOWER THE TEAM'S VALUE BY $200 IN GAME PLAY CASH </b></center></p>
+    <br />
+
     <p>
         The point spread is sometimes known as an equalizer for sportsbook operators. All teams aren’t created equally, so sportsbooks can create a point spread for a
         game so that each team playing has an almost even chance of winning the game. In a way, the point spread will even the field for both teams. With that being said,
@@ -171,7 +179,7 @@ if(!isNaN(team1) && !isNaN(team2) && !isNaN(pointspread))
         var coveredBy = parseFloat(((team1 + pointspread) - team2))
 
         updateOutcome(coveredBy < 0 ? coveredBy * -1 : coveredBy, winningTeam)
-        $('#NewValue .result').text("$" + ReplaceNumberWithCommas((5000 + (coveredBy * 100))))
+        $('#NewValue .result').text("$" + ReplaceNumberWithCommas((5000 + (coveredBy * 200))))
     }
     else {
         updateOutcome("0", "SPLIT")
