@@ -35,7 +35,7 @@
 
    <h2 class="CapitalAvailable" th:text="'Capital Available: $' + ${#numbers.formatDecimal(user.cash, 1, 'DEFAULT', 0, 'DEFAULT')}"></h2>
 
-    <div class="card">
+    <div class="card tradeBlock">
         <div class="card-header">
             <h1 th:text="${team.teamName}"></h1><img class="logo" th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" th:src="@{${'/img/' + team.teamName + '.png'}}"/>
             <h3 th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}" id="costPerShare"></h3>
