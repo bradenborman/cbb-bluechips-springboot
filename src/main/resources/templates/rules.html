@@ -22,14 +22,14 @@
 </header>
 <div class="APP_WRAPPER">
     <ul class="list">
-        <li><a href="#Objective" class="nav-link">Objective</a></li>
-        <li><a href="#Payouts" class="nav-link">Payouts & Winnings</a></li>
-        <li><a href="#Pointspread" class="nav-link">Understanding the Point-spread</a></li>
-        <li><a href="#Initial" class="nav-link">Initial Setup</a></li>
-        <li><a href="#Buying" class="nav-link">Buying</a></li>
-        <li><a href="#Selling" class="nav-link">Selling</a></li>
+        <li id="ObjectiveLINK" class="nav-link">Objective</li>
+        <li id="PayoutsLINK" class="nav-link">Payouts & Winnings</li>
+        <li id="PointspreadLINK" class="nav-link">Understanding the Point-spread</li>
+        <li id="InitialLINK" class="nav-link">Initial Setup</li>
+        <li id="BuyingLINK" class="nav-link">Buying</li>
+        <li id="SellingLINK" class="nav-link">Selling</li>
     </ul>
-    <div class="sticky">
+    <div id="stick" class="sticky">
     <a class="backBTN" href="/portfolio"><i class="fas fa-home"></i> Return to Home</a>
     </div>
 
@@ -152,6 +152,18 @@ var inpObj = document.getElementById("team1ps");
 $(document).on('keyup', '.scoreInput', function () {
     showOutcome()
 });
+
+
+    $(".nav-link").on('click', function() {
+
+        var headerHeight = $('#stick').height();
+
+        var name = $(this).attr('id').replace("LINK", "");
+        var position = ($("#" + name).offset().top) - (headerHeight + 55);
+        $("HTML, BODY").animate({
+            scrollTop: position
+        }, 750);
+    });
 
 
 });
