@@ -35,8 +35,17 @@
             <br />
             <i th:text="${'Posted:' + comment.timeOfComment}"></i>
             <p class="actualComment" th:text="${comment.commentValue}"></p>
-            <div th:if="${comment.subComments != null}" th:each="subComment : ${comment.subComments}" class="subcommentsGrouped">
+            <div th:if="${comment.subComments != null and #arrays.length(comment.subComments) <= 2}" th:each="subComment : ${comment.subComments}" class="subcommentsGrouped">
                 <div class="media-body subcommentArea">
+                    <h5 style="display: inline" th:text="${subComment.author}"></h5><i th:id="${'sub' + subComment.commentId}" th:if="${subComment.userOwnsComment}" class="fa fa-trash-o icon-remove"></i>
+                    <i th:text="${'Posted:' + subComment.timeOfComment}"></i>
+                    <br />
+                    <p class="actualSubComment" th:text="${subComment.commentValue}"></p>
+                </div>
+            </div>
+            <button class="showSubCommentsBtn btn btn-secondary" th:if="${comment.subComments != null and #arrays.length(comment.subComments) > 2}">Toggle Comments</button>
+            <div th:if="${comment.subComments != null and #arrays.length(comment.subComments) > 2}" th:each="subComment : ${comment.subComments}" class="subcommentsGrouped">
+                <div class="media-body subcommentArea morethan2Subs">
                     <h5 style="display: inline" th:text="${subComment.author}"></h5><i th:id="${'sub' + subComment.commentId}" th:if="${subComment.userOwnsComment}" class="fa fa-trash-o icon-remove"></i>
                     <i th:text="${'Posted:' + subComment.timeOfComment}"></i>
                     <br />

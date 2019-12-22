@@ -10,6 +10,7 @@
     margin-top: 18px;
     margin-left: 18px;
     overflow: auto;
+    word-wrap: break-word
 }
 
 .actualComment {
@@ -37,10 +38,6 @@
     padding-left: 8px;
 }
 
-.subcommentsGrouped {
-    padding: 7px;
-}
-
 .reply {
     padding-right: 20px;
     padding-bottom: 20px;
@@ -55,6 +52,11 @@
     box-shadow: 2px 4px #1e5799;
 }
 
+.morethan2Subs {
+    display: none;
+}
+
+
 @media (max-width: 575.98px) {
 
     .Parent {
@@ -65,5 +67,13 @@
        float: right;
        margin-right: 7%;
    }
+
+    .actualComment {
+        font-size: 1.2em;
+    }
+
+    .actualSubComment {
+        font-size: 1em;
+    }
 
 }

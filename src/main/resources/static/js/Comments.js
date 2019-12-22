@@ -14,6 +14,16 @@ $(document).ready(function(){
             $(this).closest('.media-body').css({"color": "red"});
    });
 
+
+
+   $(".showSubCommentsBtn").click(function(){
+      $(this)
+        .nextAll(".subcommentsGrouped")
+        .children(".morethan2Subs").toggle(400);
+   });
+
+
+
 });
 
 
