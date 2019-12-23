@@ -110,6 +110,10 @@ input[type="range"] {
 }
 
 
+.col-lg-4 {
+    margin-bottom: 60px;
+}
+
 @media screen and (max-width: 600px) {
 
    .logo {
