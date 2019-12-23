@@ -23,4 +23,7 @@ public class TeamSQL {
     public static final String resetNextTeamPlayingForAll = "UPDATE teams SET Next_Team_Playing = null, Point_Spread = null";
 
     public static final String getNextPointSpread = "SELECT Point_Spread FROM teams where Team_ID = :teamId";
+
+    public static final String getNameByShortName = "SELECT Name FROM teams WHERE Short_Display_Name = :teamShortName LIMIT 1";
+
 }

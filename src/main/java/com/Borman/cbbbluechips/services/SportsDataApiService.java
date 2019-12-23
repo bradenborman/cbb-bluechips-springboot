@@ -52,7 +52,7 @@ public class SportsDataApiService {
 
 
 
-    void updateTeamsPlayingToday() {
+    public void updateTeamsPlayingToday() {
 
         teamDao.resetNextTeamPlayingForAll();
 
@@ -77,7 +77,10 @@ public class SportsDataApiService {
 
     private void updateTeamNextGame(String teamPlayingShortName, String teamToUpdateId) {
         System.out.println(String.format("UPDATE GAME: teamID: %s plays %s", teamToUpdateId, teamPlayingShortName));
-        teamDao.updateNextTeamPlayingByTeamID(teamToUpdateId, teamPlayingShortName);
+
+        String fullName = teamDao.getNameByShortName(teamPlayingShortName);
+
+        teamDao.updateNextTeamPlayingByTeamID(teamToUpdateId, fullName != null ? fullName : teamPlayingShortName);
     }
 
 }

@@ -2,6 +2,7 @@ package com.Borman.cbbbluechips.controllers.admin;
 
 import com.Borman.cbbbluechips.services.AdminService;
 import com.Borman.cbbbluechips.services.GameSettingsService;
+import com.Borman.cbbbluechips.services.SportsDataApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class AdminController {
 
     @Autowired
     GameSettingsService settingsService;
+
+    @Autowired
+    SportsDataApiService sportsDataApiService;
 
     @PostMapping("/update-price")
     public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice,
@@ -52,6 +56,13 @@ public class AdminController {
         adminService.processUpdatePointSpreadRequest(Arrays.asList(teamName), Arrays.asList(nextPointSpread));
         return "redirect:/admin";
     }
+
+        //USED FOR TESTING PURPOSES
+//    @GetMapping("/update-teamsplaying")
+//    public String updateteamsplaying() {
+//        sportsDataApiService.updateTeamsPlayingToday();
+//        return "test";
+//    }
 
 }
 

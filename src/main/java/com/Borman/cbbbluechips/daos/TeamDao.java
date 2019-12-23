@@ -99,4 +99,16 @@ public class TeamDao {
             return "0";
         }
     }
+
+
+    public String getNameByShortName(String teamShortName) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamShortName", teamShortName);
+            return namedParameterJdbcTemplate.queryForObject(TeamSQL.getNameByShortName, params, String.class);
+        }catch (Exception e) {
+            return null;
+        }
+    }
+
+
 }
