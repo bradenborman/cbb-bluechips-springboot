@@ -80,6 +80,12 @@ td:nth-child(1) {
     font-size: 1.5em;
 }
 
+.emptyPortfolioLink {
+   font-weight: 500;
+   margin: 15px;
+   font-size: 1.3em;
+}
+
 
 @media (max-width: 575.98px) {
 
@@ -143,5 +149,9 @@ td:nth-child(1) {
     margin-top: 6px;
 }
 
+.emptyPortfolioLink {
+   margin-top: 20px;
+   font-size: 1.2em;
+}
 
 }

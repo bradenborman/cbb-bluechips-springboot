@@ -80,7 +80,10 @@
                     <span id="investmentTOTAL" th:text="'$' + ${#numbers.formatDecimal(portfolio.portfolioValue, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                     <div class="showSmall"><br />Click logo to trade</div>
                 </div>
-                <div class="table-responsive-lg">
+                <div th:if="${user.teamsOwned==null or user.teamsOwned.empty}">
+                    <p class="emptyPortfolioLink">Please visit the <a href="/market">Market</a> to fill portfolio.</p>
+                </div>
+                <div th:if="${user.teamsOwned !=null and !user.teamsOwned.empty}" class="table-responsive-lg">
                     <table class="table table-hover table-striped text-center">
                         <thead>
                         <tr>
