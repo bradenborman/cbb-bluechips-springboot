@@ -6,12 +6,12 @@ import java.time.format.DateTimeFormatter;
 public class CommentTimeStampUtility {
 
     public static String getDate() {
-        return LocalDateTime.now().minusHours(5).format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        return LocalDateTime.now().minusHours(6).format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
     }
 
 
     public static String getTime() {
-       return LocalDateTime.now().minusHours(5).format(DateTimeFormatter.ofPattern("hh:mm a"));
+       return LocalDateTime.now().minusHours(6).format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
 }

@@ -28,22 +28,24 @@
     </nav>
     <div class="row leaders">
         <div class="col-lg-8">
-            <table class="table table-hover leadersTable">
-                <thead>
-                <tr>
-                    <th scope="col">Ranking</th>
-                    <th scope="col"><i class="fas fa-user-circle"></i> Name</th>
-                    <th scope="col"><i class="fas fa-dollar-sign"></i> Networth</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="leader : ${leaderboard}">
-                    <td th:text=" ${leader.ranking}"></td>
-                    <td th:text=" ${leader.userName}"></td>
-                    <td th:text="'$' + ${#numbers.formatDecimal(leader.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="card">
+                <table class="table table-hover leadersTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ranking</th>
+                        <th scope="col"><i class="fas fa-user-circle"></i> Name</th>
+                        <th scope="col"><i class="fas fa-dollar-sign"></i> Networth</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="leader : ${leaderboard}">
+                        <td th:text=" ${leader.ranking}"></td>
+                        <td th:text=" ${leader.userName}"></td>
+                        <td th:text="'$' + ${#numbers.formatDecimal(leader.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="my-hr"></div>
         <div id="PreviousWinners" class="col-lg-4">
@@ -69,6 +71,6 @@
             </div>
         </div>
     </div>
-
+</div>
 </body>
 </html>
