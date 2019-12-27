@@ -48,6 +48,6 @@ game-rules:
     9: $20 Giftcard
     10: $20 Giftcard
   leaderboard:
-    displayamount: 15
+    displayamount: 10
 
 admins: bradenborman@hotmail.com, bradenborman00@gmail.com
