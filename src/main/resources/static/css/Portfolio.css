@@ -21,16 +21,16 @@ body {
 
 
 .gameFlowItem {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .PortfolioItem {
    font-size: 1.3em;
-   margin-bottom: 15px;
+   margin-bottom: 5px;
 }
 
 .mainItem {
-    min-height: 210px;
+    min-height: 190px;
 }
 
 #Networth, #Leader, #TotalMoney, td:nth-child(3), td:nth-child(4), .fa-money-bill-alt{
