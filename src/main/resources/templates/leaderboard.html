@@ -9,6 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" type="text/css" href="css/Leaderboard.css">
     <script src="js/Leaderboard.js"></script>
@@ -34,7 +36,7 @@
                     <tr>
                         <th scope="col">Ranking</th>
                         <th scope="col"><i class="fas fa-user-circle"></i> Name</th>
-                        <th scope="col"><i class="fas fa-dollar-sign"></i> Networth</th>
+                        <th scope="col">Networth</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,18 +52,18 @@
         <div class="my-hr"></div>
         <div id="PreviousWinners" class="col-lg-4">
             <div style="padding: 20px;" class="card">
-                <h4>Previous Winners:</h4>
+                <h4><i style="color: gold;" class="fa fa-trophy"></i> Previous Winners:</h4>
                 <ul>
                     <li>Jacob Meller 2018</li>
                     <li>Richard English 2017</li>
                 </ul>
             </div>
             <div style="padding: 20px; margin-top: 25px; margin-bottom: 25px;" class="card">
-                <h4>Payouts:</h4>
+                <h4><i style="color: green;" class='fas fa-dollar-sign'></i> Payouts:</h4>
                 <table id="payoutsTable">
                     <tr>
-                        <th>Rank</th>
-                        <th>Reward</th>
+                        <th width="50%">Rank</th>
+                        <th width="50%">Reward</th>
                     </tr>
                     <tr th:each="instance : ${payouts}">
                         <td th:text="${instance.key}">keyvalue</td>

@@ -22,10 +22,16 @@ public class LeaderboardService {
     }
 
     public List<LeaderboardUser> getLeaders() {
-        return ownsService.getLeaders()
+        List<LeaderboardUser> leaders = ownsService.getLeaders()
                 .stream()
                 .limit(LEADERS_TO_DISPLAY_AMT)
                 .collect(Collectors.toList());
+
+        while (leaders.size() < 15) {
+            leaders.add(new LeaderboardUser("", leaders.size() + 1, 0.00));
+        }
+
+        return leaders;
 
         //.skip(15) to get everyone else mght need to test and make sure its 15 not 14
     }
