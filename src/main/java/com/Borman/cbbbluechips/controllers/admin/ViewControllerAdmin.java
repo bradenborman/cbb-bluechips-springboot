@@ -66,6 +66,12 @@ public class ViewControllerAdmin {
         return "set_pointspread";
     }
 
+    @RequestMapping("/test-paypal")
+    public String test() {
+        return "test-paypal";
+    }
+
+
 //    @RequestMapping("/throwError")
 //    public String throwError() throws EOFException {
 //        throw new java.io.EOFException();
