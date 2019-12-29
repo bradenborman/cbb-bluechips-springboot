@@ -1,3 +1,7 @@
+.card {
+    box-shadow: 2px 3px #1e5799;
+}
+
 .leaders {
     margin-top: 20px;
     margin-bottom: 50px;
@@ -10,10 +14,13 @@
         width: 100%;
 }
 
-	.my-hr {
-		display: none;
-	}
+#paypalMessage {
+    text-align: center;
+}
 
+#paypalResult {
+    margin-top: 20px;
+}
 
 #payoutsTable {
   width: 100%;
@@ -42,31 +49,6 @@
 
     #PreviousWinners {
         margin-top: 20px;
-    }
-
-
-    .my-hr {
-
-    	display: block;
-    	--base-size: 160;
-    	--base-color: darkblue;
-    	--base-line-size: calc(var(--base-size) / 100 * 1px);
-    	--base-circle-size: calc(var(--base-size) / 50 * 1px);
-    	--line: linear-gradient(var(--base-color), var(--base-color));
-    	--circle-center: radial-gradient(var(--base-circle-size) at 50% 50%, var(--base-color), var(--base-color) 85%, transparent);
-    	--circle-left: radial-gradient(var(--base-circle-size) at 40% 50%, var(--base-color), var(--base-color) 85%, transparent);
-    	--circle-right: radial-gradient(var(--base-circle-size) at 60% 50%, var(--base-color), var(--base-color) 85%, transparent);
-    	--line-size: 25% var(--base-line-size);
-    	--circle-size: auto;
-
-
-    	margin: 1em auto;
-    	width: calc(var(--base-size) * 1px);
-    	height: calc(var(--base-size) / 10 * 1px);
-    	background-image: var(--line), var(--circle-left), var(--circle-center), var(--circle-right), var(--line);
-    	background-size: var(--line-size), var(--circle-size), var(--circle-size), var(--circle-size), var(--line-size);
-    	background-position: left center, center center, center center, center center, right center;
-    	background-repeat: no-repeat;
     }
 
 }

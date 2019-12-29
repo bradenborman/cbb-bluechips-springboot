@@ -59,7 +59,6 @@
                 </table>
             </div>
         </div>
-        <div class="my-hr"></div>
         <div id="PreviousWinners" class="col-lg-4">
             <div style="padding: 20px;" class="card">
                 <h4><i style="color: gold;" class="fa fa-trophy"></i> Previous Winners:</h4>
@@ -81,8 +80,56 @@
                     </tr>
                 </table>
             </div>
+            <script src="https://www.paypal.com/sdk/js?client-id=AbiTp3MyLJCqlqUhgWWDpFC-M8VRE6bHA1GHs40nCam1UpxkHRpFRlkbP_SpwAUGguGKojDw-6a8sWtd&disable-funding=credit,card">
+            </script>
+            <div style="padding: 20px;" class="card">
+                <p>
+                    Thank you for playing. </p>
+                <p id="paypalMessage">
+                    If you enjoyed playing and would like to support this game, I am accepting donations.
+                </p>
+                <p id="paypalResult">Click to donate $3.00</p>
+                <div id="paypal-button-container"></div>
+            </div>
         </div>
     </div>
 </div>
+<script>
+  paypal.Buttons({
+   style: {
+    layout:  'vertical',
+    color:   'blue',
+    shape:   'rect',
+    label:   'paypal'
+  },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          description : "Donation to Cbb-Bluechips",
+          soft_descriptor : "$3 to Cbb-Bluechips",
+          amount: {
+            value: '3.00'
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+       $("#paypalResult").html("<b>Thank you for your donation.</b>")
+       // alert('Transaction completed by ' + details.payer.name.given_name);
+        // Call your server to save the transaction
+        return fetch('/paypal-transaction-complete', {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            orderID: data.orderID
+          })
+        });
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
 </body>
 </html>

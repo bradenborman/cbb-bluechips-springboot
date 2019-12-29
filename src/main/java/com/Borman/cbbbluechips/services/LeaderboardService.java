@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 @Service
 public class LeaderboardService {
 
-    @Autowired
-    OwnsService ownsService;
-
+    private OwnsService ownsService;
     private int LEADERS_TO_DISPLAY_AMT;
 
     public LeaderboardService(OwnsService ownsService, @Qualifier("leadersToDisplay") int LEADERS_TO_DISPLAY_AMT) {
@@ -27,7 +25,7 @@ public class LeaderboardService {
                 .limit(LEADERS_TO_DISPLAY_AMT)
                 .collect(Collectors.toList());
 
-        while (leaders.size() < 15) {
+        while (leaders.size() < LEADERS_TO_DISPLAY_AMT) {
             leaders.add(new LeaderboardUser("", leaders.size() + 1, 0.00));
         }
 
