@@ -13,7 +13,7 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" type="text/css" href="css/Leaderboard.css">
-    <script src="js/Leaderboard.js"></script>
+<!--    <script src="js/Leaderboard.js"></script>-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
 <script>
@@ -52,11 +52,12 @@
                     <tbody>
                     <tr th:each="leader : ${leaderboard}">
                         <td th:text=" ${leader.ranking}"></td>
-                        <td th:text=" ${leader.userName}"></td>
+                        <td th:text=" ${leader.userName}" class="username" title="testuser1@hotmail.com"></td>
                         <td th:text="'$' + ${#numbers.formatDecimal(leader.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
                     </tr>
                     </tbody>
                 </table>
+                <p id="emailTip"><b>Tip:</b> Right-click on username to get user's email</p>
             </div>
         </div>
         <div id="PreviousWinners" class="col-lg-4">
@@ -94,6 +95,9 @@
         </div>
     </div>
 </div>
+<div id="contextMenu" class="dropdown clearfix">
+    <p><i><span id="email"></span></i><p>
+</div>
 <script>
   paypal.Buttons({
    style: {
@@ -130,6 +134,41 @@
       });
     }
   }).render('#paypal-button-container');
+
+$(function () {
+
+var $contextMenu = $("#contextMenu");
+
+    $("body").on("contextmenu", ".username", function (e) {
+
+
+
+    $("#email").text("")
+    $("#email").text($(this).attr('title'))
+
+    $contextMenu.css(
+    {
+     display: "block",
+     left: e.pageX,
+     top: e.pageY,
+     background: "#FFFFFF",
+     border: "2px solid black"
+    }
+    );
+
+        return false;
+      });
+
+    $("#contextMenu").mouseleave(function(){
+    setTimeout(function(){
+    $("#email").text("")
+    $contextMenu.hide(340);
+    }, 185);
+    });
+
+});
+
+
 </script>
 </body>
 </html>
