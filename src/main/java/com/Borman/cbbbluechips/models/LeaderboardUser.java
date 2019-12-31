@@ -5,11 +5,13 @@ public class LeaderboardUser {
     private String userName;
     private int ranking;
     private double value;
+    private String emailAddress;
 
-    public LeaderboardUser(String userName, int ranking, double value) {
+    public LeaderboardUser(String userName, int ranking, double value, String emailAddress) {
         this.userName = userName;
         this.ranking = ranking;
         this.value = value;
+        this.emailAddress = emailAddress;
     }
 
     public String getUserName() {
@@ -34,5 +36,13 @@ public class LeaderboardUser {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }

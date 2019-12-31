@@ -36,7 +36,7 @@
 
 #contextMenu {
   position: absolute;
-  padding: 18px;
+  padding: 25px;
   display: none;
   border-radius: 0px 30px 0px 30px;
   border: 1px solid black;
@@ -45,6 +45,8 @@
 #contextMenu p {
   text-align: center;
   font-size: 1.4em;
+  font-family: 'Crafty Girls';
+  font-weight: bold;
 }
 
 #emailTip {

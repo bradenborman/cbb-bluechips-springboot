@@ -26,7 +26,7 @@ public class LeaderboardService {
                 .collect(Collectors.toList());
 
         while (leaders.size() < LEADERS_TO_DISPLAY_AMT) {
-            leaders.add(new LeaderboardUser("", leaders.size() + 1, 0.00));
+            leaders.add(new LeaderboardUser("", leaders.size() + 1, 0.00, "Empty user."));
         }
 
         return leaders;
