@@ -113,10 +113,14 @@ google.charts.load('current', {'packages':['corechart']});
 
 
         $(".overunder").each(function() {
-           if($(this).text() >= 1)
+           if($(this).text() >= 1) {
+                $(this).parents("div").prop('title', '- UNDERDOG -');
                 $(this).css("color", "green");
-           else
+          }
+           else {
+                $(this).parents("div").prop('title', '- FAVORITE -');
                 $(this).css("color", "red");
+          }
         });
 
 
