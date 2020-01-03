@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Comments-new.css"/>
@@ -28,7 +29,7 @@
         </ul>
     </nav>
     <br />
-    <div th:each="comment : ${comments}" class="Parent">
+    <div th:each="comment : ${comments}" class="Parent animated slow">
         <div class="media-body">
             <h4 style="display: inline"  th:text="${comment.author}"></h4>
             <i th:id="${'par' + comment.commentId}" th:if="${comment.userOwnsComment}" class="fa fa-trash-o icon-remove"></i>
@@ -67,7 +68,7 @@
     </div>
 </div>
 <div class="container">
-    <div class="createComment">
+    <div class="createComment animated slideInUp slow">
         <div class="media-body">
             <div class="form-group parentTextArea">
                 <form action="/comments/submitNew" method="post">
@@ -81,5 +82,11 @@
 
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $(".Parent:odd").addClass("slideInLeft");
+    $(".Parent:even").addClass("slideInRight");
+});
+</script>
 </body>
 </html>
