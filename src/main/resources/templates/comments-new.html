@@ -29,7 +29,7 @@
         </ul>
     </nav>
     <br />
-    <div th:each="comment : ${comments}" class="Parent animated slow">
+    <div th:each="comment : ${comments}" class="Parent animated fast">
         <div class="media-body">
             <h4 style="display: inline"  th:text="${comment.author}"></h4>
             <i th:id="${'par' + comment.commentId}" th:if="${comment.userOwnsComment}" class="fa fa-trash-o icon-remove"></i>

@@ -90,7 +90,7 @@
                 <p id="paypalMessage">
                     If you enjoyed playing and would like to support this game, I am accepting donations.
                 </p>
-                <p id="paypalResult">Click to donate $3.00</p>
+                <p id="paypalResult">Click to donate $<span id="amountAsking"></span></p>
                 <div id="paypal-button-container"></div>
             </div>
         </div>
@@ -100,6 +100,11 @@
     <p><i><span id="email"></span></i><p>
 </div>
 <script>
+
+var amountAsking = "5.00";
+
+$("#amountAsking").text(amountAsking)
+
   paypal.Buttons({
    style: {
     layout:  'vertical',
@@ -113,7 +118,7 @@
           description : "Donation to Cbb-Bluechips",
           soft_descriptor : "$3 to Cbb-Bluechips",
           amount: {
-            value: '3.00'
+            value: amountAsking
           }
         }]
       });
