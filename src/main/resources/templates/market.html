@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/css/Market.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Footer.css"/>
@@ -42,7 +43,7 @@
         </ul>
     </nav>
     <div class="row">
-        <div class="col-lg-6" th:each="team : ${teams}">
+        <div class="col-lg-6 animated zoomIn fast" th:each="team : ${teams}">
             <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
                  class="team">
                 <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header"
