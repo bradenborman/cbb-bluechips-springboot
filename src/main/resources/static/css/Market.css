@@ -74,7 +74,7 @@ th {
 @media screen and (max-width: 600px) {
 
     .hideToStart {
-        min-height: 100px;
+        min-height: 320px;
         opacity: 0;
     }
 

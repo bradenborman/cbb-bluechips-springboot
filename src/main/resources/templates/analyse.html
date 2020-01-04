@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>My Analysis</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../css/Header.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155112023-1');
+
+    </script>
+
+    <style>
+        .breakdown {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Bluechips</h1>
+</header>
+<div class="container">
+    <nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/portfolio">My Portfolio</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h2>Net Trading Amount</h2>
+    <div class="row">
+        <div th:each="breakdown : ${breakdown}" class="col-sm-6 col-md-4 breakdown">
+            <div class="card">
+                <div class="card-header"><h3 th:text="${breakdown.teamName}"></h3></div>
+                <div class="card-body">
+                    <p th:text="${breakdown.netProfitDisplayString}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
