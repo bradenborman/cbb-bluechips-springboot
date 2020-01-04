@@ -46,4 +46,12 @@ public class AnalysisBreakdown {
         DecimalFormat formatter = new DecimalFormat("$#,###;-$#,###");
         return formatter.format(netProfit);
     }
+
+    public String getLossOrAheadClass() {
+        if (this.netProfit > 0)
+            return "ahead";
+        else if (this.netProfit < 0)
+            return "loss";
+        return "";
+    }
 }

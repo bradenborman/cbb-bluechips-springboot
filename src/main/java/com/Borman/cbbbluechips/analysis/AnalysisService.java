@@ -5,10 +5,7 @@ import com.Borman.cbbbluechips.models.enums.TradeAction;
 import com.Borman.cbbbluechips.services.TransactionService;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class AnalysisService {
@@ -43,7 +40,11 @@ public class AnalysisService {
 
         });
 
-        return new ArrayList<>(analysisBreakdown.values());
+        List<AnalysisBreakdown> analysisBreakdownList = new ArrayList<>(analysisBreakdown.values());
+
+        analysisBreakdownList.sort(Comparator.comparing(AnalysisBreakdown::getNetProfit).reversed());
+
+        return analysisBreakdownList;
 
     }
 
