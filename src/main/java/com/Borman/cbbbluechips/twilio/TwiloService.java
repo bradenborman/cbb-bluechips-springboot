@@ -39,12 +39,13 @@ public class TwiloService {
     }
 
 
-
     public void sendPriceChangeAlert(MarketValue marketValue) {
-      List<SMS_Alert> textsToSend = ownsService.getUsersWhoOwnedTeamWithTextAlertOn(marketValue.getTeamId());
-      textsToSend.forEach(text ->
-               sendMessage(text.getPhoneNumber(), TwiloBodyBuilderUtility.buildGameCompletedMessage(marketValue.getTeamName(), text.getAmountOwned(), marketValue.getPrice()))
-       );
+        List<SMS_Alert> textsToSend = ownsService.getUsersWhoOwnedTeamWithTextAlertOn(marketValue.getTeamId());
+        textsToSend.forEach(text -> {
+                    if (!"".equals(text.getPhoneNumber()) || text.getPhoneNumber() != null)
+                        sendMessage(text.getPhoneNumber(), TwiloBodyBuilderUtility.buildGameCompletedMessage(marketValue.getTeamName(), text.getAmountOwned(), marketValue.getPrice()));
+                }
+        );
 
     }
 
