@@ -95,6 +95,7 @@ public class UserDao {
     }
 
     public void unSubscribeUserToTextAlerts(String userId) {
+        logger.info("UnSubscribed To Text Alerts: " + userId);
         jdbcTemplate.update("UPDATE user SET Send_Alerts = 0 WHERE User_ID = " + userId + ";");
     }
 

@@ -44,7 +44,6 @@ public class UserService {
     }
 
 
-
     public void deleteUser(String UserId) {
         userDao.deleteUser(UserId);
     }
@@ -89,8 +88,11 @@ public class UserService {
     }
 
     public void updatePhoneNumber(String phoneNumber, String UserId) {
-        System.out.println(String.format("Request to change Phone Number: %s by user: %s", phoneNumber, UserId));
+        logger.info(String.format("Request to change Phone Number: %s by user: %s", phoneNumber, UserId));
         userDao.updatePhoneNumber(phoneNumber, UserId);
+        if ("".equals(phoneNumber))
+            userDao.unSubscribeUserToTextAlerts(UserId);
+
     }
 
     public String getUserPhoneNumber(String userid) {
