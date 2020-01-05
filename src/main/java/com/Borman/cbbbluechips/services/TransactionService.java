@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -102,10 +104,6 @@ public class TransactionService {
         return transactionDao.getTransactionCountTotal();
     }
 
-    public List<Transaction> getAllTransactions() {
-        return transactionDao.getAllTransactions();
-    }
-
     public List<Transaction> getFilteredTransaction(String teamName, String userName) {
         String sql = FilteredSearchUtility.buildSQL(teamName, userName);
         return transactionDao.getFilteredTransactions(sql);
@@ -117,5 +115,21 @@ public class TransactionService {
         transactionDao.deleteUsersTransactions(fullName);
     }
 
+    public List<Transaction> getAllTransactions() {
+        return transactionDao.getAllTransactions();
+    }
 
+    public List<Transaction> getLatest50Transactions() {
+        List<Transaction> transactions = transactionDao.getLatest50Transactions();
+        Collections.reverse(transactions);
+        return transactions;
+    }
+
+
+    public List<Transaction> getTransactionsAfter50() {
+        return transactionDao.getTransactionsAfter50()
+                .stream()
+                .skip(50)
+                .collect(Collectors.toList());
+    }
 }

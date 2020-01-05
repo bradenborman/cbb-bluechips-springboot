@@ -21,9 +21,6 @@ table tr {
 }
 
 .search {
-	-webkit-animation: slideIn 1.5s forwards;
-	-moz-animation: slideIn 1.5s forwards;
-	animation: slideIn 1.5s forwards;
 	margin-bottom: 20px;
 }
 
@@ -39,42 +36,6 @@ table tr {
 
 .showSmall {
 	display: none;
-}
-
-@-webkit-keyframes slideIn {
-	0% {
-		transform: translateX(-1500px);
-	}
-	50% {
-		transform: translateX(-1500px);
-	}
-	100% {
-		transform: translateX(0);
-	}
-}
-
-@-moz-keyframes slideIn {
-	0% {
-		transform: translateX(-1500px);
-	}
-	50% {
-		transform: translateX(-1500px);
-	}
-	100% {
-		transform: translateX(0);
-	}
-}
-
-@keyframes slideIn {
-	0% {
-		transform: translateX(-1500px);
-	}
-	50% {
-		transform: translateX(-1500px);
-	}
-	100% {
-		transform: translateX(0);
-	}
 }
 
 @media screen and (max-width: 600px) {

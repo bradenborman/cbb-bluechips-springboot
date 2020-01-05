@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
+
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -97,4 +99,11 @@ public class TransactionDao {
         }
     }
 
+    public List<Transaction> getLatest50Transactions() {
+        return namedParameterJdbcTemplate.query(TransactionSQL.getLatest50Transactions, new TransactionRowMapper());
+    }
+
+    public List<Transaction> getTransactionsAfter50() {
+        return namedParameterJdbcTemplate.query(TransactionSQL.getTransactions, new TransactionRowMapper());
+    }
 }

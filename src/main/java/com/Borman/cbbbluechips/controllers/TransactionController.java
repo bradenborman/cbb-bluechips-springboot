@@ -30,7 +30,7 @@ public class TransactionController {
 
     @RequestMapping("")
     public String transactions(HttpServletRequest request, HttpServletResponse response, Model model) {
-        List<Transaction> allTrans = transactionService.getAllTransactions();
+        List<Transaction> allTrans = transactionService.getLatest50Transactions();
         model.addAttribute("transactions", allTrans);
         return "transaction";
     }

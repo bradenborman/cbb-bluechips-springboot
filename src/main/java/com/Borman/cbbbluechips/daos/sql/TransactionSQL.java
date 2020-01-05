@@ -27,7 +27,8 @@ public class TransactionSQL {
 
     public static final String deleteUsersTransactions = "DELETE FROM transaction_history WHERE User_Name = :fullName;";
 
+    public static final String getLatest50Transactions = "SELECT * FROM transaction_history order by Transaction_ID desc LIMIT 50";
 
-
+    public static final String getTransactions = "SELECT * FROM transaction_history order by Transaction_ID desc";
 
 }
