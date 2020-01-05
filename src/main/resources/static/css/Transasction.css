@@ -93,6 +93,11 @@ position: -webkit-sticky; /* Safari */
 
 
 @media(max-width: 480px) {
+
+    .hideSmall {
+        display: none;
+    }
+
 td {
     display:block;
     text-align: center;
