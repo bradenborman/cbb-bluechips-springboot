@@ -17,7 +17,7 @@ public class MiscDataController {
     @Autowired
     private TransactionService transactionService;
 
-    @GetMapping("/next50-transactions")
+    @GetMapping("/remainingTransactions")
     public ResponseEntity<List<Transaction>> transactions() {
         return ResponseEntity.ok(transactionService.getTransactionsAfter50());
     }
