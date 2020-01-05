@@ -38,7 +38,7 @@
         }
 
         .netLossString {
-            font-size: 1.2em;
+            font-size: 1.5em;
             text-align: center;
             font-wight: bold;
         }
@@ -73,7 +73,7 @@
             <div class="card">
                 <div class="card-header">
                     <img class="logo_header" th:src="@{${'/img/' + breakdown.teamName + '.png'}}"/>
-                    <h3 style="display: inline-block" th:text="${breakdown.teamName}"></h3>
+                    <h5 style="display: inline-block" th:text="${breakdown.teamName}"></h5>
                 </div>
                 <div class="card-body" th:classappend="${breakdown.LossOrAheadClass}">
                     <p class="netLossString" th:text="${breakdown.netProfitDisplayString}"></p>
