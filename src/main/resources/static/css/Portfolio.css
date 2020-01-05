@@ -93,6 +93,12 @@ td:nth-child(1) {
 }
 
 @media (max-width: 575.98px) {
+
+	tr td:first-child,
+    tr th:first-child {
+       padding: 3px;
+    }
+
 	.header>h1 {
 		font-size: 1.2em;
 	}
