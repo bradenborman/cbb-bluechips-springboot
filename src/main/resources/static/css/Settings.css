@@ -1,54 +1,48 @@
 body {
-	    background-color: rgba(0,0,0,.07);
-  }
+	background-color: rgba(0, 0, 0, .07);
+}
 
 .app {
 	margin-top: 30px;
 }
 
-
 .settings h2 {
-    text-align: center;
+	text-align: center;
 }
 
-
-
 .DELETE_TEXT {
-    font-weight: bold;
-    margin-top: 50px;
-    cursor: pointer;
-    color: red;
-    margin-bottom: 20px;
+	font-weight: bold;
+	margin-top: 50px;
+	cursor: pointer;
+	color: red;
+	margin-bottom: 20px;
 }
 
 input[type=text] {
-  width: 200px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  padding: 5px;
-  background-color: white;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+	width: 200px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	padding: 5px;
+	background-color: white;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
 }
 
 input[type=text]:focus {
-  width: 100%;
+	width: 100%;
 }
 
 @media (max-width: 575.98px) {
-
-    .rating {
-        text-align: center;
-        font-size: 1.4em;
-    }
-
-    .page_links {
-        margin-top: 20px;
-        float: center;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
+	.rating {
+		text-align: center;
+		font-size: 1.4em;
+	}
+	.page_links {
+		margin-top: 20px;
+		float: center;
+		text-align: center;
+		margin-bottom: 10px;
+	}
 }

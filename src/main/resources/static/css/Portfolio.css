@@ -1,8 +1,9 @@
 body {
-	    background-color: rgba(0,0,0,.07);
-  }
+	background-color: rgba(0, 0, 0, .07);
+}
 
-.card h3, .card h2 {
+.card h3,
+.card h2 {
 	margin-bottom: 20px;
 	font-size: 1.3em;
 }
@@ -19,21 +20,25 @@ body {
 	color: lightblue;
 }
 
-
 .gameFlowItem {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .PortfolioItem {
-   font-size: 1.3em;
-   margin-bottom: 5px;
+	font-size: 1.3em;
+	margin-bottom: 5px;
 }
 
 .mainItem {
-    min-height: 190px;
+	min-height: 190px;
 }
 
-#Networth, #Leader, #TotalMoney, td:nth-child(3), td:nth-child(4), .fa-money-bill-alt{
+#Networth,
+#Leader,
+#TotalMoney,
+td:nth-child(3),
+td:nth-child(4),
+.fa-money-bill-alt {
 	color: green;
 }
 
@@ -53,8 +58,6 @@ body {
 	margin-top: 30px;
 }
 
-
-
 .logo {
 	height: 4vh;
 	width: 4vh;
@@ -62,9 +65,11 @@ body {
 	margin-right: 5px;
 }
 
+
 /* FOR LOGO IN TABLE */
+
 td:nth-child(1) {
-  text-align: left;
+	text-align: left;
 }
 
 .optionLinks {
@@ -72,88 +77,72 @@ td:nth-child(1) {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
-
 .showSmall {
 	display: none;
 	text-align: center;
 }
 
 #investmentTOTAL {
-    font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 .emptyPortfolioLink {
-   font-weight: 500;
-   margin: 15px;
-   font-size: 1.3em;
+	font-weight: 500;
+	margin: 15px;
+	font-size: 1.3em;
 }
 
-
 @media (max-width: 575.98px) {
-
 	.header>h1 {
-			font-size: 1.2em;
+		font-size: 1.2em;
 	}
-
 	.card {
 		margin-bottom: 15px;
 		font-size: 1em;
 		min-height: 50px;
 	}
-	.card-body h3, .card-body h5 {
-	    margin: 3px;
+	.card-body h3,
+	.card-body h5 {
+		margin: 3px;
 		font-size: 1.2em;
 	}
-
-
 	.optionLinks {
-	text-align: center;
-	font-size: 1.5em;
-}
-
-
+		text-align: center;
+		font-size: 1.5em;
+	}
 	.logo {
-	height: 8vh;
-	width: 8vh;
-	display: inline;
-}
-
+		height: 8vh;
+		width: 8vh;
+		display: inline;
+	}
 	.showSmall {
 		display: block;
 	}
-
-    .hideSmall {
+	.hideSmall {
 		display: none;
 	}
-
-.gameFlowItem {
-    text-align: center;
-    margin-bottom: 4px;
-}
-
-.networthh2 {
-	margin-bottom: 10px;
-	font-size: 1.5em;
-}
-
-.PortfolioItem {
-    text-align: center;
-    margin-bottom: 4px;
-     font-size: 1.1em;
-}
-
-.mainItem {
-    padding-top: 10px;
-    min-height: 0px;
-}
-
-.row {
-    margin-top: 6px;
-}
-
-.emptyPortfolioLink {
-   margin-top: 20px;
-   font-size: 1.2em;
-}
-
+	.gameFlowItem {
+		text-align: center;
+		margin-bottom: 4px;
+	}
+	.networthh2 {
+		margin-bottom: 10px;
+		font-size: 1.5em;
+	}
+	.PortfolioItem {
+		text-align: center;
+		margin-bottom: 4px;
+		font-size: 1.1em;
+	}
+	.mainItem {
+		padding-top: 10px;
+		min-height: 0px;
+	}
+	.row {
+		margin-top: 6px;
+	}
+	.emptyPortfolioLink {
+		margin-top: 20px;
+		font-size: 1.2em;
+	}
 }

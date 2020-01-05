@@ -1,79 +1,73 @@
 .Parent {
-     margin-bottom: 65px;
-     border-radius: 20px;
-     background-color: white;
-     border: 1px solid black;
-     box-shadow: 2px 4px #1e5799;
+	margin-bottom: 65px;
+	border-radius: 20px;
+	background-color: white;
+	border: 1px solid black;
+	box-shadow: 2px 4px #1e5799;
 }
 
 .media-body {
-    margin-top: 18px;
-    margin-left: 18px;
-    overflow: auto;
-    word-wrap: break-word
+	margin-top: 18px;
+	margin-left: 18px;
+	overflow: auto;
+	word-wrap: break-word
 }
 
 .actualComment {
-    font-size: 1.4em;
+	font-size: 1.4em;
 }
 
 .actualSubComment {
-    font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 .fa-trash-o {
-    float: right;
-    font-size: 1.2em;
-    margin-top: 7px;
-    margin-right: 3%;
+	float: right;
+	font-size: 1.2em;
+	margin-top: 7px;
+	margin-right: 3%;
 }
 
 .fa-trash-o:hover {
-    color: red;
-    cursor: pointer;
+	color: red;
+	cursor: pointer;
 }
 
 .subcommentArea {
-    border-left: 2px solid #0ebe17;
-    padding-left: 8px;
+	border-left: 2px solid #0ebe17;
+	padding-left: 8px;
 }
 
 .reply {
-    padding-right: 20px;
-    padding-bottom: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
 }
 
 .createComment {
-    margin-bottom: 65px;
-    border-radius: 20px;
-    background-color: white;
-    padding: 15px;
-    border: 1px solid black;
-    box-shadow: 2px 4px #1e5799;
+	margin-bottom: 65px;
+	border-radius: 20px;
+	background-color: white;
+	padding: 15px;
+	border: 1px solid black;
+	box-shadow: 2px 4px #1e5799;
 }
 
 .morethan2Subs {
-    display: none;
+	display: none;
 }
 
-
 @media (max-width: 575.98px) {
-
-    .Parent {
-        padding: 4px;
-    }
-
-   .fa-trash-o {
-       float: right;
-       margin-right: 7%;
-   }
-
-    .actualComment {
-        font-size: 1.2em;
-    }
-
-    .actualSubComment {
-        font-size: 1em;
-    }
-
+	.Parent {
+		padding: 4px;
+	}
+	.fa-trash-o {
+		float: right;
+		margin-right: 7%;
+	}
+	.actualComment {
+		font-size: 1.2em;
+	}
+	.actualSubComment {
+		font-size: 1em;
+	}
 }
