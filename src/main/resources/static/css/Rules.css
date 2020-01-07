@@ -121,6 +121,19 @@ input:invalid {
 	border: 2px solid red;
 }
 
+.howToImgBuying {
+    width: 66%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.howToImgTrading {
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
 @media screen and (max-width: 600px) {
 	h2 {
 		font-size: 1.4rem;
@@ -130,4 +143,11 @@ input:invalid {
 	.sticky {
 		border-bottom: 0px solid black;
 	}
+
+	.howToImgBuying {
+        width: 80%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
 }

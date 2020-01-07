@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>How to play</title>
     <meta charset="utf-8">
@@ -41,8 +41,8 @@
         <li id="PayoutsLINK" class="nav-link">Payouts & Winnings</li>
         <li id="PointspreadLINK" class="nav-link">Understanding the Point-spread</li>
         <li id="InitialLINK" class="nav-link">Initial Setup</li>
-        <li id="BuyingLINK" class="nav-link">Buying</li>
-        <li id="SellingLINK" class="nav-link">Selling</li>
+        <li id="MarketLINK" class="nav-link">Market</li>
+        <li id="TradingLINK" class="nav-link">Trading</li>
     </ul>
     <div id="stick" class="sticky">
     <a class="backBTN" href="/portfolio"><i class="fas fa-home"></i> Return to Home</a>
@@ -58,6 +58,8 @@
 
 
     <h2 id="Payouts">Payouts & Winnings</h2>
+    <p>
+    <p>This is a completely free to play game.</p>
     <p>
         As a thank you for giving my game a chance, I will be giving out cash prizes. The top 10 players receiving a prize totaling $490 in all.
         <br />
@@ -122,14 +124,49 @@
         When you sign up, you inherit $100,000 as starting capital and an empty portfolio.
     </p>
 
-
-    <h2 id="Buying">Buying</h2>
-    <p>Placeholder</p>
-
-    <h2 id="Selling">Selling</h2>
     <p>
         Placeholder
     </p>
+
+
+    <h2 id="Market">Market</h2>
+
+    <p>Once you are ready to buy some shares, the place to go is the market.</p>
+
+
+
+    <img class="mx-auto d-block howToImgBuying" th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
+
+    <p>The photo above is an example of one of the many teams available for purchasing. Here you can see the team name, Current market price per 1 share,
+        who they play if the have a game that day, an interactive chart on historical pricing by round, a trade button, a seed identifier(1-16), and the shares outstanding.</p>
+
+    <p>New this year is the feature that displays the point spread and who the next opponent is. If you hover the mouse over the bar, you will either see <i>Favorite</i> or <i>Underdog</i>.
+        In the example above, Oklahoma State plays West Virgina next and is favored by 5 points. It is red as a caution that if you purchase any shares of this team,
+        they must not only win, they must win by 5 whole points. If the number is positive, it will be green, and it stands for a losing buffer.
+    </p>
+
+    <p>
+        Shares Outstanding is a way for the user to know just how many share are owned throughout the whole CBB Community. With the picture above,
+        it says "Shares Outstanding: 19". That means every user collectively owns a totals of 19 shares.
+    </p>
+    <p>
+        The interactive chart shows the price history of the team. In this example, they have yet to play a game and only have the starting price registered.
+    </p>
+    <p>
+        One quick thing to note, you may have noticed the img is surrounded by a green border. The green border signals that you as the user have a stake in that team. Once you sell
+        your share(s), the green border will not appear.
+    </p>
+
+
+    <h2 id="Trading">Trading</h2>
+
+    <p>
+        There are multiple ways to end up on the trading screen. The first is to click the blue trade button on a team while visiting the market. Another way is
+        to click the trade button while looking at your portfolio. If you are on a small device such as a phone, you can click the Team's Logo on the portfolio page to open up
+        the trade screen.
+    </p>
+
+    <img class="mx-auto d-block howToImgTrading" th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
 
 </div>
 <script>
