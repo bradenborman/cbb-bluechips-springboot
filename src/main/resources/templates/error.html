@@ -17,8 +17,8 @@ padding:10px;
   gtag('js', new Date());
 
   gtag('config', 'UA-155112023-1');
-
-  if(!location.hostname.contains("local") && location.protocol !== "https:")
+    var x = location.hostname
+  if(!location.hostname.includes("local") && location.protocol !== "https:")
   {
        location.protocol = "https:";
   }

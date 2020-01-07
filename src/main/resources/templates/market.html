@@ -30,7 +30,7 @@
 
   gtag('config', 'UA-155112023-1');
 
-  if(!location.hostname.contains("local") && location.protocol !== "https:")
+  if(!location.hostname.includes("local") && location.protocol !== "https:")
   {
        location.protocol = "https:";
   }
