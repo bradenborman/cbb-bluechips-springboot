@@ -18,7 +18,6 @@
           integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <link rel="icon"
           href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
-    <script src="scripts/Home.js"></script>
     <meta name="description"
           content="Sign up | Login for CBB BLuechips. The BEST Postseason College Basketball Investing game. "/>
     <meta name="google" content="nositelinkssearchbox"/>
@@ -33,6 +32,12 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-155112023-1');
+
+  if(!location.hostname.contains("local") && location.protocol !== "https:")
+  {
+       location.protocol = "https:";
+  }
+
 </script>
 </head>
 <body>
