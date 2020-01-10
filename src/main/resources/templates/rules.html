@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+    <link rel="icon" href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="css/Rules.css">
@@ -23,12 +23,13 @@
     <h1>College Basketball's Bluechips</h1>
 </header>
 
+<div class="container-fluid">
 <div class="how-section1">
     <div class="row">
-        <div class="col-md-6 how-img">
+        <div class="col-md-3 how-img">
             <img class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}"/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-9">
             <h4>Wave goodbye</h4>
             <h4 class="subheading">to busted brackets</h4>
             <p class="text-muted">
@@ -54,49 +55,51 @@
             </p>
         </div>
         <div class="col-md-6 how-img">
-            <img class="img-fluid" th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
+            <img class="img-fluid networth_viewImg" th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 how-img">
-            <img class="img-fluid" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
+            <img class="img-fluid investments_exampleImg" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
         </div>
         <div class="col-md-6">
-            <h4>Adding to the portfolio</h4>
-            <h4 class="subheading"></h4>
-            <p class="text-muted">Send and receive files. Deliver digital assets in a secure environment.
-                Share feedback in real time. Use GetLance Messages to communicate via text, chat, or video.
-                Use our mobile app. Many features can be accessed on your mobile phone when on the go.</p>
+            <h4>Portfolio</h4>
+            <h4 class="subheading">Getting the winners in your portfolio</h4>
+            <p class="text-muted">
+                While on the portfolio page, you can see a list of all the teams you currently are vested in.
+                You can see the Amount Owned, Current Market Price per 1 Share, and a Sum of what the Total Value of that team would be.
+            </p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <h4>Get paid on time</h4>
-            <h4 class="subheading">All projects.</h4>
+            <h4>Market</h4>
+            <h4 class="subheading">..and all that comes with it</h4>
             <p class="text-muted">
-                All invoices and payments happen through GetLance. Count on a simple and streamlined process.
-                Hourly and fixed-price projects. For hourly work, submit timesheets through GetLance. For fixed-price jobs, set milestones and funds are released via GetLance escrow features.
-                Multiple payment options. Choose a payment method that works best for you, from direct deposit or PayPal to wire transfer and more.
+                market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder
+                market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder
+                market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder
             </p>
         </div>
         <div class="col-md-6 how-img">
-            <img class="img-fluid" th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
+            <img class="img-fluid markets_exampleImg" th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 how-img">
-            <img class="img-fluid" th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
+        <div class="col-md-8 how-img">
+            <img class="img-fluid trading_exampleImg" th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h4>Buying & Selling</h4>
-            <h4 class="subheading">All projects website.</h4>
+            <h4 class="subheading">Time to cash in</h4>
             <p class="text-muted">
-                All invoices and payments happen through GetLance. Count on a simple and streamlined process.
-                Hourly and fixed-price projects. For hourly work, submit timesheets through GetLance. For fixed-price jobs, set milestones and funds are released via GetLance escrow features.
-                Multiple payment options. Choose a payment method that works best for you, from direct deposit or PayPal to wire transfer and more.
+                buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder
+                buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder
+                buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder
             </p>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
