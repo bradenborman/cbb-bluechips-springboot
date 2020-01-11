@@ -57,7 +57,7 @@ function deleteUser() {
          console.log("Data: " + data + "\nStatus: " + status);
    });
 
-   location.href = "/"
+   location.href = "/user/logout"
 
 }
 
