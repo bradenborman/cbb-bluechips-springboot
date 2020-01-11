@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.controllers.admin;
 
 import com.Borman.cbbbluechips.services.AdminService;
+import com.Borman.cbbbluechips.services.CookieService;
 import com.Borman.cbbbluechips.services.GameSettingsService;
 import com.Borman.cbbbluechips.services.SportsDataApiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    @Autowired
+    CookieService cookieService;
 
     @Autowired
     AdminService adminService;
@@ -54,6 +59,14 @@ public class AdminController {
     public String updatePointSpread(@RequestParam(value = "teamName") String[] teamName, @RequestParam(value = "nextPointSpread") String[] nextPointSpread) {
         System.out.println("updating " + nextPointSpread.length + " point spreads");
         adminService.processUpdatePointSpreadRequest(Arrays.asList(teamName), Arrays.asList(nextPointSpread));
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/resetGame")
+    public String resetGame(HttpServletRequest request) {
+        boolean isAdmin = cookieService.isUserAdmin(request);
+        settingsService.resetGame();
+        settingsService.updateRound("64");
         return "redirect:/admin";
     }
 
