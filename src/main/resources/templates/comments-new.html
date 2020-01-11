@@ -70,7 +70,7 @@
     </div>
 </div>
 <div class="container">
-    <div class="createComment animated slideInUp slow">
+    <div class="createComment animated slow">
         <div class="media-body">
             <div class="form-group parentTextArea">
                 <form action="/comments/submitNew" method="post">
@@ -86,8 +86,9 @@
 </div>
 <script>
 $(document).ready(function(){
-    $(".Parent:odd").addClass("slideInLeft");
-    $(".Parent:even").addClass("slideInRight");
+    //$(".Parent:odd").addClass("slideInLeft");
+    //$(".Parent:even").addClass("slideInRight");
+    //$(".createComment").addClass("slideInUp");
 });
 </script>
 </body>

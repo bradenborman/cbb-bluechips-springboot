@@ -64,7 +64,7 @@
                 <div style="text-align: center; margin-top: 50px;">
                     <button th:if="${!loggedIn}" type="button" onclick="signUpClicked()" class="btn btn-outline-primary btn-lg">Sign up here</button>
                     <button th:if="${loggedIn}" type="button" onclick="portfolio()" class="btn btn-outline-primary btn-lg">Back to Portfolio</button>
-                    <button type="button" onclick="calculator()" class="btn btn-outline-primary btn-lg">Point-spead Calculator</button>
+                    <button th:if="${loggedIn}" type="button" onclick="calculator()" class="btn btn-outline-primary btn-lg">Point-spread Calculator</button>
                 </div>
             </div>
         </div>
