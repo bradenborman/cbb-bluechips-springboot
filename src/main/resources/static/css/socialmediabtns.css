@@ -1,5 +1,4 @@
-@import url(http://weloveiconfonts.com/api/?family=entypo);
- *, *::before, *::after {
+*, *::before, *::after {
 	 box-sizing: border-box;
 }
  .icon--vimeo::before {
