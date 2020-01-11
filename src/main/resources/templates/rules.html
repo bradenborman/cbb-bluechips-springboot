@@ -10,11 +10,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="icon" href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="css/Rules.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155112023-1');
+
+  if(!location.hostname.includes("local") && location.protocol !== "https:")
+  {
+       location.protocol = "https:";
+  }
+
+</script>
 </head>
 <body>
 
@@ -27,7 +44,7 @@
 <div class="how-section1">
     <div class="row">
         <div class="col-md-3 how-img">
-            <img class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}"/>
+            <img data-aos-delay="300"  data-aos="zoom-in" aos-duration="1000" class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}"/>
         </div>
         <div class="col-md-9">
             <h4>Wave goodbye</h4>
@@ -55,12 +72,12 @@
             </p>
         </div>
         <div class="col-md-6 how-img">
-            <img class="img-fluid networth_viewImg" th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
+            <img data-aos-delay="300"  data-aos="fade-left" aos-duration="1000" class="img-fluid networth_viewImg" th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 how-img">
-            <img class="img-fluid investments_exampleImg" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
+            <img data-aos-delay="300"  data-aos="fade-right" aos-duration="1000" class="img-fluid investments_exampleImg" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
         </div>
         <div class="col-md-6">
             <h4>Portfolio</h4>
@@ -82,12 +99,12 @@
             </p>
         </div>
         <div class="col-md-6 how-img">
-            <img class="img-fluid markets_exampleImg" th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
+            <img data-aos-delay="300"  data-aos="fade-left" aos-duration="1000" class="img-fluid markets_exampleImg" th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 how-img">
-            <img class="img-fluid trading_exampleImg" th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
+            <img data-aos-delay="300"  data-aos="fade-right" aos-duration="1000" class="img-fluid trading_exampleImg" th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
         </div>
         <div class="col-md-4">
             <h4>Buying & Selling</h4>
@@ -101,5 +118,8 @@
     </div>
 </div>
 </div>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>
