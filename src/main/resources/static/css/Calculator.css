@@ -1,0 +1,98 @@
+.APP_WRAPPER {
+	font-family: "Lato", sans-serif;
+	font-size: 16px;
+	line-height: 1.714;
+	max-width: 720px;
+	margin: 24px auto 48px;
+	padding: 1.5em;
+}
+
+.nav-link {
+	padding: 0px;
+	color: #326B9B;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: #1e5799;
+}
+
+#pointSpreadCalHeader {
+	margin-top: 50px;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+}
+
+#pointSpreadCal {
+	margin: auto;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 12px;
+	padding: 30px;
+	margin-bottom: 130px;
+	width: 80%;
+	background-color: #fafafa;
+}
+
+.spreads {
+	margin-top: 15px;
+}
+
+#CoverdTeam {
+	margin-top: 25px;
+}
+
+.result {
+	font-weight: bold;
+}
+
+input {
+	z-index: -99;
+	text-align: center;
+	padding: 6px;
+}
+
+input:invalid {
+	border: 2px solid red;
+}
+
+.howToImgBuying {
+    width: 66%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.howToImgTrading {
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+@media screen and (max-width: 600px) {
+	h2 {
+		font-size: 1.4rem;
+		font-weight: bold;
+		margin-top: 20px;
+	}
+	.sticky {
+		border-bottom: 0px solid black;
+	}
+
+	.howToImgBuying {
+        width: 80%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+}

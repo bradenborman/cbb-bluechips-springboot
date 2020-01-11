@@ -9,7 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="icon" href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link rel="icon"
+          href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" type="text/css" href="css/Header.css">
@@ -19,7 +20,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
     <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -31,7 +32,6 @@
   {
        location.protocol = "https:";
   }
-
 </script>
 </head>
 <body>
@@ -42,85 +42,136 @@
 </header>
 
 <div class="container-fluid">
-<div class="how-section1">
-    <div class="row">
-        <div class="col-md-3 how-img">
-            <img data-aos-delay="300"  data-aos="zoom-in" aos-duration="1000" class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}"/>
-        </div>
-        <div class="col-md-9">
-            <h4>Wave goodbye</h4>
-            <h4 class="subheading">to busted brackets</h4>
-            <p class="text-muted">
-                The winner will be crowned shortly after the championship game has been completed and will be awarded to the person with the highest net worth.
-                Each person who plays, is tasked with the challenge of turning <span style="color: green; font-weight: bold;">$100,000</span> of fake cash, into the highest amount they can.
-                During the tournament, a total of <b>67 games</b> will be played over a few weeks span. Each of those games is an opportunity to increase your net worth.
-            </p>
-            <p class="text-muted">This is a completely free to play game with the top 10 players receiving a prize totaling $490 in all. </p>
-            <div style="text-align: center; margin-top: 50px;">
-                <button type="button" class="btn btn-outline-primary">Sign up here</button>
+    <div class="how-section1">
+        <div class="row">
+            <div class="col-md-4 how-img">
+                <img class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}"/>
             </div>
+            <div class="col-md-8">
+                <h4>Wave goodbye</h4>
+                <h4 class="subheading">to busted brackets</h4>
+                <p class="text-muted">
+                    The winner will be crowned shortly after the championship game has been completed and will be
+                    awarded to the person with the highest net worth.
+                    Each person who plays, is tasked with the challenge of turning <span
+                        style="color: green; font-weight: bold;">$100,000</span> of fake cash, into the highest amount
+                    they can.
+                    During the tournament, a total of <b>67 games</b> will be played over a few weeks span. Each of
+                    those games is an opportunity to increase your net worth.
+                </p>
+                <p class="text-muted">This is a completely free to play game with the top 10 players receiving a prize
+                    totaling $490 in all. </p>
+                <div style="text-align: center; margin-top: 50px;">
+                    <button th:if="${!loggedIn}" type="button" onclick="signUpClicked()" class="btn btn-outline-primary btn-lg">Sign up here</button>
+                    <button th:if="${loggedIn}" type="button" onclick="portfolio()" class="btn btn-outline-primary btn-lg">Back to Portfolio</button>
+                    <button type="button" onclick="calculator()" class="btn btn-outline-primary btn-lg">Point-spead Calculator</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>How to be</h4>
+                <h4 class="subheading">The 2020 winner of <span style="color: #326B9B">CBB Bluechips</span></h4>
+                <p class="text-muted">
+                    The winner will be crowned once the championship game has been played and will be awarded to the
+                    person with the highest net-worth.
+                    The way to do this, is to purchase shares of teams throughout the tournament who beat the point
+                    spread.
+                    Each game played, one team will have their market value increase while the other will result in
+                    loosing some value.
+                </p>
+            </div>
+            <div class="col-md-6 how-img">
+                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid networth_viewImg"
+                     th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 how-img">
+                <img data-aos-delay="300" data-aos="fade-right" aos-duration="1000"
+                     class="img-fluid investments_exampleImg" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
+            </div>
+            <div class="col-md-6">
+                <h4>Portfolio</h4>
+                <h4 class="subheading">Getting the winners in your portfolio</h4>
+                <p class="text-muted">
+                    While on the portfolio page, you can see a list of all the teams you currently are vested in.
+                    You can see the Amount Owned, Current Market Price per 1 Share, and a Sum of what the Total Value of
+                    that team would be.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Market</h4>
+                <h4 class="subheading">..and all that comes with it</h4>
+                <p class="text-muted">
+                    market placeholder market placeholder market placeholder market placeholder market placeholder
+                    market placeholder
+                    market placeholder market placeholder market placeholder market placeholder market placeholder
+                    market placeholder market placeholder market placeholder
+                    market placeholder market placeholder market placeholder market placeholder market placeholder
+                    market placeholder
+                </p>
+            </div>
+            <div class="col-md-6 how-img">
+                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid markets_exampleImg"
+                     th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 how-img">
+                <img data-aos-delay="300" data-aos="fade-right" aos-duration="1000" class="img-fluid trading_exampleImg"
+                     th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
+            </div>
+            <div class="col-md-5">
+                <h4>Buying & Selling</h4>
+                <h4 class="subheading">Time to cash in</h4>
+                <p class="text-muted">
+                    buying and selling placeholder buying and selling placeholder buying and selling placeholder buying
+                    and selling placeholder buying and selling placeholder
+                    buying and selling placeholder buying and selling placeholder buying and selling placeholder buying
+                    and selling placeholder buying and selling placeholder
+                    buying and selling placeholder buying and selling placeholder buying and selling placeholder buying
+                    and selling placeholder buying and selling placeholder
+                </p>
+            </div>
+        </div>
 
+        <div class="row text-center">
+            <div class="social__container">
+                <!-- social__item facebook -->
+                <div class="social__item">
+                    <a target="_blank" href="https://www.facebook.com/bradenborman" class="social__icon--facebook"><i
+                            class="icon--facebook"></i></a>
+                </div>
+                <!-- social__item linkedin -->
+                <div class="social__item">
+                    <a target="_blank" href="https://www.linkedin.com/in/bradyborman/"
+                       class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+                </div>
+                <div class="social__item">
+                    <a target="_blank" href="https://github.com/bradenborman/" class="social__icon--github"><i class="icon--github"></i></a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>How to be</h4>
-            <h4 class="subheading">The 2020 winner of <span style="color: #326B9B">CBB Bluechips</span></h4>
-            <p class="text-muted">
-                The winner will be crowned once the championship game has been played and will be awarded to the person with the highest net-worth.
-                The way to do this, is to purchase shares of teams throughout the tournament who beat the point spread.
-                Each game played, one team will have their market value increase while the other will result in loosing some value.
-            </p>
-        </div>
-        <div class="col-md-6 how-img">
-            <img data-aos-delay="300"  data-aos="fade-left" aos-duration="1000" class="img-fluid networth_viewImg" th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 how-img">
-            <img data-aos-delay="300"  data-aos="fade-right" aos-duration="1000" class="img-fluid investments_exampleImg" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
-        </div>
-        <div class="col-md-6">
-            <h4>Portfolio</h4>
-            <h4 class="subheading">Getting the winners in your portfolio</h4>
-            <p class="text-muted">
-                While on the portfolio page, you can see a list of all the teams you currently are vested in.
-                You can see the Amount Owned, Current Market Price per 1 Share, and a Sum of what the Total Value of that team would be.
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Market</h4>
-            <h4 class="subheading">..and all that comes with it</h4>
-            <p class="text-muted">
-                market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder
-                market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder
-                market placeholder market placeholder market placeholder market placeholder market placeholder market placeholder
-            </p>
-        </div>
-        <div class="col-md-6 how-img">
-            <img data-aos-delay="300"  data-aos="fade-left" aos-duration="1000" class="img-fluid markets_exampleImg" th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 how-img">
-            <img data-aos-delay="300"  data-aos="fade-right" aos-duration="1000" class="img-fluid trading_exampleImg" th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
-        </div>
-        <div class="col-md-4">
-            <h4>Buying & Selling</h4>
-            <h4 class="subheading">Time to cash in</h4>
-            <p class="text-muted">
-                buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder
-                buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder
-                buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder  buying and selling placeholder
-            </p>
-        </div>
-    </div>
-</div>
 </div>
 <script>
   AOS.init();
+
+function signUpClicked() {
+    window.location.href = "/";
+}
+
+function portfolio() {
+    window.location.href = "/portfolio";
+}
+
+function calculator() {
+    window.location.href = "/rules/calculator";
+}
+
 </script>
 </body>
 </html>
