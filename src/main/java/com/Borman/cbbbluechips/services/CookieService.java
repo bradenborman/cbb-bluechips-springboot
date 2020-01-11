@@ -48,13 +48,20 @@ public class CookieService {
     }
 
 
-    public void logout(HttpServletResponse response) {
+    public void logout(HttpServletResponse response)  {
         if (response != null) {
             Cookie cookie = new Cookie("_t1zd", "");
             cookie.setPath("/");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
+
+        try {
+            Thread.sleep(500);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getUserIdLoggedIn(HttpServletRequest request) {
