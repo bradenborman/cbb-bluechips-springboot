@@ -29,6 +29,14 @@ body {
 	margin-bottom: 5px;
 }
 
+.cashTransactions {
+    display: inline-block;
+}
+
+.cashTransactions:nth-child(2)::before {
+      content: " | ";
+}
+
 .mainItem {
 	min-height: 190px;
 }
@@ -151,4 +159,20 @@ td:nth-child(1) {
 		margin-top: 20px;
 		font-size: 1.2em;
 	}
+
+	.cashTransactions {
+        display: block;
+    }
+
+    .cashTransactions:nth-child(2) {
+        display: none;
+/*
+        not show transaction count on small screens
+*/
+    }
+
+    .cashTransactions:nth-child(2)::before {
+          content: "";
+    }
+
 }

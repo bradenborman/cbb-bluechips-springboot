@@ -45,17 +45,25 @@
                 <div class="card-body mainItem">
                     <div class="row">
                         <div class="col-lg-12 PortfolioItem">
-                            <h2 class="networthh2"><b>My Networth:</b> <span th:text="'$' + ${#numbers.formatDecimal((portfolio.portfolioValue + portfolio.cash), 1, 'DEFAULT', 0, 'DEFAULT')}" id="Networth"></span></h2>
+                            <h2 class="networthh2">
+                                <b>My Networth:</b>
+                                <span th:text="'$' + ${#numbers.formatDecimal((portfolio.portfolioValue + portfolio.cash), 1, 'DEFAULT', 0, 'DEFAULT')}" id="Networth"></span>
+                            </h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 PortfolioItem">
-                            <h5><b>Cash:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.cash, 1, 'DEFAULT', 0, 'DEFAULT')}" style="color: green;"></span></h5>
+                            <h5 class="cashTransactions">
+                                <b>Cash:</b> <span th:text="'$' + ${#numbers.formatDecimal(portfolio.cash, 1, 'DEFAULT', 0, 'DEFAULT')}" style="color: green;"></span>
+                            </h5>
+                            <h5 class="cashTransactions">
+                                <b>Transactions: </b><span th:text="${portfolio.myTransactionsCount}" id="Transactions"></span>
+                            </h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 PortfolioItem">
-                            <h5><b>Transactions: </b><span th:text="${portfolio.myTransactionsCount}" id="Transactions"></span></h5>
+                            <h5><b>Ranking: </b><span th:text="${leaderBoardPos}" id="GamePlace"></span></h5>
                         </div>
                     </div>
                 </div>

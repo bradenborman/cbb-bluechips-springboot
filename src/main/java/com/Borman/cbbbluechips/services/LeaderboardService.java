@@ -1,7 +1,7 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.models.LeaderboardUser;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Borman.cbbbluechips.models.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +32,14 @@ public class LeaderboardService {
         return leaders;
 
         //.skip(15) to get everyone else mght need to test and make sure its 15 not 14
+    }
+
+
+    public int getUsersLeaderPosition(User user) {
+        return ownsService.getLeaders().stream()
+                .filter(entry -> entry.getEmailAddress().equals(user.getEmail()))
+                .findFirst()
+                .orElse(new LeaderboardUser("", -1, 0, "")).getRanking();
     }
 
 }

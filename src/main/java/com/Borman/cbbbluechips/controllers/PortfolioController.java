@@ -3,10 +3,7 @@ package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.Portfolio;
 import com.Borman.cbbbluechips.models.User;
-import com.Borman.cbbbluechips.services.CookieService;
-import com.Borman.cbbbluechips.services.OwnsService;
-import com.Borman.cbbbluechips.services.PortfolioService;
-import com.Borman.cbbbluechips.services.UserService;
+import com.Borman.cbbbluechips.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +19,14 @@ public class PortfolioController {
     private UserService userService;
     private OwnsService ownsService;
     private PortfolioService portfolioService;
+    private LeaderboardService leaderboardService;
 
-    public PortfolioController(CookieService cookieService, UserService userService, OwnsService ownsService, PortfolioService portfolioService) {
+    public PortfolioController(CookieService cookieService, UserService userService, OwnsService ownsService, PortfolioService portfolioService, LeaderboardService leaderboardService) {
         this.cookieService = cookieService;
         this.userService = userService;
         this.ownsService = ownsService;
         this.portfolioService = portfolioService;
+        this.leaderboardService = leaderboardService;
     }
 
     @RequestMapping("")
@@ -38,6 +37,7 @@ public class PortfolioController {
                 User user = userService.getUser(cookieService.getUserIdLoggedIn(request));
                 user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
                 model.addAttribute("user", user);
+                model.addAttribute("leaderBoardPos", leaderboardService.getUsersLeaderPosition(userService.getUser(user.getID())));
                 model.addAttribute("portfolio", portfolioService.getPortfolioDetails(user));
                 return "portfolio";
             }
