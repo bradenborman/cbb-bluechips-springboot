@@ -28,6 +28,8 @@
 	margin-top: 50px;
 	margin-bottom: 40px;
 	text-align: center;
+	font-family: 'Krona One';
+	font-size: 2.2em;
 }
 
 input[type="range"] {
@@ -139,4 +141,10 @@ input[type="range"] {
 	#SELL_SECTION {
 		margin-bottom: 85px;
 	}
+
+	.CapitalAvailable {
+    	margin-top: 30px;
+    	margin-bottom: 40px;
+    	font-size: 1.3em;
+    }
 }
