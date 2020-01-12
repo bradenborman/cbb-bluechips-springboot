@@ -53,7 +53,7 @@ public class TradeController {
     public synchronized String sellTeam(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
         if (cookieService.isLoggedIn(request)) {
             TradeRequest tradeRequest = new TradeRequest(teamId, cookieService.getUserIdLoggedIn(request), volume, TradeAction.SELL);
-            if (ownsService.validateOwnership(tradeRequest))
+            if (ownsService.validateOwnership(tradeRequest) && !teamService.isTeamLocked(tradeRequest.getTeamId()))
                 transactionService.completeSell(tradeRequest);
             return "redirect:../trade/" + teamId;
         } else {
@@ -66,7 +66,8 @@ public class TradeController {
         if (cookieService.isLoggedIn(request)) {
             TradeRequest tradeRequest = new TradeRequest(teamId, cookieService.getUserIdLoggedIn(request), volume, TradeAction.BUY);
             double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
-            transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
+            if (!teamService.isTeamLocked(tradeRequest.getTeamId()))
+                transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
             return "redirect:../trade/" + teamId;
         } else {
             return "redirect:../";

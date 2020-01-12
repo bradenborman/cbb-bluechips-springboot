@@ -111,4 +111,13 @@ public class TeamDao {
     }
 
 
+    public boolean isTeamLocked(String teamId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+            String result =  namedParameterJdbcTemplate.queryForObject(TeamSQL.getLockedStatusByTeam, params, String.class);
+            return "1".equals(result);
+        }catch (Exception e) {
+            return false;
+        }
+    }
 }

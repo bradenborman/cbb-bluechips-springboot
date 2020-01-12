@@ -67,4 +67,7 @@ public class TeamService {
     }
 
 
+    public boolean isTeamLocked(String teamId) {
+        return teamDao.isTeamLocked(teamId);
+    }
 }

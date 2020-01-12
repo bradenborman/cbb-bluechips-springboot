@@ -26,4 +26,6 @@ public class TeamSQL {
 
     public static final String getNameByShortName = "SELECT Name FROM teams WHERE Short_Display_Name = :teamShortName LIMIT 1";
 
+    public static final String getLockedStatusByTeam = "SELECT Is_Locked FROM teams WHERE Team_ID = :teamId";
+
 }
