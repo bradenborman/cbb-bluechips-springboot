@@ -37,7 +37,7 @@ public class AdminController {
 
     @PostMapping("/update-locked")
     public String updateLocked(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "isEliminated", defaultValue = "false") boolean isEliminated,
-                                               @RequestParam(value = "isLocked", defaultValue = "false") boolean isLocked) {
+                               @RequestParam(value = "isLocked", defaultValue = "false") boolean isLocked) {
         adminService.updateLockedAndEliminated(teamName, isEliminated, isLocked);
         return "redirect:/admin/update/teams";
     }
@@ -64,13 +64,14 @@ public class AdminController {
 
     @PostMapping("/resetGame")
     public String resetGame(HttpServletRequest request) {
-        boolean isAdmin = cookieService.isUserAdmin(request);
-        settingsService.resetGame();
-        settingsService.updateRound("64");
+        if (cookieService.isUserAdmin(request)) {
+            settingsService.resetGame();
+            settingsService.updateRound("64");
+        }
         return "redirect:/admin";
     }
 
-        //USED FOR TESTING PURPOSES
+    //USED FOR TESTING PURPOSES
 //    @GetMapping("/update-teamsplaying")
 //    public String updateteamsplaying() {
 //        sportsDataApiService.updateTeamsPlayingToday();

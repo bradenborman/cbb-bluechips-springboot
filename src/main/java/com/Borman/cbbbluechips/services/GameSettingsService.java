@@ -2,6 +2,8 @@ package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.GameSettingsDao;
 import com.Borman.cbbbluechips.models.Team;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import java.util.stream.Stream;
 
 @Service
 public class GameSettingsService {
+
+    private Logger logger = LoggerFactory.getLogger(GameSettingsService.class);
 
     @Autowired
     GameSettingsDao settingsDao;
@@ -36,6 +40,7 @@ public class GameSettingsService {
 
     @Transactional
     public void resetGame() {
+        logger.info("~~ REQUEST TO RESET GAME ~~");
         settingsDao.deleteAllTransactionFromGame();
         settingsDao.deleteAllPriceHistoryFromGame();
         settingsDao.resetAllTeamsBackToStartingPrice();
