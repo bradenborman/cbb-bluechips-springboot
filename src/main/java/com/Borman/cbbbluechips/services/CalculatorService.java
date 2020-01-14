@@ -69,12 +69,12 @@ public class CalculatorService {
         if (adjustedScore_Playing > adjustedScore_Owned) {
             calculatorDetail.setTeamThatCovered(calculatorDetail.getTeamNamePlaying());
             calculatorDetail.setCoveredBy(adjustedScore_Playing - adjustedScore_Owned);
-            calculatorDetail.setTeamOwnedNewValue(currentMarketPrice - (200 * calculatorDetail.getCoveredBy()));
+            calculatorDetail.setTeamOwnedNewValue(currentMarketPrice - (100 * calculatorDetail.getCoveredBy()));
 
         } else if (adjustedScore_Playing < adjustedScore_Owned) {
             calculatorDetail.setTeamThatCovered(calculatorDetail.getTeamNameOwned());
             calculatorDetail.setCoveredBy(adjustedScore_Owned - adjustedScore_Playing);
-            calculatorDetail.setTeamOwnedNewValue(currentMarketPrice + (200 * calculatorDetail.getCoveredBy()));
+            calculatorDetail.setTeamOwnedNewValue(currentMarketPrice + (100 * calculatorDetail.getCoveredBy()));
         } else {
             calculatorDetail.setTeamThatCovered("Split");
             calculatorDetail.setCoveredBy(0);

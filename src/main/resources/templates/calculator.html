@@ -134,7 +134,7 @@ if(!isNaN(team1) && !isNaN(team2) && !isNaN(pointspread))
         var coveredBy = parseFloat(((team1 + pointspread) - team2))
 
         updateOutcome(coveredBy < 0 ? coveredBy * -1 : coveredBy, winningTeam)
-        $('#NewValue .result').text("$" + ReplaceNumberWithCommas((5000 + (coveredBy * 200))))
+        $('#NewValue .result').text("$" + ReplaceNumberWithCommas((5000 + (coveredBy * 100))))
     }
     else {
         updateOutcome("0", "SPLIT")
