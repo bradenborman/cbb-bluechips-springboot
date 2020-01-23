@@ -26,7 +26,7 @@ public class CookieService {
 
     public void login(User user, HttpServletResponse response) {
         if (user != null) {
-            Cookie cookie = new Cookie("_t1zd", disguiseCookieString + disguisedId(user.getID()));
+            Cookie cookie = new Cookie("_t1zd", disguiseCookieString + getDisguiseId(user.getID()));
             cookie.setPath("/");
             cookie.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(cookie);
@@ -48,7 +48,7 @@ public class CookieService {
     }
 
 
-    public void logout(HttpServletResponse response)  {
+    public void logout(HttpServletResponse response) {
         if (response != null) {
             Cookie cookie = new Cookie("_t1zd", "");
             cookie.setPath("/");
@@ -58,7 +58,7 @@ public class CookieService {
 
         try {
             Thread.sleep(500);
-        }catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -70,7 +70,7 @@ public class CookieService {
         if (allCookies != null) {
             for (Cookie cookie : allCookies) {
                 if (cookie.getName().equals("_t1zd") && cookie.getValue() != null) {
-                    return getDisguisedId(cookie.getValue().replace(disguiseCookieString, ""));
+                    return parseDisguiseId(cookie.getValue().replace(disguiseCookieString, ""));
                 }
             }
         }
@@ -85,15 +85,122 @@ public class CookieService {
                 return true;
         return false;
     }
+//
+//    private String disguisedId(String id) {
+//        int idx = Integer.parseInt(id);
+//        return String.valueOf(idx * 250);
+//    }
+//
+//    private String getDisguisedId(String id) {
+//        int idx = Integer.parseInt(id);
+//        return String.valueOf(idx / 250);
+//    }
 
-    private String disguisedId(String id) {
-        int idx = Integer.parseInt(id);
-        return String.valueOf(idx * 250);
+
+    String getDisguiseId(String id) {
+
+        StringBuilder hashed = new StringBuilder();
+
+        String[] idSplit = id.split("");
+
+        for (String s : idSplit) {
+            hashed.append(getLetter(s));
+        }
+
+        return hashed.toString();
     }
 
-    private String getDisguisedId(String id) {
-        int idx = Integer.parseInt(id);
-        return String.valueOf(idx / 250);
+    String parseDisguiseId(String hashed) {
+
+        StringBuilder idString = new StringBuilder();
+
+        String[] idSplit = hashed.split("");
+
+        for (String s : idSplit) {
+            idString.append(parseLetter(s));
+        }
+
+        return idString.toString();
+    }
+
+    private char getLetter(String id) {
+
+        switch (id) {
+
+            case "0":
+                return  'Q';
+
+            case "1":
+                return  'W';
+
+            case "2":
+                return  'E';
+
+            case "3":
+                return  'R';
+
+            case "4":
+                return  'T';
+
+            case "5":
+                return  'Y';
+
+            case "6":
+                return  'U';
+
+            case "7":
+                return  'I';
+
+            case "8":
+                return  'O';
+
+            case "9":
+                return  'P';
+
+            default:
+                return ' ';
+        }
+
+    }
+
+    private char parseLetter(String letter) {
+
+        switch (letter) {
+
+            case "Q":
+                return  '0';
+
+            case "W":
+                return  '1';
+
+            case "E":
+                return  '2';
+
+            case "R":
+                return  '3';
+
+            case "T":
+                return  '4';
+
+            case "Y":
+                return  '5';
+
+            case "U":
+                return  '6';
+
+            case "I":
+                return  '7';
+
+            case "O":
+                return  '8';
+
+            case "P":
+                return  '9';
+
+            default:
+                return ' ';
+        }
+
     }
 
 }
