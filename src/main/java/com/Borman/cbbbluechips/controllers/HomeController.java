@@ -22,14 +22,13 @@ public class HomeController {
     }
 
     //TODO could add the emailAttempted to template but at least it shows in url.
-    @RequestMapping("/")
-    public String welcome(HttpServletRequest request, HttpServletResponse response, Model model,
-                          @RequestParam(defaultValue = "false") String wasError,
-                          @RequestParam(defaultValue = "") String emailAttempted) {
-
-        if(!wasError.equals("false"))
-            model.addAttribute("error", "Failed");
-        return cookieService.isLoggedIn(request) ? "redirect:/portfolio" : "home";
+    @RequestMapping("/login")
+    public String welcome(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(defaultValue = "false") String wasError, @RequestParam(defaultValue = "") String emailAttempted) {
+//
+//        if(!wasError.equals("false"))
+//            model.addAttribute("error", "Failed");
+//        return cookieService.isLoggedIn(request) ? "redirect:/portfolio" : "home";
+        return "home";
     }
 
     @RequestMapping("/settings")
