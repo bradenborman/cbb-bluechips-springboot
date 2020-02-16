@@ -1,15 +1,12 @@
 package com.Borman.cbbbluechips.controllers.admin;
 
-import com.Borman.cbbbluechips.services.AdminService;
-import com.Borman.cbbbluechips.services.CookieService;
-import com.Borman.cbbbluechips.services.GameSettingsService;
-import com.Borman.cbbbluechips.services.SportsDataApiService;
+import com.Borman.cbbbluechips.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 
 @Controller
@@ -24,6 +21,9 @@ public class AdminController {
 
     @Autowired
     GameSettingsService settingsService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     SportsDataApiService sportsDataApiService;
@@ -71,12 +71,13 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    //USED FOR TESTING PURPOSES
-//    @GetMapping("/update-teamsplaying")
-//    public String updateteamsplaying() {
-//        sportsDataApiService.updateTeamsPlayingToday();
-//        return "test";
-//    }
+    @PostMapping("/deletePlayers")
+    public String deletePlayers(HttpServletRequest request, HttpServletResponse response) {
+        if (cookieService.isUserAdmin(request)) {
+            userService.deleteAllUsers();
+            cookieService.logout(response);
+        }
+        return "redirect:/admin";
+    }
 
 }
-

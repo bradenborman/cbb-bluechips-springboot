@@ -40,6 +40,12 @@ public class CookieService {
             for (Cookie allCookie : allCookies) {
                 if (allCookie.getName().equals("_t1zd") && allCookie.getValue() != null) {
                     String userID = allCookie.getValue().replace(disguiseCookieString, "");
+                    try {
+                        //Looks in database to see if user really is there
+                        userDao.getUserById(parseDisguiseId(userID));
+                    }catch (Exception e) {
+                        return false;
+                    }
                     return true;
                 }
             }
@@ -79,7 +85,13 @@ public class CookieService {
 
 
     public boolean isUserAdmin(HttpServletRequest request) {
-        User attemptedAdmin = userDao.getUserById(getUserIdLoggedIn(request));
+        User attemptedAdmin;
+        try {
+            attemptedAdmin = userDao.getUserById(getUserIdLoggedIn(request));
+        }catch (Exception e) {
+            return false;
+        }
+
         for (String AllowedAdmin : admins)
             if (AllowedAdmin.equals(attemptedAdmin.getEmail()))
                 return true;

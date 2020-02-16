@@ -103,4 +103,10 @@ public class UserService {
         return userDao.getUserByEmail(emailToRecover);
     }
 
+    public void deleteAllUsers() {
+        logger.info("~~ REQUEST TO DELETE ALL PLAYERS ~~");
+        getAllUsers().forEach(user -> {
+            deleteUser(user.getID());
+        });
+    }
 }

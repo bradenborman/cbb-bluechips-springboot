@@ -59,6 +59,11 @@
             </button>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button style="margin-top: 60px; float: right;" onclick="deleteAllPlayers()" type="button" class="btn btn-danger">Delete All Players</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -72,6 +77,23 @@
 
             if(wantsToPlayAgain) {
                 $.post("/admin/resetGame", {}, function(result){
+                    console.log("DONE")
+                });
+            }
+
+        }resetGame
+
+    }
+
+    function deleteAllPlayers() {
+
+        var deletePlayers = confirm("Are you sure you want to Delete All Players?");
+        if(deletePlayers){
+
+            deletePlayers = confirm("Last Warning... are you sure you want to Delete All Players?");
+
+            if(deletePlayers) {
+                $.post("/admin/deletePlayers", {}, function(result){
                     console.log("DONE")
                 });
             }

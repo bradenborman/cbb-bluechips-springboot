@@ -1,14 +1,5 @@
 spring:
   datasource:
-#    testOnBorrow: true
-#    maxActive: 5
-#    testWhileIdle: true
-#    timeBetweenEvictionRunsMillis: 60000
-#    validationQuery: SELECT 1
-#    tomcat:
-#      testWhileIdle: true
-#      timeBetweenEvictionRunsMillis: 60000
-#      validationQuery: SELECT 1
   jpa:
     properties:
       hibernate:
@@ -37,9 +28,9 @@ sports-data-api:
 game-rules:
   starting-cash: 100000
   payoutMap:
-    1: $200
-    2: $100
-    3: $50
+    1: $150 Venmo
+    2: $75 Venmo
+    3: $50 Venmo
     4: $20 Giftcard
     5: $20 Giftcard
     6: $20 Giftcard
