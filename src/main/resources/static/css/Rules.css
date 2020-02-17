@@ -47,3 +47,43 @@
      width: 80%;
 
 }
+
+@media screen and (max-width: 600px) {
+
+    img {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .how-section1 h4 {
+        margin-top: 15px;
+        font-size: 1.7em;
+    }
+
+    .how-section1 .subheading {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+
+    .btn-group-lg>.btn, .btn-lg {
+        margin-bottom: 20px;
+    }
+
+    .networth_viewImg {
+        width: 100%;
+    }
+
+    .investments_exampleImg {
+         width: 100%;
+    }
+
+    .markets_exampleImg {
+         width: 100%;
+    }
+
+    .trading_exampleImg {
+         width: 100%;
+
+    }
+
+}

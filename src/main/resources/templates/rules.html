@@ -33,7 +33,8 @@
   {
        location.protocol = "https:";
   }
-</script>
+
+    </script>
 </head>
 <body>
 
@@ -63,9 +64,15 @@
                 <p class="text-muted">This is a completely free to play game with the top 10 players receiving a prize
                     totaling $490 in all. </p>
                 <div style="text-align: center; margin-top: 50px;">
-                    <button th:if="${!loggedIn}" type="button" onclick="signUpClicked()" class="btn btn-outline-primary btn-lg">Sign up here</button>
-                    <button th:if="${loggedIn}" type="button" onclick="portfolio()" class="btn btn-outline-primary btn-lg">Back to Portfolio</button>
-                    <button th:if="${loggedIn}" type="button" onclick="calculator()" class="btn btn-outline-primary btn-lg">Point-spread Calculator</button>
+                    <button th:if="${!loggedIn}" type="button" onclick="signUpClicked()"
+                            class="btn btn-outline-primary btn-lg">Sign up here
+                    </button>
+                    <button th:if="${loggedIn}" type="button" onclick="portfolio()"
+                            class="btn btn-outline-primary btn-lg">Back to Portfolio
+                    </button>
+                    <button th:if="${loggedIn}" type="button" onclick="calculator()"
+                            class="btn btn-outline-primary btn-lg">Point-spread Calculator
+                    </button>
                 </div>
             </div>
         </div>
@@ -105,15 +112,22 @@
         <div class="row">
             <div class="col-md-6">
                 <h4>Market</h4>
-                <h4 class="subheading">..and all that comes with it</h4>
                 <p class="text-muted">
-                    market placeholder market placeholder market placeholder market placeholder market placeholder
-                    market placeholder
-                    market placeholder market placeholder market placeholder market placeholder market placeholder
-                    market placeholder market placeholder market placeholder
-                    market placeholder market placeholder market placeholder market placeholder market placeholder
-                    market placeholder
-                </p>
+                    The Market is a collection of team cards that give the user access to buying and selling. Each card
+                    has the following information:</p>
+                <ul style="list-style-type:none; font-style: italic;">
+                    <li>Team Name</li>
+                    <li>Current Market price</li>
+                    <li>Chart of price history</li>
+                    <li>Trade Button</li>
+                    <li>Ranking in the Tournament</li>
+                    <li>Shares Outstanding</li>
+                </ul>
+                <p class="text-muted">If a team has a game scheduled, it will also have a gray bar of additional information with the following:</p>
+                <ul style="list-style-type:none; font-style: italic;">
+                    <li>Point Spread for that game</li>
+                    <li>Next Opponent</li>
+                </ul>
             </div>
             <div class="col-md-6 how-img">
                 <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid markets_exampleImg"
@@ -129,12 +143,17 @@
                 <h4>Buying & Selling</h4>
                 <h4 class="subheading">Time to cash in</h4>
                 <p class="text-muted">
-                    buying and selling placeholder buying and selling placeholder buying and selling placeholder buying
-                    and selling placeholder buying and selling placeholder
-                    buying and selling placeholder buying and selling placeholder buying and selling placeholder buying
-                    and selling placeholder buying and selling placeholder
-                    buying and selling placeholder buying and selling placeholder buying and selling placeholder buying
-                    and selling placeholder buying and selling placeholder
+                    Once you click any of the "Trade" buttons, you will be taken to the Trading Screen. Here you will see basic team info as well as two sliders.
+                    Buying and selling is simple, you just use the corresponding slider to set the amount on the action you want to either buy or sell.
+                    Checks are in place that wont let you slide to more than you can afford nor will it let you select more to sell than you owm.
+                </p>
+                <p class="text-muted">Lets say you want to sell 10 shares of Duke because you want to buy someone else before they place. Once you clicked Duke's "Trade" button, find the seconded slider, you will see
+                it grouped with the sell button, and use your finger or mouse to drag the bar to the right until the button says "Sell 10" and once you have that, tap the button.
+                </p>
+                <p class="text-muted">
+                    One more helpful piece of information is the Trade screen will show you the Top 3 Shareholders of that team.
+                    Do not be alarmed if you do not see your name on that list, it just means at
+                    least 3 people own more shares than you do.
                 </p>
             </div>
         </div>
@@ -152,7 +171,8 @@
                        class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
                 </div>
                 <div class="social__item">
-                    <a target="_blank" href="https://github.com/bradenborman/" class="social__icon--github"><i class="icon--github"></i></a>
+                    <a target="_blank" href="https://github.com/bradenborman/" class="social__icon--github"><i
+                            class="icon--github"></i></a>
                 </div>
             </div>
         </div>
@@ -172,6 +192,7 @@ function portfolio() {
 function calculator() {
     window.location.href = "/rules/calculator";
 }
+
 
 </script>
 </body>
