@@ -50,7 +50,7 @@ public class TeamService {
         int Current_Round = Integer.valueOf(gameSettingsDao.getCurrentRound());
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", "5000");
-        List<Integer> rounds = Arrays.asList(32, 16, 8, 4, 2);
+        List<Integer> rounds = Arrays.asList(32, 16, 8, 4, 2, 1);
         rounds.forEach(round -> {
             if (Current_Round <= (round * 2)) {
                 String latestPrice = priceHistoryService.getPriceHistoryForRound(team.getTeamId(), String.valueOf(round));
