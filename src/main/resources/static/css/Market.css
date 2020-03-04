@@ -19,6 +19,7 @@ nav {
 }
 
 .card-body {
+    min-height: 283px;
 	padding: 10px;
 }
 
@@ -66,6 +67,9 @@ th {
 }
 
 @media screen and (max-width: 600px) {
+	.card-body {
+        min-height: 320px;
+    }
 	nav {
 		margin-bottom: 0px;
 	}
