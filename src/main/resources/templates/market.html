@@ -127,6 +127,18 @@ $(".overunder").each(function() {
         $(this).css("color", "red");
   }
 });
+
+
+$(document).ready(function(){
+
+    var toInsert = $('.col-lg-6').eq(7);
+
+    var div = '<div class="col-sm-12 ads"><h1>Adds here placeholder</h1></div>'
+
+    $(div).insertAfter(toInsert);
+
+});
+
     </script>
 </div>
 </body>

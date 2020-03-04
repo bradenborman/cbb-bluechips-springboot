@@ -66,6 +66,12 @@ th {
 	margin-right: 30px;
 }
 
+
+.ads {
+    text-align: center;
+    padding: 60px;
+}
+
 @media screen and (max-width: 600px) {
 	.card-body {
         min-height: 320px;
