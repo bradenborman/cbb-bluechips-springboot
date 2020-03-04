@@ -66,10 +66,15 @@ th {
 	margin-right: 30px;
 }
 
-
-.ads {
+.adsContainer {
     text-align: center;
-    padding: 60px;
+    padding: 30px;
+}
+
+.ad {
+    max-width: 300px;
+    margin: 20px;
+    border: 2px solid white;
 }
 
 @media screen and (max-width: 600px) {
@@ -83,4 +88,11 @@ th {
 		font-weight: bold;
 		font-size: 1em;
 	}
+    .ad {
+       display: none;
+    }
+	.ad:first-child {
+	    margin: auto;
+        display: block;
+    }
 }

@@ -197,12 +197,6 @@
                     Do not be alarmed if you do not see your name on that list, it simply means at least 3 other
                     investors own more shares of the team than you do….use this information wisely.
                 </p>
-                <p class="text-muted">
-                    One more helpful piece of information is the Trade screen will show you the Top 3 Shareholders of
-                    that team.
-                    Do not be alarmed if you do not see your name on that list, it just means at
-                    least 3 people own more shares than you do.
-                </p>
             </div>
         </div>
 
@@ -219,6 +213,14 @@
                     Sign up below and get ready to experience March Madness like you never have before with College
                     Basketball Blue Chips!
                 </p>
+                <div style="text-align: center; margin-top: 50px;">
+                    <button th:if="${!loggedIn}" type="button" onclick="signUpClicked()"
+                            class="btn btn-outline-primary btn-lg">Sign up here
+                    </button>
+                    <button th:if="${loggedIn}" type="button" onclick="portfolio()"
+                            class="btn btn-outline-primary btn-lg">Back to Portfolio
+                    </button>
+                </div>
             </div>
         </div>
 
