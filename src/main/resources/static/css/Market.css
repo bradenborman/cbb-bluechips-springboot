@@ -65,16 +65,7 @@ th {
 	margin-right: 30px;
 }
 
-.hideToStart {
-	min-height: 283px;
-	opacity: 0;
-}
-
 @media screen and (max-width: 600px) {
-	.hideToStart {
-		min-height: 320px;
-		opacity: 0;
-	}
 	nav {
 		margin-bottom: 0px;
 	}

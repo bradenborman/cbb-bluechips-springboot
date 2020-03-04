@@ -63,7 +63,7 @@
                 <div class="card">
                     <h5 style="display: none;" class="identifier d-none" th:text="${team.teamName}"></h5>
                     <div th:if="${team.nextTeamPlaying != null}" th:utext="'(<span class=\'overunder\'>' + ${team.nextPointSpread} + '</span>) VS: ' + ${team.nextTeamPlaying}" class="card-header"></div>
-                    <div class="card-body hideToStart">
+                    <div class="card-body">
                         <div class="card-img-top" th:id="${team.teamName}"></div>
                         <p th:text="${team.priceHistoryString}" class="hidden values d-none"></p>
                         <div class="tradeBTN" th:if="${!team.locked}">
@@ -114,10 +114,6 @@ google.charts.load('current', {'packages':['corechart']});
          var chart = new google.visualization.LineChart(document.getElementById(TeamName));
          chart.draw(data, options);
          });
-
-  setTimeout(function(){
-     $('.hideToStart').animate({opacity: 1}, 500);
-  }, 500);
 
 }
 
