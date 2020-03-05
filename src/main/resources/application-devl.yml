@@ -28,9 +28,9 @@ sports-data-api:
 game-rules:
   starting-cash: 100000
   payoutMap:
-    1: $150 Venmo
-    2: $75 Venmo
-    3: $50 Venmo
+    1: $200 Cash
+    2: $100 Cash
+    3: $20 Giftcard
     4: $20 Giftcard
     5: $20 Giftcard
     6: $20 Giftcard
