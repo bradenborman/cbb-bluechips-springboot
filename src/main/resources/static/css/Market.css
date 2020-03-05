@@ -74,7 +74,13 @@ th {
 .ad {
     max-width: 300px;
     margin: 20px;
+    margin-bottom: 8px;
     border: 2px solid white;
+}
+
+.adTag {
+    margin-bottom: 10px;
+    font-style: italic;
 }
 
 @media screen and (max-width: 600px) {

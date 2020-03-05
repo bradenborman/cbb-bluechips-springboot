@@ -82,6 +82,16 @@
             </div>
         </div>
     </div>
+
+
+    <div id="addsPlaceholder">
+        <div class="col-sm-12 adsContainer addsPlaceholder">
+            <img class="ad img-responsive" src="/ads/candy-factory.png"/>
+            <img class="ad img-responsive" src="/ads/candy-factory.png"/>
+            <p class="adTag">Thank you to all the supporters</p>
+        </div>
+    </div>
+
     <footer>
         Braden Borman Production &copy;
     </footer>
@@ -137,9 +147,7 @@ $(document).ready(function(){
     setTimeout(function(){ drawChart(15, 100) }, 1500);
 
     var toInsert = $('.col-lg-6').eq(11);
-
-    var div = '<div class="col-sm-12 adsContainer"><img class="ad img-responsive" src="/ads/candy-factory.png"/><img class="ad img-responsive" src="/ads/candy-factory.png"/></div>'
-
+    var div = $('#addsPlaceholder').html()
     $(div).insertAfter(toInsert);
 
 });
