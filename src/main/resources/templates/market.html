@@ -84,10 +84,11 @@
     </div>
 
 
-    <div id="addsPlaceholder">
+    <div style="display: none;" id="addsPlaceholder">
         <div class="col-sm-12 adsContainer addsPlaceholder">
-            <img class="ad img-responsive" src="/ads/candy-factory.png"/>
-            <img class="ad img-responsive" src="/ads/candy-factory.png"/>
+            <img th:each="ad : ${ads}" class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
+<!--            <img class="ad img-responsive" src="/ads/candy-factory.png"/>-->
+<!--            <img class="ad img-responsive" src="/ads/candy-factory.png"/>-->
             <p class="adTag">Thank you to all the supporters</p>
         </div>
     </div>

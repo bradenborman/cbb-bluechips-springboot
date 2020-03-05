@@ -1,6 +1,7 @@
 package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.Team;
+import com.Borman.cbbbluechips.models.enums.Ads;
 import com.Borman.cbbbluechips.services.CookieService;
 import com.Borman.cbbbluechips.services.OwnsService;
 import com.Borman.cbbbluechips.services.TeamService;
@@ -30,11 +31,12 @@ public class MarketController {
 
     @GetMapping("")
     public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
-        String userId = cookieService.getUserIdLoggedIn(request);
+//        String userId = cookieService.getUserIdLoggedIn(request);
         List<Team> teamsToReturn = allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true);
         if(cookieService.isLoggedIn(request))
             ownsService.setTeamsUserOwns(teamsToReturn, cookieService.getUserIdLoggedIn(request));
         model.addAttribute("teams", teamsToReturn);
+        model.addAttribute("ads", Ads.getDisplayAdds());
         return "market";
     }
 
