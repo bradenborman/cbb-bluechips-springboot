@@ -37,7 +37,7 @@
 
 </script>	
 </head>
-<body onload="drawChart()">
+<body onload="drawChart(0, 15)">
 <header class="header">
     <div id="logo"></div>
     <h1>College Basketball's Bluechips</h1>
@@ -88,8 +88,10 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
- function drawChart() {
-	 $('.card').each(function (index, value) {
+function drawChart(start, stop) {
+
+
+$('.card').slice(start,stop).each(function (index, value) {
 
 	 var TeamName = $(this).find("h5.identifier").text()
 	 var values =$(this).find(".values").text()
@@ -117,19 +119,22 @@ google.charts.load('current', {'packages':['corechart']});
 
 }
 
-$(".overunder").each(function() {
-   if($(this).text() >= 1) {
-        $(this).parents("div").prop('title', '- UNDERDOG -');
-        $(this).css("color", "green");
-  }
-   else {
-        $(this).parents("div").prop('title', '- FAVORITE -');
-        $(this).css("color", "red");
-  }
-});
 
 
 $(document).ready(function(){
+
+    $(".overunder").each(function() {
+       if($(this).text() >= 1) {
+            $(this).parents("div").prop('title', '- UNDERDOG -');
+            $(this).css("color", "green");
+      }
+       else {
+            $(this).parents("div").prop('title', '- FAVORITE -');
+            $(this).css("color", "red");
+      }
+    });
+
+    setTimeout(function(){ drawChart(15, 100) }, 1500);
 
     var toInsert = $('.col-lg-6').eq(11);
 
