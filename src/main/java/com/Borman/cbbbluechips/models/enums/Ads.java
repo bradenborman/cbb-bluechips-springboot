@@ -30,6 +30,7 @@ public enum Ads {
         return new ArrayList<Ads>() {{
             add(addsToPickFrom.get(0));
             add(addsToPickFrom.get(1));
+            add(addsToPickFrom.get(2));
         }};
     }
 

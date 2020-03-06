@@ -71,14 +71,20 @@ th {
     padding: 30px;
 }
 
-.ad {
-    max-width: 300px;
+.adWrapper {
     margin: 20px;
     margin-bottom: 8px;
     border: 2px solid white;
+    display: inline-block;
+}
+
+.ad {
+    width: 250px;
+    height: 250px;
 }
 
 .adTag {
+    margin-top: 13px;
     margin-bottom: 10px;
     font-style: italic;
 }
@@ -94,11 +100,15 @@ th {
 		font-weight: bold;
 		font-size: 1em;
 	}
-    .ad {
+    .adWrapper {
        display: none;
     }
-	.ad:first-child {
+	.adWrapper:first-child {
 	    margin: auto;
         display: block;
+        border: 0px;
+    }
+    .ad {
+       border-radius: 10px;
     }
 }

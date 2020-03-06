@@ -82,20 +82,15 @@
             </div>
         </div>
     </div>
-
-
     <div style="display: none;" id="addsPlaceholder">
         <div class="col-sm-12 adsContainer addsPlaceholder">
-            <img th:each="ad : ${ads}" class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
-<!--            <img class="ad img-responsive" src="/ads/candy-factory.png"/>-->
-<!--            <img class="ad img-responsive" src="/ads/candy-factory.png"/>-->
+            <div class="adWrapper" th:each="ad : ${ads}">
+                <img class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
+            </div>
             <p class="adTag">Thank you to all the supporters</p>
         </div>
     </div>
-
-    <footer>
-        Braden Borman Production &copy;
-    </footer>
+    <footer>Braden Borman Production &copy;</footer>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
