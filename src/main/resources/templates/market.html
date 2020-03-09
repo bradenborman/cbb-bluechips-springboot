@@ -83,7 +83,7 @@
         </div>
     </div>
     <div style="display: none;" id="addsPlaceholder">
-        <div class="col-sm-12 adsContainer addsPlaceholder">
+        <div th:if="${ads != null}" class="col-sm-12 adsContainer addsPlaceholder">
             <div class="adWrapper" th:each="ad : ${ads}">
                 <img class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
             </div>

@@ -76,5 +76,10 @@ public class CCBConfig {
         return Boolean.parseBoolean(System.getenv("Make_Api_Call"));
     }
 
+    @Bean("displayAds")
+    public boolean getDisplayAds() {
+        return Boolean.parseBoolean(System.getenv("Display_Ads"));
+    }
+
 
 }

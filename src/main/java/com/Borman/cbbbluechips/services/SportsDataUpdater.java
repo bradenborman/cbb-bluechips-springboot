@@ -2,6 +2,7 @@ package com.Borman.cbbbluechips.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ public class SportsDataUpdater {
     private SportsDataApiService sportsDataApiService;
     private boolean shouldMakeApiCall;
 
-    public SportsDataUpdater(SportsDataApiService sportsDataApiService, boolean shouldMakeApiCall) {
+    public SportsDataUpdater(SportsDataApiService sportsDataApiService, @Qualifier("make_api_call") boolean shouldMakeApiCall) {
         this.sportsDataApiService = sportsDataApiService;
         this.shouldMakeApiCall = shouldMakeApiCall;
     }
