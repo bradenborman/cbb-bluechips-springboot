@@ -4,16 +4,18 @@ import java.util.*;
 
 public enum Ads {
 
-    CANDY_FACTORY("Candy Factory", "/ads/candy-factory.png"),
-    ADDISONS_BAR_GRILL("Addison's Bar and Grill", "/ads/addisons.jpg"),
-    SHELTER_INSURANCE("Shelter Insurance", "/ads/shelterinsurance.jpg");
+    CANDY_FACTORY("Candy Factory", "/ads/thecandyfactory_logo1.png", ""),
+    Georgetown_Dental("Georgetown Dental", "/ads/GeorgetownDental.png", ""),
+    Campus_Bar_and_Grill("Campus Bar & Grill", "/ads/b12 transparent_.png", "");
 
     private String name;
     private String imgSrc;
+    private String website;
 
-    Ads(String name, String imgSrc) {
+    Ads(String name, String imgSrc, String website) {
         this.name = name;
         this.imgSrc = imgSrc;
+        this.website = website;
     }
 
     public String getName() {
@@ -22,6 +24,10 @@ public enum Ads {
 
     public String getImgSrc() {
         return imgSrc;
+    }
+
+    public String getWebsite() {
+        return website;
     }
 
     public static List<Ads> getDisplayAdds() {
