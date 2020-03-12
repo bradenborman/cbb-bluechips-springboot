@@ -83,6 +83,10 @@ th {
     height: 250px;
 }
 
+.ad:hover {
+    cursor: pointer;
+}
+
 .adTag {
     margin-top: 13px;
     margin-bottom: 10px;

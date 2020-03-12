@@ -56,6 +56,34 @@
 	display: none;
 }
 
+.adsContainer {
+    text-align: center;
+    padding: 30px;
+}
+
+.adWrapper {
+    margin: 20px;
+    margin-bottom: 8px;
+    border: 2px solid white;
+    display: inline-block;
+}
+
+.ad {
+    width: 250px;
+    height: 250px;
+}
+
+.ad:hover {
+    cursor: pointer;
+}
+
+.adTag {
+    margin-top: 13px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+
 @media (max-width: 575.98px) {
 	.Parent {
 		padding: 4px;
@@ -70,4 +98,15 @@
 	.actualSubComment {
 		font-size: 1em;
 	}
+	.adWrapper {
+       display: none;
+    }
+    .adWrapper:first-child {
+        margin: auto;
+        display: block;
+        border: 0px;
+    }
+    .ad {
+       border-radius: 10px;
+    }
 }

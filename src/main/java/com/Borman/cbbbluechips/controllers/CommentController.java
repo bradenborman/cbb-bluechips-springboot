@@ -2,9 +2,11 @@ package com.Borman.cbbbluechips.controllers;
 
 
 import com.Borman.cbbbluechips.models.Comment;
+import com.Borman.cbbbluechips.models.enums.Ads;
 import com.Borman.cbbbluechips.services.CommentService;
 import com.Borman.cbbbluechips.services.CookieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +22,15 @@ import java.util.List;
 public class CommentController {
 
 
-    @Autowired
-    CommentService commentService;
+    private CommentService commentService;
+    private CookieService cookieService;
+    private boolean shouldDisplayAds;
 
-    @Autowired
-    CookieService cookieService;
+    public CommentController(CommentService commentService, CookieService cookieService, @Qualifier("displayAds") boolean shouldDisplayAds) {
+        this.commentService = commentService;
+        this.cookieService = cookieService;
+        this.shouldDisplayAds = shouldDisplayAds;
+    }
 
     @RequestMapping("")
     public String comments(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -32,6 +38,8 @@ public class CommentController {
             return "redirect:/";
         String userId = cookieService.getUserIdLoggedIn(request);
         model.addAttribute("comments", commentService.getComments(userId, cookieService.isUserAdmin(request)));
+        if(shouldDisplayAds)
+            model.addAttribute("ads", Ads.getDisplayAdds());
         return "comments-new";
     }
 
