@@ -15,14 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/portfolio")
 public class PortfolioController {
 
-    private CookieService cookieService;
     private UserService userService;
     private OwnsService ownsService;
     private PortfolioService portfolioService;
     private LeaderboardService leaderboardService;
 
-    public PortfolioController(CookieService cookieService, UserService userService, OwnsService ownsService, PortfolioService portfolioService, LeaderboardService leaderboardService) {
-        this.cookieService = cookieService;
+    public PortfolioController(UserService userService, OwnsService ownsService, PortfolioService portfolioService, LeaderboardService leaderboardService) {
         this.userService = userService;
         this.ownsService = ownsService;
         this.portfolioService = portfolioService;
@@ -31,8 +29,7 @@ public class PortfolioController {
 
     @RequestMapping("")
     public String portfolio(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.getUserByEmail(auth.getName());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
         model.addAttribute("user", user);
         model.addAttribute("leaderBoardPos", leaderboardService.getUsersLeaderPosition(userService.getUser(user.getID())));

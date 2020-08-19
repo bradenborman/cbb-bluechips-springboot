@@ -7,6 +7,8 @@ import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -31,50 +33,27 @@ public class UserController {
         this.transactionService = transactionService;
     }
 
+    //TODO Look at way to auto login or forward to '/
     @PostMapping("/create")
-    public String createUser(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
-                             @RequestParam(value = "email_new") String email_new, @RequestParam(value = "password_new") String password_new) {
+    public String createUser(@RequestParam(value = "fname") String fname,
+                             @RequestParam(value = "lname") String lname,
+                             @RequestParam(value = "email_new") String email_new,
+                             @RequestParam(value = "password_new") String password_new) {
         User user = userService.createNewUser(fname, lname, email_new, password_new);
         if (user != null) {
             if (user.getID() != null) {
-                cookieService.login(user, response);
                 return "redirect:../portfolio";
             }
         }
         return "redirect:../";
     }
 
-
     @PostMapping("/delete")
-    String deleteUser(HttpServletRequest request, HttpServletResponse response) {
-        if(cookieService.isLoggedIn(request)) {
-            String userId = cookieService.getUserIdLoggedIn(request);
-            System.out.println("Delete Account Request for: " + userId);
-            deleteAllTracesFromUser(userId);
-            cookieService.logout(response);
-            return "redirect:../";
-        }
+    String deleteUser() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        deleteAllTracesFromUser(user.getID());
         return "redirect:../";
     }
-
-
-    @PostMapping("/login")
-    public String login(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
-        User user = userService.attemptToLogIn(email, password);
-        if (user != null) {
-            cookieService.login(user, response);
-            return "redirect:../portfolio";
-        } else {
-            return "redirect:../?wasError=true";
-        }
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
-        cookieService.logout(response);
-        return "redirect:../";
-    }
-
 
     @Transactional
     private void deleteAllTracesFromUser(String userId) {
@@ -82,7 +61,6 @@ public class UserController {
         ownsService.deleteUser(userId);
         userService.deleteUser(userId);
     }
-
 
 }
 

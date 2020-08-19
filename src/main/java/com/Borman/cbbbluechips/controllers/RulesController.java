@@ -5,6 +5,7 @@ import com.Borman.cbbbluechips.models.Portfolio;
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,27 +19,25 @@ import java.util.List;
 public class RulesController {
 
     @Autowired
-    CookieService cookieService;
-
-    @Autowired
     CalculatorService calculatorService;
 
     @RequestMapping("")
-    public String portfolio(Model model, HttpServletRequest request) {
-        model.addAttribute("loggedIn", cookieService.isLoggedIn(request));
+    public String portfolio(Model model) {
+        model.addAttribute("loggedIn", !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()));
         return "rules";
     }
 
-
     @RequestMapping("/calculator")
-    public String calculator(Model model, HttpServletRequest request) {
-        if (cookieService.isLoggedIn(request)) {
-            CalculatorDetail detail = calculatorService.getCalculatorDetails(cookieService.getUserIdLoggedIn(request));
-            model.addAttribute("calculatorDetail", detail);
-            return detail.getTeamNamePlaying() == null ? "calculator" : "calculator-personalized";
+    public String calculator(Model model) {
+        User user;
+        try {
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }catch (Exception e) {
+            return "calculator";
         }
-        return "calculator";
-
+        CalculatorDetail detail = calculatorService.getCalculatorDetails(user.getID());
+        model.addAttribute("calculatorDetail", detail);
+        return detail.getTeamNamePlaying() == null ? "calculator" : "calculator-personalized";
     }
 
 }
