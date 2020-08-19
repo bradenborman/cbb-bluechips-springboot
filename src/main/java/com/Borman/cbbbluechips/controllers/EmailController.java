@@ -22,7 +22,6 @@ public class EmailController {
         return "Tested";
     }
 
-
     @PostMapping("/recover")
     public String forgotPassword(@RequestParam(value = "emailToRecover") String emailToRecover) {
         return passwordRecoveringService.getUsersPassword(emailToRecover);

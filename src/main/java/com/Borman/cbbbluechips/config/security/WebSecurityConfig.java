@@ -28,11 +28,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .antMatchers("/", "/rules")
+                .antMatchers("/", "/rules", "/rules/**")
                 .permitAll();
 
         http.authorizeRequests()
-                .antMatchers("/portfolio", "/leaderboard", "/market")
+                .antMatchers(
+                        "/portfolio",
+                        "/leaderboard",
+                        "/market",
+                        "/transactions",
+                        "/settings",
+                        "/settings/**"
+                )
                 .hasAnyAuthority("USER");
 
 
@@ -42,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/portfolio")
-                .failureForwardUrl("/?error=true")
+                .failureUrl("/?wasError=true")
                 .and()
                 .logout()
                 .logoutUrl("/user/logout")

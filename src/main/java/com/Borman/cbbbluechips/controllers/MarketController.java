@@ -36,6 +36,9 @@ public class MarketController {
     public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Team> teamsToReturn = allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true);
+
+        //TODO investigate teamUserOwns stored in cookies on login
+
         ownsService.setTeamsUserOwns(teamsToReturn, user.getID());
         model.addAttribute("teams", teamsToReturn);
 
