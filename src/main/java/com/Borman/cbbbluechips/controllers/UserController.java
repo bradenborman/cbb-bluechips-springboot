@@ -61,10 +61,8 @@ public class UserController {
     }
 
     private void authenticateUserAndSetSession(User user, HttpServletRequest request) {
-        String username = user.getUsername();
-        String password = user.getPassword();
         logger.info("User was created: Setting them to be logged in.");
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         request.getSession();
         token.setDetails(new WebAuthenticationDetails(request));
         Authentication authenticatedUser = authenticationManager.authenticate(token);
