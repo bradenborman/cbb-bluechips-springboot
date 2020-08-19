@@ -14,9 +14,6 @@ import java.util.Arrays;
 public class AdminController {
 
     @Autowired
-    CookieService cookieService;
-
-    @Autowired
     AdminService adminService;
 
     @Autowired
@@ -63,21 +60,15 @@ public class AdminController {
     }
 
     @PostMapping("/resetGame")
-    public String resetGame(HttpServletRequest request) {
-        if (cookieService.isUserAdmin(request)) {
-            settingsService.resetGame();
-            settingsService.updateRound("64");
-        }
+    public String resetGame() {
+        settingsService.resetGame();
         return "redirect:/admin";
     }
 
     @PostMapping("/deletePlayers")
-    public String deletePlayers(HttpServletRequest request, HttpServletResponse response) {
-        if (cookieService.isUserAdmin(request)) {
-            userService.deleteAllUsers();
-            cookieService.logout(response);
-        }
-        return "redirect:/admin";
+    public String deletePlayers() {
+        userService.deleteAllUsers();
+        return "redirect:/users/logout";
     }
 
 }

@@ -110,6 +110,15 @@ public class User implements UserDetails {
                 return "USER";
             }
         });
+
+        if(getUsername().contains("bradenborman"))
+            listAuthorities.add(new GrantedAuthority() {
+                @Override
+                public String getAuthority() {
+                    return "ADMIN";
+                }
+            });
+
         return listAuthorities;
     }
 

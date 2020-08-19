@@ -32,6 +32,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         http.authorizeRequests()
+                .antMatchers("/admin", "/admin/**")
+                .hasAnyAuthority("ADMIN");
+
+        http.authorizeRequests()
                 .antMatchers(
                         "/portfolio",
                         "/leaderboard",
@@ -48,7 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/transactions/**"
                 )
                 .hasAnyAuthority("USER");
-
 
         http.authorizeRequests().and().formLogin()//
                 .loginPage("/")

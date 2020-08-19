@@ -47,6 +47,7 @@ public class GameSettingsService {
         settingsDao.deleteAllFromOwnsTable();
         settingsDao.updateAllUsersCashBackToStartingCash(startingCash);
         settingsDao.resetLockedAndIsOutStatus();
+        updateRound("64");
     }
 
 }

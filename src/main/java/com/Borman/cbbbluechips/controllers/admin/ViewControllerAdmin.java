@@ -1,6 +1,5 @@
 package com.Borman.cbbbluechips.controllers.admin;
 
-import com.Borman.cbbbluechips.services.CookieService;
 import com.Borman.cbbbluechips.services.GameSettingsService;
 import com.Borman.cbbbluechips.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.EOFException;
-
 
 @Controller
 @RequestMapping("/admin")
@@ -23,19 +18,12 @@ public class ViewControllerAdmin {
     @Autowired
     GameSettingsService gameSettingsService;
 
-    @Autowired
-    CookieService cookieService;
 
     @RequestMapping("")
-    public String admin(HttpServletRequest request, Model model) {
-        boolean isAdmin = cookieService.isUserAdmin(request);
-       if(!isAdmin)
-           return "redirect:/";
-        //System.out.println(String.format("IS ADMIN: %s", isAdmin));
+    public String admin(Model model) {
         model.addAttribute("roundId", gameSettingsService.getCurrentRound());
         return "admin_directory";
     }
-
 
     @RequestMapping("/update/teams")
     public String updateTeams(@RequestParam(required = false) String teamId, Model model) {
@@ -71,11 +59,4 @@ public class ViewControllerAdmin {
         return "test-paypal";
     }
 
-
-//    @RequestMapping("/throwError")
-//    public String throwError() throws EOFException {
-//        throw new java.io.EOFException();
-//    }
-
 }
-
