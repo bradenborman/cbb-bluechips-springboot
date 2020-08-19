@@ -4,6 +4,8 @@ import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.OwnsService;
 import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private UserService userService;
     private OwnsService ownsService;
@@ -46,7 +50,7 @@ public class UserController {
     String deleteUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         deleteAllTracesFromUser(user.getID());
-        return "redirect:../";
+        return "redirect:../users/logout";
     }
 
     @Transactional
@@ -59,6 +63,7 @@ public class UserController {
     private void authenticateUserAndSetSession(User user, HttpServletRequest request) {
         String username = user.getUsername();
         String password = user.getPassword();
+        logger.info("User was created: Setting them to be logged in.");
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         request.getSession();
         token.setDetails(new WebAuthenticationDetails(request));
