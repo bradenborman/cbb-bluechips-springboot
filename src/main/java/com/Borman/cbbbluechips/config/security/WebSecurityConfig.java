@@ -10,11 +10,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
+
+    @Autowired
+    DataSource dataSource;
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -27,8 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-        //Used for auto login of create user
+        return super.authenticationManagerBean();//Used for auto login of create user
     }
 
     @Override
@@ -74,6 +80,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/user/logout")
                 .logoutSuccessUrl("/");
+
+        http.rememberMe()
+                .rememberMeCookieName("remember-me")
+                .tokenRepository(persistentTokenRepository())
+                .alwaysRemember(true);
+
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
     }
 
 }
