@@ -4,12 +4,18 @@ import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.services.OwnsService;
 import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/user")
@@ -18,26 +24,22 @@ public class UserController {
     private UserService userService;
     private OwnsService ownsService;
     private TransactionService transactionService;
+    private AuthenticationManager authenticationManager;
 
-    public UserController(UserService userService, OwnsService ownsService, TransactionService transactionService) {
+    public UserController(AuthenticationManager authenticationManager, UserService userService, OwnsService ownsService, TransactionService transactionService) {
+        this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.ownsService = ownsService;
         this.transactionService = transactionService;
     }
 
-    //TODO Look at way to auto login or forward to '/
     @PostMapping("/create")
-    public String createUser(@RequestParam(value = "fname") String fname,
-                             @RequestParam(value = "lname") String lname,
-                             @RequestParam(value = "email_new") String email_new,
-                             @RequestParam(value = "password_new") String password_new) {
+    public String createUser(@RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
+                             @RequestParam(value = "email_new") String email_new, @RequestParam(value = "password_new") String password_new,
+                             HttpServletRequest request) {
         User user = userService.createNewUser(fname, lname, email_new, password_new);
-        if (user != null) {
-            if (user.getID() != null) {
-                return "redirect:../portfolio";
-            }
-        }
-        return "redirect:../";
+        authenticateUserAndSetSession(user, request);
+        return "redirect:/portfolio";
     }
 
     @PostMapping("/delete")
@@ -54,5 +56,14 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-}
+    private void authenticateUserAndSetSession(User user, HttpServletRequest request) {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+        request.getSession();
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+    }
 
+}
