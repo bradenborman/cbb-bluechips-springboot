@@ -120,6 +120,5 @@ public class UserDao {
             logger.error("Failed to get User by Email\n" + e);
             return null;
         }
-
     }
 }

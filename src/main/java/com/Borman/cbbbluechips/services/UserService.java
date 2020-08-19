@@ -99,7 +99,7 @@ public class UserService {
         return userDao.getUserPhoneNumber(userid);
     }
 
-    User getUserByEmail(String emailToRecover) {
+    public User getUserByEmail(String emailToRecover) {
         return userDao.getUserByEmail(emailToRecover);
     }
 

@@ -1,10 +1,14 @@
 package com.Borman.cbbbluechips.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class User {
+public class User implements UserDetails {
 
     private String ID;
     private String firstName;
@@ -95,6 +99,43 @@ public class User {
 
     public void setAllTransactions(List<Transaction> allTransactions) {
         this.allTransactions = allTransactions;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> listAuthorities = new ArrayList<GrantedAuthority>();
+        listAuthorities.add(new GrantedAuthority() {
+            @Override
+            public String getAuthority() {
+                return "USER";
+            }
+        });
+        return listAuthorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
