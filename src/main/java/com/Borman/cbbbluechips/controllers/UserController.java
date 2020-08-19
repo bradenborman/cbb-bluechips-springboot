@@ -1,34 +1,26 @@
 package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.User;
-import com.Borman.cbbbluechips.services.CookieService;
 import com.Borman.cbbbluechips.services.OwnsService;
 import com.Borman.cbbbluechips.services.TransactionService;
 import com.Borman.cbbbluechips.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
-    private CookieService cookieService;
     private OwnsService ownsService;
     private TransactionService transactionService;
 
-    public UserController(UserService userService, CookieService cookieService, OwnsService ownsService, TransactionService transactionService) {
+    public UserController(UserService userService, OwnsService ownsService, TransactionService transactionService) {
         this.userService = userService;
-        this.cookieService = cookieService;
         this.ownsService = ownsService;
         this.transactionService = transactionService;
     }
