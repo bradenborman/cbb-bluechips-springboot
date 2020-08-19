@@ -3,7 +3,6 @@ package com.Borman.cbbbluechips.controllers;
 import com.Borman.cbbbluechips.models.Team;
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.models.enums.Ads;
-import com.Borman.cbbbluechips.services.CookieService;
 import com.Borman.cbbbluechips.services.OwnsService;
 import com.Borman.cbbbluechips.services.TeamService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,7 +25,7 @@ public class MarketController {
     private OwnsService ownsService;
     private boolean shouldDisplayAds;
 
-    public MarketController(CookieService cookieService, TeamService teamService, OwnsService ownsService, @Qualifier("displayAds") boolean shouldDisplayAds) {
+    public MarketController(TeamService teamService, OwnsService ownsService, @Qualifier("displayAds") boolean shouldDisplayAds) {
         this.teamService = teamService;
         this.ownsService = ownsService;
         this.shouldDisplayAds = shouldDisplayAds;
@@ -34,18 +33,16 @@ public class MarketController {
 
     @GetMapping("")
     public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Team> teamsToReturn = allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true);
-
-        //TODO investigate teamUserOwns stored in cookies on login
-
-        ownsService.setTeamsUserOwns(teamsToReturn, user.getID());
+        ownsService.setTeamsUserOwns(teamsToReturn, getLoggedInUser().getID());
         model.addAttribute("teams", teamsToReturn);
-
         if(shouldDisplayAds)
             model.addAttribute("ads", Ads.getDisplayAdds());
-
         return "market";
+    }
+
+    private User getLoggedInUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

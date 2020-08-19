@@ -38,7 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/market",
                         "/transactions",
                         "/settings",
-                        "/settings/**"
+                        "/settings/**",
+                        "/comments",
+                        "/comments/**",
+                        "/trade/**",
+                        "/trade-action/**",
+                        "/data/**",
+                        "/transactions",
+                        "/transactions/**"
                 )
                 .hasAnyAuthority("USER");
 

@@ -1,77 +1,64 @@
 package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.TradeRequest;
-import com.Borman.cbbbluechips.models.Transaction;
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.models.enums.TradeAction;
 import com.Borman.cbbbluechips.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TradeController {
 
     private TransactionService transactionService;
     private OwnsService ownsService;
-    private CookieService cookieService;
     private UserService userService;
     private TeamService teamService;
     private TradeCentralService tradeCentralService;
 
-    public TradeController(TransactionService transactionService, OwnsService ownsService, CookieService cookieService, UserService userService,
-                           TeamService teamService, TradeCentralService tradeCentralService) {
+    public TradeController(TransactionService transactionService, OwnsService ownsService, UserService userService, TeamService teamService, TradeCentralService tradeCentralService) {
         this.transactionService = transactionService;
         this.ownsService = ownsService;
-        this.cookieService = cookieService;
         this.userService = userService;
         this.teamService = teamService;
         this.tradeCentralService = tradeCentralService;
     }
 
     @RequestMapping("/trade/{team_Id}")
-    public String tradeCentral(HttpServletRequest request, @PathVariable("team_Id") String teamId, Model model) {
-        if (!cookieService.isLoggedIn(request)) {
-            return "redirect:/";
-        } else {
-            User user = userService.getUser(cookieService.getUserIdLoggedIn(request));
-            model.addAttribute("user", user);
-            model.addAttribute("team", teamService.getTeamById(teamId));
-            model.addAttribute("details", tradeCentralService.fillTradeCentralDetails(user, teamId));
-            return "trade";
-        }
+    public String tradeCentral(@PathVariable("team_Id") String teamId, Model model) {
+        User user = getLoggedInUser();
+        model.addAttribute("user", user);
+        model.addAttribute("team", teamService.getTeamById(teamId));
+        model.addAttribute("details", tradeCentralService.fillTradeCentralDetails(user, teamId));
+        return "trade";
     }
 
     @PostMapping("/trade-action/sell")
-    public synchronized String sellTeam(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
-        if (cookieService.isLoggedIn(request)) {
-            TradeRequest tradeRequest = new TradeRequest(teamId, cookieService.getUserIdLoggedIn(request), volume, TradeAction.SELL);
-            if (ownsService.validateOwnership(tradeRequest) && !teamService.isTeamLocked(tradeRequest.getTeamId()))
-                transactionService.completeSell(tradeRequest);
-            return "redirect:../trade/" + teamId;
-        } else {
-            return "redirect:../";
-        }
+    public synchronized String sellTeam(@RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
+        User user = getLoggedInUser();
+        TradeRequest tradeRequest = new TradeRequest(teamId, user.getID(), volume, TradeAction.SELL);
+        if (ownsService.validateOwnership(tradeRequest) && teamService.isTeamUnLocked(tradeRequest.getTeamId()))
+            transactionService.completeSell(tradeRequest);
+        return "redirect:../trade/" + teamId;
     }
 
     @PostMapping("/trade-action/buy")
-    public synchronized String buyTeam(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
-        if (cookieService.isLoggedIn(request)) {
-            TradeRequest tradeRequest = new TradeRequest(teamId, cookieService.getUserIdLoggedIn(request), volume, TradeAction.BUY);
-            double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
-            if (!teamService.isTeamLocked(tradeRequest.getTeamId()))
-                transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
-            return "redirect:../trade/" + teamId;
-        } else {
-            return "redirect:../";
-        }
+    public synchronized String buyTeam(@RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
+        User user = getLoggedInUser();
+        TradeRequest tradeRequest = new TradeRequest(teamId, user.getID(), volume, TradeAction.BUY);
+        double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
+        if (teamService.isTeamUnLocked(tradeRequest.getTeamId()))
+            transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
+        return "redirect:../trade/" + teamId;
+    }
+
+    private User getLoggedInUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

@@ -27,8 +27,7 @@ public class HomeController {
 
     @RequestMapping("/settings")
     public String settings(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String userid = user.getID();
+        String userid = getLoggedInUser().getID();
         model.addAttribute("textAlert", userService.doesUserSubscribeToTextAlerts(userid));
         model.addAttribute("phoneNumber", userService.getUserPhoneNumber(userid));
         return "settings";
@@ -36,16 +35,18 @@ public class HomeController {
 
     @PostMapping("/settings/updateTextAlert")
     public ResponseEntity<String> updateTextAlert(@RequestParam(value = "textStatus") boolean textStatus) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        userService.toggleTextAlertSubscription(textStatus, user.getID());
+        userService.toggleTextAlertSubscription(textStatus, getLoggedInUser().getID());
         return ResponseEntity.ok("OKAY");
     }
 
     @PostMapping("/settings/updatePhoneNumber")
     public ResponseEntity<String> updatePhoneNumber(@RequestParam(value = "phoneNumber") String phoneNumber) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        userService.updatePhoneNumber(phoneNumber, user.getID());
+        userService.updatePhoneNumber(phoneNumber, getLoggedInUser().getID());
         return ResponseEntity.ok("OKAY");
+    }
+
+    private User getLoggedInUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

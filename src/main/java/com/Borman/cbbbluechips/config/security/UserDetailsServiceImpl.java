@@ -1,7 +1,6 @@
 package com.Borman.cbbbluechips.config.security;
 
 import com.Borman.cbbbluechips.daos.UserDao;
-import com.Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

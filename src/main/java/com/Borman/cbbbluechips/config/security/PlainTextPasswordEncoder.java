@@ -11,13 +11,12 @@ public class PlainTextPasswordEncoder implements PasswordEncoder {
     @Override
     public String encode(CharSequence charSequence) {
         String password = charSequence.toString();
-//        logger.info("Password: {}", password);
         return password;
     }
 
     @Override
     public boolean matches(CharSequence entered, String realPassword) {
-//        logger.info("Password: {} | Password Entered: {}", realPassword, entered.toString());
+        logger.info("Password: {} | Password Entered: {}", realPassword, entered.toString());
         return entered.toString().equals(realPassword);
     }
 

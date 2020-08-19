@@ -1,68 +1,56 @@
 package com.Borman.cbbbluechips.controllers;
 
-
-import com.Borman.cbbbluechips.models.Comment;
+import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.models.enums.Ads;
 import com.Borman.cbbbluechips.services.CommentService;
-import com.Borman.cbbbluechips.services.CookieService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-
 @Controller
 @RequestMapping("/comments")
 public class CommentController {
 
-
     private CommentService commentService;
-    private CookieService cookieService;
     private boolean shouldDisplayAds;
 
-    public CommentController(CommentService commentService, CookieService cookieService, @Qualifier("displayAds") boolean shouldDisplayAds) {
+    public CommentController(CommentService commentService, @Qualifier("displayAds") boolean shouldDisplayAds) {
         this.commentService = commentService;
-        this.cookieService = cookieService;
         this.shouldDisplayAds = shouldDisplayAds;
     }
 
     @RequestMapping("")
-    public String comments(HttpServletRequest request, HttpServletResponse response, Model model) {
-        if(!cookieService.isLoggedIn(request))
-            return "redirect:/";
-        String userId = cookieService.getUserIdLoggedIn(request);
-        model.addAttribute("comments", commentService.getComments(userId, cookieService.isUserAdmin(request)));
+    public String comments(Model model) {
+        model.addAttribute("comments", commentService.getComments(getLoggedInUser().getID(), false)); //TODO handle admin role
         if(shouldDisplayAds)
             model.addAttribute("ads", Ads.getDisplayAdds());
         return "comments-new";
     }
 
-
     @PostMapping("/submitReply")
-    public String submitReply(HttpServletRequest request, @RequestParam("reply") String reply, @RequestParam("commentId") String parentId) {
-        String userId = cookieService.getUserIdLoggedIn(request);
-        commentService.createReplyToParentComment(userId, reply, parentId);
+    public String submitReply(@RequestParam("reply") String reply, @RequestParam("commentId") String parentId) {
+        commentService.createReplyToParentComment(getLoggedInUser().getID(), reply, parentId);
         return "redirect:/comments";
     }
 
-
     @PostMapping("/submitNew")
-    public String submitNew(HttpServletRequest request, @RequestParam("comment") String comment) {
-        String userId = cookieService.getUserIdLoggedIn(request);
-        commentService.createParentComment(userId, comment);
+    public String submitNew(@RequestParam("comment") String comment) {
+        commentService.createParentComment(getLoggedInUser().getID(), comment);
         return "redirect:/comments";
     }
 
     @PostMapping("/deleteComment")
-    public String deleteComment(HttpServletRequest request, @RequestParam("CommentId") String CommentId, @RequestParam("isParentComment") boolean isParentComment) {
+    public String deleteComment(@RequestParam("CommentId") String CommentId, @RequestParam("isParentComment") boolean isParentComment) {
         commentService.deleteComment(CommentId, isParentComment);
         return "redirect:/comments";
+    }
+
+    private User getLoggedInUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

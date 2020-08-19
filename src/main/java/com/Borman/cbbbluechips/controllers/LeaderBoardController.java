@@ -20,9 +20,8 @@ public class LeaderBoardController {
     @Autowired
     Payouts payouts;
 
-
     @RequestMapping("")
-    public String portfolio(Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String portfolio(Model model) {
             model.addAttribute("leaderboard", leaderboardService.getLeaders());
             model.addAttribute("payouts", payouts.getPayoutMap());
             return "leaderboard";

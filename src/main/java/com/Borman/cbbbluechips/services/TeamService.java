@@ -31,9 +31,9 @@ public class TeamService {
         this.gameSettingsDao = gameSettingsDao;
     }
 
+    //TODO look to cache for a min maybe
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
-
         if (onlyTeamsInTournament) {
             allTeams.forEach(team -> {
                 team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
@@ -46,8 +46,7 @@ public class TeamService {
     }
 
     private String fetchHistoryDetails(Team team) {
-
-        int Current_Round = Integer.valueOf(gameSettingsDao.getCurrentRound());
+        int Current_Round = Integer.parseInt(gameSettingsDao.getCurrentRound());
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
         priceMap.put("64", "5000");
         List<Integer> rounds = Arrays.asList(32, 16, 8, 4, 2, 1);
@@ -67,7 +66,7 @@ public class TeamService {
     }
 
 
-    public boolean isTeamLocked(String teamId) {
-        return teamDao.isTeamLocked(teamId);
+    public boolean isTeamUnLocked(String teamId) {
+        return !teamDao.isTeamLocked(teamId);
     }
 }
