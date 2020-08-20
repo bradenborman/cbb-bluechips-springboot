@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/admin", "/admin/**")
-                .hasAnyAuthority("ADMIN");
+                .hasAnyAuthority("CBB_ADMIN");
 
         http.authorizeRequests()
                 .antMatchers(
@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/transactions",
                         "/transactions/**"
                 )
-                .hasAnyAuthority("USER");
+                .hasAnyAuthority("CBB_USER");
 
         http.authorizeRequests().and().formLogin()//
                 .loginPage("/")

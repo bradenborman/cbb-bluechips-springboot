@@ -31,9 +31,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         logger.info("Looking up user: {}", email);
         User user = userDao.getUserByEmail(email);
 
-        user.addAuthority("USER");
+        user.addAuthority("CBB_USER");
         if(admins.contains(user.getUsername()))
-            user.addAuthority("ADMIN");
+            user.addAuthority("CBB_ADMIN");
 
         return user;
     }
