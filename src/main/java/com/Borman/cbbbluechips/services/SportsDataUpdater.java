@@ -19,7 +19,7 @@ public class SportsDataUpdater {
         this.shouldMakeApiCall = shouldMakeApiCall;
     }
 
-    //    @Scheduled(cron = "0/30 * * * * ?")
+//        @Scheduled(cron = "0/30 * * * * ?")
 //    public void updateNextTeamPlayingAndOddsQuick() {
 //        logger.info("Scheduled task hit: updateTeamsPlayingToday.");
 //        sportsDataApiService.updateTeamsPlayingToday();

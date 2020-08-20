@@ -11,15 +11,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import javax.sql.DataSource;
-
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
-
-    @Autowired
-    DataSource dataSource;
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
