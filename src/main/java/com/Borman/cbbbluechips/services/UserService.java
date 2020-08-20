@@ -30,9 +30,7 @@ public class UserService {
 
     @Transactional
     public User createNewUser(String fname, String lname, String email_new, String password_new) {
-
         User user = new User(UserNameUtility.titleCaseConversion(fname), UserNameUtility.titleCaseConversion(lname), email_new, password_new);
-
         if (!isUserAlreadyPresent(user.getEmail())) {
             user.setCash(STARTING_CASH);
             user.setID(userDao.createNewUser(user));
@@ -58,7 +56,6 @@ public class UserService {
         userDao.removeCashFromUser(userId, moneyToRemove);
     }
 
-
     private boolean isUserAlreadyPresent(String email) {
         return userDao.countEmailAddressInDatabase(email) > 0;
     }
@@ -70,10 +67,6 @@ public class UserService {
 
     public User getUser(String id) {
         return userDao.getUserById(id);
-    }
-
-    public User attemptToLogIn(String email, String password) {
-        return userDao.loginWithEmailAndPassword(email, password);
     }
 
     public boolean doesUserSubscribeToTextAlerts(String userId) {

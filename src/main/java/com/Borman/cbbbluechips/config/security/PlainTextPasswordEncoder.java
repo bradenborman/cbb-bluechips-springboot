@@ -16,7 +16,7 @@ public class PlainTextPasswordEncoder implements PasswordEncoder {
 
     @Override
     public boolean matches(CharSequence entered, String realPassword) {
-        logger.info("Password: {} | Password Entered: {}", realPassword, entered.toString());
+//        logger.info("Password: {} | Password Entered: {}", realPassword, entered.toString());
         return entered.toString().equals(realPassword);
     }
 

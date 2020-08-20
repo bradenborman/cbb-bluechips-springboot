@@ -22,9 +22,6 @@ public class AdminController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    SportsDataApiService sportsDataApiService;
-
     @PostMapping("/update-price")
     public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice,
                                     @RequestParam(value = "roundSelector") int roundId) {

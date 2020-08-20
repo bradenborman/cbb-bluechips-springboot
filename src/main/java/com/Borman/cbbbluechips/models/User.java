@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class User implements UserDetails {
 
@@ -19,6 +20,8 @@ public class User implements UserDetails {
     private double cash;
     private List<Owns> teamsOwned;
     private List<Transaction> allTransactions;
+
+    private List<String> authorities = new ArrayList<>();
 
     public User() {}
 
@@ -101,25 +104,20 @@ public class User implements UserDetails {
         this.allTransactions = allTransactions;
     }
 
+    public void addAuthority(String authority) {
+        authorities.add(authority);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> listAuthorities = new ArrayList<GrantedAuthority>();
-        listAuthorities.add(new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return "USER";
-            }
-        });
-
-        if(getUsername().contains("bradenborman"))
-            listAuthorities.add(new GrantedAuthority() {
+        return authorities.stream().map(auth -> {
+            return new GrantedAuthority() {
                 @Override
                 public String getAuthority() {
-                    return "ADMIN";
+                    return auth;
                 }
-            });
-
-        return listAuthorities;
+            };
+        }).collect(Collectors.toList());
     }
 
     @Override

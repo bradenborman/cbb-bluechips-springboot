@@ -71,7 +71,11 @@ public class UserDao {
 
     public User getUserById(String userId) {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-            return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());
+            try {
+                return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());
+            } catch (Exception e) {
+                throw new NoUserPresent("User ID: " + userId);
+            }
     }
 
     public User loginWithEmailAndPassword(String email, String password) {
