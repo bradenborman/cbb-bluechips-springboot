@@ -1,15 +1,20 @@
 package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.services.PasswordRecoveringService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/email")
 public class EmailController {
 
-    @Autowired
-    PasswordRecoveringService passwordRecoveringService;
+    private PasswordRecoveringService passwordRecoveringService;
+
+    public EmailController(PasswordRecoveringService passwordRecoveringService) {
+        this.passwordRecoveringService = passwordRecoveringService;
+    }
 
     @PostMapping("/recover")
     public String forgotPassword(@RequestParam(value = "emailToRecover") String emailToRecover) {
