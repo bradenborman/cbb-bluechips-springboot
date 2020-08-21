@@ -19,11 +19,13 @@ import java.util.List;
 @Component
 public class TransactionDao {
 
-    @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    public TransactionDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<Transaction> getAllTransactionByUser(String userName) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("userName", userName);
@@ -88,8 +90,6 @@ public class TransactionDao {
         return namedParameterJdbcTemplate.query(sql, new TransactionRowMapper());
     }
 
-
-    //TODO
     public void deleteUsersTransactions(String fullName) {
         try {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("fullName", fullName);

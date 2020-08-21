@@ -9,13 +9,10 @@ import com.Borman.cbbbluechips.models.SMS_Alert;
 import com.Borman.cbbbluechips.models.TradeRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,13 +20,15 @@ import java.util.List;
 @Component
 public class OwnsDao {
 
-    Logger logger = LoggerFactory.getLogger(OwnsDao.class);
+    private Logger logger = LoggerFactory.getLogger(OwnsDao.class);
 
-    @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    public OwnsDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<Owns> getTeamsUserOwns(String userId) {
         try {
@@ -38,15 +37,6 @@ public class OwnsDao {
         } catch (Exception e) {
             logger.error("Failed to get Owns for " + userId + "\n" + e);
             return null;
-        }
-    }
-
-    public void insertNewOwn(Owns owns) {
-        try {
-            SqlParameterSource params = new BeanPropertySqlParameterSource(owns);
-            namedParameterJdbcTemplate.update(OwnsSQL.insertIntoOwns, params);
-        } catch (Exception e) {
-            logger.error(e.toString());
         }
     }
 
@@ -109,7 +99,6 @@ public class OwnsDao {
         }
     }
 
-    //TODO
     public void deleteUserOwns(String userId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
@@ -118,6 +107,5 @@ public class OwnsDao {
             logger.info(e.toString());
         }
     }
-
 
 }

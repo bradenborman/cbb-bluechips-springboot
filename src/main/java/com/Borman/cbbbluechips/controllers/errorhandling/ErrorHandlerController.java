@@ -4,8 +4,6 @@ import com.Borman.cbbbluechips.exceptions.NoUserPresent;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,10 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ErrorHandlerController extends ResponseEntityExceptionHandler {
 
-    Logger logger = LoggerFactory.getLogger(ErrorHandlerController.class);
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private Logger logger = LoggerFactory.getLogger(ErrorHandlerController.class);
 
     @ExceptionHandler(CommunicationsException.class)
     public String catchError(final java.io.EOFException e) {

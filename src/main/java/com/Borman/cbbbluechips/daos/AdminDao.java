@@ -8,7 +8,6 @@ import com.Borman.cbbbluechips.models.UpdatePointSpreadRequest;
 import com.Borman.cbbbluechips.models.UpdateSeedRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -21,21 +20,14 @@ import java.util.List;
 @Component
 public class AdminDao {
 
-    Logger logger = LoggerFactory.getLogger(AdminDao.class);
+    private Logger logger = LoggerFactory.getLogger(AdminDao.class);
 
-    @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
-    public void deleteAllTeams() {
-        try {
-            logger.info("Deleting all teams for insert of teams from API");
-            jdbcTemplate.update(AdminSQL.deleteAllTeams);
-        } catch (Exception e) {
-            logger.error(e.toString());
-        }
+    public AdminDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public void updateTeamInfo(SportsDataTeam team) {

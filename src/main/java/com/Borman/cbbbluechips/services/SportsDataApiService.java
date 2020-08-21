@@ -32,12 +32,6 @@ public class SportsDataApiService {
         this.teamDao = teamDao;
     }
 
-    void updateTeamsRecords() {
-        List<SportsDataTeam> updatedTeamInfo = callTeamsFromSportsDataApi();
-        updatedTeamInfo.forEach(this::updateTeamInfo);
-        System.out.println("Test");
-    }
-
     private List<SportsDataTeam> callTeamsFromSportsDataApi() {
         UriComponentsBuilder url = UriComponentsBuilder.fromHttpUrl(SportsDataApiRoutes.getTeamData)
                 .queryParam("key", apiKey);
@@ -45,17 +39,8 @@ public class SportsDataApiService {
         return Arrays.asList(Objects.requireNonNull(response.getBody()));
     }
 
-    //Todo maybe
-    private void updateTeamInfo(SportsDataTeam team) {
-        //here
-    }
-
-
-
-    public void updateTeamsPlayingToday() {
-
+    void updateTeamsPlayingToday() {
         teamDao.resetNextTeamPlayingForAll();
-
         List<SportsDataGamesToday> updatedTeamInfo = callGamesByDay();
         updatedTeamInfo.forEach(game -> {
             updateTeamNextGame(game.getAwayTeam(), game.getHomeTeamId());
@@ -66,7 +51,6 @@ public class SportsDataApiService {
     private List<SportsDataGamesToday> callGamesByDay() {
 
         String todayParam = SportsDataDateUtility.getTodayDateString();
-
         System.out.println("Getting Games and next to play for " + todayParam);
 
         UriComponentsBuilder url = UriComponentsBuilder.fromHttpUrl(SportsDataApiRoutes.getGamesByDay + todayParam)
@@ -77,9 +61,7 @@ public class SportsDataApiService {
 
     private void updateTeamNextGame(String teamPlayingShortName, String teamToUpdateId) {
         System.out.println(String.format("UPDATE GAME: teamID: %s plays %s", teamToUpdateId, teamPlayingShortName));
-
         String fullName = teamDao.getNameByShortName(teamPlayingShortName);
-
         teamDao.updateNextTeamPlayingByTeamID(teamToUpdateId, fullName != null ? fullName : teamPlayingShortName);
     }
 

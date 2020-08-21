@@ -4,7 +4,6 @@ import com.Borman.cbbbluechips.daos.sql.OwnsSQL;
 import com.Borman.cbbbluechips.daos.sql.TeamSQL;
 import com.Borman.cbbbluechips.mappers.rowMappers.TeamRowMapper;
 import com.Borman.cbbbluechips.models.Team;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,11 +14,13 @@ import java.util.List;
 @Component
 public class TeamDao {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    public TeamDao(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     public List<Team> getAllTeams() {
         return jdbcTemplate.query(TeamSQL.getAllTeams, new TeamRowMapper());

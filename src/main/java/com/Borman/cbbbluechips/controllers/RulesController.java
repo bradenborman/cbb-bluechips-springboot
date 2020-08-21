@@ -1,25 +1,23 @@
 package com.Borman.cbbbluechips.controllers;
 
 import com.Borman.cbbbluechips.models.CalculatorDetail;
-import com.Borman.cbbbluechips.models.Portfolio;
 import com.Borman.cbbbluechips.models.User;
-import com.Borman.cbbbluechips.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Borman.cbbbluechips.services.CalculatorService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 
 @Controller
 @RequestMapping("/rules")
 public class RulesController {
 
-    @Autowired
-    CalculatorService calculatorService;
+    private CalculatorService calculatorService;
+
+    public RulesController(CalculatorService calculatorService) {
+        this.calculatorService = calculatorService;
+    }
 
     @RequestMapping("")
     public String portfolio(Model model) {

@@ -25,7 +25,7 @@ public class CommentController {
 
     @RequestMapping("")
     public String comments(Model model) {
-        model.addAttribute("comments", commentService.getComments(getLoggedInUser().getID(), false)); //TODO handle admin role
+        model.addAttribute("comments", commentService.getComments(getLoggedInUser().getID(), getLoggedInUser()));
         if(shouldDisplayAds)
             model.addAttribute("ads", Ads.getDisplayAdds());
         return "comments-new";

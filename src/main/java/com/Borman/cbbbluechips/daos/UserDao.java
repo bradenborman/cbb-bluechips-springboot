@@ -24,13 +24,15 @@ import java.util.Objects;
 @Component
 public class UserDao {
 
-    Logger logger = LoggerFactory.getLogger(UserDao.class);
+    private Logger logger = LoggerFactory.getLogger(UserDao.class);
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    public UserDao(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     public List<User> getUsers() {
         return jdbcTemplate.query(UserSQL.getAllUsers, new UserRowMapper());

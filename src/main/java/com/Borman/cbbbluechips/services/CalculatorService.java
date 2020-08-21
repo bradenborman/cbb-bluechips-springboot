@@ -1,21 +1,23 @@
 package com.Borman.cbbbluechips.services;
 
+import com.Borman.cbbbluechips.builders.CalculatorDetailBuilder;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.CalculatorDetail;
 import com.Borman.cbbbluechips.models.Owns;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Random;
 
 @Service
 public class CalculatorService {
 
-    @Autowired
-    OwnsService ownsService;
+    private OwnsService ownsService;
+    private TeamDao teamDao;
 
-    @Autowired
-    TeamDao teamDao;
-
+    public CalculatorService(OwnsService ownsService, TeamDao teamDao) {
+        this.ownsService = ownsService;
+        this.teamDao = teamDao;
+    }
 
     public CalculatorDetail getCalculatorDetails(String userId) {
         return ownsService.getTeamsUserOwns(userId)
@@ -27,22 +29,18 @@ public class CalculatorService {
     }
 
     CalculatorDetail mapCalculatorDetail(Owns owns) {
-        CalculatorDetail calculatorDetail = new CalculatorDetail();
-
-        calculatorDetail.setTeamNameOwned(owns.getTeamName());
-        calculatorDetail.setPointSpreadOwned(owns.getNextPointSpread() != null ? owns.getNextPointSpread() : "0");
-        calculatorDetail.setPointSpreadPlaying(owns.getNextPointSpread() != null ? getPointSpreadPlaying(owns.getNextPointSpread()) : "0");
-        calculatorDetail.setTeamNamePlaying(teamDao.getTeamPlayingNext(owns.getTeamId()));
-
-        calculatorDetail.setFinalScoreOwned(setRandomScore());
-        calculatorDetail.setFinalScorePlaying(setRandomScore());
-
-        calculatorDetail.setStartingValue(owns.getCurrentMarketPrice());
+        CalculatorDetail calculatorDetail =  CalculatorDetailBuilder.aCalculatorDetail()
+                .withTeamNameOwned(owns.getTeamName())
+                .withPointSpreadOwned(owns.getNextPointSpread() != null ? owns.getNextPointSpread() : "0")
+                .withPointSpreadPlaying(owns.getNextPointSpread() != null ? getPointSpreadPlaying(owns.getNextPointSpread()) : "0")
+                .withTeamNamePlaying(teamDao.getTeamPlayingNext(owns.getTeamId()))
+                .withFinalScoreOwned(setRandomScore())
+                .withFinalScorePlaying(setRandomScore())
+                .withStartingValue(owns.getCurrentMarketPrice())
+                .build();
 
         deriveResultsOfCalculation(calculatorDetail, owns.getCurrentMarketPrice());
-
         return calculatorDetail;
-
     }
 
     int setRandomScore() {

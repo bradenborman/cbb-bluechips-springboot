@@ -4,7 +4,6 @@ import com.Borman.cbbbluechips.daos.GameSettingsDao;
 import com.Borman.cbbbluechips.models.Team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,12 +16,13 @@ public class GameSettingsService {
 
     private Logger logger = LoggerFactory.getLogger(GameSettingsService.class);
 
-    @Autowired
-    GameSettingsDao settingsDao;
+    private GameSettingsDao settingsDao;
+    private int startingCash;
 
-    @Autowired
-    @Qualifier("startingCash")
-    int startingCash;
+    public GameSettingsService(GameSettingsDao settingsDao, @Qualifier("startingCash") int startingCash) {
+        this.settingsDao = settingsDao;
+        this.startingCash = startingCash;
+    }
 
     public String getCurrentRound() {
         return settingsDao.getCurrentRound();

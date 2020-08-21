@@ -1,26 +1,28 @@
 package com.Borman.cbbbluechips.controllers.admin;
 
-import com.Borman.cbbbluechips.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Borman.cbbbluechips.services.AdminService;
+import com.Borman.cbbbluechips.services.GameSettingsService;
+import com.Borman.cbbbluechips.services.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    AdminService adminService;
+    private AdminService adminService;
+    private GameSettingsService settingsService;
+    private UserService userService;
 
-    @Autowired
-    GameSettingsService settingsService;
-
-    @Autowired
-    UserService userService;
+    public AdminController(AdminService adminService, GameSettingsService settingsService, UserService userService) {
+        this.adminService = adminService;
+        this.settingsService = settingsService;
+        this.userService = userService;
+    }
 
     @PostMapping("/update-price")
     public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice,

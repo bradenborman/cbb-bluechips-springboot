@@ -2,41 +2,44 @@ package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.CommentsDao;
 import com.Borman.cbbbluechips.models.Comment;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Borman.cbbbluechips.models.User;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
 
+    private CommentsDao commentsDao;
+    private UserService userService;
 
-    @Autowired
-    CommentsDao commentsDao;
-
-    @Autowired
-    UserService userService;
+    public CommentService(CommentsDao commentsDao, UserService userService) {
+        this.commentsDao = commentsDao;
+        this.userService = userService;
+    }
 
     private Predicate<String> commentHasValue = i -> (i.length() > 0);
+    private Predicate<GrantedAuthority> hasAdminRole = auth -> auth.getAuthority().equals("CBB_ADMIN");
 
-    public List<Comment> getComments(String userId, boolean userAdmin) {
-        List<Comment> comments =  getComments(userId);
+    public List<Comment> getComments(String userId, User user) {
+        return getComments(userId, user.getAuthorities().stream().anyMatch(hasAdminRole));
+    }
 
+    private List<Comment> getComments(String userId, boolean userAdmin) {
+        List<Comment> comments = getComments(userId);
         //give admin ability to delete comments
-        if(userAdmin)
+        if (userAdmin)
             comments.forEach(comment -> {
                 comment.getSubComments().forEach(subComment -> {
                     subComment.setUserOwnsComment(true);
                 });
                 comment.setUserOwnsComment(true);
             });
-
         //Get newer comments first
         Collections.reverse(comments);
-
         return comments;
     }
 

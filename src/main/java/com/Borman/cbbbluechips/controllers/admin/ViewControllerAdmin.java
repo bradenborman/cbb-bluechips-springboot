@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/admin")
 public class ViewControllerAdmin {
 
-    @Autowired
-    TeamService teamService;
+    private TeamService teamService;
+    private GameSettingsService gameSettingsService;
 
-    @Autowired
-    GameSettingsService gameSettingsService;
-
+    public ViewControllerAdmin(TeamService teamService, GameSettingsService gameSettingsService) {
+        this.teamService = teamService;
+        this.gameSettingsService = gameSettingsService;
+    }
 
     @RequestMapping("")
     public String admin(Model model) {
