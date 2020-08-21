@@ -58,7 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/trade-action/**",
                         "/data/**",
                         "/transactions",
-                        "/transactions/**"
+                        "/transactions/**",
+                        "/email/**"
                 )
                 .hasAnyAuthority("CBB_USER");
 

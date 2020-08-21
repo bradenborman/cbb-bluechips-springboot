@@ -4,7 +4,6 @@ import com.Borman.cbbbluechips.mappers.rowMappers.CommentRowMapper;
 import com.Borman.cbbbluechips.mappers.rowMappers.SubCommentRowMapper;
 import com.Borman.cbbbluechips.models.Comment;
 import com.Borman.cbbbluechips.utilities.CommentTimeStampUtility;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -14,24 +13,22 @@ import java.util.List;
 @Component
 public class CommentsDao {
 
-    @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    public CommentsDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     public List<Comment> getComments() {
         return namedParameterJdbcTemplate.query("SELECT * FROM comments;", new CommentRowMapper());
     }
-
-
 
     public List<Comment> getSubComments(String parentId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("parentId", parentId);
         return namedParameterJdbcTemplate.query("SELECT * FROM sub_comments WHERE Parent_ID = :parentId;", params, new SubCommentRowMapper());
     }
 
-
     public void createReplyToParentComment(String userId, String reply, String parentId, String fullName) {
-
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("userId", userId)
                 .addValue("reply", reply)

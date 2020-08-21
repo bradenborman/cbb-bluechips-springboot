@@ -1,4 +1,4 @@
-package com.Borman.cbbbluechips.utilities;
+package com.Borman.cbbbluechips.zdata;
 
 public class SportsDataApiRoutes {
 

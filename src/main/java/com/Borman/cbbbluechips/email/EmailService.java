@@ -15,31 +15,7 @@ public class EmailService {
     @Autowired
     private JavaMailSenderImpl javaMailSender;
 
-    Logger logger = LoggerFactory.getLogger(EmailService.class);
-
-    private static final String receivingAddress = "bradenborman@hotmail.com";
-
-    public void sendTESTEmail() {
-
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-
-        try {
-            helper.setTo(receivingAddress);
-            helper.setSubject("Test Email");
-            helper.setText(buildEmailTestBody(), true);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-
-        javaMailSender.send(message);
-
-    }
-
-    private String buildEmailTestBody() {
-        return "<h2>TEST</h2>";
-    }
-
+    private Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     public boolean sendPasswordRecoveryEmail(String email, String password) {
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -66,7 +42,6 @@ public class EmailService {
     }
 
     private String buildPasswordRecoveryEmailBody(String password) {
-
         return "<p style=\"font-size: 1.3em;\">As requested, here is your password: <i><b>" + password + "</b></i></p>" +
                 "<br /><br /><p>Thank you again for playing and making this possible.</p><p>Braden Borman<br/>573 826-1903</p>";
     }

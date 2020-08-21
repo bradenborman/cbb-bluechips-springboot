@@ -23,7 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class TransactionService {
 
-    Logger logger = LoggerFactory.getLogger(TransactionService.class);
+    private Logger logger = LoggerFactory.getLogger(TransactionService.class);
+
     private TransactionDao transactionDao;
     private TeamDao teamDao;
     private UserService userService;
@@ -100,7 +101,7 @@ public class TransactionService {
         return transaction;
     }
 
-    public String getTransactionCountTotal() {
+    String getTransactionCountTotal() {
         return transactionDao.getTransactionCountTotal();
     }
 

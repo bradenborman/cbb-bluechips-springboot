@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.Borman.cbbbluechips.zdata.PasswordRecoveryData.GENERIC_FAILED_MESSAGE;
+import static com.Borman.cbbbluechips.zdata.PasswordRecoveryData.GENERIC_SUCCESS_MESSAGE;
+
 @Service
 public class PasswordRecoveringService {
 
@@ -17,11 +20,6 @@ public class PasswordRecoveringService {
     EmailService emailService;
 
     Logger logger = LoggerFactory.getLogger(PasswordRecoveringService.class);
-
-    private static String GENERIC_SUCCESS_MESSAGE = "An Email containing the password for the requested account has been sent. " +
-            "<br /><br />Try searching inbox for: <b>cbb.bluechips.donotreply@gmail.com</b>";
-
-    private static String GENERIC_FAILED_MESSAGE = "Failed to recover password. <br /><br /> Ply try again and validate email.";
 
     public String getUsersPassword(String emailToRecover) {
         logger.info("Attempting to recover password for: " + emailToRecover);

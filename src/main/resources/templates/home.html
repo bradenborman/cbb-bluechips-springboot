@@ -65,9 +65,13 @@
                         <h2>Returning Users</h2>
                         <div class="row login">
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div th:if="${(param.newUser == null)}" class="form-group">
                                     <input type="text" name="email" id="email" class="form-control" required>
                                     <label th:style="${error} ? 'color:red' : ''" class="form-control-placeholder floatingLbl" id="emailLBL" for="email">Email</label>
+                                </div>
+                                <div th:if="${(param.newUser != null)}" class="form-group">
+                                    <input type="text" name="email" id="email" class="form-control" th:value="${param.newUser}" required>
+                                    <label th:style="${error} ? 'color:red' : ''" class="form-control-placeholder floatingLbl" id="emailLBL" for="email">Thank you for signing up!</label>
                                 </div>
                             </div>
                             <div class="col-md-12">

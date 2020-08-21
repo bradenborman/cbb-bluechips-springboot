@@ -1,25 +1,15 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.GameSettingsDao;
-import com.Borman.cbbbluechips.daos.OwnsDao;
-import com.Borman.cbbbluechips.models.Owns;
-import com.Borman.cbbbluechips.utilities.NumberGenUtility;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.Team;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
 
 @Component
 public class TeamService {
-
-    Logger logger = LoggerFactory.getLogger(TeamService.class);
 
     private TeamDao teamDao;
     private PriceHistoryService priceHistoryService;
@@ -31,7 +21,6 @@ public class TeamService {
         this.gameSettingsDao = gameSettingsDao;
     }
 
-    //TODO look to cache for a min maybe
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
         if (onlyTeamsInTournament) {

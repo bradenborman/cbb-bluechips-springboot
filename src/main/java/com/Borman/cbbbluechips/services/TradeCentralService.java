@@ -14,9 +14,11 @@ import java.util.List;
 @Service
 public class TradeCentralService {
 
-    @Autowired
-    OwnsService ownsService;
+    private OwnsService ownsService;
 
+    public TradeCentralService(OwnsService ownsService) {
+        this.ownsService = ownsService;
+    }
 
     public TradeCentral fillTradeCentralDetails(User user, String teamId) {
         return TradeCentralBuilder.aTradeCentral()

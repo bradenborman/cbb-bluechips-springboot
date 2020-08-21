@@ -3,7 +3,6 @@ package com.Borman.cbbbluechips.services;
 import com.Borman.cbbbluechips.builders.PortfolioBuilder;
 import com.Borman.cbbbluechips.models.Portfolio;
 import com.Borman.cbbbluechips.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

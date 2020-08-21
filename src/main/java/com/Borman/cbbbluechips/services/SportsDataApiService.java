@@ -3,7 +3,7 @@ package com.Borman.cbbbluechips.services;
 import com.Borman.cbbbluechips.daos.TeamDao;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataGamesToday;
 import com.Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
-import com.Borman.cbbbluechips.utilities.SportsDataApiRoutes;
+import com.Borman.cbbbluechips.zdata.SportsDataApiRoutes;
 import com.Borman.cbbbluechips.utilities.SportsDataDateUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
