@@ -1,4 +1,5 @@
 package com.Borman.cbbbluechips.email;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+
+import static com.Borman.cbbbluechips.zdata.PasswordRecoveryData.PASSWORD_RECOVERY_BODY;
 
 @Service
 public class EmailService {
@@ -34,7 +37,7 @@ public class EmailService {
             javaMailSender.send(message);
             logger.info("Mail sent");
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.info(e.getMessage());
             return false;
         }
@@ -42,9 +45,7 @@ public class EmailService {
     }
 
     private String buildPasswordRecoveryEmailBody(String password) {
-        return "<p style=\"font-size: 1.3em;\">As requested, here is your password: <i><b>" + password + "</b></i></p>" +
-                "<br /><br /><p>Thank you again for playing and making this possible.</p><p>Braden Borman<br/>573 826-1903</p>";
+        return PASSWORD_RECOVERY_BODY.replace("${password}", password);
     }
-
 
 }
