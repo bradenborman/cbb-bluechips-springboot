@@ -1,7 +1,7 @@
 package fixtures;
 
-import com.Borman.cbbbluechips.builders.TeamBuilder;
-import com.Borman.cbbbluechips.models.Team;
+import Borman.cbbbluechips.builders.TeamBuilder;
+import Borman.cbbbluechips.models.Team;
 
 import java.util.Arrays;
 import java.util.List;
