@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -35,10 +33,10 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(@RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
+    public synchronized String createUser(@RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
                              @RequestParam(value = "email_new") String email_new, @RequestParam(value = "password_new") String password_new) {
-        userService.createNewUser(fname, lname, email_new, password_new);
-        return "redirect:/?newUser=" + email_new;
+        String reDirectMessage = userService.createNewUser(fname, lname, email_new, password_new);
+        return "redirect:/" + reDirectMessage;
     }
 
     @PostMapping("/delete")

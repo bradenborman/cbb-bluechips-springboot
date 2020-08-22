@@ -1,7 +1,6 @@
 package com.Borman.cbbbluechips.services;
 
 import com.Borman.cbbbluechips.daos.UserDao;
-import com.Borman.cbbbluechips.models.TradeCentral;
 import com.Borman.cbbbluechips.models.User;
 import com.Borman.cbbbluechips.utilities.UserNameUtility;
 import org.slf4j.Logger;
@@ -29,16 +28,15 @@ public class UserService {
     }
 
     @Transactional
-    public User createNewUser(String fname, String lname, String email_new, String password_new) {
+    public String createNewUser(String fname, String lname, String email_new, String password_new) {
         User user = new User(UserNameUtility.titleCaseConversion(fname), UserNameUtility.titleCaseConversion(lname), email_new, password_new);
         if (!isUserAlreadyPresent(user.getEmail())) {
             user.setCash(STARTING_CASH);
             user.setID(userDao.createNewUser(user));
-            return user;
+            return "?newUser=" + user.getEmail();
         } else
             logger.info(String.format("%s already in database", user.getEmail()));
-
-        return null;
+        return "?wasError=true&message=user_already_exists";
     }
 
 

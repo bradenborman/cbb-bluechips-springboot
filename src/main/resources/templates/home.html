@@ -36,6 +36,9 @@
   if(!location.hostname.includes("local") && location.protocol !== "https:")
   {
        location.protocol = "https:";
+  }else if (location.hostname.includes("herokuapp"))
+  {
+        window.location.replace("https://www.cbb-bluechips.com/");
   }
 
 </script>
