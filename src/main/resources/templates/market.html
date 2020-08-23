@@ -11,8 +11,10 @@
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/css/Market.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Market-floating-menu.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Footer.css"/>
+    <script src="js/Market.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="icon"
           href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
@@ -56,7 +58,7 @@
     </nav>
     <div class="row">
         <div class="col-lg-6 animated zoomIn fast" th:each="team : ${teams}">
-            <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
+            <div th:classappend="${'seed:' + team.seed}" th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
                  class="team">
                 <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header"
                      th:src="@{${'/img/' + team.teamName + '.png'}}"/>
@@ -94,6 +96,27 @@
             <p class="adTag">Thank you to all the supporters</p>
         </div>
     </div>
+
+    <div class="float-nav">
+        <div class="menu-btn">
+            <ul>
+                <li class="line"></li>
+                <li class="line"></li>
+                <li class="line"></li>
+            </ul>
+            <div class="menu-txt">Jump to</div>
+        </div>
+    </div>
+    <div id="main-nav" class="main-nav">
+        <ul>
+            <li><a class="3" href="#">3rd Seeded Teams</a></li>
+            <li><a class="6" href="#">6th Seeded Teams</a></li>
+            <li><a class="9" href="#">9th Seeded Teams</a>
+            <li><a class="12" href="#">12th Seeded Teams</a></li>
+            <li><a class="15" href="#">15th Seeded Teams</a></li>
+        </ul>
+    </div>
+
     <footer>Braden Borman Production &copy;</footer>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -134,29 +157,7 @@ function jumpToAdd(x) {
     window.open(x);
 }
 
-
-$(document).ready(function(){
-
-    $(".overunder").each(function() {
-       if($(this).text() >= 1) {
-            $(this).parents("div").prop('title', '- UNDERDOG -');
-            $(this).css("color", "green");
-      }
-       else {
-            $(this).parents("div").prop('title', '- FAVORITE -');
-            $(this).css("color", "red");
-      }
-    });
-
-    setTimeout(function(){ drawChart(15, 100) }, 1500);
-
-    var toInsert = $('.col-lg-6').eq(11);
-    var div = $('#addsPlaceholder').html()
-    $(div).insertAfter(toInsert);
-
-});
-
-    </script>
+</script>
 </div>
 </body>
 </html>
