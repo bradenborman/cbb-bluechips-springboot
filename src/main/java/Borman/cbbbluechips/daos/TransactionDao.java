@@ -44,8 +44,6 @@ public class TransactionDao {
     }
 
     public void buyShares(TradeRequest tradeRequest) {
-        System.out.println("Buying for first time.");
-
         try {
             SqlParameterSource params = new BeanPropertySqlParameterSource(tradeRequest);
             namedParameterJdbcTemplate.update(TransactionSQL.buyShares, params);
@@ -55,7 +53,6 @@ public class TransactionDao {
     }
 
     public void buySharesAgain(TradeRequest tradeRequest) {
-        System.out.println("Buying More. Already Purchased before");
         try {
             SqlParameterSource params = new BeanPropertySqlParameterSource(tradeRequest);
             namedParameterJdbcTemplate.update(TransactionSQL.buySharesAgain, params);

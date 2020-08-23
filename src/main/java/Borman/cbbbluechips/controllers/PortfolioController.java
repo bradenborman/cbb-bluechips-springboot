@@ -28,12 +28,17 @@ public class PortfolioController {
 
     @RequestMapping("")
     public String portfolio(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.getUser(getLoggedInUserId());
         user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
         model.addAttribute("user", user);
         model.addAttribute("leaderBoardPos", leaderboardService.getUsersLeaderPosition(userService.getUser(user.getID())));
         model.addAttribute("portfolio", portfolioService.getPortfolioDetails(user));
         return "portfolio";
+    }
+
+    private String getLoggedInUserId() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user.getID();
     }
 
 }

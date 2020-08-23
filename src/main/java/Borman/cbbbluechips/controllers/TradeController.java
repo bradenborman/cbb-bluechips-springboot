@@ -31,7 +31,7 @@ public class TradeController {
 
     @RequestMapping("/trade/{team_Id}")
     public String tradeCentral(@PathVariable("team_Id") String teamId, Model model) {
-        User user = getLoggedInUser();
+        User user = userService.getUser(getLoggedInUserId());
         model.addAttribute("user", user);
         model.addAttribute("team", teamService.getTeamById(teamId));
         model.addAttribute("details", tradeCentralService.fillTradeCentralDetails(user, teamId));
@@ -40,7 +40,7 @@ public class TradeController {
 
     @PostMapping("/trade-action/sell")
     public synchronized String sellTeam(@RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
-        User user = getLoggedInUser();
+        User user = userService.getUser(getLoggedInUserId());
         TradeRequest tradeRequest = new TradeRequest(teamId, user.getID(), volume, TradeAction.SELL);
         if (ownsService.validateOwnership(tradeRequest) && teamService.isTeamUnLocked(tradeRequest.getTeamId()))
             transactionService.completeSell(tradeRequest);
@@ -49,7 +49,7 @@ public class TradeController {
 
     @PostMapping("/trade-action/buy")
     public synchronized String buyTeam(@RequestParam(value = "teamId") String teamId, @RequestParam(value = "volume") int volume) {
-        User user = getLoggedInUser();
+        User user = userService.getUser(getLoggedInUserId());
         TradeRequest tradeRequest = new TradeRequest(teamId, user.getID(), volume, TradeAction.BUY);
         double fundsAvailable = ownsService.getFundsAvailable(tradeRequest);
         if (teamService.isTeamUnLocked(tradeRequest.getTeamId()))
@@ -57,8 +57,9 @@ public class TradeController {
         return "redirect:../trade/" + teamId;
     }
 
-    private User getLoggedInUser() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private String getLoggedInUserId() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user.getID();
     }
 
 }
