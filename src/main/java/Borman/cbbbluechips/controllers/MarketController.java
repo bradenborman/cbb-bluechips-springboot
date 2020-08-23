@@ -2,9 +2,10 @@ package Borman.cbbbluechips.controllers;
 
 import Borman.cbbbluechips.models.Team;
 import Borman.cbbbluechips.models.User;
-import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.models.enums.Ads;
+import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.TeamService;
+import Borman.cbbbluechips.utilities.JumpMenuList;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class MarketController {
         List<Team> teamsToReturn = allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true);
         ownsService.setTeamsUserOwns(teamsToReturn, getLoggedInUser().getID());
         model.addAttribute("teams", teamsToReturn);
+        model.addAttribute("jumpMenu", JumpMenuList.buildQuickJumpList(teamsToReturn));
         if(shouldDisplayAds)
             model.addAttribute("ads", Ads.getDisplayAdds());
         return "market";

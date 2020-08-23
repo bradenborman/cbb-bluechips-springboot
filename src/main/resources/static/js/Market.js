@@ -21,16 +21,4 @@ $('.float-nav').click(function() {
   $('.main-nav, .menu-btn').toggleClass('active');
 });
 
- $("#main-nav a").click(function(e) {
-   e.preventDefault();
-   var classNameSeed = $(this).attr('class');
-
-   alert("Need to jump to teams with seeds of: " + classNameSeed)
-
-//LEFT OFF HERE == top isnt a thing I guess
-//   window.scrollTo(0, x.offset().top);
-
- });
-
-
 });

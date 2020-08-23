@@ -57,8 +57,8 @@
         </ul>
     </nav>
     <div class="row">
-        <div class="col-lg-6 animated zoomIn fast" th:each="team : ${teams}">
-            <div th:classappend="${'seed:' + team.seed}" th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
+        <div class="col-lg-6 animated zoomIn fast" th:id="${'team:' + team.teamName}" th:each="team : ${teams}">
+            <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
                  class="team">
                 <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header"
                      th:src="@{${'/img/' + team.teamName + '.png'}}"/>
@@ -109,11 +109,10 @@
     </div>
     <div id="main-nav" class="main-nav">
         <ul>
-            <li><a class="3" href="#">3rd Seeded Teams</a></li>
-            <li><a class="6" href="#">6th Seeded Teams</a></li>
-            <li><a class="9" href="#">9th Seeded Teams</a>
-            <li><a class="12" href="#">12th Seeded Teams</a></li>
-            <li><a class="15" href="#">15th Seeded Teams</a></li>
+            <li id="pt-header">Playing Today</li>
+            <li th:each="menuItem : ${jumpMenu}">
+                <a th:href="${'/market#' + menuItem.url}" th:text="${menuItem.displayString}"></a>
+            </li>
         </ul>
     </div>
 
