@@ -55,7 +55,7 @@
                     <tbody>
                     <tr th:each="leader : ${leaderboard}">
                         <td th:text=" ${leader.ranking}"></td>
-                        <td th:text=" ${leader.userName}" class="username" th:title="${leader.emailAddress}"></td>
+                        <td th:text=" ${leader.userName}" class="username" th:classappend="${leader.hasPayedEntryFee} ? payed : notPayed" th:title="${leader.emailAddress}"></td>
                         <td th:text="'$' + ${#numbers.formatDecimal(leader.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
                     </tr>
                     </tbody>
@@ -85,15 +85,22 @@
                     </tr>
                 </table>
             </div>
-            <script src="https://www.paypal.com/sdk/js?client-id=AWfXhRxpfKfKVg0zbdoVZGh5ih422OofcFQ9wHI3552TBL4kMgCQ3oQWeJ-9O59U398oV-CCcO-X0RZ0&disable-funding=credit,card">
+            <script src="https://www.paypal.com/sdk/js?client-id=AbiTp3MyLJCqlqUhgWWDpFC-M8VRE6bHA1GHs40nCam1UpxkHRpFRlkbP_SpwAUGguGKojDw-6a8sWtd&disable-funding=credit,card">
             </script>
-            <div style="padding: 20px;" class="card">
+            <div th:if="${hasUserPayed}"  style="padding: 20px;" class="card">
                 <p>
                     Thank you for playing. </p>
                 <p id="paypalMessage">
-                    If you enjoyed playing and would like to support this game, I am accepting donations.
+                    <b>You have successful paid. Therefore, you are eligible to win payout.</b>
                 </p>
-                <p id="paypalResult">Click to donate $<span id="amountAsking"></span></p>
+            </div>
+            <div th:if="${!hasUserPayed}"  style="padding: 20px;" class="card">
+                <p>
+                    Thank you for playing. </p>
+                <p id="paypalMessage">
+                    In order to receive a payout, you must pay to enter. Please pay below.
+                </p>
+                <p id="paypalResult">Click the PayPal button to enter. $<span id="amountAsking"></span></p>
                 <div id="paypal-button-container"></div>
             </div>
         </div>
@@ -104,7 +111,7 @@
 </div>
 <script>
 
-var amountAsking = "5.00";
+var amountAsking = "0.02";
 
 $("#amountAsking").text(amountAsking)
 
@@ -118,8 +125,8 @@ $("#amountAsking").text(amountAsking)
     createOrder: function(data, actions) {
       return actions.order.create({
         purchase_units: [{
-          description : "Donation to Cbb-Bluechips",
-          soft_descriptor : "$3 to Cbb-Bluechips",
+          description : "Entry Fee to Cbb-Bluechips",
+          soft_descriptor : "$" + amountAsking + " to Cbb-Bluechips",
           amount: {
             value: amountAsking
           }
@@ -128,16 +135,18 @@ $("#amountAsking").text(amountAsking)
     },
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(details) {
-       $("#paypalResult").html("<b>Thank you for your donation.</b>")
+       $("#paypalResult").html("<b>You have successful paid and are now eligible to win payout.</b>")
+       $("#paypal-button-container").hide()
        // alert('Transaction completed by ' + details.payer.name.given_name);
         // Call your server to save the transaction
-        return fetch('/paypal-transaction-complete', {
+        return fetch('/user/paypal-transaction-complete', {
           method: 'post',
           headers: {
             'content-type': 'application/json'
           },
           body: JSON.stringify({
-            orderID: data.orderID
+            orderID: data.orderID,
+            playGivenName: details.payer.name.given_name
           })
         });
       });

@@ -38,16 +38,16 @@ public class UserDao {
     }
 
     public String createNewUser(User user) {
-            KeyHolder keyHolder = new GeneratedKeyHolder();
-            SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-            namedParameterJdbcTemplate.update(UserSQL.insertUser, params, keyHolder);
-            return Objects.requireNonNull(keyHolder.getKey()).toString();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        SqlParameterSource params = new BeanPropertySqlParameterSource(user);
+        namedParameterJdbcTemplate.update(UserSQL.insertUser, params, keyHolder);
+        return Objects.requireNonNull(keyHolder.getKey()).toString();
     }
 
     public void deleteUser(String userId) {
-            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-            namedParameterJdbcTemplate.update(UserSQL.deleteUser, params);
-            logger.info("Deleted User");
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+        namedParameterJdbcTemplate.update(UserSQL.deleteUser, params);
+        logger.info("Deleted User");
     }
 
     public void addCashToUser(String userId, double moneyToAdd) {
@@ -66,33 +66,33 @@ public class UserDao {
     }
 
     public int countEmailAddressInDatabase(String email) {
-            MapSqlParameterSource params = new MapSqlParameterSource().addValue("email", email);
-            return namedParameterJdbcTemplate.queryForObject(OwnsSQL.countEmailAddress, params, Integer.class);
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("email", email);
+        return namedParameterJdbcTemplate.queryForObject(OwnsSQL.countEmailAddress, params, Integer.class);
     }
 
     public User getUserById(String userId) {
-            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-            try {
-                return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());
-            } catch (Exception e) {
-                throw new NoUserPresent("User ID: " + userId);
-            }
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+        try {
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());
+        } catch (Exception e) {
+            throw new NoUserPresent("User ID: " + userId);
+        }
     }
 
     public User loginWithEmailAndPassword(String email, String password) {
-           try {
-               MapSqlParameterSource params = new MapSqlParameterSource()
-                       .addValue("email", email)
-                       .addValue("password", password);
-               return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserWithEmailAndPassword, params, new UserRowMapper());
-           }catch (EmptyResultDataAccessException e) {
-               throw new NoUserPresent(e.getMessage(), email);
-           }
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("email", email)
+                    .addValue("password", password);
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserWithEmailAndPassword, params, new UserRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            throw new NoUserPresent(e.getMessage(), email);
+        }
     }
 
     public boolean doesUserSubscribeToTextAlerts(String userId) {
-            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-            return namedParameterJdbcTemplate.queryForObject(UserSQL.doesUserSubscribeToTextAlerts, params, Integer.class) > 0;
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+        return namedParameterJdbcTemplate.queryForObject(UserSQL.doesUserSubscribeToTextAlerts, params, Integer.class) > 0;
     }
 
     public void subscribeUserToTextAlerts(String userId) {
@@ -126,4 +126,19 @@ public class UserDao {
             return null;
         }
     }
+
+    public boolean hasUserPayedEntryFee(String loggedInUserId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", loggedInUserId);
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.hasUserPayed, params, Integer.class) > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void updateHasPlayerPaidTrue(String userId) {
+        logger.info("Updating user.Payed_Entry_Fee to true");
+        jdbcTemplate.update("UPDATE user SET Payed_Entry_Fee = 1 WHERE User_ID = " + userId + ";");
+    }
+
 }

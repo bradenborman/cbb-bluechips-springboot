@@ -5,14 +5,13 @@ import Borman.cbbbluechips.services.LeaderboardService;
 import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.PortfolioService;
 import Borman.cbbbluechips.services.UserService;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/portfolio")
-public class PortfolioController {
+public class PortfolioController extends ControllerHelper {
 
     private UserService userService;
     private OwnsService ownsService;
@@ -34,11 +33,6 @@ public class PortfolioController {
         model.addAttribute("leaderBoardPos", leaderboardService.getUsersLeaderPosition(userService.getUser(user.getID())));
         model.addAttribute("portfolio", portfolioService.getPortfolioDetails(user));
         return "portfolio";
-    }
-
-    private String getLoggedInUserId() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user.getID();
     }
 
 }

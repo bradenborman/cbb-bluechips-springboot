@@ -100,4 +100,15 @@ public class UserService {
             deleteUser(user.getID());
         });
     }
+
+    public boolean hasUserPayed(String loggedInUserId) {
+        logger.info("Checking to see if user {} payed", loggedInUserId);
+        return userDao.hasUserPayedEntryFee(loggedInUserId);
+    }
+
+    public void updateHasPlayerPaid(boolean hasPlayerPaidEntryFee, String userId) {
+        if(hasPlayerPaidEntryFee)
+            userDao.updateHasPlayerPaidTrue(userId);
+    }
+
 }

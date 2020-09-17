@@ -17,6 +17,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String passwordHint;
+    private boolean hasPayedEntryFee;
     private double cash;
     private List<Owns> teamsOwned;
     private List<Transaction> allTransactions;
@@ -78,6 +79,14 @@ public class User implements UserDetails {
 
     public void setPasswordHint(String passwordHint) {
         this.passwordHint = passwordHint;
+    }
+
+    public boolean isHasPayedEntryFee() {
+        return hasPayedEntryFee;
+    }
+
+    public void setHasPayedEntryFee(boolean hasPayedEntryFee) {
+        this.hasPayedEntryFee = hasPayedEntryFee;
     }
 
     public double getCash() {

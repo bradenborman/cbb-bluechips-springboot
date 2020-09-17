@@ -26,7 +26,7 @@ public class LeaderboardService {
                 .collect(Collectors.toList());
 
         while (leaders.size() < LEADERS_TO_DISPLAY_AMT) {
-            leaders.add(new LeaderboardUser("", leaders.size() + 1, 0.00, "Empty user."));
+            leaders.add(new LeaderboardUser("", leaders.size() + 1, 0.00, "Empty user.", false));
         }
 
         return leaders;
@@ -39,7 +39,7 @@ public class LeaderboardService {
         return ownsService.getLeaders().stream()
                 .filter(entry -> entry.getEmailAddress().equals(user.getEmail()))
                 .findFirst()
-                .orElse(new LeaderboardUser("", -1, 0, "")).getRanking();
+                .orElse(new LeaderboardUser("", -1, 0, "", false)).getRanking();
     }
 
 }

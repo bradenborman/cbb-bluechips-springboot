@@ -1,22 +1,25 @@
 package Borman.cbbbluechips.controllers;
 
+import Borman.cbbbluechips.models.PayEntryFeeRequest;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.TransactionService;
 import Borman.cbbbluechips.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends ControllerHelper {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -44,6 +47,15 @@ public class UserController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         deleteAllTracesFromUser(user.getID());
         return "redirect:../users/logout";
+    }
+
+    //TODO
+    //SEND email receipt
+    @PostMapping("/paypal-transaction-complete")
+    ResponseEntity<Boolean> payEntryFee(@RequestBody PayEntryFeeRequest payEntryFeeRequest) {
+        logger.info("Paid endpoint hit. PayEntryFeeRequest: {}", payEntryFeeRequest.toString());
+        userService.updateHasPlayerPaid(true, getLoggedInUserId());
+        return ResponseEntity.ok(true);
     }
 
     @Transactional
