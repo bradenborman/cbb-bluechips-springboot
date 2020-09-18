@@ -1,7 +1,7 @@
 package Borman.cbbbluechips.controllers;
 
 import Borman.cbbbluechips.email.EmailService;
-import Borman.cbbbluechips.models.paypal.PayEntryFeeRequest;
+import Borman.cbbbluechips.models.paypal.PaypalDonationRequest;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.TransactionService;
@@ -49,12 +49,11 @@ public class UserController extends ControllerHelper {
         return "redirect:../users/logout";
     }
 
-    //TODO
     @PostMapping("/paypal-transaction-complete")
-    ResponseEntity<Boolean> payEntryFee(@RequestBody PayEntryFeeRequest payEntryFeeRequest) {
-        logger.info("Paid endpoint hit. PayEntryFeeRequest: {}", payEntryFeeRequest.toString());
-        userService.updateHasPlayerPaid(true, getLoggedInUserId());
-        emailService.sendUpdateEmail(payEntryFeeRequest);
+    ResponseEntity<Boolean> payEntryFee(@RequestBody PaypalDonationRequest paypalDonationRequest) {
+        logger.info("Paid endpoint hit. PayEntryFeeRequest: {}", paypalDonationRequest.toString());
+        userService.updatePlayerHasDonated(getLoggedInUserId());
+        emailService.sendUpdateEmail(paypalDonationRequest);
         return ResponseEntity.ok(true);
     }
 

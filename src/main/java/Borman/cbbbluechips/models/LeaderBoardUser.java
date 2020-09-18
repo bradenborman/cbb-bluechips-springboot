@@ -1,19 +1,19 @@
 package Borman.cbbbluechips.models;
 
-public class LeaderboardUser {
+public class LeaderBoardUser {
 
     private String userName;
     private int ranking;
     private double value;
     private String emailAddress;
-    private boolean hasPayedEntryFee;
+    private boolean hasPayerDonated;
 
-    public LeaderboardUser(String userName, int ranking, double value, String emailAddress, boolean hasPayedEntryFee) {
+    public LeaderBoardUser(String userName, int ranking, double value, String emailAddress, boolean hasPayerDonated) {
         this.userName = userName;
         this.ranking = ranking;
         this.value = value;
         this.emailAddress = emailAddress;
-        this.hasPayedEntryFee = hasPayedEntryFee;
+        this.hasPayerDonated = hasPayerDonated;
     }
 
 
@@ -49,12 +49,12 @@ public class LeaderboardUser {
         this.emailAddress = emailAddress;
     }
 
-    public boolean isHasPayedEntryFee() {
-        return hasPayedEntryFee;
+    public boolean isHasPayerDonated() {
+        return hasPayerDonated;
     }
 
-    public void setHasPayedEntryFee(boolean hasPayedEntryFee) {
-        this.hasPayedEntryFee = hasPayedEntryFee;
+    public void setHasPayerDonated(boolean hasPayerDonated) {
+        this.hasPayerDonated = hasPayerDonated;
     }
 
 }

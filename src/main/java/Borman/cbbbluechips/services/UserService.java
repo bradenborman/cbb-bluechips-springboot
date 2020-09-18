@@ -101,14 +101,15 @@ public class UserService {
         });
     }
 
-    public boolean hasUserPayed(String loggedInUserId) {
-        logger.info("Checking to see if user {} payed", loggedInUserId);
-        return userDao.hasUserPayedEntryFee(loggedInUserId);
+    public boolean hasUserDonated(String loggedInUserId) {
+        logger.info("Checking to see if user {} donated", loggedInUserId);
+        return userDao.hasUserDonated(loggedInUserId);
     }
 
-    public void updateHasPlayerPaid(boolean hasPlayerPaidEntryFee, String userId) {
-//        if(hasPlayerPaidEntryFee)
-//            userDao.updateHasPlayerPaidTrue(userId);
+    public void updatePlayerHasDonated(String userId) {
+        logger.info("Awarding $50,000 to user: {}", userId);
+        userDao.addCashToUser(userId, 50000);
+        userDao.updateHasPlayerPaidTrue(userId);
     }
 
 }

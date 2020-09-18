@@ -1,5 +1,7 @@
 package Borman.cbbbluechips.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix="paypal")
 public class PaypalConfig {
 
+    Logger logger = LoggerFactory.getLogger(PaypalConfig.class);
+
     private String clientId;
-    private double entryFee;
+    private double donationAmount;
 
     public String getClientId() {
         return clientId;
@@ -20,12 +24,12 @@ public class PaypalConfig {
         this.clientId = clientId;
     }
 
-    public double getEntryFee() {
-        return entryFee;
+    public double getDonationAmount() {
+        return donationAmount;
     }
 
-    public void setEntryFee(double entryFee) {
-        this.entryFee = entryFee;
+    public void setDonationAmount(double donationAmount) {
+        this.donationAmount = donationAmount;
     }
 
     public String getPayPalUrl() {

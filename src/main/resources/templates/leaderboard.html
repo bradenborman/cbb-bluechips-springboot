@@ -55,7 +55,7 @@
                     <tbody>
                     <tr th:each="leader : ${leaderboard}">
                         <td th:text=" ${leader.ranking}"></td>
-                        <td th:text=" ${leader.userName}" class="username" th:classappend="${leader.hasPayedEntryFee} ? payed : notPayed" th:title="${leader.emailAddress}"></td>
+                        <td th:text=" ${leader.userName}" class="username" th:classappend="${leader.hasPayerDonated} ? payed : notPayed" th:title="${leader.emailAddress}"></td>
                         <td th:text="'$' + ${#numbers.formatDecimal(leader.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
                     </tr>
                     </tbody>
@@ -87,20 +87,20 @@
             </div>
             <script th:inline="javascript" th:src="${url}">
             </script>
-            <div th:if="${hasUserPayed}"  style="padding: 20px;" class="card">
+            <div th:if="${hasPayerDonated}"  style="padding: 20px;" class="card">
                 <p>
                     Thank you for playing. </p>
                 <p id="paypalMessage">
-                    <b>You have successful paid. Therefore, you are eligible to win payout.</b>
+                    <b>You have successful donated prior and have already received a $50,000 bonus.</b>
                 </p>
             </div>
-            <div th:if="${!hasUserPayed}"  style="padding: 20px;" class="card">
+            <div th:if="${!hasPayerDonated}"  style="padding: 20px;" class="card">
                 <p>
-                    Thank you for playing. </p>
+                    Thank you for playing.</p>
                 <p id="paypalMessage">
-                    In order to receive a payout, you must pay to enter. Please pay below.
+                    A $50,000 bonus will be credited with a donation.
                 </p>
-                <p id="paypalResult">Click the PayPal button to enter. $<span id="amountAsking"></span></p>
+                <p id="paypalResult">Click PayPal button to donate: $<span id="amountAsking"></span></p>
                 <div id="paypal-button-container"></div>
             </div>
         </div>
@@ -110,7 +110,7 @@
     <p><i><span id="email"></span></i><p>
 </div>
 <script th:inline="javascript">
-var amountAsking = [[${entryFee}]];
+var amountAsking = [[${donationAmount}]];
 
 $("#amountAsking").text(amountAsking)
 
@@ -124,7 +124,7 @@ $("#amountAsking").text(amountAsking)
     createOrder: function(data, actions) {
       return actions.order.create({
         purchase_units: [{
-          description : "Entry Fee to Cbb-Bluechips",
+          description : "Donation to Cbb-Bluechips",
           soft_descriptor : "$" + amountAsking + " to Cbb-Bluechips",
           amount: {
             value: amountAsking
@@ -134,23 +134,15 @@ $("#amountAsking").text(amountAsking)
     },
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(details) {
-       $("#paypalResult").html("<b>You have successfully paid and are now eligible to win a payout.</b>")
+       $("#paypalResult").html("<b>You have successfully donated. $50,000 will be credited towards your in-game account</b>")
        $("#paypal-button-container").hide()
        $("#paypalMessage").hide()
-       // alert('Transaction completed by ' + details.payer.name.given_name);
-        // Call your server to save the transaction
-        console.log("details:")
-        console.log(details)
-
         var body = JSON.stringify({
             orderID: details.id,
             playGivenName: details.payer.name.given_name,
             buyerEmail: details.payer.email_address,
             purchaseUnits: details.purchase_units
           })
-
-          console.log(body)
-
         return fetch('/user/paypal-transaction-complete', {
           method: 'post',
           headers: {

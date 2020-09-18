@@ -1,6 +1,6 @@
 package Borman.cbbbluechips.services;
 
-import Borman.cbbbluechips.models.LeaderboardUser;
+import Borman.cbbbluechips.models.LeaderBoardUser;
 import Borman.cbbbluechips.models.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ public class LeaderboardService {
         this.LEADERS_TO_DISPLAY_AMT = LEADERS_TO_DISPLAY_AMT;
     }
 
-    public List<LeaderboardUser> getLeaders() {
-        List<LeaderboardUser> leaders = ownsService.getLeaders()
+    public List<LeaderBoardUser> getLeaders() {
+        List<LeaderBoardUser> leaders = ownsService.getLeaders()
                 .stream()
                 .limit(LEADERS_TO_DISPLAY_AMT)
                 .collect(Collectors.toList());
 
         while (leaders.size() < LEADERS_TO_DISPLAY_AMT) {
-            leaders.add(new LeaderboardUser("", leaders.size() + 1, 0.00, "Empty user.", false));
+            leaders.add(new LeaderBoardUser("", leaders.size() + 1, 0.00, "Empty user.", false));
         }
 
         return leaders;
@@ -39,7 +39,7 @@ public class LeaderboardService {
         return ownsService.getLeaders().stream()
                 .filter(entry -> entry.getEmailAddress().equals(user.getEmail()))
                 .findFirst()
-                .orElse(new LeaderboardUser("", -1, 0, "", false)).getRanking();
+                .orElse(new LeaderBoardUser("", -1, 0, "", false)).getRanking();
     }
 
 }

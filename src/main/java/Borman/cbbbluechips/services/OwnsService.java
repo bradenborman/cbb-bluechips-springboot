@@ -83,14 +83,14 @@ public class OwnsService {
         return leader.map(user -> String.valueOf(user.getCash())).orElse("0");
     }
 
-    List<LeaderboardUser> getLeaders() {
+    List<LeaderBoardUser> getLeaders() {
         List<User> playersId = getUsersWithSetNetworth();
         playersId.sort(Comparator.comparing(User::getCash).reversed());
-        List<LeaderboardUser> leaders = new ArrayList<>();
+        List<LeaderBoardUser> leaders = new ArrayList<>();
         int i = 1, playersIdSize = playersId.size();
         while (i <= playersIdSize) {
             User user = playersId.get(i - 1);
-            leaders.add(new LeaderboardUser(user.getFirstName() + " " + user.getLastName(), i, user.getCash(), user.getEmail(), user.isHasPayedEntryFee()));
+            leaders.add(new LeaderBoardUser(user.getFirstName() + " " + user.getLastName(), i, user.getCash(), user.getEmail(), user.isHasPayedEntryFee()));
             i++;
         }
         return leaders;

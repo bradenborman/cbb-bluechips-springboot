@@ -1,6 +1,6 @@
 package Borman.cbbbluechips.email;
 
-import Borman.cbbbluechips.models.paypal.PayEntryFeeRequest;
+import Borman.cbbbluechips.models.paypal.PaypalDonationRequest;
 import Borman.cbbbluechips.zdata.PasswordRecoveryData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,19 +49,19 @@ public class EmailService {
     }
 
 
-    public void sendUpdateEmail(PayEntryFeeRequest payEntryFeeRequest) {
+    public void sendUpdateEmail(PaypalDonationRequest paypalDonationRequest) {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
             //TODO remove hardcode to me test
             helper.setTo("bradenborman00@gmail.com");
-            helper.setSubject("CBB Bluechips | Payment Confirmed");
-            helper.setText(buildPaymentConfirmedEmailBody(payEntryFeeRequest), true);
+            helper.setSubject("CBB Bluechips | Donation Confirmed");
+            helper.setText(buildDonationConfirmedEmailBody(paypalDonationRequest), true);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
 
-        logger.info("Sending Confirmed Payment Email to " + payEntryFeeRequest.getBuyerEmail());
+        logger.info("Sending Confirmed Payment Email to " + paypalDonationRequest.getBuyerEmail());
 
         try {
             javaMailSender.send(message);
@@ -71,8 +71,8 @@ public class EmailService {
         }
     }
 
-    private String buildPaymentConfirmedEmailBody(PayEntryFeeRequest request) {
-        return PasswordRecoveryData.PAYMENT_CONFIRMED_BODY
+    private String buildDonationConfirmedEmailBody(PaypalDonationRequest request) {
+        return PasswordRecoveryData.DONATION_CONFIRMED_BODY
                 .replace("${order_id}", request.getOrderID())
                 .replace("${description}", request.getPurchaseUnits().get(0).getDescription())
                 .replace("${amount}", request.getPurchaseUnits().get(0).getAmount().getValue());

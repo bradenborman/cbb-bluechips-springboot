@@ -26,8 +26,8 @@ public class LeaderBoardController extends ControllerHelper {
 
     @RequestMapping("")
     public String portfolio(Model model) {
-        model.addAttribute("hasUserPayed", userService.hasUserPayed(getLoggedInUserId()));
-        model.addAttribute("entryFee", paypalConfig.getEntryFee());
+        model.addAttribute("hasPayerDonated", userService.hasUserDonated(getLoggedInUserId()));
+        model.addAttribute("donationAmount", paypalConfig.getDonationAmount());
         model.addAttribute("leaderboard", leaderboardService.getLeaders());
         model.addAttribute("payouts", payouts.getPayoutMap());
         model.addAttribute("url", paypalConfig.getPayPalUrl());

@@ -127,18 +127,18 @@ public class UserDao {
         }
     }
 
-    public boolean hasUserPayedEntryFee(String loggedInUserId) {
+    public boolean hasUserDonated(String loggedInUserId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", loggedInUserId);
-            return namedParameterJdbcTemplate.queryForObject(UserSQL.hasUserPayed, params, Integer.class) > 0;
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.hasUserDonated, params, Integer.class) > 0;
         } catch (Exception e) {
             return false;
         }
     }
 
     public void updateHasPlayerPaidTrue(String userId) {
-        logger.info("Updating user.Payed_Entry_Fee to true");
-        jdbcTemplate.update("UPDATE user SET Payed_Entry_Fee = 1 WHERE User_ID = " + userId + ";");
+        logger.info("Updating user.Donated to true");
+        jdbcTemplate.update("UPDATE user SET Donated = 1 WHERE User_ID = " + userId + ";");
     }
 
 }

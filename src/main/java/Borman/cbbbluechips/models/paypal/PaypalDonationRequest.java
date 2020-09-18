@@ -2,7 +2,7 @@ package Borman.cbbbluechips.models.paypal;
 
 import java.util.List;
 
-public class PayEntryFeeRequest {
+public class PaypalDonationRequest {
 
     public String orderID;
     public String playGivenName;
