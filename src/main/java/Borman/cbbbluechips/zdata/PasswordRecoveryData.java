@@ -10,4 +10,9 @@ public class PasswordRecoveryData {
     public static String PASSWORD_RECOVERY_BODY = "<p style=\"font-size: 1.3em;\">As requested, here is your password: <i><b>${password}</b></i></p>" +
             "<br /><br /><p>Thank you again for playing and making this possible.</p><p>Braden Borman<br/>573 826-1903</p>";
 
+    public static String PAYMENT_CONFIRMED_BODY = "<p style=\"font-size: 1.5em;\">Keep this email as a receipt.</p>" +
+            "<p><b>Order ID:</b> ${order_id}</p>" +
+            "<p><b>Description:</b> ${description}</p>" +
+            "<p><b>Total:<b/> <span style=\"color: #0c4510;\">$${amount}</span></p>";
+
 }

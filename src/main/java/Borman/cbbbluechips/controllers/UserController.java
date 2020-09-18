@@ -1,6 +1,7 @@
 package Borman.cbbbluechips.controllers;
 
-import Borman.cbbbluechips.models.PayEntryFeeRequest;
+import Borman.cbbbluechips.email.EmailService;
+import Borman.cbbbluechips.models.paypal.PayEntryFeeRequest;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.TransactionService;
@@ -8,7 +9,6 @@ import Borman.cbbbluechips.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/user")
 public class UserController extends ControllerHelper {
 
-    Logger logger = LoggerFactory.getLogger(UserController.class);
+    final private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private UserService userService;
+    private EmailService emailService;
     private OwnsService ownsService;
     private TransactionService transactionService;
-    private AuthenticationManager authenticationManager;
 
-    public UserController(AuthenticationManager authenticationManager, UserService userService, OwnsService ownsService, TransactionService transactionService) {
-        this.authenticationManager = authenticationManager;
+    public UserController(UserService userService, EmailService emailService, OwnsService ownsService, TransactionService transactionService) {
         this.userService = userService;
+        this.emailService = emailService;
         this.ownsService = ownsService;
         this.transactionService = transactionService;
     }
@@ -50,11 +50,11 @@ public class UserController extends ControllerHelper {
     }
 
     //TODO
-    //SEND email receipt
     @PostMapping("/paypal-transaction-complete")
     ResponseEntity<Boolean> payEntryFee(@RequestBody PayEntryFeeRequest payEntryFeeRequest) {
         logger.info("Paid endpoint hit. PayEntryFeeRequest: {}", payEntryFeeRequest.toString());
         userService.updateHasPlayerPaid(true, getLoggedInUserId());
+        emailService.sendUpdateEmail(payEntryFeeRequest);
         return ResponseEntity.ok(true);
     }
 

@@ -107,8 +107,8 @@ public class UserService {
     }
 
     public void updateHasPlayerPaid(boolean hasPlayerPaidEntryFee, String userId) {
-        if(hasPlayerPaidEntryFee)
-            userDao.updateHasPlayerPaidTrue(userId);
+//        if(hasPlayerPaidEntryFee)
+//            userDao.updateHasPlayerPaidTrue(userId);
     }
 
 }

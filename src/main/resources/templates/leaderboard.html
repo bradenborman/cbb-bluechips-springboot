@@ -135,19 +135,29 @@ $("#amountAsking").text(amountAsking)
     },
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(details) {
-       $("#paypalResult").html("<b>You have successful paid and are now eligible to win payout.</b>")
+       $("#paypalResult").html("<b>You have successfully paid and are now eligible to win a payout.</b>")
        $("#paypal-button-container").hide()
+       $("#paypalMessage").hide()
        // alert('Transaction completed by ' + details.payer.name.given_name);
         // Call your server to save the transaction
+        console.log("details:")
+        console.log(details)
+
+        var body = JSON.stringify({
+            orderID: details.id,
+            playGivenName: details.payer.name.given_name,
+            buyerEmail: details.payer.email_address,
+            purchaseUnits: details.purchase_units
+          })
+
+          console.log(body)
+
         return fetch('/user/paypal-transaction-complete', {
           method: 'post',
           headers: {
             'content-type': 'application/json'
           },
-          body: JSON.stringify({
-            orderID: data.orderID,
-            playGivenName: details.payer.name.given_name
-          })
+          body: body
         });
       });
     }
