@@ -85,7 +85,7 @@
                     </tr>
                 </table>
             </div>
-            <script src="https://www.paypal.com/sdk/js?client-id=AbiTp3MyLJCqlqUhgWWDpFC-M8VRE6bHA1GHs40nCam1UpxkHRpFRlkbP_SpwAUGguGKojDw-6a8sWtd&disable-funding=credit,card">
+            <script th:inline="javascript" th:src="${url}">
             </script>
             <div th:if="${hasUserPayed}"  style="padding: 20px;" class="card">
                 <p>
@@ -109,9 +109,8 @@
 <div id="contextMenu" class="dropdown clearfix">
     <p><i><span id="email"></span></i><p>
 </div>
-<script>
-
-var amountAsking = "0.02";
+<script th:inline="javascript">
+var amountAsking = [[${entryFee}]];
 
 $("#amountAsking").text(amountAsking)
 
