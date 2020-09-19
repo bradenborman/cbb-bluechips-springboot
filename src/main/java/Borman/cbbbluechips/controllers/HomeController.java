@@ -1,6 +1,5 @@
 package Borman.cbbbluechips.controllers;
 
-import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class HomeController {
+public class HomeController extends ControllerHelper {
 
     private UserService userService;
 
@@ -29,7 +28,7 @@ public class HomeController {
 
     @RequestMapping("/settings")
     public String settings(Model model) {
-        String userid = getLoggedInUser().getID();
+        String userid = getLoggedInUserId();
         model.addAttribute("textAlert", userService.doesUserSubscribeToTextAlerts(userid));
         model.addAttribute("phoneNumber", userService.getUserPhoneNumber(userid));
         return "settings";
@@ -37,18 +36,14 @@ public class HomeController {
 
     @PostMapping("/settings/updateTextAlert")
     public ResponseEntity<String> updateTextAlert(@RequestParam(value = "textStatus") boolean textStatus) {
-        userService.toggleTextAlertSubscription(textStatus, getLoggedInUser().getID());
+        userService.toggleTextAlertSubscription(textStatus, getLoggedInUserId());
         return ResponseEntity.ok("OKAY");
     }
 
     @PostMapping("/settings/updatePhoneNumber")
     public ResponseEntity<String> updatePhoneNumber(@RequestParam(value = "phoneNumber") String phoneNumber) {
-        userService.updatePhoneNumber(phoneNumber, getLoggedInUser().getID());
+        userService.updatePhoneNumber(phoneNumber, getLoggedInUserId());
         return ResponseEntity.ok("OKAY");
-    }
-
-    private User getLoggedInUser() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

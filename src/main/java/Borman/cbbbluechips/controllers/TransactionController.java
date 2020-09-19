@@ -1,9 +1,7 @@
 package Borman.cbbbluechips.controllers;
 
 import Borman.cbbbluechips.analysis.AnalysisService;
-import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.services.TransactionService;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/transactions")
-public class TransactionController {
+public class TransactionController extends ControllerHelper {
 
     private TransactionService transactionService;
     private AnalysisService analysisService;
@@ -36,12 +34,8 @@ public class TransactionController {
 
     @RequestMapping("/analyse")
     public String analyseMyTransactions(Model model) {
-            model.addAttribute("breakdown", analysisService.buildMyTransactionBreakdown(getLoggedInUser().getID()));
+            model.addAttribute("breakdown", analysisService.buildMyTransactionBreakdown(getLoggedInUserId()));
             return "analyse";
-    }
-
-    private User getLoggedInUser() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

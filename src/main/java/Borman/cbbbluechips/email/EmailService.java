@@ -53,8 +53,8 @@ public class EmailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
-            //TODO remove hardcode to me test
-            helper.setTo("bradenborman00@gmail.com");
+            helper.setTo(paypalDonationRequest.getBuyerEmail());
+            helper.addBcc("bradenborman00@gmail.com");
             helper.setSubject("CBB Bluechips | Donation Confirmed");
             helper.setText(buildDonationConfirmedEmailBody(paypalDonationRequest), true);
         } catch (MessagingException e) {
