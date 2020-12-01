@@ -87,7 +87,7 @@
     <div id="addsPlaceholder">
         <div th:if="${ads != null}" class="col-sm-12 adsContainer addsPlaceholder">
             <div class="adWrapper" th:each="ad : ${ads}">
-                <img th:title="${ad.name}" th:id="${ad.website}" th:onclick="'jumpToAdd(this.id);'" class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
+                <img loading="lazy" th:title="${ad.name}" th:id="${ad.website}" th:onclick="'jumpToAdd(this.id);'" class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
             </div>
             <p class="adTag">Thank you to all the supporters</p>
         </div>

@@ -1,12 +1,13 @@
 package Borman.cbbbluechips.services;
 
+import Borman.cbbbluechips.config.SportsDataApiConfig;
 import Borman.cbbbluechips.daos.TeamDao;
 import Borman.cbbbluechips.models.SportsDataAPI.SportsDataGamesToday;
 import Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import Borman.cbbbluechips.utilities.SportsDataDateUtility;
 import Borman.cbbbluechips.zdata.SportsDataApiRoutes;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,27 +20,28 @@ import java.util.Objects;
 @Service
 public class SportsDataApiService {
 
+    Logger logger = LoggerFactory.getLogger(SportsDataApiService.class);
+
     private RestTemplate restTemplate;
     private TeamDao teamDao;
+    private final String apiKey;
+    private final String sportsDataTeamsURL;
 
-    @Autowired
-    @Qualifier("SportsDataApiKey")
-    private String apiKey;
-
-
-    public SportsDataApiService(RestTemplate restTemplate, TeamDao teamDao) {
+    public SportsDataApiService(RestTemplate restTemplate, TeamDao teamDao, SportsDataApiConfig sportsDataApiConfig) {
         this.restTemplate = restTemplate;
         this.teamDao = teamDao;
+        this.apiKey = sportsDataApiConfig.getApiKey();
+        this.sportsDataTeamsURL = sportsDataApiConfig.getUrl();
     }
 
-    private List<SportsDataTeam> callTeamsFromSportsDataApi() {
-        UriComponentsBuilder url = UriComponentsBuilder.fromHttpUrl(SportsDataApiRoutes.getTeamData)
-                .queryParam("key", apiKey);
-        ResponseEntity<SportsDataTeam[]> response = restTemplate.getForEntity(url.build().getPath(), SportsDataTeam[].class);
+    List<SportsDataTeam> callTeamsFromSportsDataApi() {
+        logger.info("Calling Sports Data URL: {}", sportsDataTeamsURL);
+        ResponseEntity<SportsDataTeam[]> response = restTemplate.getForEntity(sportsDataTeamsURL, SportsDataTeam[].class);
         return Arrays.asList(Objects.requireNonNull(response.getBody()));
     }
 
     void updateTeamsPlayingToday() {
+        logger.info("Re-setting all teams playing.");
         teamDao.resetNextTeamPlayingForAll();
         List<SportsDataGamesToday> updatedTeamInfo = callGamesByDay();
         updatedTeamInfo.forEach(game -> {
@@ -51,7 +53,7 @@ public class SportsDataApiService {
     private List<SportsDataGamesToday> callGamesByDay() {
 
         String todayParam = SportsDataDateUtility.getTodayDateString();
-        System.out.println("Getting Games and next to play for " + todayParam);
+        logger.info("Getting Games and next to play for {}", todayParam);
 
         UriComponentsBuilder url = UriComponentsBuilder.fromHttpUrl(SportsDataApiRoutes.getGamesByDay + todayParam)
                 .queryParam("key", apiKey);
@@ -60,7 +62,7 @@ public class SportsDataApiService {
     }
 
     private void updateTeamNextGame(String teamPlayingShortName, String teamToUpdateId) {
-        System.out.println(String.format("UPDATE GAME: teamID: %s plays %s", teamToUpdateId, teamPlayingShortName));
+        logger.info("UPDATE GAME: teamID: {} plays {}", teamToUpdateId, teamPlayingShortName);
         String fullName = teamDao.getNameByShortName(teamPlayingShortName);
         teamDao.updateNextTeamPlayingByTeamID(teamToUpdateId, fullName != null ? fullName : teamPlayingShortName);
     }

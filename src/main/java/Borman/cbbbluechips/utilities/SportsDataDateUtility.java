@@ -8,10 +8,8 @@ import java.util.function.Predicate;
 
 public class SportsDataDateUtility {
 
-
-
-    private static Predicate<LocalDate> isBeforeMay = (today) -> today.isBefore(LocalDate.of(today.getYear(), Month.MAY, 1));
-    private static Predicate<LocalDate> isFebruaryOrAfter = (today) -> today.isAfter(LocalDate.of(today.getYear(), Month.FEBRUARY, 1));
+    static Predicate<LocalDate> isPastSeasonStart = (today) -> today.isAfter(LocalDate.of(today.getYear(), Month.NOVEMBER, 25));
+    static Predicate<LocalDate> isBeforeOffSeason = (today) -> today.isBefore(LocalDate.of(today.getYear(), Month.MAY, 1));
 
     public static String getTodayDateString() {
 
@@ -19,10 +17,12 @@ public class SportsDataDateUtility {
         String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
         int day = date.getDayOfMonth();
 
-        //Return test data if off season
-        return isFebruaryOrAfter.test(date) && isBeforeMay.test(date) ?
-                String.format("%s-%s-%s", date.getYear(), month, day) : SWEET_SIXTEEN_2019_1;
+        //Return test data if off season //TODO YEAR LOGIC IS OFF SINCE DIFFENT YEARS FOR CHECKS
+        return String.format("%s-%s-%s", date.getYear(), month, day);
 
+//        return isPastSeasonStart
+//                .and(isBeforeOffSeason)
+//                .test(date) ? String.format("%s-%s-%s", date.getYear(), month, day) : SWEET_SIXTEEN_2019_1;
     }
 
     private static final String SECOND_ROUND_2019 = "2019-MAR-24";

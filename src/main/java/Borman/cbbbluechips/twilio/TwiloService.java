@@ -1,16 +1,15 @@
 package Borman.cbbbluechips.twilio;
 
-import Borman.cbbbluechips.services.OwnsService;
+import Borman.cbbbluechips.config.TwilloConfig;
 import Borman.cbbbluechips.models.MarketValue;
 import Borman.cbbbluechips.models.SMS_Alert;
+import Borman.cbbbluechips.services.OwnsService;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 public class TwiloService {
@@ -18,13 +17,13 @@ public class TwiloService {
     private final String APPLICATION_PHONE_NUMBER = "15732791590";
 
     private OwnsService ownsService;
-    private String ACCOUNT_SID;
-    private String AUTH_TOKEN;
+    private final String ACCOUNT_SID;
+    private final String AUTH_TOKEN;
 
-    public TwiloService(OwnsService ownsService, @Qualifier("Twilio_ACCOUNT_SID") String ACCOUNT_SID, @Qualifier("Twilio_Auth") String AUTH_TOKEN) {
+    public TwiloService(OwnsService ownsService, TwilloConfig twilloConfig) {
         this.ownsService = ownsService;
-        this.ACCOUNT_SID = ACCOUNT_SID;
-        this.AUTH_TOKEN = AUTH_TOKEN;
+        this.ACCOUNT_SID = twilloConfig.getAccountSsd();
+        this.AUTH_TOKEN = twilloConfig.getAuth();
     }
 
     public void sendPriceChangeAlert(MarketValue marketValue) {

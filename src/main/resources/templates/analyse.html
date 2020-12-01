@@ -72,7 +72,7 @@
         <div th:each="breakdown : ${breakdown}" class="col-sm-6 col-md-4 breakdown">
             <div class="card">
                 <div class="card-header">
-                    <img class="logo_header" th:src="@{${'/img/' + breakdown.teamName + '.png'}}"/>
+                    <img loading="lazy"="lazy" class="logo_header" th:src="@{${'/img/' + breakdown.teamName + '.png'}}"/>
                     <h5 style="display: inline-block" th:text="${breakdown.teamName}"></h5>
                 </div>
                 <div class="card-body" th:classappend="${breakdown.LossOrAheadClass}">

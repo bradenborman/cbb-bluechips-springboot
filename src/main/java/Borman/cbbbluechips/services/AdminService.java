@@ -3,6 +3,7 @@ package Borman.cbbbluechips.services;
 import Borman.cbbbluechips.builders.MarketValueBuilder;
 import Borman.cbbbluechips.builders.UpdatePointSpreadRequestBuilder;
 import Borman.cbbbluechips.builders.UpdateSeedRequestBuilder;
+import Borman.cbbbluechips.config.SportsDataApiConfig;
 import Borman.cbbbluechips.daos.AdminDao;
 import Borman.cbbbluechips.daos.TeamDao;
 import Borman.cbbbluechips.models.MarketValue;
@@ -12,7 +13,6 @@ import Borman.cbbbluechips.models.UpdateSeedRequest;
 import Borman.cbbbluechips.twilio.TwiloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,16 +31,16 @@ public class AdminService {
 
     private RestTemplate restTemplate;
     private AdminDao adminDao;
-    private String sportsDataUrl;
     private TeamDao teamDao;
     private TwiloService twiloService;
+    private final String sportsDataUrl;
 
-    public AdminService(RestTemplate restTemplate, AdminDao adminDao, @Qualifier("sportsDataUrl") String sportsDataUrl, TeamDao teamDao, TwiloService twiloService) {
+    public AdminService(RestTemplate restTemplate, AdminDao adminDao, TeamDao teamDao, TwiloService twiloService, SportsDataApiConfig sportsDataApiConfig) {
         this.restTemplate = restTemplate;
         this.adminDao = adminDao;
-        this.sportsDataUrl = sportsDataUrl;
         this.teamDao = teamDao;
         this.twiloService = twiloService;
+        this.sportsDataUrl = sportsDataApiConfig.getUrl();
     }
 
     @Transactional
@@ -65,7 +65,7 @@ public class AdminService {
         List<UpdateSeedRequest> updates = new ArrayList<>();
         for (int x = 0; x < allTeams.size(); x++)
             updates.add(UpdateSeedRequestBuilder.anUpdateSeedRequest().withTeamName(allTeams.get(x)).withNewSeed(seedsValue.get(x)).build());
-        updates.removeIf(team -> Integer.valueOf(team.getNewSeed()) <= 0);
+        updates.removeIf(team -> Integer.parseInt(team.getNewSeed()) <= 0);
         adminDao.setSeedsToDefault();
         updates.forEach(team -> adminDao.updateSeedRequest(team));
     }

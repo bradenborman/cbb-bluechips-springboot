@@ -3,11 +3,9 @@ package Borman.cbbbluechips.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@EnableConfigurationProperties
 @ConfigurationProperties(prefix="paypal")
 public class PaypalConfig {
 

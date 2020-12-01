@@ -19,10 +19,17 @@ public class SportsDataUpdater {
         this.shouldMakeApiCall = shouldMakeApiCall;
     }
 
-//        @Scheduled(cron = "0/30 * * * * ?")
+//    @Scheduled(cron = "0/30 * * * * ?")
 //    public void updateNextTeamPlayingAndOddsQuick() {
 //        logger.info("Scheduled task hit: updateTeamsPlayingToday.");
 //        sportsDataApiService.updateTeamsPlayingToday();
+//    }
+
+//    @Scheduled(cron = "0/30 * * * * ?")
+//    public void callTeamsFromSportsDataApi() {
+//        logger.info("Scheduled task hit: callTeamsFromSportsDataApi.");
+//        List<SportsDataTeam> teams = sportsDataApiService.callTeamsFromSportsDataApi();
+//        teams.forEach(team -> {logger.info("School Display Name: {}", team.getShortDisplayName());});
 //    }
 
 

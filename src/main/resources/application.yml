@@ -1,0 +1,7 @@
+twilio:
+    auth: ${Twilio_Auth}
+    accountSsd: ${Twilio_ACCOUNT_SID}
+
+sport-data-api:
+    apiKey: ${SportsDataApiKey}
+    url: https://api.sportsdata.io/v3/cbb/scores/json/teams?key=${sport-data-api.apiKey}

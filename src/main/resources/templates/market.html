@@ -60,7 +60,7 @@
         <div class="col-lg-6 animated zoomIn fast" th:id="${'team:' + team.teamName}" th:each="team : ${teams}">
             <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
                  class="team">
-                <img th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header"
+                <img loading="lazy" th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header"
                      th:src="@{${'/img/' + team.teamName + '.png'}}"/>
                 <span class="team_name identifier" th:text="${team.teamName}"
                       th:style="${team.eliminated} ? ' text-decoration: line-through;' : ''"></span>
@@ -91,7 +91,7 @@
     <div style="display: none;" id="addsPlaceholder">
         <div th:if="${ads != null}" class="col-sm-12 adsContainer addsPlaceholder">
             <div class="adWrapper" th:each="ad : ${ads}">
-                <img th:title="${ad.name}" th:id="${ad.website}" th:onclick="'jumpToAdd(this.id);'" class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
+                <img loading="lazy" th:title="${ad.name}" th:id="${ad.website}" th:onclick="'jumpToAdd(this.id);'" class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
             </div>
             <p class="adTag">Thank you to all the supporters</p>
         </div>
@@ -111,7 +111,7 @@
         <ul>
             <li id="pt-header">Playing Today</li>
             <li th:each="menuItem : ${jumpMenu}">
-                <a th:href="${'/market#' + menuItem.url}" th:text="${menuItem.displayString}"></a>
+                <a loading="lazy" th:href="${'/market#' + menuItem.url}" th:text="${menuItem.displayString}"></a>
             </li>
         </ul>
     </div>
