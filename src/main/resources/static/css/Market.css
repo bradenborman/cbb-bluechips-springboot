@@ -38,6 +38,10 @@ nav {
 	display: inline-block;
 }
 
+.pointSpreadInfo {
+    cursor: help;
+}
+
 .outstanding {
 	float: right;
 }
