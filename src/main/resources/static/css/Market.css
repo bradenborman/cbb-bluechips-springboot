@@ -94,8 +94,8 @@ th {
 }
 
 @media screen and (max-width: 600px) {
-	.card-body {
-        min-height: 320px;
+	.team {
+    	padding: 1px;
     }
 	nav {
 		margin-bottom: 0px;
