@@ -111,7 +111,8 @@
         <ul>
             <li id="pt-header">Playing Today (<span th:text="${#lists.size(jumpMenu)}"></span>)</li>
             <li th:each="menuItem : ${jumpMenu}">
-                <a loading="lazy" th:href="${'/market#' + menuItem.url}" th:text="${menuItem.displayString}"></a>
+               <a th:if="${!menuItem.locked}" loading="lazy" th:href="${'/market#' + menuItem.url}" th:text="${menuItem.displayString}"></a>
+               <a th:if="${menuItem.locked}" loading="lazy" th:href="${'/market#' + menuItem.url}" th:utext="${'<i class=''fas fa-lock''></i>' +  ' ' + menuItem.displayString}"></a>
             </li>
         </ul>
     </div>

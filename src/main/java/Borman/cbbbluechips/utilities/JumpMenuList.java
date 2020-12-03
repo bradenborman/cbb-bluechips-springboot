@@ -23,6 +23,7 @@ public class JumpMenuList {
         return JumpMenuItemBuilder.aJumpMenuItem()
                 .withDisplayString(team.getTeamName())
                 .withUrl("team:".concat(team.getTeamName()))
+                .withLocked(team.isLocked())
                 .build();
     }
 

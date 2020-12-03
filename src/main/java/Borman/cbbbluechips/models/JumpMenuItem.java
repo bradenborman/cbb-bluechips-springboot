@@ -4,6 +4,7 @@ public class JumpMenuItem {
 
     private String url;
     private String displayString;
+    private boolean locked;
 
     public String getUrl() {
         return url;
@@ -20,4 +21,13 @@ public class JumpMenuItem {
     public void setDisplayString(String displayString) {
         this.displayString = displayString;
     }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
 }

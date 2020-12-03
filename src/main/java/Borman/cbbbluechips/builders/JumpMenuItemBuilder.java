@@ -24,6 +24,11 @@ public final class JumpMenuItemBuilder {
         return this;
     }
 
+    public JumpMenuItemBuilder withLocked(boolean locked) {
+        jumpMenuItem.setLocked(locked);
+        return this;
+    }
+
     public JumpMenuItem build() {
         return jumpMenuItem;
     }
