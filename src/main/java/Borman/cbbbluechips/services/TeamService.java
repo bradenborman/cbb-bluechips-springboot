@@ -22,14 +22,14 @@ public class TeamService {
     }
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
-        List<Team> allTeams = onlyTeamsInTournament ? teamDao.onlyTeamsInTournament() : teamDao.getAllTeams();
-        if (onlyTeamsInTournament) {
-            allTeams.forEach(team -> {
-                team.setSharesOutstanding(teamDao.getSharesOutstandingForTeam(team.getTeamId()));
-                team.setPriceHistoryString(fetchHistoryDetails(team));
-            });
-        }
+        List<Team> allTeams = onlyTeamsInTournament ? teamDao.getAllTeamsWithSharesOutstandingDetail() : teamDao.getAllTeams();
+        if (onlyTeamsInTournament)
+            allTeams.forEach(this::applyTeamPriceHistory);
         return allTeams;
+    }
+
+    private void applyTeamPriceHistory(Team team) {
+        team.setPriceHistoryString(fetchHistoryDetails(team));
     }
 
     private String fetchHistoryDetails(Team team) {

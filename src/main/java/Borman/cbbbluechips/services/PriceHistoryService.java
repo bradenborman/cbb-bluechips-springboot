@@ -13,7 +13,7 @@ public class PriceHistoryService {
         this.priceHistoryDao = priceHistoryDao;
     }
 
-
+    //todo! reduce sql calls by not selecting by round but instead all and then use a map to set them
     String getPriceHistoryForRound(String teamId, String round) {
         MarketValue marketValue = priceHistoryDao.getPriceForTeamByRound(teamId, round);
         return String.valueOf(marketValue.getPrice());

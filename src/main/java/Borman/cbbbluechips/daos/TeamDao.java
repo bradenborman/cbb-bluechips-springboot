@@ -2,6 +2,7 @@ package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.OwnsSQL;
 import Borman.cbbbluechips.daos.sql.TeamSQL;
+import Borman.cbbbluechips.mappers.rowMappers.TeamRowDetailedMapper;
 import Borman.cbbbluechips.mappers.rowMappers.TeamRowMapper;
 import Borman.cbbbluechips.models.Team;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,6 +50,10 @@ public class TeamDao {
     public Team getTeamByName(String teamName) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamName", teamName);
         return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamByName, params, new TeamRowMapper());
+    }
+
+    public List<Team> getAllTeamsWithSharesOutstandingDetail() {
+        return jdbcTemplate.query(TeamSQL.getAllTeamsWithSharesOutstandingDetail, new TeamRowDetailedMapper());
     }
 
     public String getSharesOutstandingForTeam(String teamId) {

@@ -1,0 +1,5 @@
+SELECT Sum(Amount_Owned) as Amount_Owned, teams.Name FROM owns
+            left JOIN teams ON teams.Team_ID = owns.Team_ID
+            WHERE seed > 0
+            group by teams.Team_ID
+            ORDER by Next_Team_Playing is not null desc, is_out ASC, seed asc
