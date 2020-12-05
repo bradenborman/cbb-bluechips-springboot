@@ -2,6 +2,8 @@ package Borman.cbbbluechips.controllers.admin;
 
 import Borman.cbbbluechips.services.GameSettingsService;
 import Borman.cbbbluechips.services.TeamService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/admin")
 public class ViewControllerAdmin {
+
+    private Logger logger = LoggerFactory.getLogger(ViewControllerAdmin.class);
 
     private TeamService teamService;
     private GameSettingsService gameSettingsService;
@@ -30,7 +34,7 @@ public class ViewControllerAdmin {
         model.addAttribute("teams", teamService.getAllTeams(true));
         model.addAttribute("currentRound", gameSettingsService.getCurrentRound());
         if(teamId != null) {
-            System.out.println(String.format("Looking to get Team for updating: %s", teamId));
+            logger.info("Looking to get Team for updating: {}", teamId);
             model.addAttribute("selectedTeam", teamService.getTeamById(teamId));
         }
         return "team_update";

@@ -7,6 +7,8 @@ import Borman.cbbbluechips.services.OwnsService;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 @Service
 public class TwiloService {
 
+    private Logger logger = LoggerFactory.getLogger(TwiloService.class);
     private final String APPLICATION_PHONE_NUMBER = "15732791590";
 
     private OwnsService ownsService;
@@ -38,7 +41,7 @@ public class TwiloService {
     public void sendMessage(String phoneNumber, String Body) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber(APPLICATION_PHONE_NUMBER), Body).create();
-        System.out.println("Message Sent");
+        logger.info("Text Message Sent");
     }
 
 

@@ -4,6 +4,8 @@ import Borman.cbbbluechips.daos.PriceHistoryDao;
 import Borman.cbbbluechips.models.MarketValue;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PriceHistoryService {
 
@@ -13,10 +15,8 @@ public class PriceHistoryService {
         this.priceHistoryDao = priceHistoryDao;
     }
 
-    //todo! reduce sql calls by not selecting by round but instead all and then use a map to set them
-    String getPriceHistoryForRound(String teamId, String round) {
-        MarketValue marketValue = priceHistoryDao.getPriceForTeamByRound(teamId, round);
-        return String.valueOf(marketValue.getPrice());
+    public List<MarketValue> fetchAllPriceHistory() {
+        return priceHistoryDao.fetchAllPriceHistory();
     }
 
 }
