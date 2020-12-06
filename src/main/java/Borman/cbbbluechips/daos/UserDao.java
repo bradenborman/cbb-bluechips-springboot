@@ -2,7 +2,6 @@ package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.OwnsSQL;
 import Borman.cbbbluechips.daos.sql.UserSQL;
-import Borman.cbbbluechips.exceptions.NoUserPresent;
 import Borman.cbbbluechips.mappers.rowMappers.UserRowMapper;
 import Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
@@ -14,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -74,7 +74,18 @@ public class UserDao {
         try {
             return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());
         } catch (Exception e) {
-            throw new NoUserPresent("User ID: " + userId);
+            logger.error("Unable to find user");
+            return null;
+        }
+    }
+
+    //Throws Error that will log out user --
+    public User getUserByIdLoggedIn(String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+        try {
+            return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("User ID: " + userId);
         }
     }
 

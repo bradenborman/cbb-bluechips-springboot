@@ -60,11 +60,11 @@ public class UserService {
 
     String getUserFullName(String userId) {
         User user = userDao.getUserById(userId);
-        return String.format("%s %s", user.getFirstName(), user.getLastName());
+        return user != null ? String.format("%s %s", user.getFirstName(), user.getLastName()) : "No User Found.";
     }
 
-    public User getUser(String id) {
-        return userDao.getUserById(id);
+    public User getUserLoggedIn(String id) {
+        return userDao.getUserByIdLoggedIn(id);
     }
 
     public boolean doesUserSubscribeToTextAlerts(String userId) {

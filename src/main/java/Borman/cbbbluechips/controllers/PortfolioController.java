@@ -27,10 +27,10 @@ public class PortfolioController extends ControllerHelper {
 
     @RequestMapping("")
     public String portfolio(Model model) {
-        User user = userService.getUser(getLoggedInUserId());
+        User user = userService.getUserLoggedIn(getLoggedInUserId());
         user.setTeamsOwned(ownsService.getTeamsUserOwns(user.getID()));
         model.addAttribute("user", user);
-        model.addAttribute("leaderBoardPos", leaderboardService.getUsersLeaderPosition(userService.getUser(user.getID())));
+        model.addAttribute("leaderBoardPos", leaderboardService.getUsersLeaderPosition(userService.getUserLoggedIn(user.getID())));
         model.addAttribute("portfolio", portfolioService.getPortfolioDetails(user));
         return "portfolio";
     }
