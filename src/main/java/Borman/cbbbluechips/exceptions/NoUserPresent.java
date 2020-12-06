@@ -5,7 +5,7 @@ public class NoUserPresent extends RuntimeException {
     private String emailAttempted;
 
     public NoUserPresent(String emailAttempted) {
-        super("EmptyResultDataAccessException");
+        super("EmptyResultDataAccessException: No user for " + emailAttempted);
         this.emailAttempted = emailAttempted;
     }
 

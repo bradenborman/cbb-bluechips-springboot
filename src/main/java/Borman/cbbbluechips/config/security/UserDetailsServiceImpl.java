@@ -28,9 +28,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userDao.getUserByEmail(email);
+
+        if(user == null)
+            throw new UsernameNotFoundException(email);
+
         user.addAuthority("CBB_USER");
+
         if(admins.contains(user.getUsername()))
             user.addAuthority("CBB_ADMIN");
+
         return user;
     }
 }
