@@ -1,7 +1,7 @@
 package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.AdminSQL;
-import Borman.cbbbluechips.mappers.rowMappers.PriceHistoryRowMapper;
+import Borman.cbbbluechips.mappers.PriceHistoryRowMapper;
 import Borman.cbbbluechips.models.MarketValue;
 import Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import Borman.cbbbluechips.models.UpdatePointSpreadRequest;

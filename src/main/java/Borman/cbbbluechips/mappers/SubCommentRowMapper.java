@@ -1,4 +1,4 @@
-package Borman.cbbbluechips.mappers.rowMappers;
+package Borman.cbbbluechips.mappers;
 
 import Borman.cbbbluechips.models.Comment;
 import org.springframework.jdbc.core.RowMapper;

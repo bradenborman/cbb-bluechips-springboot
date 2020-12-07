@@ -1,7 +1,7 @@
 package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.GameSettingsSQL;
-import Borman.cbbbluechips.mappers.rowMappers.TeamRowMapper;
+import Borman.cbbbluechips.mappers.TeamRowMapper;
 import Borman.cbbbluechips.models.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

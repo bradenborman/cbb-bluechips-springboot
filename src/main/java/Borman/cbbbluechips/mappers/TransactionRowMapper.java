@@ -1,4 +1,4 @@
-package Borman.cbbbluechips.mappers.rowMappers;
+package Borman.cbbbluechips.mappers;
 
 import Borman.cbbbluechips.models.Transaction;
 import Borman.cbbbluechips.models.enums.TradeAction;

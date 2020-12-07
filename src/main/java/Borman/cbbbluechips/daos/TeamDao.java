@@ -2,8 +2,8 @@ package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.OwnsSQL;
 import Borman.cbbbluechips.daos.sql.TeamSQL;
-import Borman.cbbbluechips.mappers.rowMappers.TeamRowDetailedMapper;
-import Borman.cbbbluechips.mappers.rowMappers.TeamRowMapper;
+import Borman.cbbbluechips.mappers.TeamRowDetailedMapper;
+import Borman.cbbbluechips.mappers.TeamRowMapper;
 import Borman.cbbbluechips.models.Team;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

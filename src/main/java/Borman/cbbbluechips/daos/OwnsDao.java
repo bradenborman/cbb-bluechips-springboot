@@ -1,9 +1,9 @@
 package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.OwnsSQL;
-import Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapperTeamJoin;
-import Borman.cbbbluechips.mappers.rowMappers.OwnsRowMapperUserJoin;
-import Borman.cbbbluechips.mappers.rowMappers.SMS_AlertRowMapper;
+import Borman.cbbbluechips.mappers.OwnsRowMapperTeamJoin;
+import Borman.cbbbluechips.mappers.OwnsRowMapperUserJoin;
+import Borman.cbbbluechips.mappers.SMS_AlertRowMapper;
 import Borman.cbbbluechips.models.Owns;
 import Borman.cbbbluechips.models.SMS_Alert;
 import Borman.cbbbluechips.models.TradeRequest;

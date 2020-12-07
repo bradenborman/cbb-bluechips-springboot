@@ -1,4 +1,4 @@
-package Borman.cbbbluechips.mappers.rowMappers;
+package Borman.cbbbluechips.mappers;
 
 import Borman.cbbbluechips.models.Team;
 import org.springframework.jdbc.core.RowMapper;
@@ -6,7 +6,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TeamRowMapper implements RowMapper<Team> {
+public class TeamRowDetailedMapper implements RowMapper<Team> {
+
+    //Sets shares outstanding with SQL rather than calling in loop
+
 
     @Override
     public Team mapRow(ResultSet rs, int rownumber) throws SQLException {
@@ -21,6 +24,10 @@ public class TeamRowMapper implements RowMapper<Team> {
         team.setCurrentMarketPrice(rs.getDouble("Current_Market_Price"));
         team.setNextTeamPlaying(rs.getString("Next_Team_Playing"));
         team.setNextPointSpread(rs.getString("Point_Spread"));
+
+        String sharesOutstanding = rs.getString("Amount_Owned");
+        team.setSharesOutstanding(sharesOutstanding != null ? sharesOutstanding : "0");
+
         return team;
     }
 }

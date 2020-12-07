@@ -2,7 +2,7 @@ package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.OwnsSQL;
 import Borman.cbbbluechips.daos.sql.UserSQL;
-import Borman.cbbbluechips.mappers.rowMappers.UserRowMapper;
+import Borman.cbbbluechips.mappers.UserRowMapper;
 import Borman.cbbbluechips.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

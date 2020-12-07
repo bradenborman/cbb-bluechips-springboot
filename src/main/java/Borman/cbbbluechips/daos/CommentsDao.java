@@ -1,7 +1,7 @@
 package Borman.cbbbluechips.daos;
 
-import Borman.cbbbluechips.mappers.rowMappers.CommentRowMapper;
-import Borman.cbbbluechips.mappers.rowMappers.SubCommentRowMapper;
+import Borman.cbbbluechips.mappers.CommentRowMapper;
+import Borman.cbbbluechips.mappers.SubCommentRowMapper;
 import Borman.cbbbluechips.models.Comment;
 import Borman.cbbbluechips.utilities.CommentTimeStampUtility;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

@@ -1,4 +1,4 @@
-package Borman.cbbbluechips.mappers.rowMappers;
+package Borman.cbbbluechips.mappers;
 
 import Borman.cbbbluechips.models.SMS_Alert;
 import org.springframework.jdbc.core.RowMapper;

@@ -1,7 +1,7 @@
 package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.TransactionSQL;
-import Borman.cbbbluechips.mappers.rowMappers.TransactionRowMapper;
+import Borman.cbbbluechips.mappers.TransactionRowMapper;
 import Borman.cbbbluechips.models.TradeRequest;
 import Borman.cbbbluechips.models.Transaction;
 import org.springframework.jdbc.core.JdbcTemplate;

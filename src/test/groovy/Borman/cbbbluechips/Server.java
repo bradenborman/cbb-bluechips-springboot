@@ -2,12 +2,12 @@ package Borman.cbbbluechips;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
-public class DevlServer extends CbbBlueChipsApplication {
+public class Server extends CbbBlueChipsApplication {
 
     public static void main(String[] args) {
-        new DevlServer().configure(new SpringApplicationBuilder())
+        new Server().configure(new SpringApplicationBuilder())
                 .initializers()
-                .profiles("devl")
+//                .profiles("devl")
                 .run(args);
     }
 
