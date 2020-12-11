@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/css/Admin.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
     <title>Admin Directory</title>
     <style>
     </style>
@@ -73,10 +74,21 @@
 </div>
 
 <script>
+$(document).ready(function(){
 
-    function resetGame() {
+    var token = $('meta[name="_csrf"]').attr('content')
+
+    $.ajaxSetup({
+       headers:{ "X-CSRF-TOKEN" : token }
+    });
+
+
+});
+
+function resetGame() {
 
         var wantsToPlayAgain = confirm("Are you sure you want to reset game?");
+
         if(wantsToPlayAgain){
 
             wantsToPlayAgain = confirm("Last Warning... are you sure you want to reset game?");
@@ -86,13 +98,11 @@
                     console.log("DONE")
                 });
             }
+        }
 
-        }resetGame
+}
 
-    }
-
-    function deleteAllPlayers() {
-
+function deleteAllPlayers() {
         var deletePlayers = confirm("Are you sure you want to Delete All Players?");
         if(deletePlayers){
 
@@ -103,9 +113,7 @@
                     console.log("DONE")
                 });
             }
-
         }
-
     }
 
 
