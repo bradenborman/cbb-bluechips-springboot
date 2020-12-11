@@ -33,11 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         logger.info("Setting up security");
-        http.csrf().disable();
+//        http.csrf().disable();
 
 
         http.authorizeRequests()
-                .antMatchers("/", "/rules", "/rules/**")
+                .antMatchers("/", "/rules", "/rules/**", "/user/logout")
                 .permitAll();
 
         http.authorizeRequests()

@@ -166,9 +166,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/settings">Settings</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="user/logout">Log Out</a>
-                        </li>
+                            <li class="nav-item">
+                                <form action="/user/logout" method="post" id="logoutForm">
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                    <a class="nav-link" href="/logout" id="logoutLink">Log out</a>
+                                </form>
+                            </li>
                     </ul>
                 </div>
             </div>

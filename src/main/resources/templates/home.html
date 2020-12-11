@@ -24,6 +24,7 @@
     <meta name="google" content="notranslate"/>
     <meta name="keywords" content="MARCHMADNESS, CBB, COLLEGE, BASKETBALL, INVESTING, FANTASY">
     <meta name="author" content="Braden Borman">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
 <script>
@@ -65,6 +66,7 @@
                 <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
                      aria-labelledby="nav-profile-tab">
                     <form action="/user/login" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <h2>Returning Users</h2>
                         <div class="row login">
                             <div class="col-md-12">
@@ -97,6 +99,7 @@
                 </div>
                 <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <form action="/user/create" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <h2 style="margin-bottom: 30px;">New Users</h2>
                         <div class="row">
                             <div class="col-md-12">
@@ -224,6 +227,14 @@ $(document).ready(function(){
 function forgotPassword() {
 	var email = $("#email").val();
 
+    var token = $('meta[name="_csrf"]').attr('content')
+    alert(token)
+
+    $.ajaxSetup({
+       headers:{
+          "X-CSRF-TOKEN" : token
+       }
+    });
 
 	if (validateEmail(email)) {
           $('.modale').addClass('opened');
