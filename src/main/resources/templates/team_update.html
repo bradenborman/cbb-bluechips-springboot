@@ -31,6 +31,7 @@
         </div>
         <div class="col-lg-4">
             <form class="form" th:if="${selectedTeam != null}" action="/admin/update-price" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input required th:if="${selectedTeam != null}" th:value="${selectedTeam.teamName}" style="display: none;" readonly="readonly" type="hidden" id="teamName" name="teamName"><br>
                 Current Market Price:<br>
                 <input th:if="${selectedTeam != null}" th:value="${selectedTeam.currentMarketPrice}" type="text" id="currentPrice" name="currentPrice" readonly="readonly" class="form-control"><br>

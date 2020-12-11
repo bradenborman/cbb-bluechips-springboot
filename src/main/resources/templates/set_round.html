@@ -20,6 +20,7 @@
 
 <div class="container">
     <form class="form" action="/admin/update/current-round" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <p th:text="'Currently: ' + ${currentRound}" ></p>
         <select class="form-group" required id="round" name="round">
             <option disabled selected value> -- Select Team to Begin --</option>

@@ -62,6 +62,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-4" id="BUY_SECTION">
                     <form action="/trade-action/buy" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <input class="slider" onchange="updateBuyBTN(this.value)" type="range" min="0" th:max="${details.maximumCanPurchase}" value="0" id="buySlider" name="volume">
                         <input th:value="${team.teamId}" type="hidden" name="teamId">
                         <br/>
@@ -71,6 +72,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4" id="SELL_SECTION">
                     <form action="/trade-action/sell" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <input class="slider" onchange="updateSellBTN(this.value)" type="range" min="0" th:max="${details.availableToSell}" value="0" id="sellSlider" name="volume">
                         <input th:value="${team.teamId}" type="hidden" name="teamId">
                         <br/>

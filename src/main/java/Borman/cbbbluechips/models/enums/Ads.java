@@ -4,7 +4,7 @@ import java.util.*;
 
 public enum Ads {
 
-    CANDY_FACTORY("Candy Factory", "/ads/thecandyfactory_logo1.png", "https://thecandyfactory.biz/"),
+    CANDY_FACTORY("Candy Factory", "/ads/thecandyfactory_logo1.png", "https://www.thecandyfactoryonline.com/"),
     Georgetown_Dental("Georgetown Dental", "/ads/GeorgetownDental.png", "http://www.ident.ws/template.jsp?doc=gregorydstevens"),
     Campus_Bar_and_Grill("Campus Bar & Grill", "/ads/b12 transparent_.png", "http://campusbarandgrill.com/");
 
