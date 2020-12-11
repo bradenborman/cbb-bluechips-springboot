@@ -1,5 +1,11 @@
  $(document).ready(function(){
 
+    var token = $('meta[name="_csrf"]').attr('content')
+
+    $.ajaxSetup({
+       headers:{ "X-CSRF-TOKEN" : token }
+    });
+
       $("#phoneNumber").keyup(function(){
 
        if($("#phoneNumber")[0].checkValidity()) {
@@ -56,8 +62,6 @@ function deleteUser() {
        function(data,status){
          console.log("Data: " + data + "\nStatus: " + status);
    });
-
-   location.href = "/user/logout"
-
+   document.getElementById("logoutForm").submit();
 }
 
