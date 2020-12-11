@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+    var token = $('meta[name="_csrf"]').attr('content')
+
+    $.ajaxSetup({
+       headers:{ "X-CSRF-TOKEN" : token }
+    });
+
   $(".icon-remove").click(function(){
 
             var ID = $(this).attr("id");

@@ -228,8 +228,6 @@ function forgotPassword() {
 	var email = $("#email").val();
 
     var token = $('meta[name="_csrf"]').attr('content')
-    alert(token)
-
     $.ajaxSetup({
        headers:{
           "X-CSRF-TOKEN" : token
