@@ -48,6 +48,6 @@ game-rules:
 
 paypal:
   clientId: ${PAYPAL_CLIENTID}
-  donationAmount: 10
+  donationAmount: 1
 
 admins: bradenborman@hotmail.com, bradenborman00@gmail.com

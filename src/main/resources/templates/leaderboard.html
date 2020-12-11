@@ -16,6 +16,7 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" type="text/css" href="css/Leaderboard.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
 <!--    <script src="js/Leaderboard.js"></script>-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
@@ -133,6 +134,7 @@ $("#amountAsking").text(amountAsking)
       });
     },
     onApprove: function(data, actions) {
+    var token = $('meta[name="_csrf"]').attr('content')
       return actions.order.capture().then(function(details) {
        $("#paypalResult").html("<b>You have successfully donated. $50,000 will be credited towards your in-game account</b>")
        $("#paypal-button-container").hide()
@@ -146,7 +148,8 @@ $("#amountAsking").text(amountAsking)
         return fetch('/user/paypal-transaction-complete', {
           method: 'post',
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'X-CSRF-TOKEN' : token
           },
           body: body
         });
