@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .antMatchers("/", "/rules", "/rules/**", "/user/logout")
+                .antMatchers("/", "/rules", "/rules/**", "/terms-and-services", "/user/logout")
                 .permitAll();
 
         http.authorizeRequests()
