@@ -1,10 +1,10 @@
 package Borman.cbbbluechips.email;
 
 import Borman.cbbbluechips.models.paypal.PaypalDonationRequest;
+import Borman.cbbbluechips.utilities.HtmlTemplateLoader;
 import Borman.cbbbluechips.zdata.PasswordRecoveryData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,36 @@ import javax.mail.internet.MimeMessage;
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSenderImpl javaMailSender;
+    Logger logger = LoggerFactory.getLogger(EmailService.class);
 
-    private Logger logger = LoggerFactory.getLogger(EmailService.class);
+    JavaMailSenderImpl javaMailSender;
+
+    public EmailService(JavaMailSenderImpl javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
+
+    public void sendTermsAndServices(String email) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        try {
+            helper.setTo(email);
+            helper.setSubject("CBB Bluechips | Terms and Services");
+            String htmlBody = HtmlTemplateLoader.loadFromTemplate("terms-and-service");
+            helper.setText(htmlBody, true);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        logger.info("Sending Terms and Service email to " + email);
+
+        try {
+            javaMailSender.send(message);
+            logger.info("Mail sent");
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
+    }
 
     public boolean sendPasswordRecoveryEmail(String email, String password) {
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -31,7 +57,7 @@ public class EmailService {
             e.printStackTrace();
         }
 
-        logger.info("Sending Password Recovery Email to " + email);
+        logger.info("Sending Password Recovery email to " + email);
 
         try {
             javaMailSender.send(message);

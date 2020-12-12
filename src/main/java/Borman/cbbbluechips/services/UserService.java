@@ -1,6 +1,7 @@
 package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.daos.UserDao;
+import Borman.cbbbluechips.email.EmailService;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.utilities.UserNameUtility;
 import org.slf4j.Logger;
@@ -15,11 +16,13 @@ import java.util.List;
 public class UserService {
 
     Logger logger = LoggerFactory.getLogger(UserService.class);
-    private UserDao userDao;
+    UserDao userDao;
+    EmailService emailService;
     private final int STARTING_CASH;
 
-    public UserService(UserDao userDao, @Qualifier("startingCash") final int STARTING_CASH) {
+    public UserService(UserDao userDao, @Qualifier("startingCash") final int STARTING_CASH, EmailService emailService) {
         this.userDao = userDao;
+        this.emailService = emailService;
         this.STARTING_CASH = STARTING_CASH;
     }
 
@@ -32,7 +35,11 @@ public class UserService {
         User user = new User(UserNameUtility.titleCaseConversion(fname), UserNameUtility.titleCaseConversion(lname), email_new, password_new);
         if (!isUserAlreadyPresent(user.getEmail())) {
             user.setCash(STARTING_CASH);
-            user.setID(userDao.createNewUser(user));
+            String userId = userDao.createNewUser(user);
+            user.setID(userId);//Do I need to set this still? Investigate
+
+            emailService.sendTermsAndServices(user.getEmail());
+
             return "?newUser=" + user.getEmail();
         } else
             logger.info(String.format("%s already in database", user.getEmail()));
