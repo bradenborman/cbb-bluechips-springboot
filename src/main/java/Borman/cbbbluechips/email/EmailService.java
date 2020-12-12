@@ -31,7 +31,7 @@ public class EmailService {
             helper.setTo(email);
             helper.setSubject("CBB Bluechips | Terms and Services");
             String htmlBody = HtmlTemplateLoader.loadFromTemplate("terms-and-service");
-            helper.setText(htmlBody, true);
+            helper.setText(htmlBody.replace("${email}", email), true);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
