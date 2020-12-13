@@ -86,7 +86,7 @@ public class TransactionService {
 
         final String teamName = teamDao.getTeamNameById(request.getTeamId());
         final String userName = userService.getUserFullName(request.getUserId());
-        String now = LocalDateTime.now().minusHours(6).format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
 
         Transaction transaction = TransactionBuilder.aTransaction()
                 .withFullName(userName)
