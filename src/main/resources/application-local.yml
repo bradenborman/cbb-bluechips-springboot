@@ -1,5 +1,0 @@
-spring:
-  jpa:
-    properties:
-      hibernate:
-        default_schema: heroku_f8c10a0dcaaf757

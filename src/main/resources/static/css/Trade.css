@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+.card-header h1 {
+	display: inline;
+}
+
+.logo {
+	height: 15vh;
+	width: 15vh;
+	float: right;
+	display: inline;
+}
+
+#BUY_SECTION,
+#SELL_SECTION {
+	text-align: center;
+}
+
+.card {
+    border: 1px solid black;
+    box-shadow: 2px 3px #1e5799;
+}
+
+.card-title {
+	margin-bottom: 35px;
+}
+
+.CapitalAvailable {
+	margin-top: 50px;
+	margin-bottom: 40px;
+	text-align: center;
+	font-family: 'Krona One';
+	font-size: 2.2em;
+}
+
+input[type="range"] {
+	margin: auto;
+	-webkit-appearance: none;
+	position: relative;
+	overflow: hidden;
+	height: 40px;
+	width: 200px;
+	cursor: pointer;
+	border-radius: 0;
+	/* iOS */
+	margin-bottom: 30px;
+}
+
+::-webkit-slider-runnable-track {
+	background: #ddd;
+}
+
+
+/*
+ * 1. Set to 0 width and remove border for a slider without a thumb
+ */
+
+::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 20px;
+	/* 1 */
+	height: 40px;
+	background: #fff;
+	box-shadow: -100vw 0 0 100vw dodgerblue;
+	border: 2px solid #999;
+	/* 1 */
+}
+
+::-moz-range-track {
+	height: 40px;
+	background: #ddd;
+}
+
+::-moz-range-thumb {
+	background: #fff;
+	height: 40px;
+	width: 20px;
+	border: 3px solid #999;
+	border-radius: 0 !important;
+	box-shadow: -100vw 0 0 100vw dodgerblue;
+	box-sizing: border-box;
+}
+
+::-ms-fill-lower {
+	background: dodgerblue;
+}
+
+::-ms-thumb {
+	background: #fff;
+	border: 2px solid #999;
+	height: 40px;
+	width: 20px;
+	box-sizing: border-box;
+}
+
+::-ms-ticks-after {
+	display: none;
+}
+
+::-ms-ticks-before {
+	display: none;
+}
+
+::-ms-track {
+	background: #ddd;
+	color: transparent;
+	height: 40px;
+	border: none;
+}
+
+::-ms-tooltip {
+	display: none;
+}
+
+.tradeBTN {
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 1.5em;
+	min-width: 150px;
+}
+
+.tradeBlock {
+	margin-bottom: 50px;
+}
+
+.col-lg-4 {
+	margin-bottom: 60px;
+}
+
+@media screen and (max-width: 600px) {
+	.logo {
+		height: 10vh;
+		width: 10vh;
+	}
+	.card-title {
+		margin-bottom: 65px;
+	}
+	#BUY_SECTION {
+		margin-bottom: 85px;
+	}
+	#SELL_SECTION {
+		margin-bottom: 85px;
+	}
+
+	.CapitalAvailable {
+    	margin-top: 30px;
+    	margin-bottom: 40px;
+    	font-size: 1.3em;
+    }
+}

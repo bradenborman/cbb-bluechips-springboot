@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>CBB Bluechips | How to play</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="icon"
+          href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href='https://weloveiconfonts.com/api/?family=entypo' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/Header.css">
+    <link rel="stylesheet" type="text/css" href="css/socialmediabtns.css">
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/Rules.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155112023-1');
+
+  if(!location.hostname.includes("local") && location.protocol !== "https:")
+  {
+       location.protocol = "https:";
+  }
+
+   </script>
+</head>
+<body>
+
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Bluechips</h1>
+</header>
+
+<div class="container-fluid">
+    <div class="how-section1">
+        <div class="row">
+            <div class="col-md-4 how-img">
+                <img class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}"/>
+            </div>
+            <div class="col-md-8">
+                <h4>Wave goodbye</h4>
+                <h4 class="subheading">to busted brackets</h4>
+                <p class="text-muted">
+                    Welcome to <span style="color: #326B9B;font-weight:bold;">College Basketball Bluechips</span>,
+                    March Madness’s newest game.
+                    College Basketball Bluechips combines our favorite part of
+                    March Madness (PICKING THE WINNERS!!!) with the art of day trading! Show off your ability to pick
+                    winners, and back it up with a savvy investment strategy.
+                    The best part, even if you pick a loser, you can still cash out and make your money back, your
+                    bracket is never busted here!
+                <center>
+                    <br/>
+                    College Basketball Bluechips is completely free to play.
+                    <br/>
+                    The top 10 Investors at the end of the tournament will split $500 in cash and prizes!**
+                    <br/>
+                    Sign up below, and learn the rules of the game now!
+                </center>
+                </p>
+                <div style="text-align: center; margin-top: 50px;">
+                    <button th:if="${!loggedIn}" type="button" onclick="signUpClicked()"
+                            class="btn btn-outline-primary btn-lg">Sign up here
+                    </button>
+                    <button th:if="${loggedIn}" type="button" onclick="portfolio()"
+                            class="btn btn-outline-primary btn-lg">Back to Portfolio
+                    </button>
+                    <button th:if="${loggedIn}" type="button" onclick="calculator()"
+                            class="btn btn-outline-primary btn-lg">Point-spread Calculator
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>How to Play</h4>
+                <h4 class="subheading">“You play to win the game!”</h4>
+                <p class="text-muted">
+                    Each Investor is gifted <span style="color: green; font-weight: bold;">$100,000</span> in fake seed
+                    money that is added to your portfolio. The goal of
+                    College Basketball Bluechips is to grow your
+                    investment into the biggest pile of cash at the end of March Madness.
+                    <br/>
+                    <br/>
+                    Every team in the <span style="color: #005BB3;">NCAA</span> College Basketball tournament is given a
+                    value. The better the team, the more expensive they are to buy.
+                    As an investor, you can buy shares of any team at their current market value before their game tips off.
+                    <br/>
+                    <br/>
+                    Team values will change based upon how well they perform against the official <span
+                        style="color: #D61E26;">ESPN</span> point spread for
+                    the game they are playing in.
+                    For instance, if Kansas is favored by 8 points in their game against Florida [Kansas (–8) vs
+                    Florida],
+                    but only wins by 1 point, Kansas’ value will decrease in increments of $1,000 per point from the
+                    spread (8 points) minus
+                    their margin of victory (1 point), and Florida’s value will increase by that same amount despite not
+                    winning the game.
+                    In this scenario, Florida’s value increases by $700, and Kansas’ value decreases by $700.
+                    <br/>
+                    <br/>
+                    <br/>After each game, you can sell your shares of each team and invest in the next game!
+                    <br/>
+                    <b>HINT:</b> the more games you invest in, the more likely you are to make a profit. Buy and sell
+                    often!!
+                </p>
+            </div>
+            <div class="col-md-6 how-img">
+                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid networth_viewImg"
+                     th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 how-img">
+                <img loading="lazy" data-aos-delay="300" data-aos="fade-right" aos-duration="1000"
+                     class="img-fluid investments_exampleImg" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
+            </div>
+            <div class="col-md-6">
+                <h4>Your Portfolio</h4>
+                <h4 class="subheading">Getting the <span style="color: green;">winners</span> in your portfolio!</h4>
+                <p class="text-muted">
+                    Your portfolio is easy to manage, and it is fun to watch your investments grow with each game! While
+                    on the portfolio page,
+                    you can see a list of all the teams you are currently vested in. You’ll see the number of shares of
+                    each team you own,
+                    the current market price of each team’s share, and the total amount of money you have invested in
+                    each of your teams.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>The Market</h4>
+                <h4 class="subheading">Where <span style="color: green; font-weight: bold;">winners</span> identify the
+                    <span style="color: green; font-weight: bold;">winners</span></h4>
+                <p class="text-muted">
+                    The Market is where you will find the team cards for all of the <span
+                        style="color: #005BB3;">NCAA</span> College Basketball Tournament
+                    Teams. This Market gives Investors
+                    access to inside information to aid in their decisions on buying and selling team stocks. Each Team
+                    Card has the following information:
+                </p>
+                <ul style="list-style-type:none; font-style: italic;">
+                    <li>Team Name</li>
+                    <li>Current Market price</li>
+                    <li>Chart of price history</li>
+                    <li>Trade Button</li>
+                    <li>Ranking in the Tournament</li>
+                    <li>Shares Outstanding</li>
+                </ul>
+                <p class="text-muted">If a team has a game scheduled, it will also have a gray bar of additional
+                    information with the following:</p>
+                <ul style="list-style-type:none; font-style: italic;">
+                    <li>Point Spread for that game</li>
+                    <li>Next Opponent</li>
+                </ul>
+            </div>
+            <div class="col-md-6 how-img">
+                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid markets_exampleImg"
+                     th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 how-img">
+                <img data-aos-delay="300" data-aos="fade-right" aos-duration="1000" class="img-fluid trading_exampleImg"
+                     th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
+            </div>
+            <div class="col-md-5">
+                <h4>Buying & Selling</h4>
+                <h4 class="subheading">Grab that cash with both hands and make a stack</h4>
+                <p class="text-muted">
+                    When you’re ready to make an investment, or to cash-in on your stocks, click the "Trade" button on
+                    your team’s card and
+                    you will be taken to the Trading Screen. Here you’ll see basic team info as well as two sliders.
+                    Buying and selling is simple; slide the bar to increase and decrease the amount of each team’s stock that you want to buy or sell.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Let’s Play!!!</h4>
+                <p class="text-muted">
+                    In order to have your One Shining Moment, you need to do homework and figure out how each team will
+                    perform
+                    against the point spread. Develop your investment strategy and strap in for the long haul.
+                    The market will make wild swings, and investors will move in and out of the top 10 after almost
+                    every game.
+                    Do you have what it takes to amass the most cash during this year’s tournament???
+                    Sign up below and get ready to experience March Madness like you never have before with College
+                    Basketball Bluechips!
+                </p>
+                <div style="text-align: center; margin-top: 50px;">
+                    <button th:if="${!loggedIn}" type="button" onclick="signUpClicked()"
+                            class="btn btn-outline-primary btn-lg">Sign up here
+                    </button>
+                    <button th:if="${loggedIn}" type="button" onclick="portfolio()"
+                            class="btn btn-outline-primary btn-lg">Back to Portfolio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p style="text-align: center;">
+                    <i>
+                        *No purchase necessary to win a prize. Winners must be 18 years or older to qualify to win a
+                        prize.
+                        <br/>
+                        Prizes will be awarded to the top 10 eligible investors after the final game of the <span
+                            style="color: #005BB3;">NCAA</span> College Basketball Tournament.
+                        <br/>
+                        Game is played from March 14th 2021 - April 05th 2021.
+                        <br/>
+                        First prize is $200 cash, second prize is $100 cash, third through tenth places will receive a
+                        $25 gift card to local Columbia, MO restaurants and shops.
+                    </i>
+                </p>
+                <p style="text-align: center;">
+                    <a href="/terms-and-services">Full Terms and Services</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="social__container">
+                <!-- social__item facebook -->
+                <div class="social__item">
+                    <a target="_blank" href="https://www.facebook.com/bradenborman" class="social__icon--facebook"><i
+                            class="icon--facebook"></i></a>
+                </div>
+                <!-- social__item linkedin -->
+                <div class="social__item">
+                    <a target="_blank" href="https://www.linkedin.com/in/bradyborman/"
+                       class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+                </div>
+                <div class="social__item">
+                    <a target="_blank" href="https://github.com/bradenborman/" class="social__icon--github"><i
+                            class="icon--github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+AOS.init();
+function signUpClicked() {
+    window.location.href = "/";
+}
+
+function portfolio() {
+    window.location.href = "/portfolio";
+}
+
+function calculator() {
+    window.location.href = "/rules/calculator";
+}
+
+</script>
+</body>
+</html>

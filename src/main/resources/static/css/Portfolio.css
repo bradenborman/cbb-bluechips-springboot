@@ -1,7 +1,178 @@
 body {
-    background-color: #6495ED;
+	background-color: rgba(0, 0, 0, .07);
 }
 
-.item {
-    margin-top: 20px;
+.card h3,
+.card h2 {
+	margin-bottom: 20px;
+	font-size: 1.3em;
+}
+
+.fa-folder-open {
+	color: #f1d592
+}
+
+.fa-cog {
+	color: grey;
+}
+
+.fa-tachometer-alt {
+	color: lightblue;
+}
+
+.gameFlowItem {
+	margin-bottom: 5px;
+}
+
+.PortfolioItem {
+	font-size: 1.3em;
+	margin-bottom: 5px;
+}
+
+.cashTransactions {
+    display: inline-block;
+}
+
+.cashTransactions:nth-child(2)::before {
+      content: " | ";
+}
+
+.mainItem {
+	min-height: 190px;
+}
+
+#Networth,
+#Leader,
+#TotalMoney,
+td:nth-child(3),
+td:nth-child(4),
+.fa-money-bill-alt {
+	color: green;
+}
+
+.card {
+	margin-bottom: 20px;
+	font-size: 1.2em;
+	min-height: 200px;
+	border: 1px solid black;
+	box-shadow: 2px 3px #1e5799;
+}
+
+.card-footer {
+	font-size: .7em;
+}
+
+.app {
+	margin-top: 30px;
+}
+
+.logo {
+	height: 4vh;
+	width: 4vh;
+	display: inline;
+	margin-right: 5px;
+}
+
+
+/* FOR LOGO IN TABLE */
+
+td:nth-child(1) {
+	text-align: left;
+}
+
+.optionLinks {
+	text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+.showSmall {
+	display: none;
+	text-align: center;
+}
+
+#investmentTOTAL {
+	font-size: 1.5em;
+}
+
+.emptyPortfolioLink {
+	font-weight: 500;
+	margin: 15px;
+	font-size: 1.3em;
+}
+
+@media (max-width: 575.98px) {
+
+	tr td:first-child,
+    tr th:first-child {
+       padding: 3px;
+    }
+
+	.header>h1 {
+		font-size: 1.2em;
+	}
+	.card {
+		margin-bottom: 15px;
+		font-size: 1em;
+		min-height: 50px;
+	}
+	.card-body h3,
+	.card-body h5 {
+		margin: 3px;
+		font-size: 1.2em;
+	}
+	.optionLinks {
+		text-align: center;
+		font-size: 1.5em;
+	}
+	.logo {
+		height: 8vh;
+		width: 8vh;
+		display: inline;
+	}
+	.showSmall {
+		display: block;
+	}
+	.hideSmall {
+		display: none;
+	}
+	.gameFlowItem {
+		text-align: center;
+		margin-bottom: 4px;
+	}
+	.networthh2 {
+		margin-bottom: 10px;
+		font-size: 1.5em;
+	}
+	.PortfolioItem {
+		text-align: center;
+		margin-bottom: 4px;
+		font-size: 1.1em;
+	}
+	.mainItem {
+		padding-top: 10px;
+		min-height: 0px;
+	}
+	.row {
+		margin-top: 6px;
+	}
+	.emptyPortfolioLink {
+		margin-top: 20px;
+		font-size: 1.2em;
+	}
+
+	.cashTransactions {
+        display: block;
+    }
+
+    .cashTransactions:nth-child(2) {
+        display: none;
+/*
+        not show transaction count on small screens
+*/
+    }
+
+    .cashTransactions:nth-child(2)::before {
+          content: "";
+    }
+
 }

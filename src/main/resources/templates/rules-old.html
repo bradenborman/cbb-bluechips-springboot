@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>How to play</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
+          integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/Header.css">
+    <link rel="stylesheet" type="text/css" href="css/Rules-old.css">
+    <link rel="icon" href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155112023-1');
+
+  if(!location.hostname.includes("local") && location.protocol !== "https:")
+  {
+       location.protocol = "https:";
+  }
+
+</script>
+ </head>
+<body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Bluechips</h1>
+</header>
+<div class="APP_WRAPPER">
+    <ul class="list">
+        <li id="ObjectiveLINK" class="nav-link">Objective</li>
+        <li id="PayoutsLINK" class="nav-link">Payouts & Winnings</li>
+        <li id="PointspreadLINK" class="nav-link">Understanding the Point-spread</li>
+        <li id="InitialLINK" class="nav-link">Initial Setup</li>
+        <li id="MarketLINK" class="nav-link">Market</li>
+        <li id="TradingLINK" class="nav-link">Trading</li>
+    </ul>
+    <div id="stick" class="sticky">
+    <a class="backBTN" href="/portfolio"><i class="fas fa-home"></i> Return to Home</a>
+    </div>
+
+
+    <h2 id="Objective">Objective of CBB Bluechips</h2>
+    <p>
+        The winner will be crowned shortly after the championship game has been completed and will be awarded to the person with the highest net worth.
+        Each person who plays, is tasked with the challenge of turning <span style="color: green; font-weight: bold;">$100,000</span> of fake cash, into the highest amount they can.
+        During the tournament, a total of <b>67games</b> will be played over a few week span. Each of those games is an opportunity to increase your net worth.
+    </p>
+
+
+    <h2 id="Payouts">Payouts & Winnings</h2>
+    <p>
+    <p>This is a completely free to play game.</p>
+    <p>
+        As a thank you for giving my game a chance, I will be giving out cash prizes. The top 10 players receiving a prize totaling $490 in all.
+        <br />
+        First place will be given $200, Second place will be awarded $100,
+        3rd will get $50. The remaining players in the rop ten will each get a $20.
+    </p>
+
+    <h2 id="Pointspread">Point-spread</h2>
+
+    <br/>
+    <p><center><b>EVERY 1 POINT THAT <u>BEATS</u> THE SPREAD WILL <br /><u>RAISE</u> THE TEAM'S VALUE BY $200 IN GAME PLAY CASH </b></center></p>
+    <p><center><b>EVERY 1 POINT THAT <u>LOOSES</u> THE SPREAD WILL <br /><u>LOWER</u> THE TEAM'S VALUE BY $200 IN GAME PLAY CASH </b></center></p>
+    <br />
+
+    <p>
+        The point spread is sometimes known as an equalizer for sportsbook operators. All teams aren’t created equally, so sportsbooks can create a point spread for a
+        game so that each team playing has an almost even chance of winning the game. In a way, the point spread will even the field for both teams. With that being said,
+        having a stake in a team that has recently beat the spread, will soon increase your net worth. On the flip side, owning a team that failed to "Cover", will take a hit
+        to your net worth. <br />NOTE: The team with the negative point spread is always the favorite to win.
+    </p>
+    <p>
+        On the market page, when browsing for a team to put some ownership into, you may notice something that looks like: "<i>(-4.5) VS: XXXXXXX</i>". What this tells you
+        is the point spread for next upcoming game they are involved in. Lets say you are looking at buying Duke, and it says that. That means, in order for Dukes value to rise, they must win by
+        more than 4.5 points. So hypothetically, if they win 65-55, they cover. If they only win 65-63, they fail to cover. If they lose, the failed to cover.
+    </p>
+    <p>
+        For further assistance, please visit <a target="_blank" href="https://www.thelines.com/betting/point-spread/"> this other guide</a>.
+    </p>
+
+
+    <p id="pointSpreadCalHeader">Please use this Point spread calculator for testing</p>
+    <div id="pointSpreadCal">
+        <div class="row">
+            <div class="col-sm-6">
+                Team 1's final score:<br>
+                <input maxlength="3" size="3" class="scoreInput" type="text" id="team1Score">
+            </div>
+            <div class="col-sm-6">
+                Team 2's final score:<br>
+                <input maxlength="3" size="3" class="scoreInput" type="text" id="team2Score">
+            </div>
+        </div>
+        <div class="row spreads">
+            <div class="col-sm-6">
+                Point spread for T1:<br>
+                <input maxlength="5" size="4" type="text" id="team1ps" pattern="^-?\d+(\.\d{1,2})?$">
+            </div>
+            <div class="col-sm-6">
+                Point spread for T2:<br>
+                <input maxlength="5" size="4" type="text" id="team2ps" readonly>
+            </div>
+        </div>
+
+        <p id="CoverdTeam">Covered: <span class="result"></span></p>
+        <p id="CoveredBy">Covered By: <span class="result"></span></p>
+        <p id="NewValue">1 share pre-game of Team 1 valued at $5,000<br />would now be valued at: <span class="result"></span></p>
+    </div>
+
+
+    <h2 id="Initial">Initial Setup</h2>
+    <p>
+        When you sign up, you inherit $100,000 as starting capital and an empty portfolio.
+    </p>
+
+    <p>
+        Placeholder
+    </p>
+
+
+    <h2 id="Market">Market</h2>
+
+    <p>Once you are ready to buy some shares, the place to go is the market.</p>
+
+
+
+    <img class="mx-auto d-block howToImgBuying" th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
+
+    <p>The photo above is an example of one of the many teams available for purchasing. Here you can see the team name, Current market price per 1 share,
+        who they play if the have a game that day, an interactive chart on historical pricing by round, a trade button, a seed identifier(1-16), and the shares outstanding.</p>
+
+    <p>New this year is the feature that displays the point spread and who the next opponent is. If you hover the mouse over the bar, you will either see <i>Favorite</i> or <i>Underdog</i>.
+        In the example above, Oklahoma State plays West Virgina next and is favored by 5 points. It is red as a caution that if you purchase any shares of this team,
+        they must not only win, they must win by 5 whole points. If the number is positive, it will be green, and it stands for a losing buffer.
+    </p>
+
+    <p>
+        Shares Outstanding is a way for the user to know just how many share are owned throughout the whole CBB Community. With the picture above,
+        it says "Shares Outstanding: 19". That means every user collectively owns a totals of 19 shares.
+    </p>
+    <p>
+        The interactive chart shows the price history of the team. In this example, they have yet to play a game and only have the starting price registered.
+    </p>
+    <p>
+        One quick thing to note, you may have noticed the img is surrounded by a green border. The green border signals that you as the user have a stake in that team. Once you sell
+        your share(s), the green border will not appear.
+    </p>
+
+
+    <h2 id="Trading">Trading</h2>
+
+    <p>
+        There are multiple ways to end up on the trading screen. The first is to click the blue trade button on a team while visiting the market. Another way is
+        to click the trade button while looking at your portfolio. If you are on a small device such as a phone, you can click the Team's Logo on the portfolio page to open up
+        the trade screen.
+    </p>
+
+    <img class="mx-auto d-block howToImgTrading" th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
+
+</div>
+<script>
+
+
+$(document).ready(function(){
+
+$(document).on('keyup', '#team1ps', function () {
+var inputValue = $('#team1ps').val()
+var inpObj = document.getElementById("team1ps");
+    if (inpObj.checkValidity()) {
+    $('#team2ps').val(inputValue * -1)
+    showOutcome()
+    }
+    else {
+    $('#team2ps').val("")
+    updateOutcome("", "")
+    }
+});
+
+$(document).on('keyup', '.scoreInput', function () {
+    showOutcome()
+});
+
+
+    $(".nav-link").on('click', function() {
+
+        var headerHeight = $('#stick').height();
+
+        var name = $(this).attr('id').replace("LINK", "");
+        var position = ($("#" + name).offset().top) - (headerHeight + 55);
+        $("HTML, BODY").animate({
+            scrollTop: position
+        }, 750);
+    });
+
+
+});
+
+
+function updateOutcome(coveredBy, coveredTeam) {
+$('#CoveredBy .result').text(coveredBy)
+$('#CoverdTeam .result').text(coveredTeam)
+}
+
+function showOutcome() {
+
+var team1 = parseFloat($('#team1Score').val())
+var team2 = parseFloat($('#team2Score').val())
+var pointspread = parseFloat($('#team1ps').val())
+
+if(!isNaN(team1) && !isNaN(team2) && !isNaN(pointspread))
+{
+    if(((team1 + pointspread) != team2))
+    {
+
+        var pointspread = parseFloat($('#team1ps').val())
+        var didTeamOneWin = ((team1 + pointspread) > team2)
+        var winningTeam = didTeamOneWin ? "Team 1" : "Team 2"
+        var coveredBy = parseFloat(((team1 + pointspread) - team2))
+
+        updateOutcome(coveredBy < 0 ? coveredBy * -1 : coveredBy, winningTeam)
+        $('#NewValue .result').text("$" + ReplaceNumberWithCommas((5000 + (coveredBy * 100))))
+    }
+    else {
+        updateOutcome("0", "SPLIT")
+        $('#NewValue .result').text("$5,000")
+    }
+}else
+{
+    updateOutcome("", "")
+    $('#NewValue .result').text("")
+}
+
+}
+
+function ReplaceNumberWithCommas(yourNumber) {
+    var n= yourNumber.toString().split(".");
+    n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return n.join(".");
+}
+
+</script>
+</body>
+</html>

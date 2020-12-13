@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <style>
+        #paypal-wrapper {
+            text-align: center;
+            width: 200px;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+<script
+        src="https://www.paypal.com/sdk/js?client-id=AbiTp3MyLJCqlqUhgWWDpFC-M8VRE6bHA1GHs40nCam1UpxkHRpFRlkbP_SpwAUGguGKojDw-6a8sWtd&disable-funding=credit,card">
+</script>
+<div id="paypal-wrapper">
+    <p>
+        Thank you for playing. </p>
+    <p>If you have enjoyed the game and would like to support it.
+        Click the Paypal Button to <br />Donate $3.00
+    </p>
+    <div id="paypal-button-container"></div>
+</div>
+
+
+<script>
+  paypal.Buttons({
+   style: {
+    layout:  'vertical',
+    color:   'blue',
+    shape:   'rect',
+    label:   'paypal'
+  },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '3.00'
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        // Call your server to save the transaction
+        return fetch('/paypal-transaction-complete', {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            orderID: data.orderID
+          })
+        });
+      });
+    }
+  }).render('#paypal-button-container');
+
+
+
+</script>
+</body>

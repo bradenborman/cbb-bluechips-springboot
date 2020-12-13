@@ -1,0 +1,334 @@
+html,
+body {
+	height: 100%;
+}
+
+.modale:before {
+	content: "";
+	display: none;
+	background: rgba(0, 0, 0, 0.6);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+}
+
+.opened:before {
+	display: block;
+}
+
+.opened .modal-dialog {
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+	top: 20%;
+}
+
+.modal-dialog {
+	background: #fefefe;
+	border: #333333 solid 0px;
+	border-radius: 5px;
+	margin-left: -200px;
+	text-align: center;
+	position: fixed;
+	left: 50%;
+	top: -100%;
+	z-index: 11;
+	width: 360px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+	-webkit-transform: translate(0, -500%);
+	-ms-transform: translate(0, -500%);
+	transform: translate(0, -500%);
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	-moz-transition: -moz-transform 0.3s ease-out;
+	-o-transition: -o-transform 0.3s ease-out;
+	transition: transform 0.3s ease-out;
+}
+
+.modal-body {
+	padding: 20px;
+}
+
+.modal-body input {
+	width: 200px;
+	padding: 8px;
+	border: 1px solid #ddd;
+	color: #888;
+	outline: 0;
+	font-size: 14px;
+	font-weight: bold
+}
+
+.modal-header,
+.modal-footer {
+	padding: 10px 20px;
+}
+
+.modal-header {
+	border-bottom: #eeeeee solid 1px;
+}
+
+.modal-header h2 {
+	font-size: 20px;
+}
+
+.tab-content {
+	min-height: 425px;
+}
+
+#MESSAGE {
+	font-size: 1em;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	border-radius: 0px;
+	background-color: white;
+	padding-top: 75px;
+	text-align: center;
+	border: 2px solid black;
+	animation: .8s ease-out 1s 1 expand;
+	animation-fill-mode: forwards;
+	min-width: 600px;
+	min-height: 300px;
+}
+
+.feature {
+	margin-top: 45px;
+}
+
+@keyframes expand {
+	100% {
+		left: 30%;
+		top: 15%;
+		width: 40%;
+		height: 30%;
+		border-radius: 155px;
+	}
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: 1.7rem;
+}
+
+.form-control-placeholder {
+	position: absolute;
+	top: 0;
+	padding: 7px 0 0 13px;
+	transition: all 200ms;
+	opacity: 0.5;
+}
+
+.form-control:focus+.form-control-placeholder,
+.form-control:valid+.form-control-placeholder {
+	font-size: 75%;
+	transform: translate3d(0, -115%, 0);
+	opacity: 1;
+}
+
+
+/*
+^^ FOR FLOATING PLACEHOLDERS
+*/
+
+#recoverPassword:hover {
+	cursor: pointer;
+}
+
+body {
+	background-color: rgba(0, 0, 0, .07);
+}
+
+.app {
+	margin-top: 50px;
+	border-radius: 40px;
+	background-color: white;
+	padding: 60px;
+	margin-bottom: 40px;
+}
+
+input[type="text"] {
+	font-size: 1.4em;
+}
+
+.tab-content h2 {
+	margin-top: 40px;
+	font-family: 'Alfa Slab One';
+	text-align: center;
+}
+
+button {
+	margin-top: 16px;
+}
+
+.title {
+	display: inline-block;
+	font-size: 5vh;
+}
+
+.title i {
+	color: #3D9970;
+}
+
+.links {
+	float: right;
+}
+
+.left {
+	padding: 20px 30px;
+}
+
+.how2Play {
+	margin: auto;
+	float: right;
+	width: 94%;
+}
+
+.how2Play h4 {
+	margin-top: 7px;
+	font-family: 'Alfa Slab One';
+}
+
+.login {
+	margin: auto;
+	margin-top: 50px;
+	width: 75%;
+}
+
+.fa-cog {
+	color: grey;
+}
+
+.fa-dollar-sign {
+	color: green;
+}
+
+.fa-chart-line {
+	color: #4aa3e8;
+}
+
+.fa-user-plus,
+.fa-sign-in-alt {
+	color: grey;
+}
+
+#newFeatures h4 {
+	font-family: 'Alfa Slab One';
+	text-align: center;
+}
+
+#newFeatures {
+	text-align: center;
+	padding: 25px;
+}
+
+footer {
+	padding: 40px;
+}
+
+.my-hr {
+	display: none;
+}
+
+.floatingLbl {
+	cursor: text;
+}
+
+@media screen and (max-width: 600px) {
+	.header {
+		padding: 20px;
+		font-family: 'Alfa Slab One';
+	}
+	.header h1 {
+		font-size: 1.6em;
+	}
+	.app {
+		margin: auto;
+		border-radius: 0px;
+		background-color: white;
+		padding: 10%;
+		width: 100%;
+	}
+	.login {
+		margin-top: 0px;
+		width: 94%;
+	}
+	.left {
+		margin: 0px;
+	}
+	.tab-content h2 {
+		margin: 30px;
+		font-size: 1.3em;
+		font-family: 'Alfa Slab One';
+		text-align: center;
+	}
+	.col-md-6 {
+		margin: 0px;
+		padding: 0px;
+	}
+}
+
+.forgotPassword {
+	margin-top: 60px;
+	text-align: center;
+}
+
+@media (max-width: 991.98px) {
+	#emailFeedback {
+		font-size: .7em;
+	}
+	.modal-dialog {
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+	}
+	.tab-content {
+		min-height: 0px;
+	}
+	.my-hr {
+		display: block;
+		--base-size: 160;
+		--base-color: darkblue;
+		--base-line-size: calc(var(--base-size) / 100 * 1px);
+		--base-circle-size: calc(var(--base-size) / 50 * 1px);
+		--line: linear-gradient(var(--base-color), var(--base-color));
+		--circle-center: radial-gradient(var(--base-circle-size) at 50% 50%, var(--base-color), var(--base-color) 85%, transparent);
+		--circle-left: radial-gradient(var(--base-circle-size) at 40% 50%, var(--base-color), var(--base-color) 85%, transparent);
+		--circle-right: radial-gradient(var(--base-circle-size) at 60% 50%, var(--base-color), var(--base-color) 85%, transparent);
+		--line-size: 25% var(--base-line-size);
+		--circle-size: auto;
+		margin: 1em auto;
+		width: calc(var(--base-size) * 1px);
+		height: calc(var(--base-size) / 10 * 1px);
+		background-image: var(--line), var(--circle-left), var(--circle-center), var(--circle-right), var(--line);
+		background-size: var(--line-size), var(--circle-size), var(--circle-size), var(--circle-size), var(--line-size);
+		background-position: left center, center center, center center, center center, right center;
+		background-repeat: no-repeat;
+	}
+	#MESSAGE h1 {
+		font-size: 1.5em;
+	}
+	.forgotPassword {
+		margin-top: 20px;
+		text-align: center;
+	}
+	.feature {
+		margin-top: 25px;
+	}
+	@keyframes expand {
+		100% {
+			left: 0%;
+			top: 0%;
+			width: 100%;
+			height: 100%;
+			border-radius: 0px;
+		}
+	}
+}

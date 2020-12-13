@@ -7,25 +7,78 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/css/Market.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Market-floating-menu.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Footer.css"/>
+    <script src="js/Market.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="icon"
+          href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <title>Market</title>
     <style>
-    </style>
-</head>
-<body>
+    </style>	
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-155112023-1');
+
+  if(!location.hostname.includes("local") && location.protocol !== "https:")
+  {
+       location.protocol = "https:";
+  }
+  if (location.hostname.includes("herokuapp"))
+  {
+        window.location.replace("https://www.cbb-bluechips.com/");
+  }
+
+</script>	
+</head>
+<body onload="drawChart(0, 15)">
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Bluechips</h1>
+</header>
 <div class="container">
-    <h1 th:text="${title}"></h1>
+    <nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/portfolio">My Portfolio</a>
+            </li>
+        </ul>
+    </nav>
     <div class="row">
-        <div class="col-sm-6" th:each="team : ${teams}">
-            <div class="team">
-                <img class="logo_header" th:src="@{${'/img/' + team.teamName + '.png'}}" />
-                <span class="team_name" th:text="${team.teamName}"></span>
-                <span class="team_currentPrice" th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
+        <div class="col-lg-6 animated zoomIn fast" th:id="${'team:' + team.teamName}" th:each="team : ${teams}">
+            <div th:style="${team.doesUserOwn} ? 'border: 3px solid #0dbf60;' : 'border: 1px solid black;'"
+                 class="team">
+                <img loading="lazy" th:style="${team.eliminated} ? 'filter: grayscale(100%)' : ''" class="logo_header"
+                     th:src="@{${'/img/' + team.teamName + '.png'}}"/>
+                <span class="team_name identifier" th:text="${team.teamName}"
+                      th:style="${team.eliminated} ? ' text-decoration: line-through;' : ''"></span>
+                <span class="team_currentPrice"
+                      th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></span>
                 <div class="card">
-                    <div th:text="'Next Point Spread: ' + ${team.nextPointSpread}" class="card-header"></div>
+                    <h5 style="display: none;" class="identifier d-none" th:text="${team.teamName}"></h5>
+                    <div th:if="${team.nextTeamPlaying != null}" th:utext="'(<span class=\'overunder\'>' + ${team.nextPointSpread} + '</span>) VS: ' + ${team.nextTeamPlaying}" class="card-header pointSpreadInfo"></div>
                     <div class="card-body">
-                        <p>PLACE HODLER TEXT FOR BODY</p>
+                        <div class="card-img-top" th:id="${team.teamName}"></div>
+                        <p th:text="${team.priceHistoryString}" class="hidden values d-none"></p>
+                        <div class="tradeBTN" th:if="${!team.locked}">
+                            <a th:href="@{'/trade/' + ${team.teamId}}" class="btn btn-primary" role="button">Trade</a>
+                        </div>
+                        <div class="tradeBTN" th:if="${team.locked}">
+                            <a href="#" class="btn btn-outline-primary disabled" role="button">Trade <i
+                                    class="fas fa-lock"></i></a>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <span class="seed" th:text="'Seed: ' + ${team.seed}"></span>
@@ -35,6 +88,76 @@
             </div>
         </div>
     </div>
+    <div style="display: none;" id="addsPlaceholder">
+        <div th:if="${ads != null}" class="col-sm-12 adsContainer addsPlaceholder">
+            <div class="adWrapper" th:each="ad : ${ads}">
+                <img loading="lazy" th:title="${ad.name}" th:id="${ad.website}" th:onclick="'jumpToAdd(this.id);'" class="ad img-responsive" th:src="@{${ad.imgSrc}}"/>
+            </div>
+            <p class="adTag">Thank you to all the supporters</p>
+        </div>
+    </div>
+
+    <div class="float-nav">
+        <div class="menu-btn">
+            <ul>
+                <li class="line"></li>
+                <li class="line"></li>
+                <li class="line"></li>
+            </ul>
+            <div class="menu-txt">Jump to</div>
+        </div>
+    </div>
+    <div id="main-nav" class="main-nav">
+        <ul>
+            <li id="pt-header">Playing Today (<span th:text="${#lists.size(jumpMenu)}"></span>)</li>
+            <li th:each="menuItem : ${jumpMenu}">
+               <a th:if="${!menuItem.locked}" loading="lazy" th:href="${'/market#' + menuItem.url}" th:text="${menuItem.displayString}"></a>
+               <a th:if="${menuItem.locked}" loading="lazy" th:href="${'/market#' + menuItem.url}" th:utext="${'<i class=''fas fa-lock''></i>' +  ' ' + menuItem.displayString}"></a>
+            </li>
+        </ul>
+    </div>
+
+    <footer>Braden Borman Production &copy;</footer>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+function drawChart(start, stop) {
+
+
+$('.card').slice(start,stop).each(function (index, value) {
+
+	 var TeamName = $(this).find("h5.identifier").text()
+	 var values =$(this).find(".values").text()
+	 var valueArray = values.split(" ")
+
+	 var data = google.visualization.arrayToDataTable([
+         ['Round', 'Value'],
+         ['64',  parseInt(valueArray[0])],
+        ['32',  parseInt(valueArray[1])],
+        ['16',  parseInt(valueArray[2])],
+        ['8',  parseInt(valueArray[3])],
+        ['4',  parseInt(valueArray[4])],
+        ['2',  parseInt(valueArray[5])],
+        ['1',  parseInt(valueArray[6])]
+	]);
+
+         var options = {
+                 curveType: 'function',
+                 legend: { position: 'bottom' }
+             };
+
+         var chart = new google.visualization.LineChart(document.getElementById(TeamName));
+         chart.draw(data, options);
+         });
+
+}
+
+
+function jumpToAdd(x) {
+    window.open(x);
+}
+
+</script>
 </div>
 </body>
 </html>
