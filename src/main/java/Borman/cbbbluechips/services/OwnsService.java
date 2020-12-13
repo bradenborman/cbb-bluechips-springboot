@@ -90,7 +90,7 @@ public class OwnsService {
         int i = 1, playersIdSize = playersId.size();
         while (i <= playersIdSize) {
             User user = playersId.get(i - 1);
-            leaders.add(new LeaderBoardUser(user.getFirstName() + " " + user.getLastName(), i, user.getCash(), user.getEmail(), user.isHasPayedEntryFee()));
+            leaders.add(new LeaderBoardUser(user.getFirstName().charAt(0) + ". " + user.getLastName(), i, user.getCash(), user.getEmail(), user.isHasPayedEntryFee()));
             i++;
         }
         return leaders;

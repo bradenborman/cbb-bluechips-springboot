@@ -15,7 +15,11 @@ public class OwnsRowMapperUserJoin implements RowMapper<Owns> {
         owns.setUserId(rs.getString("User_ID"));
         owns.setTeamId(rs.getString("Team_ID"));
         owns.setAmountOwned(rs.getInt("Amount_Owned"));
-        owns.setFullName(rs.getString("First_Name") + " " + rs.getString("Last_Name"));
+
+        String firstName = rs.getString("First_Name");
+        String lastName = rs.getString("Last_Name");
+
+        owns.setFullName(firstName.charAt(0) + ". " + lastName);
         return owns;
     }
 }
