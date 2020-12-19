@@ -1,8 +1,6 @@
 package Borman.cbbbluechips.controllers.admin;
 
-import Borman.cbbbluechips.services.AdminService;
-import Borman.cbbbluechips.services.GameSettingsService;
-import Borman.cbbbluechips.services.UserService;
+import Borman.cbbbluechips.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +12,20 @@ import java.util.Arrays;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private AdminService adminService;
-    private GameSettingsService settingsService;
-    private UserService userService;
+    AdminService adminService;
+    GameSettingsService settingsService;
+    UserService userService;
+    UserGroupService userGroupService;
+    TransactionService transactionService;
+    OwnsService ownsService;
 
-    public AdminController(AdminService adminService, GameSettingsService settingsService, UserService userService) {
+    public AdminController(AdminService adminService, GameSettingsService settingsService, UserService userService, UserGroupService userGroupService, TransactionService transactionService, OwnsService ownsService) {
         this.adminService = adminService;
         this.settingsService = settingsService;
         this.userService = userService;
+        this.userGroupService = userGroupService;
+        this.transactionService = transactionService;
+        this.ownsService = ownsService;
     }
 
     @PostMapping("/update-price")
@@ -53,7 +57,6 @@ public class AdminController {
 
     @PostMapping("/update-pointspread")
     public String updatePointSpread(@RequestParam(value = "teamName") String[] teamName, @RequestParam(value = "nextPointSpread") String[] nextPointSpread) {
-        System.out.println("updating " + nextPointSpread.length + " point spreads");
         adminService.processUpdatePointSpreadRequest(Arrays.asList(teamName), Arrays.asList(nextPointSpread));
         return "redirect:/admin";
     }
@@ -66,7 +69,14 @@ public class AdminController {
 
     @PostMapping("/deletePlayers")
     public String deletePlayers() {
-        userService.deleteAllUsers();
+        userService.getAllUsers().forEach(user -> {
+            System.out.println("Deleting all items for user: " + user.getID());
+            userGroupService.deleteUserFromAllGroups(user.getID());
+            transactionService.deleteUser(user.getID());
+            ownsService.deleteUser(user.getID());
+            userService.deleteUser(user.getID());
+        });
+
         return "redirect:/users/logout";
     }
 

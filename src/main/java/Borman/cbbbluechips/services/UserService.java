@@ -101,13 +101,6 @@ public class UserService {
         return userDao.getUserByEmail(emailToRecover);
     }
 
-    public void deleteAllUsers() {
-        logger.info("~~ REQUEST TO DELETE ALL PLAYERS ~~");
-        getAllUsers().forEach(user -> {
-            deleteUser(user.getID());
-        });
-    }
-
     public boolean hasUserDonated(String loggedInUserId) {
         logger.info("Checking to see if user {} donated", loggedInUserId);
         return userDao.hasUserDonated(loggedInUserId);
