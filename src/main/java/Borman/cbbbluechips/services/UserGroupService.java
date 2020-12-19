@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.Arrays;
 
 @Service
 public class UserGroupService {
@@ -59,12 +59,23 @@ public class UserGroupService {
     //TODO
     public GroupDetails getDetailedGroupsData() {
         GroupDetails details = new GroupDetails();
+
         UserGroup groups = new UserGroup();
         groups.setGroupId("0");
         groups.setGroupName("Chukar");
-        groups.setNumberOfUsersInGroup(5);
-        groups.setGroupDescription("TEST");
-        details.setUserGroups(Collections.singletonList(groups));
+        groups.setNumberOfUsersInGroup(12);
+        groups.setPasswordRequiredToJoin(false);
+        groups.setGroupDescription("Shelter Insurance Dev Team");
+
+
+        UserGroup group2 = new UserGroup();
+        group2.setGroupId("1");
+        group2.setGroupName("North Callaway");
+        group2.setNumberOfUsersInGroup(15);
+        groups.setPasswordRequiredToJoin(true);
+        group2.setGroupDescription("Alumni of North Callaway HS");
+
+        details.setUserGroups(Arrays.asList(groups, group2));
         return details;
     }
 
