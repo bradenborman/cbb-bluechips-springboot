@@ -1,5 +1,6 @@
 package Borman.cbbbluechips.controllers;
 
+import Borman.cbbbluechips.services.UserGroupService;
 import Borman.cbbbluechips.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController extends ControllerHelper {
 
-    private UserService userService;
+    UserService userService;
+    UserGroupService userGroupService;
 
-    public HomeController(UserService userService) {
+    public HomeController(UserService userService, UserGroupService userGroupService) {
         this.userService = userService;
+        this.userGroupService = userGroupService;
     }
 
     @RequestMapping("/")
@@ -31,6 +34,7 @@ public class HomeController extends ControllerHelper {
         String userid = getLoggedInUserId();
         model.addAttribute("textAlert", userService.doesUserSubscribeToTextAlerts(userid));
         model.addAttribute("phoneNumber", userService.getUserPhoneNumber(userid));
+        model.addAttribute("groups", userGroupService.getDetailedGroupsData());
         return "settings";
     }
 

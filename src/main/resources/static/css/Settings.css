@@ -6,6 +6,32 @@ body {
 	margin-top: 30px;
 }
 
+/* Groups and settings cards */
+.app-body {
+    margin-top: 15px;
+}
+
+.groupDetails {
+    display: inline-block;
+    font-size: 1.2em;
+    background-color: #f5fff7;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.fa-plus-square {
+    margin-right: 1px;
+}
+
+.numberInGroup {
+    opacity: .3;
+}
+
 .settings h2 {
 	text-align: center;
 }
@@ -50,4 +76,10 @@ input[type=text]:focus {
 		text-align: center;
 		margin-bottom: 10px;
 	}
+
+	/* Groups and settings cards */
+    .app-body {
+        margin-top: 5px;
+    }
+
 }

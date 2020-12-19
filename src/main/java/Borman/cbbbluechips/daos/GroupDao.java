@@ -1,8 +1,9 @@
 package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.GroupSQL;
-import Borman.cbbbluechips.models.GroupCreationRequest;
-import Borman.cbbbluechips.models.RemoveUserFromGroupRequest;
+import Borman.cbbbluechips.models.usergroups.AddUserToGroupRequest;
+import Borman.cbbbluechips.models.usergroups.GroupCreationRequest;
+import Borman.cbbbluechips.models.usergroups.RemoveUserFromGroupRequest;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -55,6 +56,14 @@ public class GroupDao {
         return doesOwn != null && doesOwn > 0;
     }
 
+
+    public boolean isPasswordCorrect(AddUserToGroupRequest request) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("groupId", request.getGroupId());
+        params.addValue("password", request.getGroupPassword());
+        Integer validGroupId = namedParameterJdbcTemplate.queryForObject(GroupSQL.isPasswordCorrect, params, Integer.class);
+        return validGroupId != null && validGroupId > 0;
+    }
 
 
 }

@@ -13,8 +13,10 @@
     <script src="/js/Settings.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    <link rel="icon" href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
+          integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <link rel="icon"
+          href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
     <meta name="_csrf" th:content="${_csrf.token}"/>
 </head>
 <body>
@@ -30,33 +32,49 @@
             </li>
         </ul>
     </nav>
-    <div class="row">
-        <div class="col-md-3"> </div>
+    <div class="row app-body">
         <div class="col-md-6">
             <div class="card settings">
-                <div class="card-header"> <h2>Settings</h2></div>
+                <div class="card-header"><h2>Groups</h2></div>
                 <div class="card-body">
-                    <div class="form-check">
-                        <label class="form-check-label" for="textAlertCheck">
-                            <input type="checkbox" th:checked="${textAlert}" class="form-check-input" id="textAlertCheck" name="option2" > Send Text Alerts?
-                        </label>
+                    <div class="groupDetails" th:title="${group.groupDescription}" th:each="group : ${groups.userGroups}">
+                            <p>
+                                <i class="far fa-plus-square"></i>
+                                <span th:text="${group.groupName}"></span>
+                                <span class="numberInGroup" th:text="${'(' + group.numberOfUsersInGroup + ')'}"></span>
+                            </p>
                     </div>
-                    <br />
-                    <div class="form-group">
-                        <label for="phoneNumber">Phone Number</label><br/>
-                        <input th:value="${phoneNumber != null ? phoneNumber : ''}" type="text" placeholder="(Format: xxxxxxxxxx):"  pattern="^\d{10}$" name="phoneNumber" id="phoneNumber">
-                    </div>
-                    <hr />
-                    <span class="DELETE_TEXT">Delete Account</span>
-                    <p id="DELETE"><br /><b>NOTE:</b> There is no going back and restoring it.<br/>If you really want to delete: <button type="button" onclick="deleteUser()" class="btn btn-link">Click Me</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-
+        <div class="col-md-6">
+            <div class="card settings">
+                <div class="card-header"><h2>Settings</h2></div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <label class="form-check-label" for="textAlertCheck">
+                            <input type="checkbox" th:checked="${textAlert}" class="form-check-input"
+                                   id="textAlertCheck" name="option2"> Send Text Alerts?
+                        </label>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label><br/>
+                        <input th:value="${phoneNumber != null ? phoneNumber : ''}" type="text"
+                               placeholder="(Format: xxxxxxxxxx):" pattern="^\d{10}$" name="phoneNumber"
+                               id="phoneNumber">
+                    </div>
+                    <hr/>
+                    <span class="DELETE_TEXT">Delete Account</span>
+                    <p id="DELETE"><br/><b>NOTE:</b> There is no going back and restoring it.<br/>If you really want to
+                        delete:
+                        <button type="button" onclick="deleteUser()" class="btn btn-link">Click Me</button>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!--Called from js on DELETE to logout user-->
     <form style="display:none;" action="/user/logout" method="post" id="logoutForm">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     </form>

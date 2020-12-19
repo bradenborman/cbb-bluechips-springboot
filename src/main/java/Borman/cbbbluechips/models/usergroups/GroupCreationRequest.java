@@ -1,4 +1,4 @@
-package Borman.cbbbluechips.models;
+package Borman.cbbbluechips.models.usergroups;
 
 public class GroupCreationRequest {
 
