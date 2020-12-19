@@ -1,6 +1,7 @@
 package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.GroupSQL;
+import Borman.cbbbluechips.mappers.SimpleGroupsRowMapper;
 import Borman.cbbbluechips.mappers.UserGroupsRowMapper;
 import Borman.cbbbluechips.models.usergroups.AddUserToGroupRequest;
 import Borman.cbbbluechips.models.usergroups.GroupCreationRequest;
@@ -88,7 +89,7 @@ public class GroupDao {
     public List<UserGroup> getOpenGroups(String userId) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("userId", userId);
-        return namedParameterJdbcTemplate.query(GroupSQL.getGroupsUserDoesNotBelongsTo, params, new UserGroupsRowMapper());
+        return namedParameterJdbcTemplate.query(GroupSQL.getGroupsUserDoesNotBelongsTo, params, new SimpleGroupsRowMapper());
     }
 
 
@@ -96,6 +97,12 @@ public class GroupDao {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("groupId", groupId);
         return namedParameterJdbcTemplate.queryForObject(GroupSQL.fetchMemberPopulationForGroup, params, Integer.class);
+    }
+
+    public void deleteUserFromAllGroups(String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("userId", userId);
+        namedParameterJdbcTemplate.queryForObject(GroupSQL.deleteUserFromAllGroups, params, Integer.class);
     }
 
 }

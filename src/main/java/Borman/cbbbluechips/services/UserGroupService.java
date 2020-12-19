@@ -76,4 +76,8 @@ public class UserGroupService {
         return details;
     }
 
+    public void deleteUserFromAllGroups(String userId) {
+        groupDao.deleteUserFromAllGroups(userId);
+    }
+
 }

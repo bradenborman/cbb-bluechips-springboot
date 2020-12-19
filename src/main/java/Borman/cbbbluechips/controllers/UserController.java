@@ -5,6 +5,7 @@ import Borman.cbbbluechips.models.paypal.PaypalDonationRequest;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.TransactionService;
+import Borman.cbbbluechips.services.UserGroupService;
 import Borman.cbbbluechips.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,18 +22,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/user")
 public class UserController extends ControllerHelper {
 
-    final private Logger logger = LoggerFactory.getLogger(UserController.class);
+    final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private UserService userService;
-    private EmailService emailService;
-    private OwnsService ownsService;
-    private TransactionService transactionService;
+    UserService userService;
+    EmailService emailService;
+    OwnsService ownsService;
+    TransactionService transactionService;
+    UserGroupService userGroupService;
 
-    public UserController(UserService userService, EmailService emailService, OwnsService ownsService, TransactionService transactionService) {
+    public UserController(UserService userService, EmailService emailService, OwnsService ownsService, TransactionService transactionService, UserGroupService userGroupService) {
         this.userService = userService;
         this.emailService = emailService;
         this.ownsService = ownsService;
         this.transactionService = transactionService;
+        this.userGroupService = userGroupService;
     }
 
     @PostMapping("/create")
@@ -59,6 +62,7 @@ public class UserController extends ControllerHelper {
 
     @Transactional
     private void deleteAllTracesFromUser(String userId) {
+        userGroupService.deleteUserFromAllGroups(userId);
         transactionService.deleteUser(userId);
         ownsService.deleteUser(userId);
         userService.deleteUser(userId);

@@ -28,14 +28,15 @@ public class GroupSQL {
             "JOIN groups ON groups.Group_ID = user_groups.Group_ID " +
             "WHERE User_ID = :userId";
 
-    public static final String getGroupsUserDoesNotBelongsTo = "SELECT * FROM groups t1 " +
-            "LEFT JOIN user_groups t2 ON t1.Group_ID = t2.Group_ID " +
-            "WHERE t2.User_ID != :userId OR t2.User_ID is null";
+    public static final String getGroupsUserDoesNotBelongsTo = "SELECT * FROM groups " +
+            "WHERE Group_ID " +
+            "not in (SELECT Group_ID from user_groups WHERE user_groups.User_ID = :userId)";
 
 
     public static final String fetchMemberPopulationForGroup  = "SELECT count(Group_ID) as count FROM user_groups Where Group_ID = :groupId";
 
     public static final String removeUserFromGroup  = "DELETE from user_groups WHERE Group_Assoc_ID = :assocId AND Group_ID = :groupId AND User_ID = :userId";
 
+    public static final String deleteUserFromAllGroups = "DELETE from user_groups WHERE User_ID = :userId";
 
 }
