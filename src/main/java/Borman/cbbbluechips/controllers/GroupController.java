@@ -1,6 +1,7 @@
 package Borman.cbbbluechips.controllers;
 
 import Borman.cbbbluechips.models.usergroups.AddUserToGroupRequest;
+import Borman.cbbbluechips.models.usergroups.RemoveUserFromGroupRequest;
 import Borman.cbbbluechips.services.UserGroupService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,11 @@ public class GroupController extends ControllerHelper {
     public ResponseEntity<String> joinGroup(@RequestBody AddUserToGroupRequest addUserToGroupRequest) {
         addUserToGroupRequest.setUserId(getLoggedInUserId());
         userGroupService.addUserIdToGroup(addUserToGroupRequest);
+        return ResponseEntity.ok("Success");
+    }
+
+    @PostMapping("/attempt-to-leave")
+    public ResponseEntity<String> leaveGroup(@RequestBody RemoveUserFromGroupRequest removeUserFromGroupRequest) {
         return ResponseEntity.ok("Success");
     }
 

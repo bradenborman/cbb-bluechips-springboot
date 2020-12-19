@@ -14,7 +14,6 @@ body {
 .groupDetails {
     display: inline-block;
     font-size: 1.2em;
-    background-color: #f2fcf3;
     border: 1px solid black;
     border-radius: 5px;
     padding-left: 10px;
@@ -24,12 +23,21 @@ body {
     vertical-align: middle;
 }
 
-.fa-plus-square {
+.groupDetails.open {
+    background-color: #f9f4f1;
+}
+
+.groupDetails.joined {
+    background-color: #f1f8f9;
+}
+
+
+.fa-plus-square, .fa-minus-square {
     margin-right: 1px;
     cursor: pointer;
 }
 
-.fa-plus-square:hover {
+.fa-plus-square:hover, .fa-minus-square:hover {
     font-weight: bold;
 }
 

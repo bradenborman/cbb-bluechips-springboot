@@ -83,12 +83,33 @@ function attemptToJoinGroup(groupId, passwordReq) {
                 }
             ),
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
             success: function(data) {
-                console.log(data);
+                location.reload();
             },
             error: function(errMsg) {
                 console.log(errMsg);
             }
         });
+}
+
+function attemptToLeaveGroup(groupId) {
+
+        //TODO finish
+        $.ajax({
+            type: "POST",
+            url: "/group/attempt-to-leave",
+            data: JSON.stringify(
+                {
+                    "groupId" : groupId
+                }
+            ),
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                location.reload();
+            },
+            error: function(errMsg) {
+                console.log(errMsg);
+            }
+        });
+
 }

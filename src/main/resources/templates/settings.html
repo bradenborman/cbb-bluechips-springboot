@@ -37,10 +37,12 @@
             <div class="card settings">
                 <div class="card-header"><h2>Groups</h2></div>
                 <div class="card-body">
-                    <div class="groupDetails" th:title="${group.groupDescription}" th:each="group : ${groups.userGroups}">
+                    <div class="groupDetails" th:classappend="${group.userJoinedGroup} ? joined : open" th:title="${group.groupDescription}" th:each="group : ${groups.userGroups}">
                             <p>
-                                <i th:attr="onclick=|attemptToJoinGroup('${group.groupId}',${group.passwordRequiredToJoin})|"
-                                   title="Click to join" class="far fa-plus-square"></i>
+                                <i th:if="${group.userJoinedGroup}" th:attr="onclick=|attemptToLeaveGroup('${group.groupId}')|"
+                                   title="Leave Group" class="far fa-minus-square"></i>
+                                <i th:if="${!group.userJoinedGroup}" th:attr="onclick=|attemptToJoinGroup('${group.groupId}',${group.passwordRequiredToJoin})|"
+                                   title="Join Group" class="far fa-plus-square"></i>
                                 <span th:text="${group.groupName}"></span>
                                 <span class="numberInGroup" th:text="${'(' + group.numberOfUsersInGroup + ')'}"></span>
                             </p>
