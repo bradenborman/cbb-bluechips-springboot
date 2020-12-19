@@ -92,7 +92,7 @@ function attemptToJoinGroup(groupId, passwordReq) {
         });
 }
 
-function attemptToLeaveGroup(groupId) {
+function attemptToLeaveGroup(groupAssocId, groupId) {
 
         //TODO finish
         $.ajax({
@@ -100,6 +100,7 @@ function attemptToLeaveGroup(groupId) {
             url: "/group/attempt-to-leave",
             data: JSON.stringify(
                 {
+                    "groupAssocId" : groupAssocId,
                     "groupId" : groupId
                 }
             ),

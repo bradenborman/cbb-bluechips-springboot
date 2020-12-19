@@ -28,6 +28,8 @@ public class GroupController extends ControllerHelper {
 
     @PostMapping("/attempt-to-leave")
     public ResponseEntity<String> leaveGroup(@RequestBody RemoveUserFromGroupRequest removeUserFromGroupRequest) {
+        removeUserFromGroupRequest.setUserId(getLoggedInUserId());
+        userGroupService.removeUserFromGroup(removeUserFromGroupRequest);
         return ResponseEntity.ok("Success");
     }
 

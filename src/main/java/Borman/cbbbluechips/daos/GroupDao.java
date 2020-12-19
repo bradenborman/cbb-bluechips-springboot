@@ -6,6 +6,7 @@ import Borman.cbbbluechips.models.usergroups.AddUserToGroupRequest;
 import Borman.cbbbluechips.models.usergroups.GroupCreationRequest;
 import Borman.cbbbluechips.models.usergroups.RemoveUserFromGroupRequest;
 import Borman.cbbbluechips.models.usergroups.UserGroup;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -37,10 +38,10 @@ public class GroupDao {
 
     public void removeUserFromGroup(RemoveUserFromGroupRequest request) {
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("groupId", request.getGroupID());
-        params.addValue("userId", request.getUserIdCreatingGroup());
-        params.addValue("groupAssocId", request.getGroupAssocID());
-        namedParameterJdbcTemplate.update(GroupSQL.createNewGroup, params);
+        params.addValue("groupId", request.getGroupId());
+        params.addValue("userId", request.getUserId());
+        params.addValue("assocId", request.getGroupAssocId());
+        namedParameterJdbcTemplate.update(GroupSQL.removeUserFromGroup, params);
     }
 
     public void addUserIdToGroup(String userId, String groupId) {
@@ -55,8 +56,12 @@ public class GroupDao {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("userId", userId);
         params.addValue("groupId", groupId);
-        Integer doesOwn = namedParameterJdbcTemplate.queryForObject(GroupSQL.doesUserBelongToGroupAlready, params, Integer.class);
-        return doesOwn != null && doesOwn > 0;
+        try {
+            Integer doesOwn = namedParameterJdbcTemplate.queryForObject(GroupSQL.doesUserBelongToGroupAlready, params, Integer.class);
+            return doesOwn != null && doesOwn > 0;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
     }
 
 
@@ -64,8 +69,12 @@ public class GroupDao {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("groupId", request.getGroupId());
         params.addValue("password", request.getGroupPassword());
-        Integer validGroupId = namedParameterJdbcTemplate.queryForObject(GroupSQL.isPasswordCorrect, params, Integer.class);
-        return validGroupId != null && validGroupId > 0;
+        try {
+            Integer validGroupId = namedParameterJdbcTemplate.queryForObject(GroupSQL.isPasswordCorrect, params, Integer.class);
+            return validGroupId != null && validGroupId > 0;
+        }catch (EmptyResultDataAccessException e) {
+            return false;
+        }
     }
 
 

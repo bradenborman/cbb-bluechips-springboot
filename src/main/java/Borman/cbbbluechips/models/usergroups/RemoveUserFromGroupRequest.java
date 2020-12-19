@@ -3,32 +3,32 @@ package Borman.cbbbluechips.models.usergroups;
 public class RemoveUserFromGroupRequest {
 
 
-    private String userIdCreatingGroup;
-    private String groupID;
-    private String groupAssocID;
+    private String userId;
+    private String groupId;
+    private String groupAssocId;
 
-    public String getUserIdCreatingGroup() {
-        return userIdCreatingGroup;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserIdCreatingGroup(String userIdCreatingGroup) {
-        this.userIdCreatingGroup = userIdCreatingGroup;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getGroupID() {
-        return groupID;
+    public String getGroupId() {
+        return groupId;
     }
 
-    public void setGroupID(String groupID) {
-        this.groupID = groupID;
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
-    public String getGroupAssocID() {
-        return groupAssocID;
+    public String getGroupAssocId() {
+        return groupAssocId;
     }
 
-    public void setGroupAssocID(String groupAssocID) {
-        this.groupAssocID = groupAssocID;
+    public void setGroupAssocId(String groupAssocId) {
+        this.groupAssocId = groupAssocId;
     }
 
 }

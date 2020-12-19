@@ -42,7 +42,7 @@ public class UserGroupService {
     }
 
     public void removeUserFromGroup(RemoveUserFromGroupRequest request) {
-        logger.info("Removing user: {} From Group: {}", request.getUserIdCreatingGroup(), request.getGroupID());
+        logger.info("Removing user: {} From Group: {}", request.getUserId(), request.getGroupId());
         groupDao.removeUserFromGroup(request);
     }
 
