@@ -39,7 +39,7 @@
                 <div class="card-body">
                     <div class="groupDetails" th:title="${group.groupDescription}" th:each="group : ${groups.userGroups}">
                             <p>
-                                <i th:attr="onclick=|testFunction('${group.groupId}',${group.passwordRequiredToJoin})|"
+                                <i th:attr="onclick=|attemptToJoinGroup('${group.groupId}',${group.passwordRequiredToJoin})|"
                                    title="Click to join" class="far fa-plus-square"></i>
                                 <span th:text="${group.groupName}"></span>
                                 <span class="numberInGroup" th:text="${'(' + group.numberOfUsersInGroup + ')'}"></span>
@@ -81,12 +81,5 @@
     </form>
 
 </div>
-
-<script>
-    function testFunction(groupId, passwordReq) {
-        if(passwordReq)
-            var x = prompt("Please Enter Group Password:")
-    }
-</script>
 </body>
 </html>

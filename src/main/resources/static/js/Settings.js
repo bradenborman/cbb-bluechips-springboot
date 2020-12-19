@@ -65,3 +65,30 @@ function deleteUser() {
    document.getElementById("logoutForm").submit();
 }
 
+
+function attemptToJoinGroup(groupId, passwordReq) {
+
+        var passwordEntered = ""
+
+        if(passwordReq)
+            passwordEntered = prompt("Please Enter Group Password:").trim()
+
+        $.ajax({
+            type: "POST",
+            url: "/group/attempt-to-join",
+            data: JSON.stringify(
+                {
+                    "groupId" : groupId,
+                    "groupPassword" : passwordEntered
+                }
+            ),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(errMsg) {
+                console.log(errMsg);
+            }
+        });
+}

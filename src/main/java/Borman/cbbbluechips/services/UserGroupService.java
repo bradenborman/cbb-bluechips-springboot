@@ -2,11 +2,12 @@ package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.daos.GroupDao;
 import Borman.cbbbluechips.models.usergroups.*;
+import Borman.cbbbluechips.utilities.UserGroupUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserGroupService {
@@ -35,6 +36,8 @@ public class UserGroupService {
     public void addUserIdToGroup(AddUserToGroupRequest request) {
         if (isUserMissingAssociation(request.getUserId(), request.getGroupId()) && isPasswordCorrect(request)) {
             groupDao.addUserIdToGroup(request.getUserId(), request.getGroupId());
+        }else {
+            logger.info("Unable to add user to group.");
         }
     }
 
@@ -56,26 +59,20 @@ public class UserGroupService {
         return isValid;
     }
 
-    //TODO
-    public GroupDetails getDetailedGroupsData() {
+    public GroupDetails getDetailedGroupsData(String userId) {
+
+        List<UserGroup> joinedGroups = groupDao.getGroupsUserBelongsTo(userId);
+        joinedGroups.forEach(userGroup -> userGroup.setUserJoinedGroup(true));
+
+        List<UserGroup> openGroups = groupDao.getOpenGroups(userId);
+        openGroups.forEach(userGroup -> userGroup.setUserJoinedGroup(false));
+
+        List<UserGroup> allGroups = UserGroupUtility.combineJoinedAndOpenGroupLists(joinedGroups, openGroups);
+
+        allGroups.forEach(group -> group.setNumberOfUsersInGroup(groupDao.fetchMemberPopulationForGroup(group.getGroupId())));
+
         GroupDetails details = new GroupDetails();
-
-        UserGroup groups = new UserGroup();
-        groups.setGroupId("0");
-        groups.setGroupName("Chukar");
-        groups.setNumberOfUsersInGroup(12);
-        groups.setPasswordRequiredToJoin(false);
-        groups.setGroupDescription("Shelter Insurance Dev Team");
-
-
-        UserGroup group2 = new UserGroup();
-        group2.setGroupId("1");
-        group2.setGroupName("North Callaway");
-        group2.setNumberOfUsersInGroup(15);
-        groups.setPasswordRequiredToJoin(true);
-        group2.setGroupDescription("Alumni of North Callaway HS");
-
-        details.setUserGroups(Arrays.asList(groups, group2));
+        details.setUserGroups(allGroups);
         return details;
     }
 

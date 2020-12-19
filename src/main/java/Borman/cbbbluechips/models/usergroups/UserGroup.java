@@ -1,51 +1,43 @@
 package Borman.cbbbluechips.models.usergroups;
 
-public class UserGroup {
+public class UserGroup extends Group {
 
-    private String groupId;
-    private String groupName;
-    private String groupDescription;
-    private int numberOfUsersInGroup;
-    private boolean passwordRequiredToJoin;
+   private String groupAssocId;
+   private String userId;
+   private String timeDateJoined;
 
-    public String getGroupId() {
-        return groupId;
+   private boolean userJoinedGroup;
+
+    public String getGroupAssocId() {
+        return groupAssocId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    public void setGroupAssocId(String groupAssocId) {
+        this.groupAssocId = groupAssocId;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getGroupDescription() {
-        return groupDescription;
+    public String getTimeDateJoined() {
+        return timeDateJoined;
     }
 
-    public void setGroupDescription(String groupDescription) {
-        this.groupDescription = groupDescription;
+    public void setTimeDateJoined(String timeDateJoined) {
+        this.timeDateJoined = timeDateJoined;
     }
 
-    public int getNumberOfUsersInGroup() {
-        return numberOfUsersInGroup;
+    public boolean isUserJoinedGroup() {
+        return userJoinedGroup;
     }
 
-    public void setNumberOfUsersInGroup(int numberOfUsersInGroup) {
-        this.numberOfUsersInGroup = numberOfUsersInGroup;
-    }
-
-    public boolean isPasswordRequiredToJoin() {
-        return passwordRequiredToJoin;
-    }
-
-    public void setPasswordRequiredToJoin(boolean passwordRequiredToJoin) {
-        this.passwordRequiredToJoin = passwordRequiredToJoin;
+    public void setUserJoinedGroup(boolean userJoinedGroup) {
+        this.userJoinedGroup = userJoinedGroup;
     }
 
 }

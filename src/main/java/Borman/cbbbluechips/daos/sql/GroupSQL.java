@@ -22,4 +22,20 @@ public class GroupSQL {
 
     public static final String doesUserBelongToGroupAlready = "SELECT Group_Assoc_ID FROM user_groups WHERE User_ID = :userId AND Group_ID = :groupId;";
 
+    public static final String getGroupsUserBelongsTo = "SELECT Group_Assoc_ID, User_ID, Time_Date_Joined, user_groups.Group_ID, Group_Name, " +
+            "Started_By_User, Group_Description, Group_Password, Group_PasswordRequired " +
+            "FROM user_groups " +
+            "JOIN groups ON groups.Group_ID = user_groups.Group_ID " +
+            "WHERE User_ID = :userId";
+
+    public static final String getGroupsUserDoesNotBelongsTo = "SELECT Group_Assoc_ID, User_ID, Time_Date_Joined, user_groups.Group_ID, Group_Name, " +
+            "Started_By_User, Group_Description, Group_Password, Group_PasswordRequired " +
+            "FROM user_groups " +
+            "JOIN groups ON groups.Group_ID = user_groups.Group_ID " +
+            "WHERE User_ID != :userId";
+
+
+    public static final String fetchMemberPopulationForGroup  = "SELECT count(Group_ID) as count FROM user_groups Where Group_ID = :groupId";
+
+
 }

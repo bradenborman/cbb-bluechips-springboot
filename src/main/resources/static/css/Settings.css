@@ -26,7 +26,13 @@ body {
 
 .fa-plus-square {
     margin-right: 1px;
+    cursor: pointer;
 }
+
+.fa-plus-square:hover {
+    font-weight: bold;
+}
+
 
 .numberInGroup {
     opacity: .3;

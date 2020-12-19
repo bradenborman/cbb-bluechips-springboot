@@ -34,7 +34,7 @@ public class HomeController extends ControllerHelper {
         String userid = getLoggedInUserId();
         model.addAttribute("textAlert", userService.doesUserSubscribeToTextAlerts(userid));
         model.addAttribute("phoneNumber", userService.getUserPhoneNumber(userid));
-        model.addAttribute("groups", userGroupService.getDetailedGroupsData());
+        model.addAttribute("groups", userGroupService.getDetailedGroupsData(userid));
         return "settings";
     }
 

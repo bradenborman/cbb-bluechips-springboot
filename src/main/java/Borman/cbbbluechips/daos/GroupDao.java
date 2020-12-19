@@ -1,9 +1,11 @@
 package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.GroupSQL;
+import Borman.cbbbluechips.mappers.UserGroupsRowMapper;
 import Borman.cbbbluechips.models.usergroups.AddUserToGroupRequest;
 import Borman.cbbbluechips.models.usergroups.GroupCreationRequest;
 import Borman.cbbbluechips.models.usergroups.RemoveUserFromGroupRequest;
+import Borman.cbbbluechips.models.usergroups.UserGroup;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -11,6 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -65,5 +68,25 @@ public class GroupDao {
         return validGroupId != null && validGroupId > 0;
     }
 
+
+    public List<UserGroup> getGroupsUserBelongsTo(String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("userId", userId);
+        return namedParameterJdbcTemplate.query(GroupSQL.getGroupsUserBelongsTo, params, new UserGroupsRowMapper());
+    }
+
+
+    public List<UserGroup> getOpenGroups(String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("userId", userId);
+        return namedParameterJdbcTemplate.query(GroupSQL.getGroupsUserDoesNotBelongsTo, params, new UserGroupsRowMapper());
+    }
+
+
+    public Integer fetchMemberPopulationForGroup(String groupId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("groupId", groupId);
+        return namedParameterJdbcTemplate.queryForObject(GroupSQL.fetchMemberPopulationForGroup, params, Integer.class);
+    }
 
 }
