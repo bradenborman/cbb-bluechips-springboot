@@ -35,7 +35,7 @@
     <div class="row leaders">
         <div class="col-lg-8">
             <div class="card">
-                <h2 id="groupNameTableHeader" th:text="${groupName}"></h2>
+                <h2 class="cardHeaderTxr" th:text="${groupName}"></h2>
                 <table class="table table-hover leadersTable">
                     <thead>
                     <tr>
@@ -56,7 +56,7 @@
         </div>
         <div id="myGroups" class="col-lg-4">
             <div style="padding: 20px;" class="card">
-                <h4>My Leaderboards:</h4>
+                <h4 id="otherLeaderboardHeader" class="cardHeaderTxr">My Leaderboards</h4>
                 <a href="/leaderboard">Global CBB Leaderboard</a>
                 <a th:each="group : ${usersGroups}" th:href="@{'/leaderboard/group/' + ${group.groupId}}" th:text="${group.groupName}"></a>
             </div>

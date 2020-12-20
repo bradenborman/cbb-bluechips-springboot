@@ -6,9 +6,13 @@ nav {
 	box-shadow: 2px 3px #1e5799;
 }
 
-h2#groupNameTableHeader {
+h2.cardHeaderTxr {
     margin: 10px;
     margin-bottom: 20px;
+}
+
+#otherLeaderboardHeader {
+    margin-bottom: 17px;
 }
 
 .leaders {
@@ -31,5 +35,20 @@ h2#groupNameTableHeader {
 	#myGroups {
     	margin-top: 20px;
     }
+
+    .cardHeaderTxr {
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    .leaders {
+    		margin-top: 15px;
+    	}
+    	.leadersTable {
+    		font-size: 1em;
+    	}
+    	#PreviousWinners {
+    		margin-top: 20px;
+    	}
 
 }

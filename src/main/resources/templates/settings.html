@@ -28,14 +28,17 @@
     <nav>
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a class="page_links" href="../portfolio">Back to Portfolio</a>
+                <a class="page_links" href="../portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/settings">Groups/Settings</a>
             </li>
         </ul>
     </nav>
     <div class="row app-body">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card settings">
-                <div class="card-header"><h2>Groups</h2></div>
+                <div class="card-header"><h2><i class='fas fa-user-friends'></i> Groups</h2></div>
                 <div class="card-body groups">
                     <div class="groupDetails" th:classappend="${group.userJoinedGroup} ? joined : open"
                          th:title="${group.groupDescription}" th:each="group : ${groups.userGroups}">
@@ -56,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card settings">
                 <div class="card-header"><h2>Settings</h2></div>
                 <div class="card-body">
