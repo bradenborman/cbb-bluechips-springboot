@@ -11,29 +11,46 @@ body {
     margin-top: 15px;
 }
 
+.groups {
+   text-align: center;
+}
+
 .groupDetails {
-    display: inline-block;
+    display: block;
+    width: 100%;
+    margin-bottom: 7px;
     font-size: 1.2em;
-    border: 1px solid black;
+    border: 1px solid #002ead;
     border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 50px;
-    line-height: 50px;
-    vertical-align: middle;
+    padding: 10px;
+    position: relative;
+    /* background-color: #27609A; */
+    background-color: #ebfffb;
+    /*  color: white; */
+
+}
+
+.groupDetails p {
+    margin-bottom: 0px;
+}
+
+.groupDetailsTxt {
+    margin: 3px;
 }
 
 .groupDetails.open {
-    background-color: #f9f4f1;
+
 }
 
 .groupDetails.joined {
-    background-color: #f1f8f9;
+
 }
 
 
 .fa-plus-square, .fa-minus-square {
-    margin-right: 1px;
+    position: absolute;
+    right: 7px;
+    top: 7px;
     cursor: pointer;
 }
 
@@ -41,6 +58,13 @@ body {
     font-weight: bold;
 }
 
+a.leaderboardLink {
+    text-align: center;
+    font-size: .7em;
+    margin: 1px;
+    text-decoration: none;
+    color: #27609A;
+}
 
 .numberInGroup {
     opacity: .3;
@@ -80,6 +104,12 @@ input[type=text]:focus {
 }
 
 @media (max-width: 575.98px) {
+
+	.groups {
+	    max-height: 90vh;
+	    overflow: scroll;
+	}
+
 	.rating {
 		text-align: center;
 		font-size: 1.4em;

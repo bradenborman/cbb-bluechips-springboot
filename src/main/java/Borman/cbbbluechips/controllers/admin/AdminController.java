@@ -67,6 +67,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    //TODO clean up -- dont use where cluse --> just delete whole table data
     @PostMapping("/deletePlayers")
     public String deletePlayers() {
         userService.getAllUsers().forEach(user -> {

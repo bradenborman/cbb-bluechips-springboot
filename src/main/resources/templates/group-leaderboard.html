@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${groupName} + ' Leaderboard'"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon"
+          href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link href='https://fonts.googleapis.com/css?family=Crafty Girls' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" type="text/css" href="../../css/Header.css">
+    <link rel="stylesheet" type="text/css" href="../../css/Group-Leaderboard.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+</head>
+<body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Bluechips</h1>
+</header>
+
+<div class="container app">
+    <nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/portfolio">My Portfolio</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="row leaders">
+        <div class="col-lg-8">
+            <div class="card">
+                <h2 id="groupNameTableHeader" th:text="'Group: ' + ${groupName}"></h2>
+                <table class="table table-hover leadersTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ranking</th>
+                        <th scope="col"><i class="fas fa-user-circle"></i> Name</th>
+                        <th scope="col">Networth</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>Test</td><td>Test</td><td>Test</td></tr>
+<!--                    <tr th:each="leader : ${leaderboard}">-->
+<!--                        <td th:text=" ${leader.ranking}"></td>-->
+<!--                        <td th:text=" ${leader.userName}" class="username" th:classappend="${leader.hasPayerDonated} ? payed : notPayed" th:title="${leader.emailAddress}"></td>-->
+<!--                        <td th:text="'$' + ${#numbers.formatDecimal(leader.value, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>-->
+<!--                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="myGroups" class="col-lg-4">
+            <div style="padding: 20px;" class="card">
+                <h4>My Groups:</h4>
+                <a th:href="@{'/leaderboard/group/' + ${group.groupId}}" th:text="${group.groupName}" th:each="group : ${usersGroups}" ></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

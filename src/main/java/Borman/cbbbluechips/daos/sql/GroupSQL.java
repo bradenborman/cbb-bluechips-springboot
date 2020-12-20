@@ -4,7 +4,7 @@ public class GroupSQL {
 
     public static final String getAllGroups = "SELECT * FROM groups;";
 
-    public static final String getAllGroupsByGroupId = "SELECT * FROM groups WHERE Group_ID = :groupId;";
+    public static final String getGroupDetailById = "SELECT * FROM groups WHERE Group_ID = :groupId;";
 
     public static final String createNewGroup = "INSERT INTO groups (Group_Name, Started_By_User, Group_Description) " +
             "VALUES (:groupName, :userId, :description);";

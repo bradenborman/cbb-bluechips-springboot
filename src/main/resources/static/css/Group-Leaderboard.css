@@ -1,0 +1,35 @@
+nav {
+	margin-bottom: 20px;
+}
+
+.card {
+	box-shadow: 2px 3px #1e5799;
+}
+
+h2#groupNameTableHeader {
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.leaders {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.leadersTable {
+	font-size: 1.5em;
+	text-align: center;
+	table-layout: auto;
+	width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+	nav {
+		margin-bottom: 0px;
+	}
+
+	#myGroups {
+    	margin-top: 20px;
+    }
+
+}

@@ -59,10 +59,16 @@ public class UserGroupService {
         return isValid;
     }
 
-    public GroupDetails getDetailedGroupsData(String userId) {
 
+    public List<UserGroup> fetchGroupsUserOwns(String userId) {
         List<UserGroup> joinedGroups = groupDao.getGroupsUserBelongsTo(userId);
         joinedGroups.forEach(userGroup -> userGroup.setUserJoinedGroup(true));
+        return joinedGroups;
+    }
+
+    public GroupDetails getDetailedGroupsData(String userId) {
+
+        List<UserGroup> joinedGroups = fetchGroupsUserOwns(userId);
 
         List<UserGroup> openGroups = groupDao.getOpenGroups(userId);
         openGroups.forEach(userGroup -> userGroup.setUserJoinedGroup(false));
@@ -78,6 +84,10 @@ public class UserGroupService {
 
     public void deleteUserFromAllGroups(String userId) {
         groupDao.deleteUserFromAllGroups(userId);
+    }
+
+    public Group getGroupDetailById(String groupId) {
+        return groupDao.getGroupDetailById(groupId);
     }
 
 }
