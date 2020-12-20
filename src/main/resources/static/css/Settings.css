@@ -6,6 +6,10 @@ body {
 	margin-top: 30px;
 }
 
+nav {
+	margin-bottom: 20px;
+}
+
 /* Groups and settings cards */
 .app-body {
     margin-top: 15px;
