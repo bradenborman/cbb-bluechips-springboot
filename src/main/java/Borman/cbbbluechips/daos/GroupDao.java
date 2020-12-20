@@ -4,6 +4,8 @@ import Borman.cbbbluechips.daos.sql.GroupSQL;
 import Borman.cbbbluechips.mappers.GroupRowMapper;
 import Borman.cbbbluechips.mappers.SimpleGroupRowMapper;
 import Borman.cbbbluechips.mappers.UserGroupsRowMapper;
+import Borman.cbbbluechips.mappers.UserRowMapper;
+import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.models.usergroups.*;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -107,6 +109,12 @@ public class GroupDao {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("groupId", groupId);
         return namedParameterJdbcTemplate.query(GroupSQL.getGroupDetailById, params, new GroupRowMapper()).get(0);
+    }
+
+    public List<User> getUsersInGroup(String groupId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("groupId", groupId);
+        return namedParameterJdbcTemplate.query(GroupSQL.getUsersInGroup, params, new UserRowMapper());
     }
 
 }

@@ -33,6 +33,10 @@ public class OwnsService {
         return (tradeRequest.getVolume() <= ownsDao.getAmountOfSharesOwned(tradeRequest)) && tradeRequest.getVolume() > 0;
     }
 
+    public double getFundsAvailable(String userId) {
+        return ownsDao.getFundsAvailable(userId);
+    }
+
     public double getFundsAvailable(TradeRequest tradeRequest) {
         return ownsDao.getFundsAvailable(tradeRequest.getUserId());
     }

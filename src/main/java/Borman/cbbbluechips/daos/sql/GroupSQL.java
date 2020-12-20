@@ -39,4 +39,12 @@ public class GroupSQL {
 
     public static final String deleteUserFromAllGroups = "DELETE from user_groups WHERE User_ID = :userId";
 
+
+    /*
+        User SQL
+     ****************************************************************************/
+
+    public static final String getUsersInGroup = "SELECT * FROM user " +
+            "WHERE User_ID in (SELECT User_ID FROM user_groups WHERE Group_ID = :groupId)";
+
 }

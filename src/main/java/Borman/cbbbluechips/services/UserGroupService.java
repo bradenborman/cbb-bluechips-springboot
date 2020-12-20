@@ -1,6 +1,7 @@
 package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.daos.GroupDao;
+import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.models.usergroups.*;
 import Borman.cbbbluechips.utilities.UserGroupUtility;
 import org.slf4j.Logger;
@@ -89,5 +90,10 @@ public class UserGroupService {
     public Group getGroupDetailById(String groupId) {
         return groupDao.getGroupDetailById(groupId);
     }
+
+    public List<User> getUsersInGroup(String groupId) {
+       return groupDao.getUsersInGroup(groupId);
+    }
+
 
 }

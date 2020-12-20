@@ -46,7 +46,6 @@ public class LeaderBoardController extends ControllerHelper {
     @RequestMapping("/group/{groupId}")
     public String portfolio(@PathVariable String groupId, Model model) {
         String userId = getLoggedInUserId();
-//        leaderboardService.fetchLeaderBoardDetailsForGroup();
 
         Group activeGroup = userGroupService.getGroupDetailById(groupId);
         List<UserGroup> groupsUserOwns = userGroupService.fetchGroupsUserOwns(userId);
@@ -55,7 +54,7 @@ public class LeaderBoardController extends ControllerHelper {
         List<UserGroup> filtered = groupsUserOwns.stream()
                 .filter(group -> !group.getGroupId().equals(groupId))
                 .collect(Collectors.toList());
-
+        model.addAttribute("leaderboard", leaderboardService.fetchLeaderBoardDetailsForGroup(groupId));
         model.addAttribute("groupName", activeGroup.getGroupName());
         model.addAttribute("usersGroups", filtered);
         return "group-leaderboard";
