@@ -102,7 +102,7 @@ public class GroupDao {
     public void deleteUserFromAllGroups(String userId) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("userId", userId);
-        namedParameterJdbcTemplate.queryForObject(GroupSQL.deleteUserFromAllGroups, params, Integer.class);
+        namedParameterJdbcTemplate.update(GroupSQL.deleteUserFromAllGroups, params);
     }
 
     public Group getGroupDetailById(String groupId) {
