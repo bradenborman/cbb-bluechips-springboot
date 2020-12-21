@@ -4,10 +4,7 @@ import Borman.cbbbluechips.models.usergroups.AddUserToGroupRequest;
 import Borman.cbbbluechips.models.usergroups.RemoveUserFromGroupRequest;
 import Borman.cbbbluechips.services.UserGroupService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/group")
@@ -17,6 +14,13 @@ public class GroupController extends ControllerHelper {
 
     public GroupController(UserGroupService userGroupService) {
         this.userGroupService = userGroupService;
+    }
+
+    //TODO test more! investigate with real users -- seems like it should work
+    @GetMapping("/invite/${groupId}")
+    public ResponseEntity<String> acceptInvite(@RequestParam String groupId) {
+        userGroupService.userAcceptedGroupInvite(groupId, getLoggedInUserId());
+        return ResponseEntity.ok("Success");
     }
 
     @PostMapping("/attempt-to-join")

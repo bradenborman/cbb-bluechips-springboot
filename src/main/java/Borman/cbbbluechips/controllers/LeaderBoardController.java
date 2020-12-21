@@ -7,6 +7,7 @@ import Borman.cbbbluechips.models.usergroups.UserGroup;
 import Borman.cbbbluechips.services.LeaderboardService;
 import Borman.cbbbluechips.services.UserGroupService;
 import Borman.cbbbluechips.services.UserService;
+import Borman.cbbbluechips.utilities.UserGroupUtility;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,6 +57,8 @@ public class LeaderBoardController extends ControllerHelper {
                 .collect(Collectors.toList());
         model.addAttribute("leaderboard", leaderboardService.fetchLeaderBoardDetailsForGroup(groupId));
         model.addAttribute("groupName", activeGroup.getGroupName());
+        model.addAttribute("groupDescription", activeGroup.getGroupDescription());
+        model.addAttribute("inviteLink", UserGroupUtility.buildInviteLink(activeGroup));
         model.addAttribute("usersGroups", filtered);
         return "group-leaderboard";
     }

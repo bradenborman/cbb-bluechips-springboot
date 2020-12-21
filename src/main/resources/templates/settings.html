@@ -46,8 +46,7 @@
                         <div class="groupDetails" th:classappend="${group.userJoinedGroup} ? joined : open"
                              th:title="${group.groupDescription}" th:each="group : ${groups.userGroups}">
                             <div class="groupOptions">
-                                <i th:if="${group.userId == group.startedByUser}"
-                                   class="fa fa-cog" aria-hidden="true"></i>
+<!--                                <i th:if="${group.userId == group.startedByUser}" class="fa fa-cog" aria-hidden="true"></i>-->
                                 <i th:if="${group.userJoinedGroup}"
                                    th:attr="onclick=|attemptToLeaveGroup('${group.groupAssocId}',${group.groupId})|"
                                    title="Leave Group" class="far fa-minus-square"></i>

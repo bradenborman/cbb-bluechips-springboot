@@ -96,5 +96,10 @@ public class UserGroupService {
        return groupDao.getUsersInGroup(groupId);
     }
 
+    //By-pass password
+    public void userAcceptedGroupInvite(String groupId, String loggedInUserId) {
+        if(isUserMissingAssociation(loggedInUserId, groupId))
+            groupDao.addUserIdToGroup(groupId, loggedInUserId);
+    }
 
 }

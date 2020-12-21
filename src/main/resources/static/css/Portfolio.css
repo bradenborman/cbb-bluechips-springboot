@@ -175,4 +175,9 @@ td:nth-child(1) {
           content: "";
     }
 
+    /*Just for space on smaller */
+    footer {
+        height: 20px;
+    }
+
 }

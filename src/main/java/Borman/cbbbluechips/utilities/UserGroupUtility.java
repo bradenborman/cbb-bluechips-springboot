@@ -1,5 +1,6 @@
 package Borman.cbbbluechips.utilities;
 
+import Borman.cbbbluechips.models.usergroups.Group;
 import Borman.cbbbluechips.models.usergroups.GroupCreationRequest;
 import Borman.cbbbluechips.models.usergroups.UserGroup;
 import com.google.common.collect.Lists;
@@ -24,6 +25,10 @@ public class UserGroupUtility {
 
     public static boolean isPasswordRequired(GroupCreationRequest request) {
         return !StringUtils.isEmpty(request.getGroupPassword());
+    }
+
+    public static String buildInviteLink(Group activeGroup) {
+        return "https://www.cbb-bluechips.com/group/invite/" + activeGroup.getGroupId();
     }
 
 }
