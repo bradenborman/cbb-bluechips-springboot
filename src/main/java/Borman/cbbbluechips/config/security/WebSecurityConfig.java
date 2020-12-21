@@ -57,6 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/trade/**",
                         "/trade-action/**",
                         "/data/**",
+                        "/group/**",
                         "/transactions",
                         "/transactions/**"
                 )

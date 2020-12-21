@@ -50,7 +50,7 @@ public class UserGroupService {
 
     private boolean isUserMissingAssociation(String userId, String groupId) {
         boolean doesUserExistAlready = groupDao.doesUserBelongToGroup(userId, groupId);
-        logger.info("Checking to see if user already exists with group: {}", doesUserExistAlready);
+        logger.info("Does user already exists with group: {}", doesUserExistAlready);
         return !doesUserExistAlready;
     }
 
@@ -98,8 +98,10 @@ public class UserGroupService {
 
     //By-pass password
     public void userAcceptedGroupInvite(String groupId, String loggedInUserId) {
-        if(isUserMissingAssociation(loggedInUserId, groupId))
-            groupDao.addUserIdToGroup(groupId, loggedInUserId);
+        if(isUserMissingAssociation(loggedInUserId, groupId)) {
+            logger.info("By passing password. Adding user to group: {}", groupId);
+            groupDao.addUserIdToGroup(loggedInUserId, groupId);
+        }
     }
 
 }

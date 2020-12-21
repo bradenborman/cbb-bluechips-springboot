@@ -16,13 +16,6 @@ public class GroupController extends ControllerHelper {
         this.userGroupService = userGroupService;
     }
 
-    //TODO test more! investigate with real users -- seems like it should work
-    @GetMapping("/invite/${groupId}")
-    public ResponseEntity<String> acceptInvite(@RequestParam String groupId) {
-        userGroupService.userAcceptedGroupInvite(groupId, getLoggedInUserId());
-        return ResponseEntity.ok("Success");
-    }
-
     @PostMapping("/attempt-to-join")
     public ResponseEntity<String> joinGroup(@RequestBody AddUserToGroupRequest addUserToGroupRequest) {
         addUserToGroupRequest.setUserId(getLoggedInUserId());
