@@ -57,6 +57,27 @@
  });
 
 
+var areGroupsHidden = false;
+
+function toggleCreateGroups() {
+
+    var addIconTxt = '<i class="fa fa-plus" aria-hidden="true"></i> Create new group'
+    var backToGroupsTxt = '<i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to groups'
+
+    if(!areGroupsHidden) {
+        $("#addGroupDiv").show()
+        $(".groups").hide(200)
+        $("#addGroupToggle").html(backToGroupsTxt);
+    }
+    else {
+        $("#addGroupDiv").hide()
+        $(".groups").show(200)
+        $("#addGroupToggle").html(addIconTxt);
+    }
+
+    areGroupsHidden = !areGroupsHidden;
+}
+
 function deleteUser() {
    $.post("/user/delete/", {},
        function(data,status){

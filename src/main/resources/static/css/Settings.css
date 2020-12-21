@@ -10,9 +10,27 @@ nav {
 	margin-bottom: 20px;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* Groups and settings cards */
 .app-body {
     margin-top: 15px;
+}
+
+.groupActions {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.groupActionBtn {
+    width: 200px;
+}
+
+#createGroup {
+    display: inline-block;
+    margin: 10px;
 }
 
 .groups {
@@ -64,6 +82,15 @@ nav {
     font-weight: bold;
 }
 
+#addGroupDiv {
+    padding: 15px;
+    display: none;
+}
+
+#addGroupDiv label {
+    font-weight: bold;
+}
+
 a.leaderboardLink {
     text-align: center;
     font-size: .7em;
@@ -89,7 +116,6 @@ a.leaderboardLink {
 }
 
 input[type=text] {
-	width: 200px;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
 	border-radius: 4px;
@@ -98,10 +124,6 @@ input[type=text] {
 	background-color: white;
 	-webkit-transition: width 0.4s ease-in-out;
 	transition: width 0.4s ease-in-out;
-}
-
-input[type=text]:focus {
-	width: 100%;
 }
 
 .card {
