@@ -4,6 +4,7 @@ public class GroupCreationRequest {
 
     private String userIdCreatingGroup;
     private String groupName;
+    private String groupPassword;
     private String groupDescription;
 
     public String getUserIdCreatingGroup() {
@@ -20,6 +21,14 @@ public class GroupCreationRequest {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public String getGroupPassword() {
+        return groupPassword;
+    }
+
+    public void setGroupPassword(String groupPassword) {
+        this.groupPassword = groupPassword;
     }
 
     public String getGroupDescription() {
