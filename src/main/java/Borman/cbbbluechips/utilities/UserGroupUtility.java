@@ -1,7 +1,9 @@
 package Borman.cbbbluechips.utilities;
 
+import Borman.cbbbluechips.models.usergroups.GroupCreationRequest;
 import Borman.cbbbluechips.models.usergroups.UserGroup;
 import com.google.common.collect.Lists;
+import org.springframework.util.StringUtils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -18,6 +20,10 @@ public class UserGroupUtility {
         );
 
        return Lists.reverse(x);
+    }
+
+    public static boolean isPasswordRequired(GroupCreationRequest request) {
+        return !StringUtils.isEmpty(request.getGroupPassword());
     }
 
 }

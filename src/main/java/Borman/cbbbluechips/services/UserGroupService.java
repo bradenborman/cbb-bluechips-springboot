@@ -22,7 +22,7 @@ public class UserGroupService {
     }
 
     // returns: Generated Primary Key for new Group
-    public void createNewGroup(GroupCreationRequest request) {
+    public String createNewGroup(GroupCreationRequest request) {
 
         //Create new Group in DB
         logger.info("Attempting to create new group: {}", request.getGroupName());
@@ -32,6 +32,7 @@ public class UserGroupService {
         logger.info("Group added successfully. Adding User to group: {}", request.getUserIdCreatingGroup());
         groupDao.addUserIdToGroup(request.getUserIdCreatingGroup(), createdGroupID);
 
+        return createdGroupID;
     }
 
     public void addUserIdToGroup(AddUserToGroupRequest request) {

@@ -2,12 +2,10 @@ package Borman.cbbbluechips.daos.sql;
 
 public class GroupSQL {
 
-    public static final String getAllGroups = "SELECT * FROM groups;";
-
     public static final String getGroupDetailById = "SELECT * FROM groups WHERE Group_ID = :groupId;";
 
-    public static final String createNewGroup = "INSERT INTO groups (Group_Name, Started_By_User, Group_Description) " +
-            "VALUES (:groupName, :userId, :description);";
+    public static final String createNewGroup = "INSERT INTO groups (Group_Name, Started_By_User, Group_Description, Group_Password, Group_PasswordRequired) " +
+            "VALUES (:groupName, :userId, :description, :password, :passwordRequired);";
 
     public static final String isPasswordCorrect = "SELECT Group_ID FROM groups " +
             "WHERE (group_ID = :groupId) AND (Group_PasswordRequired = 0 OR Group_Password = :password)";

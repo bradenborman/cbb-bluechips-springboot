@@ -7,6 +7,7 @@ import Borman.cbbbluechips.mappers.UserGroupsRowMapper;
 import Borman.cbbbluechips.mappers.UserRowMapper;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.models.usergroups.*;
+import Borman.cbbbluechips.utilities.UserGroupUtility;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -33,6 +34,8 @@ public class GroupDao {
         params.addValue("userId", request.getUserIdCreatingGroup());
         params.addValue("groupName", request.getGroupName());
         params.addValue("description", request.getGroupDescription());
+        params.addValue("password", request.getGroupPassword().trim());
+        params.addValue("passwordRequired", UserGroupUtility.isPasswordRequired(request));
         namedParameterJdbcTemplate.update(GroupSQL.createNewGroup, params, keyHolder);
         return Objects.requireNonNull(keyHolder.getKey()).toString();
     }
