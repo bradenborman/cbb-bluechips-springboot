@@ -49,12 +49,15 @@ nav {
     background-color: #f5fffb;
 }
 
-
-.fa-plus-square, .fa-minus-square {
+.groupOptions {
     position: absolute;
     right: 7px;
     top: 7px;
+}
+
+.fa-plus-square, .fa-minus-square, .fa-cog {
     cursor: pointer;
+    margin: 5px;
 }
 
 .fa-plus-square:hover, .fa-minus-square:hover {
