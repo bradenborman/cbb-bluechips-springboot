@@ -15,9 +15,9 @@ public class GroupViewController extends ControllerHelper {
         this.userGroupService = userGroupService;
     }
 
-    @GetMapping("/invite/{groupId}")
-    public String acceptInvite(@PathVariable String groupId) {
-        userGroupService.userAcceptedGroupInvite(groupId, getLoggedInUserId());
+    @GetMapping("/invite/{groupId}/{groupName}")
+    public String acceptInvite(@PathVariable String groupId, @PathVariable String groupName) {
+        userGroupService.userAcceptedGroupInvite(groupId, getLoggedInUserId(), groupName);
         return "redirect:/leaderboard/group/" + groupId;
     }
 

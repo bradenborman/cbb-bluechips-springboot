@@ -97,9 +97,9 @@ public class UserGroupService {
     }
 
     //By-pass password
-    public void userAcceptedGroupInvite(String groupId, String loggedInUserId) {
+    public void userAcceptedGroupInvite(String groupId, String loggedInUserId, String groupName) {
         if(isUserMissingAssociation(loggedInUserId, groupId)) {
-            logger.info("By passing password. Adding user to group: {}", groupId);
+            logger.info("By passing password. Adding user to group: {}", groupName);
             groupDao.addUserIdToGroup(loggedInUserId, groupId);
         }
     }
