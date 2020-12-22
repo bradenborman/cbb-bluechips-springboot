@@ -92,7 +92,7 @@
   color: white;
 }
 
-.main-nav > ul > li#pt-header {
+.main-nav > ul > li.pt-header {
   color: white;
   text-align: center;
   font-size: 1.3em;
