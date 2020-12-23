@@ -102,6 +102,10 @@ td:nth-child(1) {
 
 @media (max-width: 575.98px) {
 
+    .card h3, .card h2 {
+        margin-bottom: 0px;
+    }
+
 	tr td:first-child,
     tr th:first-child {
        padding: 3px;
