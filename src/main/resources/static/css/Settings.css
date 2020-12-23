@@ -60,11 +60,11 @@ button {
 }
 
 .groupDetails.open {
-    background-color: #fffafa;
+    background-color: #f2eff5;
 }
 
 .groupDetails.joined {
-    background-color: #f5fffb;
+    background-color: #eff5f0;
 }
 
 .groupOptions {

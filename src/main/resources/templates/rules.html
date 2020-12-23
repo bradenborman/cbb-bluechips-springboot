@@ -34,7 +34,8 @@
        location.protocol = "https:";
   }
 
-   </script>
+
+    </script>
 </head>
 <body>
 
@@ -95,7 +96,8 @@
                     <br/>
                     Every team in the <span style="color: #005BB3;">NCAA</span> College Basketball tournament is given a
                     value. The better the team, the more expensive they are to buy.
-                    As an investor, you can buy shares of any team at their current market value before their game tips off.
+                    As an investor, you can buy shares of any team at their current market value before their game tips
+                    off.
                     <br/>
                     <br/>
                     Team values will change based upon how well they perform against the official <span
@@ -183,8 +185,30 @@
                     When you’re ready to make an investment, or to cash-in on your stocks, click the "Trade" button on
                     your team’s card and
                     you will be taken to the Trading Screen. Here you’ll see basic team info as well as two sliders.
-                    Buying and selling is simple; slide the bar to increase and decrease the amount of each team’s stock that you want to buy or sell.
+                    Buying and selling is simple; slide the bar to increase and decrease the amount of each team’s stock
+                    that you want to buy or sell.
                 </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <h4>Groups</h4>
+                <h4 class="subheading">Keep tabs of all your buddies</h4>
+                <p class="text-muted">
+                    New this year is the ability to create and join a group. Although the payouts are determined from the Global CBB Leaderboard, making a group is a
+                    good way to keep track of people of common interest. Groups can, but dont have to be, password/code protected. When creating simpling leave blank for an open/public
+                    group, or enter a password that will be required to enter upon others joining. Once you create a group, you are automatically joined. Groups with 0 members in them will be
+                    automatically removed as well. There is no limit to how many groups you can join and you are free to leave at any time by clicking the minus button at the top right of a group.
+                    <br /><br />
+                    On the group leaderboard page, there is a link that can be copied and shared places like: Facebook messenger groups, email, texts group, etc. If a user is not logged in while clicking
+                    the link, they will be redirected to login. If they do not have an account, they will be redirected the same and user will switch to "New Signup" and will be promted to login again after.
+                    After user has logged in or user used a device that was already logged in at time of clicking the link, they will automatically join the group even if it is password protected.
+                </p>
+            </div>
+            <div class="col-md-7 how-img">
+                <img data-aos-delay="300" data-aos="fade-right" aos-duration="1000" class="img-fluid trading_exampleImg"
+                     th:src="@{${'/how_to_imgs/groups_inputs.PNG'}}"/>
             </div>
         </div>
 
@@ -267,6 +291,7 @@ function portfolio() {
 function calculator() {
     window.location.href = "/rules/calculator";
 }
+
 
 </script>
 </body>
