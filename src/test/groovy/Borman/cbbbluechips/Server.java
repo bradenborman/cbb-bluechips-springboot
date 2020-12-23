@@ -7,7 +7,7 @@ public class Server extends CbbBlueChipsApplication {
     public static void main(String[] args) {
         new Server().configure(new SpringApplicationBuilder())
                 .initializers()
-//                .profiles("devl")
+                .profiles("local")
                 .run(args);
     }
 
