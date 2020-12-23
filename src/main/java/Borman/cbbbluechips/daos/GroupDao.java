@@ -120,4 +120,10 @@ public class GroupDao {
         return namedParameterJdbcTemplate.query(GroupSQL.getUsersInGroup, params, new UserRowMapper());
     }
 
+    public void deleteGroup(String groupId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("groupId", groupId);
+        namedParameterJdbcTemplate.update(GroupSQL.deleteGroup, params);
+    }
+
 }

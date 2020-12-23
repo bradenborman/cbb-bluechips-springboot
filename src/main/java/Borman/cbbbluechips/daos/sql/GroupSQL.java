@@ -10,6 +10,7 @@ public class GroupSQL {
     public static final String isPasswordCorrect = "SELECT Group_ID FROM groups " +
             "WHERE (group_ID = :groupId) AND (Group_PasswordRequired = 0 OR Group_Password = :password)";
 
+    public static final String deleteGroup = "DELETE FROM groups WHERE Group_ID = :groupId";
 
     /*
         USER_GROUP_SQL

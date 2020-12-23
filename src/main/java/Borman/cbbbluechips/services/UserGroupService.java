@@ -46,6 +46,14 @@ public class UserGroupService {
     public void removeUserFromGroup(RemoveUserFromGroupRequest request) {
         logger.info("Removing user: {} From Group: {}", request.getUserId(), request.getGroupId());
         groupDao.removeUserFromGroup(request);
+
+        Integer remaining = groupDao.fetchMemberPopulationForGroup(request.getGroupId());
+
+        if(remaining != null && remaining == 0) {
+            logger.info("Last user left group. Deleting group: {}", request.getGroupId());
+            groupDao.deleteGroup(request.getGroupId());
+        }
+
     }
 
     private boolean isUserMissingAssociation(String userId, String groupId) {
