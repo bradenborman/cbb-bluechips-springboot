@@ -32,6 +32,22 @@
         </ul>
     </nav>
     <br />
+
+        <div class="createComment animated slow">
+            <div class="media-body">
+                <div class="form-group parentTextArea">
+                    <form action="/comments/submitNew" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <label for="comment">New Post:</label>
+                        <textarea name="comment" class="form-control" rows="3" id="comment"></textarea>
+                        <br/>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
     <div th:each="comment : ${comments}" class="Parent animated fast">
         <div class="media-body">
             <h4 style="display: inline"  th:text="${comment.author}"></h4>
@@ -61,7 +77,7 @@
                 <form action="/comments/submitReply" method="post">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <div class="form-group nestTextArea">
-                        <label for="comment">Reply:</label>
+                        <label>Reply:</label>
                         <textarea class="form-control" rows="2" name="reply"></textarea>
                     </div>
                     <input type="hidden" name="commentId" th:value="${comment.commentId}"/>
@@ -69,22 +85,6 @@
                 </form>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="createComment animated slow">
-        <div class="media-body">
-            <div class="form-group parentTextArea">
-                <form action="/comments/submitNew" method="post">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                    <label for="comment">Create New comment:</label>
-                    <textarea name="comment" class="form-control" rows="3" id="comment"></textarea>
-                    <br/>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
-
     </div>
 
     <div id="addsPlaceholder">
