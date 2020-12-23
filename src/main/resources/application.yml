@@ -33,8 +33,8 @@ spring:
 game-rules:
   starting-cash: 100000
   payoutMap:
-    1: $200 Cash
-    2: $100 Cash
+    1: $200 Cash Transfer
+    2: $100 Cash Transfer
     3: $20 Giftcard
     4: $20 Giftcard
     5: $20 Giftcard
@@ -48,6 +48,6 @@ game-rules:
 
 paypal:
   clientId: ${PAYPAL_CLIENTID}
-  donationAmount: 1
+  donationAmount: 10
 
 admins: bradenborman@hotmail.com, bradenborman00@gmail.com
