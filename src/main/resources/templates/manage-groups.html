@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Groups</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon"
+          href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <link href='https://fonts.googleapis.com/css?family=Crafty Girls' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" type="text/css" href="/css/Admin.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/Header.css"/>
+    <script src="../../js/Admin.js"></script>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155112023-1');
+
+
+
+
+
+    </script>
+
+</head>
+<body>
+<header class="header">
+    <div id="logo"></div>
+    <h1>College Basketball's Bluechips ADMIN</h1>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header"><h2>Manage Groups</h2></div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Group Name</th>
+                        <th scope="col">Group Password</th>
+                        <th scope="col">Pass Required?</th>
+                        <th scope="col">Group Id:</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="group : ${groups}">
+                        <td th:text=" ${group.groupName}"></td>
+                        <td th:text=" ${group.password}"></td>
+                        <td th:text=" ${group.passwordRequiredToJoin}"></td>
+                        <td th:text=" ${group.groupId}"></td>
+                        <td>
+                            <button
+                                    th:attr="onclick=|deleteGroup('${group.groupId}')|">
+                                Delete Group
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header"><h7>Delete Group Action</h7></div>
+                <div class="card-body">
+                    <p>On delete will remove everyone associated and then remove group</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer style=" margin-bottom: 100px; text-align: center; margin-top: 200px;">
+    <a href="/admin">Back to Admin Portal</a>
+</footer>
+</body>
+</html>

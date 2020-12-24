@@ -2,6 +2,7 @@ package Borman.cbbbluechips.controllers.admin;
 
 import Borman.cbbbluechips.services.GameSettingsService;
 import Borman.cbbbluechips.services.TeamService;
+import Borman.cbbbluechips.services.UserGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,12 +16,14 @@ public class ViewControllerAdmin {
 
     private Logger logger = LoggerFactory.getLogger(ViewControllerAdmin.class);
 
-    private TeamService teamService;
-    private GameSettingsService gameSettingsService;
+    TeamService teamService;
+    GameSettingsService gameSettingsService;
+    UserGroupService groupService;
 
-    public ViewControllerAdmin(TeamService teamService, GameSettingsService gameSettingsService) {
+    public ViewControllerAdmin(TeamService teamService, GameSettingsService gameSettingsService, UserGroupService groupService) {
         this.teamService = teamService;
         this.gameSettingsService = gameSettingsService;
+        this.groupService = groupService;
     }
 
     @RequestMapping("")
@@ -57,6 +60,13 @@ public class ViewControllerAdmin {
         model.addAttribute("teams", gameSettingsService.getTeamsPlayingTodayWithNoPointSpreadSet());
         return "set_pointspread";
     }
+
+    @RequestMapping("/manage-groups")
+    public String mangeUserGroups(Model model) {
+        model.addAttribute("groups", groupService.getAllGroups());
+        return "manage-groups";
+    }
+
 
     @RequestMapping("/test-paypal")
     public String test() {

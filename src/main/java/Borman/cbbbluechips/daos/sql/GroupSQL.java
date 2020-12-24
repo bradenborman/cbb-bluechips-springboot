@@ -2,6 +2,8 @@ package Borman.cbbbluechips.daos.sql;
 
 public class GroupSQL {
 
+    public static final String getAllGroups = "SELECT * FROM groups";
+
     public static final String getGroupDetailById = "SELECT * FROM groups WHERE Group_ID = :groupId;";
 
     public static final String createNewGroup = "INSERT INTO groups (Group_Name, Started_By_User, Group_Description, Group_Password, Group_PasswordRequired) " +
@@ -34,9 +36,14 @@ public class GroupSQL {
 
     public static final String fetchMemberPopulationForGroup  = "SELECT count(Group_ID) as count FROM user_groups Where Group_ID = :groupId";
 
-    public static final String removeUserFromGroup  = "DELETE from user_groups WHERE Group_Assoc_ID = :assocId AND Group_ID = :groupId AND User_ID = :userId";
+    public static final String removeUserFromGroup  = "DELETE from user_groups " +
+            "WHERE Group_Assoc_ID = :assocId AND Group_ID = :groupId AND User_ID = :userId";
 
-    public static final String deleteUserFromAllGroups = "DELETE from user_groups WHERE User_ID = :userId";
+    public static final String deleteUserFromAllGroups = "DELETE from user_groups " +
+            "WHERE User_ID = :userId";
+
+    public static final String deleteUsersFromGroup = "DELETE FROM user_groups " +
+            "WHERE Group_ID = :groupId";
 
 
     /*

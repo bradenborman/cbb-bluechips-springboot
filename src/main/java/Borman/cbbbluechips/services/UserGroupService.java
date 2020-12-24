@@ -7,6 +7,7 @@ import Borman.cbbbluechips.utilities.UserGroupUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -112,4 +113,15 @@ public class UserGroupService {
         }
     }
 
+    //All Groups for admin purposes
+    public Object getAllGroups() {
+        return groupDao.getAllGroups();
+    }
+
+
+    @Transactional
+    public void deleteGroup(String groupId) {
+        groupDao.deleteUsersFromGroup(groupId);
+        groupDao.deleteGroup(groupId);
+    }
 }

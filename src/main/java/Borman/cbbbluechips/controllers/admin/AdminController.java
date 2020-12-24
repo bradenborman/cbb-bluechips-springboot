@@ -1,8 +1,11 @@
 package Borman.cbbbluechips.controllers.admin;
 
+import Borman.cbbbluechips.models.usergroups.DeleteGroupRequest;
 import Borman.cbbbluechips.services.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -59,6 +62,12 @@ public class AdminController {
     public String updatePointSpread(@RequestParam(value = "teamName") String[] teamName, @RequestParam(value = "nextPointSpread") String[] nextPointSpread) {
         adminService.processUpdatePointSpreadRequest(Arrays.asList(teamName), Arrays.asList(nextPointSpread));
         return "redirect:/admin";
+    }
+
+    @PostMapping("/delete-group")
+    public ResponseEntity<String> deleteGroup(@RequestBody DeleteGroupRequest deleteGroupRequest) {
+        userGroupService.deleteGroup(deleteGroupRequest.getGroupId());
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/resetGame")

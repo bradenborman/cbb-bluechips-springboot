@@ -126,4 +126,13 @@ public class GroupDao {
         namedParameterJdbcTemplate.update(GroupSQL.deleteGroup, params);
     }
 
+    public List<Group> getAllGroups() {
+        return namedParameterJdbcTemplate.query(GroupSQL.getAllGroups, new GroupRowMapper());
+    }
+
+    public void deleteUsersFromGroup(String groupId) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("groupId", groupId);
+        namedParameterJdbcTemplate.update(GroupSQL.deleteUsersFromGroup, params);
+    }
 }
