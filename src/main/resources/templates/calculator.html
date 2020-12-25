@@ -149,6 +149,10 @@ if(!isNaN(team1) && !isNaN(team2) && !isNaN(pointspread))
 }
 
 function ReplaceNumberWithCommas(yourNumber) {
+
+    if(yourNumber < 0)
+        yourNumber = 0
+
     var n= yourNumber.toString().split(".");
     n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return n.join(".");
