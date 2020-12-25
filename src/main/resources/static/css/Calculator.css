@@ -96,4 +96,8 @@ input:invalid {
         margin-bottom: 20px;
     }
 
+    input {
+    	padding: 20px;
+    }
+
 }
