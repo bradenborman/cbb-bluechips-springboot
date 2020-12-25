@@ -39,13 +39,18 @@
 
 
      $('#textAlertCheck').change(function() {
-        $.post("/settings/updateTextAlert",
+        if(($("#phoneNumber")[0].checkValidity() && $("#phoneNumber").val().length > 1) || (!this.checked)) {
+                $.post("/settings/updateTextAlert",
                    {
                      textStatus: this.checked
                    },
                    function(data,status){
                      console.log("Data: " + data + "\nStatus: " + status);
                    });
+          } else {
+            $('#textAlertCheck').prop('checked', false);
+            alert("Please enter a valid phone number first.")
+          }
     });
 
         $("#DELETE").hide()
