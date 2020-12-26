@@ -2,6 +2,7 @@ package Borman.cbbbluechips.controllers;
 
 import Borman.cbbbluechips.services.UserGroupService;
 import Borman.cbbbluechips.services.UserService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,12 @@ public class HomeController extends ControllerHelper {
 
     UserService userService;
     UserGroupService userGroupService;
+    boolean usersAllowedToSignUp;
 
-    public HomeController(UserService userService, UserGroupService userGroupService) {
+    public HomeController(UserService userService, UserGroupService userGroupService,  @Qualifier("signUpAllowed") boolean usersAllowedToSignUp) {
         this.userService = userService;
         this.userGroupService = userGroupService;
+        this.usersAllowedToSignUp = usersAllowedToSignUp;
     }
 
     @RequestMapping("/")
@@ -26,7 +29,7 @@ public class HomeController extends ControllerHelper {
         if (!wasError.equals("false"))
             model.addAttribute("error", "Failed");
 
-        model.addAttribute("signUpAllowed", false);
+        model.addAttribute("signUpAllowed", usersAllowedToSignUp);
 
         return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()) ? "redirect:/portfolio" : "home";
     }
