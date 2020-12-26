@@ -61,5 +61,9 @@ public class CCBConfig {
         return Boolean.parseBoolean(System.getenv("Display_Ads"));
     }
 
+    @Bean("signUpAllowed")
+    public boolean getSignUpAllowed() {
+        return Boolean.parseBoolean(System.getenv("signUpAllowed"));
+    }
 
 }

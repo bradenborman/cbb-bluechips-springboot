@@ -26,6 +26,8 @@ public class HomeController extends ControllerHelper {
         if (!wasError.equals("false"))
             model.addAttribute("error", "Failed");
 
+        model.addAttribute("signUpAllowed", false);
+
         return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()) ? "redirect:/portfolio" : "home";
     }
 

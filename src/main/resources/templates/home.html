@@ -101,7 +101,7 @@
                     <form action="/user/create" method="post">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <h2 style="margin-bottom: 30px;">New Users</h2>
-                        <div class="row">
+                        <div th:if="${signUpAllowed}" class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" maxlength="30" name="fname" id="fname" class="form-control" required>
@@ -133,6 +133,11 @@
                             </div>
                             <div class="col-lg-4">
                                 <button type="submit" class="btn btn-primary btn-block form-control-lg">Submit</button>
+                            </div>
+                        </div>
+                        <div th:if="${!signUpAllowed}" class="row">
+                            <div class="col-lg-12">
+                                <p>Unfortunately, Sign Up is Closed.</p>
                             </div>
                         </div>
                     </form>

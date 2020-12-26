@@ -9,6 +9,7 @@ import Borman.cbbbluechips.services.UserGroupService;
 import Borman.cbbbluechips.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -29,19 +30,25 @@ public class UserController extends ControllerHelper {
     OwnsService ownsService;
     TransactionService transactionService;
     UserGroupService userGroupService;
+    boolean usersAllowedToSignUp;
 
-    public UserController(UserService userService, EmailService emailService, OwnsService ownsService, TransactionService transactionService, UserGroupService userGroupService) {
+    public UserController(UserService userService, EmailService emailService, OwnsService ownsService,
+                          TransactionService transactionService, UserGroupService userGroupService, @Qualifier("signUpAllowed") boolean signUpAllowed) {
         this.userService = userService;
         this.emailService = emailService;
         this.ownsService = ownsService;
         this.transactionService = transactionService;
         this.userGroupService = userGroupService;
+        this.usersAllowedToSignUp = signUpAllowed;
     }
 
     @PostMapping("/create")
     public synchronized String createUser(@RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname,
                              @RequestParam(value = "email_new") String email_new, @RequestParam(value = "password_new") String password_new) {
-        String reDirectMessage = userService.createNewUser(fname, lname, email_new, password_new);
+        String reDirectMessage = "home?signUpClosed=true";
+        if(usersAllowedToSignUp)
+            reDirectMessage = userService.createNewUser(fname, lname, email_new, password_new);
+
         return "redirect:/" + reDirectMessage;
     }
 
