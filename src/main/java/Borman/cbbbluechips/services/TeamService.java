@@ -1,6 +1,7 @@
 package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.daos.TeamDao;
+import Borman.cbbbluechips.email.EmailService;
 import Borman.cbbbluechips.models.MarketValue;
 import Borman.cbbbluechips.models.Team;
 import org.springframework.stereotype.Component;
@@ -16,15 +17,20 @@ public class TeamService {
 
     TeamDao teamDao;
     PriceHistoryService priceHistoryService;
+    EmailService emailService;
 
-    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService) {
+    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService, EmailService emailService) {
         this.teamDao = teamDao;
         this.priceHistoryService = priceHistoryService;
+        this.emailService = emailService;
     }
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.getAllTeamsWithSharesOutstandingDetail() : teamDao.getAllTeams();
         List<MarketValue> historicalData = priceHistoryService.fetchAllPriceHistory();
+
+//        if(TeamDataValidator.anyTeamsMissingPointSpread(allTeams))
+//            emailService.sendSetPointSpreadReminderEmail();
 
         if (onlyTeamsInTournament)
             allTeams.forEach(team -> applyTeamPriceHistory(team, historicalData));

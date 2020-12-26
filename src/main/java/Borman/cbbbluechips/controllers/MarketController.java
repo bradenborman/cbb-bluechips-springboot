@@ -34,7 +34,7 @@ public class MarketController {
 
     @GetMapping("")
     public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
-        List<Team> teamsToReturn = allTeams.toLowerCase().equals("true") ? teamService.getAllTeams(false) : teamService.getAllTeams(true);
+        List<Team> teamsToReturn =  teamService.getAllTeams(!allTeams.toLowerCase().equals("true"));
         ownsService.setTeamsUserOwns(teamsToReturn, getLoggedInUser().getID());
         model.addAttribute("teams", teamsToReturn);
         model.addAttribute("jumpMenu", JumpMenuList.buildQuickJumpList(teamsToReturn));

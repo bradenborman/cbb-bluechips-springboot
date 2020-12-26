@@ -104,4 +104,24 @@ public class EmailService {
                 .replace("${amount}", request.getPurchaseUnits().get(0).getAmount().getValue());
     }
 
+    public void sendSetPointSpreadReminderEmail() {
+
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            helper.setTo("bradenborman00@gmail.com");
+            helper.setSubject("Point Spread contains null Point Spread");
+            helper.setText("<p>Point spread needs set.</p>", true);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        try {
+            logger.info("Sending email to admin to set.");
+            javaMailSender.send(message);
+            logger.info("Mail sent");
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
+    }
+
 }
