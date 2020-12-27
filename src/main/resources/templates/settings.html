@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/css/Settings.css">
     <script src="/js/Settings.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Happy Monkey' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
           integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
@@ -49,10 +50,10 @@
 <!--                                <i th:if="${group.userId == group.startedByUser}" class="fa fa-cog" aria-hidden="true"></i>-->
                                 <i th:if="${group.userJoinedGroup}"
                                    th:attr="onclick=|attemptToLeaveGroup('${group.groupAssocId}',${group.groupId})|"
-                                   title="Leave Group" class="far fa-minus-square"></i>
+                                   title="Leave Group" class="fas fa-sign-out-alt"></i>
                                 <i th:if="${!group.userJoinedGroup}"
                                    th:attr="onclick=|attemptToJoinGroup('${group.groupId}',${group.passwordRequiredToJoin})|"
-                                   title="Join Group" class="far fa-plus-square"></i>
+                                   title="Join Group" class="fas fa-sign-in-alt"></i>
                             </div>
                             <p class="groupDetailsTxt">
                                 <span th:text="${group.groupName}"></span>

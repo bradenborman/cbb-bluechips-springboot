@@ -38,17 +38,17 @@ button {
 }
 
 .groupDetails {
+    font-family: 'Happy Monkey';
     display: block;
     width: 100%;
     margin-bottom: 7px;
     font-size: 1.2em;
-    border: 1px solid #002ead;
     border-radius: 5px;
+    border: 1px solid black;
     padding: 10px;
     position: relative;
-    /* background-color: #27609A; */
-    /*  color: white; */
-
+    box-shadow: 1px 2px black;
+    color: white;
 }
 
 .groupDetails p {
@@ -60,11 +60,12 @@ button {
 }
 
 .groupDetails.open {
-    background-color: #f2eff5;
+    color: black;
+    background: linear-gradient(to bottom, #fef7c8, #fdee8c);
 }
 
 .groupDetails.joined {
-    background-color: #eff5f0;
+    background: linear-gradient(to bottom, #1e5799, #326B9B);
 }
 
 .groupOptions {
@@ -73,12 +74,12 @@ button {
     top: 7px;
 }
 
-.fa-plus-square, .fa-minus-square, .fa-cog {
+.fa-sign-in-alt, .fa-sign-out-alt, .fa-cog {
     cursor: pointer;
     margin: 5px;
 }
 
-.fa-plus-square:hover, .fa-minus-square:hover {
+.fa-sign-in-alt:hover, .fa-sign-out-alt:hover {
     font-weight: bold;
 }
 
@@ -96,7 +97,7 @@ a.leaderboardLink {
     font-size: .7em;
     margin: 1px;
     text-decoration: none;
-    color: #27609A;
+    color: white;
 }
 
 .numberInGroup {
