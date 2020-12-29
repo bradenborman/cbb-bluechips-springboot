@@ -33,9 +33,10 @@ public class AdminController {
 
     @PostMapping("/update-price")
     public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice,
-                                    @RequestParam(value = "roundSelector") int roundId) {
+                                    @RequestParam(value = "roundSelector") int roundId,
+                                    @RequestParam(value = "teamId") int teamId) {
         adminService.updateMarketPrice(teamName, nextRoundPrice, roundId);
-        return "redirect:/admin/update/teams";
+        return "redirect:/admin/update/teams?teamId=" + teamId;
     }
 
     @PostMapping("/update-locked")
