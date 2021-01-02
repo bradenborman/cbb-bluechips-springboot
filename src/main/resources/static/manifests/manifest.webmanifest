@@ -2,11 +2,22 @@
   "name": "CBB Bluechips",
   "short_name": "Home",
   "description": "CBB Bluechips. The BEST Postseason College Basketball Investing game. ",
+  "theme_color" : "#326B9B",
   "icons": [
     {
       "src": "https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png",
       "type": "image/png",
       "sizes": "320x307"
+    },
+    {
+      "src": "https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png",
+      "type": "image/png",
+      "sizes": "192x192"
     }
   ],
   "start_url": "https://www.cbb-bluechips.com/",
