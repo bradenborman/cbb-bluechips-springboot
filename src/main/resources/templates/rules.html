@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="icon"
@@ -33,6 +33,9 @@
   {
        location.protocol = "https:";
   }
+  else if (location.hostname.includes("herokuapp")) {
+        window.location.replace("https://www.cbb-bluechips.com/");
+  }
 
 
     </script>
@@ -48,7 +51,7 @@
     <div class="how-section1">
         <div class="row">
             <div class="col-md-4 how-img">
-                <img class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}"/>
+                <img class="rounded-circle img-fluid bustedImg" th:src="@{${'/how_to_imgs/busted.jpg'}}" alt="Busted Bracket Img"/>
             </div>
             <div class="col-md-8">
                 <h4>Wave goodbye</h4>
@@ -119,13 +122,13 @@
                 </p>
             </div>
             <div class="col-md-6 how-img">
-                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid networth_viewImg"
+                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid networth_viewImg" alt="Networth"
                      th:src="@{${'/how_to_imgs/networth_view.png'}}"/>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 how-img">
-                <img loading="lazy" data-aos-delay="300" data-aos="fade-right" aos-duration="1000"
+                <img data-aos-delay="300" data-aos="fade-right" aos-duration="1000" alt="Investments"
                      class="img-fluid investments_exampleImg" th:src="@{${'/how_to_imgs/investments_example.png'}}"/>
             </div>
             <div class="col-md-6">
@@ -167,13 +170,13 @@
                 </ul>
             </div>
             <div class="col-md-6 how-img">
-                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid markets_exampleImg"
+                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid markets_exampleImg" alt="Market Example"
                      th:src="@{${'/how_to_imgs/MarketExample.png'}}"/>
             </div>
         </div>
         <div class="row">
             <div class="col-md-7 how-img">
-                <img data-aos-delay="300" data-aos="fade-right" aos-duration="1000" class="img-fluid trading_exampleImg"
+                <img data-aos-delay="300" data-aos="fade-right" aos-duration="1000" class="img-fluid trading_exampleImg" alt="Trading Example"
                      th:src="@{${'/how_to_imgs/Trading_Example.png'}}"/>
             </div>
             <div class="col-md-5">
@@ -205,7 +208,7 @@
                 </p>
             </div>
             <div class="col-md-7 how-img">
-                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid trading_exampleImg"
+                <img data-aos-delay="300" data-aos="fade-left" aos-duration="1000" class="img-fluid trading_exampleImg" alt="Groups Example"
                      th:src="@{${'/how_to_imgs/groups_inputs.PNG'}}"/>
             </div>
         </div>
@@ -260,16 +263,16 @@
             <div class="social__container">
                 <!-- social__item facebook -->
                 <div class="social__item">
-                    <a target="_blank" href="https://www.facebook.com/bradenborman" class="social__icon--facebook"><i
+                    <a target="_blank" href="https://www.facebook.com/bradenborman" rel="noopener" class="social__icon--facebook"><i
                             class="icon--facebook"></i></a>
                 </div>
                 <!-- social__item linkedin -->
                 <div class="social__item">
-                    <a target="_blank" href="https://www.linkedin.com/in/bradyborman/"
+                    <a target="_blank" href="https://www.linkedin.com/in/bradenborman/" rel="noopener"
                        class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
                 </div>
                 <div class="social__item">
-                    <a target="_blank" href="https://github.com/bradenborman/" class="social__icon--github"><i
+                    <a target="_blank" href="https://github.com/bradenborman/" rel="noopener" class="social__icon--github"><i
                             class="icon--github"></i></a>
                 </div>
             </div>
