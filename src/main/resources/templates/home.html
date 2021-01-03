@@ -285,7 +285,7 @@ function shouldShowPasswordRecovery(email) {
 <script>
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
-           .register('/js/installation-service-worker.js', { scope: '/' })
+           .register('/z-installation-service-worker.js', { scope: '/' })
            .then(function() { console.log("Service Worker Registered"); });
 }
 </script>
