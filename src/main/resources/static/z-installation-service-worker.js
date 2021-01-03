@@ -17,3 +17,12 @@
 //   })
 // );
 //});
+
+
+window.addEventListener('beforeinstallprompt', (event) => {
+      console.log("Trying to install");
+    });
+
+    window.addEventListener('appinstalled', (event) => {
+      console.log("Installed");
+    });
