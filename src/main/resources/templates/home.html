@@ -281,5 +281,14 @@ function shouldShowPasswordRecovery(email) {
 
 </script>
 
+<!--Service Worker for installation-->
+<script>
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/js/installation-service-worker.js')
+           .then(function() { console.log("Service Worker Registered"); });
+}
+</script>
+
 </body>
 </html>
