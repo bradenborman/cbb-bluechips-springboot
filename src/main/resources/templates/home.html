@@ -287,6 +287,17 @@ if('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('/z-installation-service-worker.js', { scope: '/' })
            .then(function() { console.log("Service Worker Registered"); });
+
+  window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      var button = document.querySelector('button');
+      button.removeAttribute('hidden');
+      button.addEventListener('click', () => {
+        event.prompt();
+        button.setAttribute('disabled', true);
+      });
+   });
+
 }
 </script>
 
