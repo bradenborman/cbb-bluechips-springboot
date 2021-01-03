@@ -288,15 +288,13 @@ if('serviceWorker' in navigator) {
            .register('/z-installation-service-worker.js', { scope: '/' })
            .then(function() { console.log("Service Worker Registered"); });
 
-  window.addEventListener('beforeinstallprompt', event => {
-      event.preventDefault();
-      var button = document.querySelector('button');
-      button.removeAttribute('hidden');
-      button.addEventListener('click', () => {
-        event.prompt();
-        button.setAttribute('disabled', true);
-      });
-   });
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('👍', 'beforeinstallprompt', event);
+      // Stash the event so it can be triggered later.
+      window.deferredPrompt = event;
+      // Remove the 'hidden' class from the install button container
+      divInstall.classList.toggle('hidden', false);
+    });
 
 }
 </script>
