@@ -17,3 +17,5 @@
 //   })
 // );
 //});
+
+self.addEventListener('fetch',() => console.log("Fetching data.."));
