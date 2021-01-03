@@ -285,16 +285,20 @@ function shouldShowPasswordRecovery(email) {
 <!--Service Worker for installation-->
 <script>
 if('serviceWorker' in navigator) {
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log("Trying to install");
+    });
+
+    window.addEventListener('appinstalled', (event) => {
+      console.log("Installed");
+    });
+
+
   navigator.serviceWorker
            .register('/z-installation-service-worker.js', { scope: '/' })
            .then(function() {
-                    window.addEventListener('beforeinstallprompt', (event) => {
-                      console.log("Trying to install");
-                    });
-
-                    window.addEventListener('appinstalled', (event) => {
-                      console.log("Installed");
-                    });
+                console.log("registered complete)
             });
 
 }
