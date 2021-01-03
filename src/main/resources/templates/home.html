@@ -19,6 +19,7 @@
           integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <link rel="icon"
           href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
+    <meta name="theme-color" content="#326B9B"/>
     <meta name="description"
           content="CBB Bluechips. The BEST Postseason College Basketball Investing game."/>
     <meta name="google" content="nositelinkssearchbox"/>
@@ -287,6 +288,15 @@ if('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('/z-installation-service-worker.js', { scope: '/' })
            .then(function() { console.log("Service Worker Registered"); });
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+      console.log("Trying to install");
+    });
+
+    window.addEventListener('appinstalled', (event) => {
+      console.log("Installed");
+    });
+
 }
 </script>
 
