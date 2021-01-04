@@ -231,7 +231,9 @@ footer {
 }
 
 #installBtn {
-    font-size: .8em;
+    font-size: .7em;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .my-hr {
