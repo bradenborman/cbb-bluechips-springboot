@@ -230,6 +230,11 @@ footer {
 	padding: 40px;
 }
 
+#installBtn {
+    text-align: center;
+    font-size: .9em;
+}
+
 .my-hr {
 	display: none;
 }
