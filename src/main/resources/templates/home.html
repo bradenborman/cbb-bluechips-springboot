@@ -191,6 +191,7 @@
 </div>
 <!-- /Modal -->
 <footer>
+    <button id="installBtn">Install</button>
     <center>For issues, please contact: <br/><b>Braden Borman</b> | (573) 826-1903</center>
 </footer>
 
@@ -287,14 +288,36 @@ function shouldShowPasswordRecovery(email) {
 <script>
 if('serviceWorker' in navigator) {
 
+let deferredPrompt;
+
     window.addEventListener('beforeinstallprompt', (event) => {
-      console.log("Trying to install");
+
+      //    Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+
+      //    Stash the event so it can be triggered later.
+            deferredPrompt = e;
+
     });
 
-    window.addEventListener('appinstalled', (event) => {
-      console.log("Installed");
+    $("#installBtn").click(function(){
+        // Show the install prompt
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              alert('User accepted the install prompt');
+            } else {
+              alert('User dismissed the install prompt');
+            }
+         });
+
     });
 
+    window.addEventListener('appinstalled', (evt) => {
+      // Log install to analytics
+      console.log('INSTALL: Success');
+    });
 
   navigator.serviceWorker
            .register('/z-installation-service-worker.js', { scope: '/' })
