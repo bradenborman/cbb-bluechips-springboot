@@ -284,6 +284,20 @@ function shouldShowPasswordRecovery(email) {
 
 </script>
 
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  let displayMode = 'browser tab';
+  if (navigator.standalone) {
+    displayMode = 'standalone-ios';
+  }
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    displayMode = 'standalone';
+  }
+  // Log launch display mode to analytics
+  console.log('DISPLAY_MODE_LAUNCH:', displayMode);
+});
+</script>
+
 <!--Service Worker for installation-->
 <script>
 if('serviceWorker' in navigator) {
@@ -301,6 +315,9 @@ let deferredPrompt;
     });
 
     $("#installBtn").click(function(){
+
+        alert("Button clicked")
+
         // Show the install prompt
         deferredPrompt.prompt();
 

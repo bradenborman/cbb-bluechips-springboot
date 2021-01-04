@@ -18,4 +18,4 @@
 // );
 //});
 
-self.addEventListener('fetch',() => console.log("Fetching data.."));
+self.addEventListener('fetch',() => {});
