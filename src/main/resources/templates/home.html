@@ -191,8 +191,10 @@
 </div>
 <!-- /Modal -->
 <footer>
-    <button id="installBtn" style="display: none;">Install Application</button>
-    <center>For issues, please contact: <br/><b>Braden Borman</b> | (573) 826-1903</center>
+    <center>
+        <button id="installBtn" style="display: none;">Install Application</button>
+        For issues, please contact: <br/><b>Braden Borman</b> | (573) 826-1903
+    </center>
 </footer>
 
 <script>
@@ -333,6 +335,7 @@ var deferredPrompt;
 
     window.addEventListener('appinstalled', (evt) => {
       // Log install to analytics
+      $('#installBtn').hide()
       console.log('INSTALL: Success');
     });
 
