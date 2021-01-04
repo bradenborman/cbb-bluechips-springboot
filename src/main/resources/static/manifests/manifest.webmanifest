@@ -29,5 +29,17 @@
   "start_url": "https://www.cbb-bluechips.com/",
   "background_color": "#3367D6",
   "display": "standalone",
-  "scope": "/"
+  "scope": "/",
+  "shortcuts" : [
+    {
+      "name": "How to Play",
+      "url": "/rules",
+      "description": "Learn how to play CBB Bluechips 2021"
+    },
+    {
+      "name": "Leaderboard",
+      "url": "/leaderboard",
+      "description": "View leaderboard of current top players"
+    }
+  ]
 }
