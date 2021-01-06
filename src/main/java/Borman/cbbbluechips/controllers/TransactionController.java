@@ -23,6 +23,8 @@ public class TransactionController extends ControllerHelper {
         this.analysisService = analysisService;
     }
 
+
+    //TODO SQL => also prevent duplicate tag being added
     @RequestMapping("")
     public String transactions(Model model, @RequestParam(required = false, name = "params") String params) {
         List<SearchTag> tags = SearchTagUtility.parseTags(params);
@@ -32,13 +34,6 @@ public class TransactionController extends ControllerHelper {
         }
         else
             model.addAttribute("transactions", transactionService.getLatest50Transactions());
-        return "transaction";
-    }
-
-    @Deprecated
-    @RequestMapping("/filtered")
-    public String filteredTransactions(@RequestParam(defaultValue = "") String teamName, @RequestParam(defaultValue = "") String userName, Model model) {
-        model.addAttribute("transactions", transactionService.getFilteredTransaction(teamName, userName));
         return "transaction";
     }
 

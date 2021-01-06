@@ -43,6 +43,11 @@ table tr {
     border: 1px solid black;
 }
 
+.tableHeaderTxt {
+    font-size: 1em;
+    font-family: 'Bitter';
+}
+
 .clickAwayTagBtn {
     color: red;
     margin-right: 7px;

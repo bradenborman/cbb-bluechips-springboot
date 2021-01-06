@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
           integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link rel="icon"
@@ -42,7 +43,7 @@
                             <span class="input-group-text"><b><i class="fa fa-tag" aria-hidden="true"></i> New Tag</b></span>
                         </div>
                         <input id="tagInput" type="text" class="form-control"
-                               placeholder="Type a name, person, or action..">
+                               placeholder="Type a name or team.">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button" id="addTagBtn" onclick="addSearchTag()">Add</button>
                         </div>
@@ -62,6 +63,7 @@
                 </div>
             </div>
             <div class="table-responsive card">
+                <h3 class="tableHeaderTxt" th:if="${#lists.isEmpty(searchTags)}">Last 50 Transactions</h3>
                 <table id="history" class="table">
                     <thead>
                     <tr class="thead-light">

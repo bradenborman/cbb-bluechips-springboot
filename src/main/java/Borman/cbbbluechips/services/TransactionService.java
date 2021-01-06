@@ -9,7 +9,6 @@ import Borman.cbbbluechips.models.SearchTag;
 import Borman.cbbbluechips.models.TradeRequest;
 import Borman.cbbbluechips.models.Transaction;
 import Borman.cbbbluechips.models.enums.TradeAction;
-import Borman.cbbbluechips.utilities.FilteredSearchUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -105,16 +104,10 @@ public class TransactionService {
         return transactionDao.getTransactionCountTotal();
     }
 
-    public List<Transaction> getFilteredTransaction(String teamName, String userName) {
-        String sql = FilteredSearchUtility.buildSQL(teamName, userName);
-        return transactionDao.getFilteredTransactions(sql);
-    }
-
     public List<Transaction> getFilteredTransaction(List<SearchTag> tags) {
         logger.info("Getting filtered transactions on: {}", tags.toString());
-        return getLatest50Transactions();
+        return transactionDao.getFilteredTransactions(tags);
     }
-
 
     public void deleteUser(String userId) {
         String fullName = userService.getUserFullName(userId);

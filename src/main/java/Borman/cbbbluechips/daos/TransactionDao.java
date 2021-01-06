@@ -2,8 +2,10 @@ package Borman.cbbbluechips.daos;
 
 import Borman.cbbbluechips.daos.sql.TransactionSQL;
 import Borman.cbbbluechips.mappers.TransactionRowMapper;
+import Borman.cbbbluechips.models.SearchTag;
 import Borman.cbbbluechips.models.TradeRequest;
 import Borman.cbbbluechips.models.Transaction;
+import Borman.cbbbluechips.utilities.FilteredSearchUtility;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -12,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class TransactionDao {
@@ -80,8 +83,10 @@ public class TransactionDao {
         return namedParameterJdbcTemplate.query(TransactionSQL.getAllTransactions, new TransactionRowMapper());
     }
 
-    public List<Transaction> getFilteredTransactions(String sql) {
-        return namedParameterJdbcTemplate.query(sql, new TransactionRowMapper());
+    public List<Transaction> getFilteredTransactions( List<SearchTag> tags) {
+        MapSqlParameterSource inQueryParams = new MapSqlParameterSource();
+        inQueryParams.addValue("tags", tags.stream().map(SearchTag::getSearchValue).collect(Collectors.toList()));
+        return namedParameterJdbcTemplate.query(FilteredSearchUtility.buildSQL(), inQueryParams, new TransactionRowMapper());
     }
 
     public void deleteUsersTransactions(String fullName) {
