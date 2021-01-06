@@ -1,11 +1,15 @@
 package Borman.cbbbluechips.controllers;
 
 import Borman.cbbbluechips.analysis.AnalysisService;
+import Borman.cbbbluechips.models.SearchTag;
 import Borman.cbbbluechips.services.TransactionService;
+import Borman.cbbbluechips.utilities.SearchTagUtility;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/transactions")
@@ -20,8 +24,14 @@ public class TransactionController extends ControllerHelper {
     }
 
     @RequestMapping("")
-    public String transactions(Model model) {
-        model.addAttribute("transactions", transactionService.getLatest50Transactions());
+    public String transactions(Model model, @RequestParam(required = false, name = "params") String params) {
+        List<SearchTag> tags = SearchTagUtility.parseTags(params);
+        if(tags != null && !tags.isEmpty()) {
+            model.addAttribute("searchTags", tags);
+            model.addAttribute("transactions", transactionService.getFilteredTransaction(tags));
+        }
+        else
+            model.addAttribute("transactions", transactionService.getLatest50Transactions());
         return "transaction";
     }
 

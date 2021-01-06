@@ -1,33 +1,49 @@
 $(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().trim().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
 
-
-    $(function(){
-        $("tbody").each(function(elem,index){
-          var arr = $.makeArray($("tr",this).detach());
-          arr.reverse();
-            $(this).append(arr);
-        });
-    });
-
-    setTimeout(function(){
-            $.get("/data/remainingTransactions", function(data, status){
-                $.each(data, function(key, value){
-                        appendNewRow(value.fullName, value.tradeAction, value.teamName, value.cashTraded, value.strTimeofTransaction);
-                });
-            });
-     }, 1000);
 
 });
 
+function addSearchTag() {
+    var tagValue = $('#tagInput').val().trim().toUpperCase()
+    if(tagValue == "" || tagValue == null)
+        return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if(!urlParams.has('params'))
+    {
+        window.location.replace("/transactions?params="+ tagValue)
+    }else {
+        window.location.replace("/transactions?" + urlParams + "<->" + tagValue)
+    }
+
+}
 
 function appendNewRow(name, action, team, amount, date) {
     $('#myTable tr:last').after('<tr><td>' + name + '</td><td>' + getTradeActionLabel(action) + '</td><td>' + team + '</td><td>$' + ReplaceNumberWithCommas(amount) + '</td><td>' + date + '</td></tr>');
+}
+
+function removeTag(paramsToDrop) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const includesMulitpleParams = urlParams.get('params').includes("<->")
+
+    if(includesMulitpleParams)
+    {
+        var newParams = window.location.search
+        .replace("<->" + paramsToDrop, "")
+        .replace("%3C-%3E" + paramsToDrop, "")
+        .replace(paramsToDrop, "")
+
+        window.location.replace("/transactions" + newParams.replace("params=<->", "params=").replace("params=%3C-%3E", "params="))
+    }
+    else
+    {
+            urlParams.forEach(function(value, key) {
+              if(value == paramsToDrop)
+                    urlParams.delete(key)
+            });
+            window.location.replace("/transactions?" + urlParams)
+    }
+
 }
 
 function getTradeActionLabel(action) {

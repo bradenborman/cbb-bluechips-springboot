@@ -5,6 +5,7 @@ import Borman.cbbbluechips.builders.TransactionBuilder;
 import Borman.cbbbluechips.daos.OwnsDao;
 import Borman.cbbbluechips.daos.TeamDao;
 import Borman.cbbbluechips.daos.TransactionDao;
+import Borman.cbbbluechips.models.SearchTag;
 import Borman.cbbbluechips.models.TradeRequest;
 import Borman.cbbbluechips.models.Transaction;
 import Borman.cbbbluechips.models.enums.TradeAction;
@@ -16,14 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
 
-    private Logger logger = LoggerFactory.getLogger(TransactionService.class);
+    Logger logger = LoggerFactory.getLogger(TransactionService.class);
 
     private TransactionDao transactionDao;
     private TeamDao teamDao;
@@ -110,6 +110,11 @@ public class TransactionService {
         return transactionDao.getFilteredTransactions(sql);
     }
 
+    public List<Transaction> getFilteredTransaction(List<SearchTag> tags) {
+        logger.info("Getting filtered transactions on: {}", tags.toString());
+        return getLatest50Transactions();
+    }
+
 
     public void deleteUser(String userId) {
         String fullName = userService.getUserFullName(userId);
@@ -122,7 +127,7 @@ public class TransactionService {
 
     public List<Transaction> getLatest50Transactions() {
         List<Transaction> transactions = transactionDao.getLatest50Transactions();
-        Collections.reverse(transactions);
+//        Collections.reverse(transactions);
         return transactions;
     }
 
@@ -133,4 +138,5 @@ public class TransactionService {
                 .skip(50)
                 .collect(Collectors.toList());
     }
+
 }
