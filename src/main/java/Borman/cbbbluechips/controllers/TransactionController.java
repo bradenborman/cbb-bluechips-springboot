@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/transactions")
@@ -26,7 +27,7 @@ public class TransactionController extends ControllerHelper {
 
     //TODO SQL => also prevent duplicate tag being added
     @RequestMapping("")
-    public String transactions(Model model, @RequestParam(required = false, name = "params") String params) {
+    public String transactions(Model model, @RequestParam Map<String, String> params) {
         List<SearchTag> tags = SearchTagUtility.parseTags(params);
         if(tags != null && !tags.isEmpty()) {
             model.addAttribute("searchTags", tags);

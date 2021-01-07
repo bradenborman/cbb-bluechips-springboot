@@ -54,7 +54,7 @@
                 <div class="row">
                     <div th:if="${searchTags != null}" class="col-md-12" id="searchTags">
                         <div th:each="tag : ${searchTags}" class="searchTag col-lg-2 col-md-4 col-sm-6">
-                            <i th:attr="onclick=|removeTag('${tag.searchValue}')|"
+                            <i th:attr="onclick=|removeTag('${tag.paramName}')|"
                                     class="fa fa-minus-circle clickAwayTagBtn" aria-hidden="true"></i>
                             <span th:text="${tag.searchValue}"></span>
                         </div>
