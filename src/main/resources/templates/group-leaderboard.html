@@ -13,9 +13,10 @@
     <link rel="icon"
           href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
     <link href='https://fonts.googleapis.com/css?family=Crafty Girls' rel='stylesheet'>
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://use.fontawesome.com/03bc5fcfbc.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/Header.css">
     <link rel="stylesheet" type="text/css" href="../../css/Group-Leaderboard.css">
+    <link rel="stylesheet" type="text/css" media="print" href="../../css/Group-Leaderboard-print.css" />
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"></script>
@@ -27,13 +28,13 @@
 </script>
 </head>
 <body>
-<header class="header">
+<header class="header non-printable">
     <div id="logo"></div>
     <h1>College Basketball's Bluechips</h1>
 </header>
 
 <div class="container app">
-    <nav>
+    <nav class="non-printable">
         <ul class="nav justify-content-end">
             <li class="nav-item">
                 <a class="nav-link" href="/portfolio">Portfolio</a>
@@ -44,14 +45,16 @@
         </ul>
     </nav>
     <div class="row leaders">
-        <div class="col-lg-8">
+        <div class="col-lg-8" id="leaderboard">
             <div class="card">
                 <h2 class="cardHeaderTxr" th:text="${groupName}"></h2>
+                <h1 class="print-title">"<span th:text="${groupName}"></span>" Leaderboard</h1> <!-- only shows on print -->
+                <i class="fa fa-print non-printable" aria-hidden="true"></i>
                 <table class="table table-hover leadersTable">
                     <thead>
                     <tr>
                         <th scope="col">Ranking</th>
-                        <th scope="col"><i class="fas fa-user-circle"></i> Name</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Networth</th>
                     </tr>
                     </thead>
@@ -65,10 +68,10 @@
                 </table>
             </div>
         </div>
-        <div id="myGroups" class="col-lg-4">
+        <div id="myGroups" class="col-lg-4 non-printable">
             <div style="padding: 20px;" class="card">
 <!--                <h6 id="groupDatails" class="cardHeaderTxr">Group Description</h6>-->
-                <p th:text="${groupDescription}"></p>
+                <p>Description: <span th:text="${groupDescription}"></span></p>
                 <h7>Share this link for easy invites</h7>
                 <p style="font-size: .5em;" th:text="${inviteLink}"></p>
             </div>
@@ -82,5 +85,32 @@
     </div>
 </div>
 
+<script>
+ $(document).ready(function(){
+<!-- var html = $("#leaderboard").html();-->
+<!--  printElem(html)-->
+
+    $(".fa-print").click(function(){
+      window.print(); // With Print Stylesheet
+    });
+
+});
+
+function printElem(elem) {
+    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('<link rel="stylesheet" type="text/css" href="../../css/Group-Leaderboard.css">');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write(elem);
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    mywindow.document.write('</body></html>');
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+    mywindow.print();
+    mywindow.close();
+    return true;
+}
+
+</script>
 </body>
 </html>

@@ -119,7 +119,7 @@ function attemptToJoinGroup(groupId, passwordReq) {
 }
 
 function attemptToLeaveGroup(groupAssocId, groupId) {
-
+    if(confirm("You are trying to leave a group. If you leave and attempt to rejoin, a password may be required!\nClick Okay to confirm.")) {
         //TODO finish
         $.ajax({
             type: "POST",
@@ -138,5 +138,5 @@ function attemptToLeaveGroup(groupAssocId, groupId) {
                 console.log(errMsg);
             }
         });
-
+    }
 }

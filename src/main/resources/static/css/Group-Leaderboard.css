@@ -3,6 +3,7 @@ nav {
 }
 
 .card {
+    position: relative;
 	box-shadow: 2px 3px #1e5799;
 }
 
@@ -26,6 +27,18 @@ h2.cardHeaderTxr {
 	table-layout: auto;
 	width: 100%;
 }
+
+.fa-print {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.print-title {
+    display: none;
+}
+
 
 @media screen and (max-width: 600px) {
 	nav {
