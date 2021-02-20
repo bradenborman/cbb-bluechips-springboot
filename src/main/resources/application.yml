@@ -33,16 +33,16 @@ spring:
 game-rules:
   starting-cash: 100000
   payoutMap:
-    1: $200 Cash Transfer
-    2: $100 Cash Transfer
-    3: $20 Giftcard
-    4: $20 Giftcard
-    5: $20 Giftcard
-    6: $20 Giftcard
-    7: $20 Giftcard
-    8: $20 Giftcard
-    9: $20 Giftcard
-    10: $20 Giftcard
+    1: $200 Value
+    2: $100 Value
+    3: $20 Value
+    4: $20 Value
+    5: $20 Value
+    6: $20 Value
+    7: $20 Value
+    8: $20 Value
+    9: $20 Value
+    10: $20 Value
   leaderboard:
     displayamount: 15
 

@@ -339,11 +339,12 @@ var deferredPrompt;
       console.log('INSTALL: Success');
     });
 
-  navigator.serviceWorker
-           .register('/z-installation-service-worker.js', { scope: '/' })
-           .then(function() {
-                console.log("registered complete")
-            });
+// Disable PWA for 2021
+<!--  navigator.serviceWorker-->
+<!--           .register('/z-installation-service-worker.js', { scope: '/' })-->
+<!--           .then(function() {-->
+<!--                console.log("registered complete")-->
+<!--            });-->
 
 }
 </script>
