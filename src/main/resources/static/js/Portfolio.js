@@ -2,6 +2,13 @@ $(document).ready(function(){
    var d = new Date();
 	var n = d.toLocaleTimeString();
 
+    var token = $('meta[name="_csrf"]').attr('content')
+    $.ajaxSetup({
+       headers:{ "X-CSRF-TOKEN" : token }
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
+
     var dateTimeEle = document.getElementById("dateTime");
     if(dateTimeEle != null) {
         dateTimeEle.innerHTML = d.toDateString() + " " + n
@@ -21,5 +28,17 @@ $(document).ready(function(){
         document.getElementById("logoutForm").submit();
     });
 
-
 });
+
+
+function sellAllAction() {
+
+    $("#sellAllTeamsBtn").hide();
+    $("#sellAllLoadingTxt").show();
+
+    $.post("/trade/sell-all", {},
+    function(data,status){
+        window.location.href = "/";
+    });
+
+}

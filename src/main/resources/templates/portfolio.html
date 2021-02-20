@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/Portfolio.css">
     <!--    <script src="js/Generic.js"></script>-->
     <script src="js/Portfolio.js"></script>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
     <link rel="icon"
           href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png">
 
@@ -158,6 +159,17 @@
                                 </button>
                             </td>
                         </tr>
+                        <tr th:if="${#arrays.length(user.teamsOwned) > 1}">
+                            <td colspan="5" style="text-align: right;" >
+                                <button data-toggle="tooltip" data-placement="bottom" title="Double click to sell!"
+                                        class="btn btn-xs btn-link" id="sellAllTeamsBtn"
+                                        ondblclick="sellAllAction()"
+                                >
+                                    Sell All Eligible
+                                </button>
+                                <span id="sellAllLoadingTxt" style="display: none; margin-right: 7px;">..Selling..</span>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     <div class="card-footer"><i><b>As of: </b><span id="dateTime"></span></i></div>
@@ -205,5 +217,6 @@
 <footer>
     <!--    for space on smaller screens -->
 </footer>
+
 </body>
 </html>

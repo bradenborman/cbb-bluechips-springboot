@@ -1,9 +1,11 @@
 package Borman.cbbbluechips.controllers;
 
+import Borman.cbbbluechips.models.Owns;
 import Borman.cbbbluechips.models.TradeRequest;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.models.enums.TradeAction;
 import Borman.cbbbluechips.services.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class TradeController {
@@ -55,6 +59,19 @@ public class TradeController {
         if (teamService.isTeamUnLocked(tradeRequest.getTeamId()))
             transactionService.buyStockInTeam(tradeRequest, fundsAvailable);
         return "redirect:../trade/" + teamId;
+    }
+
+    //note: Concerns include selling teams that are already sold in another tab or buying too much same way.. by selling/buying alt way
+    @PostMapping("/trade/sell-all")
+    public synchronized ResponseEntity<String> sellAllInUsersPortfolio() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Owns> owns = ownsService.getTeamsUserOwns(user.getID());
+        owns.forEach(team -> {
+            TradeRequest tradeRequest = new TradeRequest(team.getTeamId(), user.getID(), team.getAmountOwned(), TradeAction.SELL);
+            if (ownsService.validateOwnership(tradeRequest) && teamService.isTeamUnLocked(tradeRequest.getTeamId()))
+                transactionService.completeSell(tradeRequest);
+        });
+        return ResponseEntity.ok("OKAY");
     }
 
     private String getLoggedInUserId() {
