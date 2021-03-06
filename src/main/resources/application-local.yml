@@ -1,2 +1,7 @@
 security:
   require-ssl: false
+
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
