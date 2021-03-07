@@ -1,6 +1,6 @@
 package Borman.cbbbluechips.controllers;
 
-import Borman.cbbbluechips.config.Payouts;
+import Borman.cbbbluechips.config.GameRules;
 import Borman.cbbbluechips.config.PaypalConfig;
 import Borman.cbbbluechips.models.usergroups.Group;
 import Borman.cbbbluechips.models.usergroups.UserGroup;
@@ -27,14 +27,14 @@ public class LeaderBoardController extends ControllerHelper {
 
     UserService userService;
     LeaderboardService leaderboardService;
-    Payouts payouts;
+    GameRules gameRules;
     PaypalConfig paypalConfig;
     UserGroupService userGroupService;
 
-    public LeaderBoardController(UserService userService, LeaderboardService leaderboardService, Payouts payouts, PaypalConfig paypalConfig, UserGroupService userGroupService) {
+    public LeaderBoardController(UserService userService, LeaderboardService leaderboardService, GameRules gameRules, PaypalConfig paypalConfig, UserGroupService userGroupService) {
         this.userService = userService;
         this.leaderboardService = leaderboardService;
-        this.payouts = payouts;
+        this.gameRules = gameRules;
         this.paypalConfig = paypalConfig;
         this.userGroupService = userGroupService;
     }
@@ -44,7 +44,7 @@ public class LeaderBoardController extends ControllerHelper {
         model.addAttribute("hasPayerDonated", userService.hasUserDonated(getLoggedInUserId()));
         model.addAttribute("donationAmount", paypalConfig.getDonationAmount());
         model.addAttribute("leaderboard", leaderboardService.getLeaders());
-        model.addAttribute("payouts", payouts.getPayoutMap());
+        model.addAttribute("payouts", gameRules.getPayoutMap());
         model.addAttribute("url", paypalConfig.getPayPalUrl());
         return "leaderboard";
     }

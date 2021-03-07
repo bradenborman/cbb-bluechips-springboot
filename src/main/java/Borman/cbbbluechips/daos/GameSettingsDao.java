@@ -1,10 +1,13 @@
 package Borman.cbbbluechips.daos;
 
+import Borman.cbbbluechips.config.GameRules;
 import Borman.cbbbluechips.daos.sql.GameSettingsSQL;
 import Borman.cbbbluechips.mappers.TeamRowMapper;
 import Borman.cbbbluechips.models.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,6 +17,12 @@ public class GameSettingsDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    GameRules gameRules;
 
     public String getCurrentRound() {
         return jdbcTemplate.queryForObject(GameSettingsSQL.getCurrentRound, String.class);
@@ -41,8 +50,10 @@ public class GameSettingsDao {
     }
 
     public void resetAllTeamsBackToStartingPrice() {
-        String sql = "UPDATE teams SET `Current_Market_Price` =  5000 where Team_ID > 0";
-        jdbcTemplate.update(sql);
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("startingSharePrice", gameRules.getStartingPricePerShare());
+        String sql = "UPDATE teams SET `Current_Market_Price` =  :startingSharePrice where Team_ID > 0";
+        namedParameterJdbcTemplate.update(sql, params);
     }
 
     public void deleteAllFromOwnsTable() {

@@ -1,5 +1,6 @@
 package Borman.cbbbluechips.services;
 
+import Borman.cbbbluechips.config.GameRules;
 import Borman.cbbbluechips.daos.TeamDao;
 import Borman.cbbbluechips.email.EmailService;
 import Borman.cbbbluechips.models.MarketValue;
@@ -18,11 +19,13 @@ public class TeamService {
     TeamDao teamDao;
     PriceHistoryService priceHistoryService;
     EmailService emailService;
+    GameRules gameRules;
 
-    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService, EmailService emailService) {
+    public TeamService(TeamDao teamDao, PriceHistoryService priceHistoryService, EmailService emailService, GameRules gameRules) {
         this.teamDao = teamDao;
         this.priceHistoryService = priceHistoryService;
         this.emailService = emailService;
+        this.gameRules = gameRules;
     }
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
@@ -51,7 +54,7 @@ public class TeamService {
 
     private String fetchHistoryDetails(Team team, List<MarketValue> onlySelectedTeam) {
         LinkedHashMap<String, String> priceMap = new LinkedHashMap<>();
-        priceMap.put("64", "5000");
+        priceMap.put("64", String.valueOf(gameRules.getStartingPricePerShare()));
         List<String> rounds = Arrays.asList("32", "16", "8", "4", "2", "1");
         rounds.forEach(round -> {
            Optional<MarketValue> matchedValueForRound = onlySelectedTeam.stream()

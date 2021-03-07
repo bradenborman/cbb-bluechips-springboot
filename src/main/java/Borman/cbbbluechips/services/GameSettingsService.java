@@ -48,6 +48,7 @@ public class GameSettingsService {
         settingsDao.updateAllUsersCashBackToStartingCash(startingCash);
         settingsDao.resetLockedAndIsOutStatus();
         updateRound("64");
+        logger.info("~~ REQUEST TO RESET GAME COMPLETED ~~");
     }
 
 }
