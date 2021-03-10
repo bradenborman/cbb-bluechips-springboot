@@ -80,7 +80,7 @@
                         <th width="50%">Rank</th>
                         <th width="50%">Reward</th>
                     </tr>
-                    <tr th:each="instance : ${gameRules}">
+                    <tr th:each="instance : ${payouts}">
                         <td th:text="${instance.key}">keyvalue</td>
                         <td th:text="${instance.value}">num</td>
                     </tr>
