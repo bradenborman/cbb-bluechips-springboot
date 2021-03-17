@@ -34,7 +34,7 @@ public class UserGroupUtility {
                 "%s/group/invite/%s/%s",
                 Arrays.asList(envs).contains("local") ? BaseUrl.LOCAL.getUrl() : BaseUrl.DEPLOYED.getUrl(),
                 activeGroup.getGroupId(),
-                activeGroup.getGroupName()
+                activeGroup.getGroupName().replace(" ", "")
         );
     }
 
