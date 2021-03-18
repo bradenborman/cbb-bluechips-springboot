@@ -100,6 +100,19 @@ public class OwnsService {
         return leaders;
     }
 
+    public List<LeaderBoardUser> getLeadersAnalyticData() {
+        List<User> playersId = getUsersWithSetNetworth();
+        playersId.sort(Comparator.comparing(User::getCash).reversed());
+        List<LeaderBoardUser> leaders = new ArrayList<>();
+        int i = 1, playersIdSize = playersId.size();
+        while (i <= playersIdSize) {
+            User user = playersId.get(i - 1);
+            leaders.add(new LeaderBoardUser(user.getFirstName() + " " + user.getLastName(), i, user.getCash(), user.getEmail(), user.isHasPayedEntryFee()));
+            i++;
+        }
+        return leaders;
+    }
+
     //Sets Networth as CASH even though not all is cash
     private List<User> getUsersWithSetNetworth() {
         List<User> playersId = userDao.getUsers();
