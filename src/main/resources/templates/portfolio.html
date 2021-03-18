@@ -145,8 +145,10 @@
                         <tbody>
                         <tr th:each="team : ${user.teamsOwned}">
                             <td><img th:id="${team.teamId}" class="logo"
-                                     th:src="@{${'/img/' + team.teamName + '.png'}}"/><span th:text="${team.teamName}"
-                                                                                            class="hideSmall"></span>
+                                     th:src="@{${'/img/' + team.teamName + '.png'}}"/>
+                                <span class="hideSmall">
+                                    <span th:utext="${team.teamName} + ' <small>(' + ${team.nextPointSpread} + ')</span>'"></span>
+                                </span>
                             </td>
                             <td th:text="${team.amountOwned}"></td>
                             <td th:text="'$' + ${#numbers.formatDecimal(team.currentMarketPrice, 1, 'DEFAULT', 0, 'DEFAULT')}"></td>
