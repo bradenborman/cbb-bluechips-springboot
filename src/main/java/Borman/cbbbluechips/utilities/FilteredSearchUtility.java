@@ -3,7 +3,7 @@ package Borman.cbbbluechips.utilities;
 public class FilteredSearchUtility {
 
     public static String buildSQL() {
-        return  "SELECT * FROM transaction_history WHERE Team_Name in (:tags)";
+        return  "SELECT * FROM transaction_history WHERE Team_Name in (:tags) order by Transaction_ID desc";
 //        return  "SELECT * FROM transaction_history " +
 //                "WHERE User_Name in (:tags) " +
 //                "OR Team_Name in (:tags) " +
