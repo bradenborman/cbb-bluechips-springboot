@@ -144,8 +144,10 @@
                         </thead>
                         <tbody>
                         <tr th:each="team : ${user.teamsOwned}">
-                            <td><img th:id="${team.teamId}" class="logo"
+                            <td style="position: relative;">
+                                <img th:id="${team.teamId}" class="logo"
                                      th:src="@{${'/img/' + team.teamName + '.png'}}"/>
+                                <span th:text="'(' + ${team.nextPointSpread}  + ')'" class="showSmall smallPointSpread"></span>
                                 <span class="hideSmall">
                                     <span th:utext="${team.teamName} + ' <small>(' + ${team.nextPointSpread} + ')</span>'"></span>
                                 </span>

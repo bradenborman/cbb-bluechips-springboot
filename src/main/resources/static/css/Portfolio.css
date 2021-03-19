@@ -132,6 +132,14 @@ td:nth-child(1) {
 	.showSmall {
 		display: block;
 	}
+
+	.smallPointSpread {
+	    position: absolute;
+          top: 8px;
+          right: 0;
+          font-size: 12px;
+	}
+
 	.hideSmall {
 		display: none;
 	}
