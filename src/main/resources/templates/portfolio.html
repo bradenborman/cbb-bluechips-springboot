@@ -147,9 +147,10 @@
                             <td style="position: relative;">
                                 <img th:id="${team.teamId}" class="logo"
                                      th:src="@{${'/img/' + team.teamName + '.png'}}"/>
-                                <span th:text="'(' + ${team.nextPointSpread}  + ')'" class="showSmall smallPointSpread"></span>
+                                <span th:if="${team.nextPointSpread !=null}" th:text="'(' + ${team.nextPointSpread}  + ')'" class="showSmall smallPointSpread"></span>
                                 <span class="hideSmall">
-                                    <span th:utext="${team.teamName} + ' <small>(' + ${team.nextPointSpread} + ')</span>'"></span>
+                                    <span th:text="${team.teamName}"></span>
+                                    <small th:if="${team.nextPointSpread !=null}" th:text="' (' + ${team.nextPointSpread} + ')'"></small>
                                 </span>
                             </td>
                             <td th:text="${team.amountOwned}"></td>

@@ -135,9 +135,11 @@ td:nth-child(1) {
 
 	.smallPointSpread {
 	    position: absolute;
-          top: 8px;
-          right: 0;
-          font-size: 12px;
+        top: 0px;
+        right: -10px;
+        font-size: 12px;
+        background-color: white;
+        border: 1px solid lightgray;
 	}
 
 	.hideSmall {
