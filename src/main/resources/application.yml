@@ -41,7 +41,7 @@ game-rules:
     9: $20 Value
     10: $20 Value
   leaderboard:
-    displayamount: 15
+    displayamount: 25
 
 paypal:
   clientId: ${PAYPAL_CLIENTID}
