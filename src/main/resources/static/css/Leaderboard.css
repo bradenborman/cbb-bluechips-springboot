@@ -36,6 +36,10 @@
 	padding: 6px;
 }
 
+.leadersTable tr:nth-last-child(3) {
+    border-top: 3px dashed #1e5799;
+}
+
 #contextMenu {
 	position: absolute;
 	padding: 25px;

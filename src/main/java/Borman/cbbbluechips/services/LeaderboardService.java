@@ -24,7 +24,8 @@ public class LeaderboardService {
     }
 
     public List<LeaderBoardUser> getLeaders() {
-        List<LeaderBoardUser> leaders = ownsService.getLeaders()
+        List<LeaderBoardUser> allBoard = ownsService.getLeaders();
+        List<LeaderBoardUser> leaders = allBoard
                 .stream()
                 .limit(LEADERS_TO_DISPLAY_AMT)
                 .collect(Collectors.toList());
@@ -32,6 +33,12 @@ public class LeaderboardService {
         while (leaders.size() < LEADERS_TO_DISPLAY_AMT) {
             leaders.add(new LeaderBoardUser("", leaders.size() + 1, 0.00, "Empty user.", false));
         }
+
+        //ADD last 3 to board
+        allBoard.stream()
+                .skip(allBoard.size() - 3)
+                .forEach(leaders::add);
+
 
         return leaders;
 

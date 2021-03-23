@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     $(".overunder").each(function() {
-       if($(this).text() >= 1) {
+       if($(this).text() > 0) {
             $(this).parents("div").prop('title', '- UNDERDOG -');
             $(this).css("color", "green");
       }
@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     setTimeout(function(){ drawChart(15, 100) }, 1500);
 
-    var toInsert = $('.col-lg-6').eq(5);
+    var toInsert = $('.col-lg-6').eq(3);
     var div = $('#addsPlaceholder').html()
     $(div).insertAfter(toInsert);
 
