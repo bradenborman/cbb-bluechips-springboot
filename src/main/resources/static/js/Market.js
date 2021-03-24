@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     $(".overunder").each(function() {
-       if($(this).text() >= 1) {
+       if($(this).text() > 0) {
             $(this).parents("div").prop('title', '- UNDERDOG -');
             $(this).css("color", "green");
       }
