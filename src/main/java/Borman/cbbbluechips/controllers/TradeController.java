@@ -1,9 +1,12 @@
 package Borman.cbbbluechips.controllers;
 
+import Borman.cbbbluechips.builders.TeamExchangeDetailsResponseBuilder;
 import Borman.cbbbluechips.models.Owns;
+import Borman.cbbbluechips.models.Team;
 import Borman.cbbbluechips.models.TradeRequest;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.models.enums.TradeAction;
+import Borman.cbbbluechips.models.responses.TeamExchangeDetailsResponse;
 import Borman.cbbbluechips.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class TradeController {
+public class TradeController extends ControllerHelper {
 
     private TransactionService transactionService;
     private OwnsService ownsService;
@@ -74,9 +77,31 @@ public class TradeController {
         return ResponseEntity.ok("OKAY");
     }
 
-    private String getLoggedInUserId() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user.getID();
+
+
+
+
+    /*
+            Endpoints for react views
+     */
+
+    @RequestMapping("api/exchange-details/{team_Id}")
+    public ResponseEntity<TeamExchangeDetailsResponse> getTeamDataForTrading(@PathVariable("team_Id") String teamId) {
+
+        String userId = getLoggedInUserId();
+
+        User user = userService.getUserLoggedIn(userId);
+        Team team = teamService.getTeamById(teamId);
+
+        TeamExchangeDetailsResponse teamExchangeDetailsResponse = TeamExchangeDetailsResponseBuilder.aTeamExchangeDetailsResponse()
+                .populateWithUser(user)
+                .populatWithTeam(team)
+                .build();
+
+        tradeCentralService.fillExchangeDetails(teamExchangeDetailsResponse);
+
+        return ResponseEntity.ok(teamExchangeDetailsResponse);
     }
+
 
 }

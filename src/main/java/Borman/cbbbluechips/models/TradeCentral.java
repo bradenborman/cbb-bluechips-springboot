@@ -2,6 +2,7 @@ package Borman.cbbbluechips.models;
 
 import java.util.List;
 
+@Deprecated
 public class TradeCentral {
 
     private int maximumCanPurchase;
@@ -32,4 +33,5 @@ public class TradeCentral {
     public void setTopHolders(List<String> topHolders) {
         this.topHolders = topHolders;
     }
+
 }

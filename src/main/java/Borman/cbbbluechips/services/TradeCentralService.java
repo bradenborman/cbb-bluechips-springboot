@@ -1,13 +1,14 @@
 package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.builders.TradeCentralBuilder;
-import Borman.cbbbluechips.models.Owns;
 import Borman.cbbbluechips.models.TradeCentral;
 import Borman.cbbbluechips.models.User;
+import Borman.cbbbluechips.models.responses.TeamExchangeDetailsResponse;
+import Borman.cbbbluechips.utilities.ExchangeUtility;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TradeCentralService {
@@ -26,13 +27,19 @@ public class TradeCentralService {
                 .build();
     }
 
-    private List<String> buildTopHoldersList(String teamId) {
-        List<Owns> allOwns = ownsService.getTopShareHoldersForTeam(teamId);
-        List<String> topHolders = new ArrayList<>();
-        for (Owns owns : allOwns)
-            topHolders.add(owns.getFullName() + ": " + owns.getAmountOwned());
-        return topHolders;
+    public void fillExchangeDetails(TeamExchangeDetailsResponse response) {
+        int sharesOwned = ownsService.calculateAvailableCanSell(response.getUserId(), response.getTeamId());
+        response.setAmountSharesOwned(sharesOwned);
+
+        int amountCanPurchase = ExchangeUtility.calculateAvailableCanPurchase(response.getPurchasingPower(), response.getCurrentMarketPrice());
+        response.setMaximumCanPurchase(amountCanPurchase);
+
+        response.setTopHolders(buildTopHoldersList(response.getTeamId()));
     }
 
+    private List<String> buildTopHoldersList(String teamId) {
+        return ownsService.getTopShareHoldersForTeam(teamId).stream()
+                .map(owns -> owns.getFullName() + ": " + owns.getAmountOwned()).collect(Collectors.toList());
+    }
 
 }
