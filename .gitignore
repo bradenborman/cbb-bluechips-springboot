@@ -4,6 +4,8 @@ HELP.md
 !gradle/wrapper/gradle-wrapper.jar
 */build/
 
+*/node_modules
+
 readme.md
 
 ### STS ###

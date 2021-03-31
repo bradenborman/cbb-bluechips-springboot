@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     setTimeout(function(){ drawChart(15, 100) }, 1500);
 
-    var toInsert = $('.col-lg-6').eq(3);
+    var toInsert = $('.col-lg-6').eq(1);
     var div = $('#addsPlaceholder').html()
     $(div).insertAfter(toInsert);
 
