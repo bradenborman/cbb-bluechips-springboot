@@ -46,6 +46,7 @@ public class OwnsService {
         return ownsDao.getAmountOfSharesOwned(userId, teamId);
     }
 
+    @Deprecated
     int calculateAvailableCanPurchase(double cash, String teamId) {
         double currentMarketPrice = teamDao.getCurrentMarketPrice(teamId);
         return (int) Math.floor(cash / currentMarketPrice);
