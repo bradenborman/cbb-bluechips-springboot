@@ -9,6 +9,9 @@ export interface IMatchupProps {
 }
 
 export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
+  const matchupTxt =
+    props.matchup.team1.teamName + " VS " + props.matchup.team2.teamName;
+
   return (
     <Row className="match-up">
       <Col>

@@ -6,6 +6,7 @@ import {
 
 import { Navbar } from "../navbar/navbar";
 import { Market } from "../market/Market";
+import { Portfolio } from "../portfolio/portfolio";
 
 require("./cbbBluechips.scss");
 
@@ -16,7 +17,10 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     <ReactRouter>
       <div id="app-wrapper">
         <Navbar />
-        <ReactRoute path="/">
+        <ReactRoute path="/portfolio">
+          <Portfolio />
+        </ReactRoute>
+        <ReactRoute path="/market">
           <Market />
         </ReactRoute>
       </div>

@@ -1,5 +1,10 @@
 body {
   #market-wrapper {
+    nav {
+      text-align: right;
+      margin-bottom: 30px;
+    }
+
     .match-up {
       margin-bottom: 50px;
 
@@ -72,13 +77,6 @@ body {
                 color: red;
               }
             }
-
-            .price-chart {
-              min-width: 100px;
-              min-height: 200px;
-              margin-bottom: 8px;
-            }
-
             .trade-btn {
               text-align: right;
               margin-right: 20px;

@@ -1,6 +1,9 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { ITeam } from "../../../models/team";
+import classNames from "classnames";
+import Chart from "react-google-charts";
+import Loader from "react-loader-spinner";
 
 export interface ITeamCardProps {
   team: ITeam;
@@ -8,6 +11,7 @@ export interface ITeamCardProps {
 
 export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
   const formattedMarketPrice = props.team.marketPrice.toLocaleString();
+  const favoritedTxt = props.team.pointSpread > 0 ? "underdog" : "favorite";
   const tradeTxt = props.team.isLocked ? (
     <span>
       <i className="fa fa-lock" /> Locked
@@ -15,7 +19,33 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
   ) : (
     <Button variant="primary">Trade</Button>
   );
-  const pointSpradTxt = props.team.pointSpread;
+
+  const pointSpradTxt: JSX.Element = (
+    <span
+      className={classNames(
+        { underdog: props.team.pointSpread > 0 },
+        { favorite: props.team.pointSpread < 0 }
+      )}
+    >
+      {props.team.pointSpread}
+    </span>
+  );
+
+  const data: any = [["Round", "Price"]];
+
+  props.team.priceHistory?.forEach(priceHistory => {
+    const x = priceHistory.split(":");
+    data.push([x[0], Number.parseInt(x[1])]);
+  });
+
+  const graphOptions = {
+    curveType: "function",
+    legend: { position: "bottom" }
+  };
+
+  const loader = (
+    <Loader type="ThreeDots" color="#00BFFF" height={200} width={100} />
+  );
 
   return (
     <Card className="team-card">
@@ -32,9 +62,16 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
       </Card.Title>
       <Card.Body>
         <Card.Text className="point-spread-bar">
-          {"(" + pointSpradTxt + ") " + "vs " + props.team.teamplayingNextName}
+          ({pointSpradTxt}) <small>{favoritedTxt}</small>
         </Card.Text>
-        <Card.Text className="price-chart"></Card.Text>
+        <Chart
+          chartType="LineChart"
+          width="100%"
+          height="200px"
+          data={data}
+          loader={loader}
+          options={graphOptions}
+        />
         <Card.Text className="trade-btn">{tradeTxt}</Card.Text>
       </Card.Body>
       <Card.Footer>

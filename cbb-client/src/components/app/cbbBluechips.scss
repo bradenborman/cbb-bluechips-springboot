@@ -2,9 +2,14 @@
 
 @import "../navbar/navbar.scss";
 @import "../market/market.scss";
+@import "../portfolio/portfolio.scss";
 
 body,
 html {
   margin: 0px;
   background-color: #ededed !important;
+}
+
+html {
+  overflow-y: scroll;
 }

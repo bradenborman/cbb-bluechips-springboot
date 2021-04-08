@@ -5,7 +5,7 @@ export interface ITeam {
   marketPrice: number;
   sharesOutstanding: number;
   imgSrcName: string;
-  priceHistory?: number[];
+  priceHistory?: string[];
   isLocked: boolean;
   pointSpread: number;
   teamplayingNextName?: string;

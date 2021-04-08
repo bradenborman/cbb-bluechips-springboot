@@ -1,0 +1,46 @@
+#portfolio-wrapper {
+  .row,
+  .card {
+    margin-bottom: 10px;
+  }
+
+  .row.game-data {
+    .portfolio-header-title {
+      font-size: 1.4em;
+      font-weight: bold;
+
+      i.fa-folder {
+        color: #e7c9a9;
+      }
+
+      i.fa {
+        margin-right: 3px;
+      }
+    }
+
+    .portfolio-header-detail {
+      margin: 0px;
+      font-size: 1.3em;
+
+      span.detail-header {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .row {
+    .portfolio-investments {
+      .portfolio-header-title {
+        font-weight: bold;
+        i.fa-money-bill-alt {
+          color: green;
+        }
+      }
+    }
+
+    .card.portfolioLinks {
+      text-align: center;
+      font-size: 1.3em;
+    }
+  }
+}
