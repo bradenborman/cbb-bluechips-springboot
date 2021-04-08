@@ -1,0 +1,54 @@
+body {
+  #market-wrapper {
+    .card {
+      .card-header {
+        font-size: 1.3em;
+      }
+
+      .match-up-header {
+        i.fa-lock,
+        i.fa-unlock {
+          float: right;
+          color: rgb(83, 83, 83);
+          font-size: 1.3em;
+        }
+      }
+
+      .match-up-body {
+        text-align: center;
+
+        .lock-message {
+          margin-bottom: 10px;
+        }
+
+        .team-name:nth-child(odd) {
+          margin: 8px;
+          text-align: left;
+          font-size: 1.3em;
+
+          .team-icon {
+            height: 75px;
+            width: 75px;
+            margin: 0px 10px 0px 0px;
+          }
+        }
+
+        .price-chart {
+          min-width: 100px;
+          min-height: 200px;
+          margin-bottom: 8px;
+        }
+
+        .trade-btn {
+          text-align: right;
+          margin-right: 20px;
+        }
+
+        .shares-outstanding {
+          font-style: italic;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
