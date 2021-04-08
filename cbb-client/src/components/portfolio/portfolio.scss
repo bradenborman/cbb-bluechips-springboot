@@ -41,6 +41,11 @@
     .card.portfolioLinks {
       text-align: center;
       font-size: 1.3em;
+
+      a {
+        display: block;
+        margin-bottom: 10px;
+      }
     }
   }
 }

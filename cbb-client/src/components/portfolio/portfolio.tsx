@@ -63,6 +63,8 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             <Card className="portfolioLinks">
               <Card.Body>
                 <Link to={"/market"}>Market</Link>
+                <Link to={"/leaderboard"}>Leaderboard</Link>
+                <Link to={"/rules"}>Rules</Link>
               </Card.Body>
             </Card>
           </Col>

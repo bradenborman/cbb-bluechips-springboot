@@ -15,7 +15,7 @@ export const team1: ITeam = {
 };
 
 export const team2: ITeam = {
-  teamId: 1,
+  teamId: 2,
   teamName: "Kentucky",
   seed: 6,
   sharesOutstanding: 84,
@@ -35,7 +35,7 @@ export const matchup1: IMatchup = {
 
 export const matchup2: IMatchup = {
   team1: {
-    teamId: 1,
+    teamId: 3,
     teamName: "Alabama",
     seed: 1,
     sharesOutstanding: 64,
@@ -46,7 +46,7 @@ export const matchup2: IMatchup = {
     priceHistory: ["64:5000"]
   },
   team2: {
-    teamId: 1,
+    teamId: 4,
     teamName: "Michigan",
     seed: 10,
     sharesOutstanding: 79,

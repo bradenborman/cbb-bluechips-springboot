@@ -4,12 +4,14 @@ import { ITeam } from "../../../models/team";
 import classNames from "classnames";
 import Chart from "react-google-charts";
 import Loader from "react-loader-spinner";
+import { useHistory } from "react-router";
 
 export interface ITeamCardProps {
   team: ITeam;
 }
 
 export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
+  let history = useHistory();
   const formattedMarketPrice = props.team.marketPrice.toLocaleString();
   const favoritedTxt = props.team.pointSpread > 0 ? "underdog" : "favorite";
   const tradeTxt = props.team.isLocked ? (
@@ -17,7 +19,14 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
       <i className="fa fa-lock" /> Locked
     </span>
   ) : (
-    <Button variant="primary">Trade</Button>
+    <Button
+      onClick={e => {
+        handleTradeClick(e);
+      }}
+      variant="primary"
+    >
+      Trade
+    </Button>
   );
 
   const pointSpradTxt: JSX.Element = (
@@ -46,6 +55,10 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
   const loader = (
     <Loader type="ThreeDots" color="#00BFFF" height={200} width={100} />
   );
+
+  const handleTradeClick = (e: any) => {
+    history.push("/trade/" + props.team.teamId);
+  };
 
   return (
     <Card className="team-card">
