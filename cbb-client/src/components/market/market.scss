@@ -1,52 +1,98 @@
 body {
   #market-wrapper {
-    .card {
-      .card-header {
-        font-size: 1.3em;
-      }
+    .match-up {
+      margin-bottom: 50px;
 
-      .match-up-header {
-        i.fa-lock,
-        i.fa-unlock {
-          float: right;
-          color: rgb(83, 83, 83);
+      .card.match-up-card {
+        border: 1px solid black;
+        box-shadow: 2px 3px #1e5799;
+
+        .card-header {
           font-size: 1.3em;
         }
-      }
 
-      .match-up-body {
-        text-align: center;
-
-        .lock-message {
-          margin-bottom: 10px;
-        }
-
-        .team-name:nth-child(odd) {
-          margin: 8px;
-          text-align: left;
-          font-size: 1.3em;
-
-          .team-icon {
-            height: 75px;
-            width: 75px;
-            margin: 0px 10px 0px 0px;
+        .match-up-header {
+          i.fa-lock,
+          i.fa-unlock {
+            float: right;
+            font-size: 1.3em;
+          }
+          i.fa-unlock {
+            color: rgb(146, 144, 144);
+          }
+          i.fa-lock {
+            color: rgb(0, 0, 0);
           }
         }
 
-        .price-chart {
-          min-width: 100px;
-          min-height: 200px;
-          margin-bottom: 8px;
-        }
+        .match-up-body {
+          text-align: center;
 
-        .trade-btn {
-          text-align: right;
-          margin-right: 20px;
-        }
+          .lock-message {
+            margin-bottom: 10px;
+          }
 
-        .shares-outstanding {
-          font-style: italic;
-          text-align: left;
+          .team-card {
+            margin-bottom: 5px;
+
+            .team-name.card-title {
+              margin-bottom: 0px;
+              margin-left: 8px;
+              text-align: left;
+              font-size: 1.3em;
+
+              .team-icon {
+                height: 75px;
+                width: 75px;
+                margin: 0px 0px 0px 0px;
+              }
+
+              .current-market-price {
+                float: right;
+                margin: 20px;
+                font-weight: bold;
+              }
+            }
+
+            .card-body {
+              padding: 0px;
+            }
+            .point-spread-bar {
+              margin: 0px;
+              padding: 5px 0px;
+              background-color: rgb(243, 243, 243);
+              border-top: 1px solid rgb(219, 219, 219);
+              border-bottom: 1px solid rgb(219, 219, 219);
+
+              .underdog {
+                color: green;
+              }
+
+              .favorite {
+                color: red;
+              }
+            }
+
+            .price-chart {
+              min-width: 100px;
+              min-height: 200px;
+              margin-bottom: 8px;
+            }
+
+            .trade-btn {
+              text-align: right;
+              margin-right: 20px;
+              margin-bottom: 10px;
+            }
+
+            .seed-info {
+              float: left;
+            }
+            .shares-outstanding {
+              font-style: italic;
+              float: right;
+            }
+          }
         }
       }
     }
