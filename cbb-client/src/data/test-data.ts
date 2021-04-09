@@ -30,7 +30,7 @@ export const team2: ITeam = {
 export const matchup1: IMatchup = {
   team1,
   team2,
-  startTime: "2:30PM"
+  startTime: "2:30 PM"
 };
 
 export const matchup2: IMatchup = {
@@ -56,5 +56,5 @@ export const matchup2: IMatchup = {
     pointSpread: -5,
     priceHistory: ["64:5000"]
   },
-  startTime: "5:30PM"
+  startTime: "5:30 PM"
 };

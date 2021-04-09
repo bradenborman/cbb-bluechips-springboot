@@ -4,6 +4,15 @@
     margin-bottom: 10px;
   }
 
+  .card {
+    border: 1px solid black;
+    box-shadow: 2px 3px #1e5799;
+
+    &.card-details {
+      min-height: 230px;
+    }
+  }
+
   .row.game-data {
     .portfolio-header-title {
       font-size: 1.4em;
@@ -34,6 +43,24 @@
         font-weight: bold;
         i.fa-money-bill-alt {
           color: green;
+          margin-right: 8px;
+        }
+      }
+
+      th {
+        text-align: center;
+      }
+
+      #investment-records {
+        td {
+          line-height: 50px;
+          text-align: center;
+        }
+
+        .logo {
+          height: 50px;
+          width: 50px;
+          margin-right: 5px;
         }
       }
     }

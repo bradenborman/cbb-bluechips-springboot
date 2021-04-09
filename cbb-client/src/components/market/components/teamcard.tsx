@@ -23,7 +23,7 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
       onClick={e => {
         handleTradeClick(e);
       }}
-      variant="primary"
+      variant="outline-primary"
     >
       Trade
     </Button>
@@ -62,13 +62,13 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
 
   return (
     <Card className="team-card">
-      <Card.Title className="team-name">
+      <Card.Title className="team-main-details">
         <img
           className="team-icon"
           src={"/img/teams/" + props.team.imgSrcName}
           loading="lazy"
         />
-        {props.team.teamName}
+        <span className="team-name">{props.team.teamName}</span>
         <Card.Text className="current-market-price">
           ${formattedMarketPrice}
         </Card.Text>
@@ -85,7 +85,7 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
           loader={loader}
           options={graphOptions}
         />
-        <Card.Text className="trade-btn">{tradeTxt}</Card.Text>
+        <Card.Text className="trade-btn-wrapper">{tradeTxt}</Card.Text>
       </Card.Body>
       <Card.Footer>
         <Card.Text as={"span"} className="seed-info">

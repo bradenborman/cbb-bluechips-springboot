@@ -4,19 +4,22 @@ body {
       text-align: right;
       margin-bottom: 30px;
     }
-
     .match-up {
       margin-bottom: 50px;
 
       .card.match-up-card {
         border: 1px solid black;
         box-shadow: 2px 3px #1e5799;
+        background-color: #ededed;
 
         .card-header {
           font-size: 1.3em;
         }
 
         .match-up-header {
+          background: linear-gradient(to bottom, #1e5799, #326b9b);
+          color: white;
+          font-weight: bold;
           i.fa-lock,
           i.fa-unlock {
             float: right;
@@ -39,12 +42,18 @@ body {
 
           .team-card {
             margin-bottom: 5px;
+            border: 1px solid rgb(92, 92, 92);
+            background-color: #ffffff;
 
-            .team-name.card-title {
+            .team-main-details.card-title {
               margin-bottom: 0px;
               margin-left: 8px;
               text-align: left;
               font-size: 1.3em;
+
+              .team-name {
+                font-family: "Alfa Slab One", sans-serif;
+              }
 
               .team-icon {
                 height: 75px;
@@ -77,10 +86,12 @@ body {
                 color: red;
               }
             }
-            .trade-btn {
+            .trade-btn-wrapper {
               text-align: right;
-              margin-right: 20px;
-              margin-bottom: 10px;
+              margin: 20px 30px;
+              button {
+                min-width: 70px;
+              }
             }
 
             .seed-info {

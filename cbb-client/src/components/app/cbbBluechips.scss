@@ -14,3 +14,9 @@ html {
 html {
   overflow-y: scroll;
 }
+
+@media (max-width: 575.98px) {
+  .hideSmall {
+    display: none;
+  }
+}
