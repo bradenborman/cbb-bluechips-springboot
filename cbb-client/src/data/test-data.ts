@@ -10,7 +10,7 @@ export const team1: ITeam = {
   marketPrice: 5000,
   isLocked: true,
   pointSpread: 7.5,
-  priceHistory: ["64:5000", "32:4500"],
+  priceHistory: ["64:5000", "32:4500", "16:6400"],
   teamplayingNextName: "Kentucky"
 };
 

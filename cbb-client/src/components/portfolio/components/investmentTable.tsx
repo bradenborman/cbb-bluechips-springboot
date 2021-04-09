@@ -1,7 +1,10 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import { Investment } from "./investment";
 
-export interface IInvestmentTableProps {}
+export interface IInvestmentTableProps {
+  children: any;
+}
 export const InvestmentTable: React.FC<IInvestmentTableProps> = (
   props: IInvestmentTableProps
 ) => {
@@ -19,30 +22,7 @@ export const InvestmentTable: React.FC<IInvestmentTableProps> = (
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody id="investment-records">
-        <tr>
-          <td className="logoTd">
-            <img id="6052" className="logo" src="/img/teams/Baylor.png" />
-          </td>
-          <td>
-            <span className="hideSmall">
-              <span>Baylor</span>
-            </span>
-          </td>
-          <td>4</td>
-          <td>$9,500</td>
-          <td>$38,000</td>
-          <td className="hideSmall">
-            <button
-              id="6052btn"
-              type="button"
-              className="tradeBTN btn btn-primary"
-            >
-              Trade
-            </button>
-          </td>
-        </tr>
-      </tbody>
+      <tbody id="investment-records">{[props.children]}</tbody>
     </Table>
   );
 };

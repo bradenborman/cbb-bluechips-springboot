@@ -4,12 +4,37 @@ import { Link } from "react-router-dom";
 import { PortfolioDetail } from "./components/portfolioDetail";
 import { Page } from "../general/page";
 import { InvestmentTable } from "./components/investmentTable";
+import { Investment } from "./components/investment";
+import { portfilioTip1, portfilioTip2 } from "../../data/staticMessages";
 
 export interface IPortfolioProps {}
 
 export const Portfolio: React.FC<IPortfolioProps> = (
   props: IPortfolioProps
 ) => {
+  const investments = [<Investment />];
+
+  const investmentCardBody = (): JSX.Element => {
+    if (investments == null) {
+      return (
+        <Card.Body id="emptyPortfolioTips">
+          <Card.Text id="main">
+            Please visit the <Link to={"/market"}>Market</Link> to fill
+            portfolio.
+          </Card.Text>
+          <Card.Text className="secondary">
+            <b>
+              <u>Tip:</u>
+            </b>{" "}
+            {portfilioTip1}
+          </Card.Text>
+          <Card.Text className="secondary">{portfilioTip2}</Card.Text>
+        </Card.Body>
+      );
+    }
+    return <InvestmentTable>{investments}</InvestmentTable>;
+  };
+
   return (
     <Page pageId="portfolio-wrapper">
       <Row className="game-data">
@@ -56,19 +81,24 @@ export const Portfolio: React.FC<IPortfolioProps> = (
           <Card className="portfolio-investments">
             <Card.Header>
               <Card.Title className="portfolio-header-title">
-                <i className="fa fa-money-bill-alt"></i>My Investments <br />
-                ($42,600)
+                <i className="fa fa-money-bill-alt"></i>My Investments
+                <span id="investmentTotalAmt">($42,600)</span>
               </Card.Title>
             </Card.Header>
-            <InvestmentTable />
+            {investmentCardBody()}
           </Card>
         </Col>
         <Col xl={4}>
           <Card className="portfolioLinks">
             <Card.Body>
               <Link to={"/market"}>Market</Link>
+              <Link to={"/transactions"}>Transactions</Link>
               <Link to={"/leaderboard"}>Leaderboard</Link>
-              <Link to={"/rules"}>Rules</Link>
+              <Link to={"/groups"}>Groups</Link>
+              <Link to={"/rules"}>How to Play</Link>
+              <Link to={"/calculator"}>Calculator</Link>
+              <Link to={"/settings"}>Settings</Link>
+              <Link to={"/logout"}>Logout</Link>
             </Card.Body>
           </Card>
         </Col>
