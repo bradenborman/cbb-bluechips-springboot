@@ -3,11 +3,29 @@
     box-shadow: 2px 3px #1e5799;
   }
 
-  #leadersTable {
-    font-size: 1.5em;
-    text-align: center;
-    table-layout: auto;
-    width: 100%;
+  #leaderboardCard {
+    #leadersTable {
+      font-size: 1.5em;
+      text-align: center;
+      table-layout: auto;
+      width: 100%;
+      margin-bottom: 0px;
+
+      tfoot {
+        td,
+        tr,
+        div {
+          padding: 0px;
+        }
+
+        .leaderboard-pagination-wrapper {
+          padding: 20px 10px 10px 10px;
+          text-align: center;
+          display: inline-block;
+          margin: auto;
+        }
+      }
+    }
   }
 
   #previousWinnersCard {

@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Page } from "../general/page";
-import { Row, Col, Card, Table } from "react-bootstrap";
-import { leadboardUsersTestdata } from "../../data/test-data";
+import { Row, Col, Card } from "react-bootstrap";
 import { priorWinners } from "../../data/game-data";
+import { LeaderBoardTable } from "./components/leaderboardTable";
+import { leadboardUsersTestdata } from "../../data/test-data";
 
 export interface ILeaderboardProps {
   paypalDonationAmount: number;
@@ -12,21 +13,6 @@ export interface ILeaderboardProps {
 export const Leaderboard: React.FC<ILeaderboardProps> = (
   props: ILeaderboardProps
 ) => {
-  //TODO: setup paypal
-  //TODO: setup pagination
-  //TODO: display payouts
-  //TODO: Make neted components
-
-  const mappedLeaderboard = leadboardUsersTestdata.map((user, index) => {
-    return (
-      <tr key={index}>
-        <td>{user.ranking}</td>
-        <td>{user.name}</td>
-        <td>${user.networth.toLocaleString()}</td>
-      </tr>
-    );
-  });
-
   const pastWinners = priorWinners.map((user, index) => {
     return <li key={index}>{user}</li>;
   });
@@ -35,19 +21,8 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
     <Page pageId="leaderboard-wrapper">
       <Row>
         <Col lg={8}>
-          <Card>
-            <Table hover id="leadersTable">
-              <thead>
-                <tr>
-                  <th scope="col">Ranking</th>
-                  <th scope="col">
-                    <i className="fa fa-user-circle"></i> Name
-                  </th>
-                  <th scope="col">Networth</th>
-                </tr>
-              </thead>
-              <tbody>{mappedLeaderboard}</tbody>
-            </Table>
+          <Card id="leaderboardCard">
+            <LeaderBoardTable leaders={leadboardUsersTestdata} />
           </Card>
         </Col>
         <Col lg={4}>
