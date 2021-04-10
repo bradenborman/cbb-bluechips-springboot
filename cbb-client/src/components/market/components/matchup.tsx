@@ -10,7 +10,7 @@ export interface IMatchupProps {
 
 export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
   const matchupTxt =
-    props.matchup.team1.teamName + " VS " + props.matchup.team2.teamName;
+    props.matchup.team1.teamName + " vs " + props.matchup.team2.teamName;
 
   return (
     <Row className="match-up">
@@ -18,7 +18,10 @@ export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
         <Card className="match-up-card">
           <Card.Header className="match-up-header">
             <Card.Text>
-              <i className="fas fa-clock" /> {props.matchup.startTime}
+              {matchupTxt}
+              <span className="start-time">
+                <i className="fas fa-clock" /> {props.matchup.startTime}
+              </span>
               <i
                 className={classNames(
                   { "fa fa-unlock": !props.matchup.team1.isLocked },

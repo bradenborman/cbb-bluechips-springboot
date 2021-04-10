@@ -12,7 +12,7 @@ export interface IPortfolioProps {}
 export const Portfolio: React.FC<IPortfolioProps> = (
   props: IPortfolioProps
 ) => {
-  const investments = [<Investment />];
+  const investments = [<Investment />, <Investment />];
 
   const investmentCardBody = (): JSX.Element => {
     if (investments == null) {
@@ -47,9 +47,30 @@ export const Portfolio: React.FC<IPortfolioProps> = (
               </Card.Title>
             </Card.Header>
             <Card.Body>
-              <PortfolioDetail heading="Networth">$100,000</PortfolioDetail>
-              <PortfolioDetail heading="Capital">$100,000</PortfolioDetail>
-              <PortfolioDetail heading="Ranking">12</PortfolioDetail>
+              <Row noGutters={true}>
+                <Col>
+                  <PortfolioDetail heading="Networth">$100,000</PortfolioDetail>
+                  <PortfolioDetail heading="Capital">$100,000</PortfolioDetail>
+                  <PortfolioDetail heading="Ranking">12</PortfolioDetail>
+                  <PortfolioDetail heading="Leader Value">
+                    $150,200
+                  </PortfolioDetail>
+                </Col>
+                <Col>
+                  <PortfolioDetail heading="Total Money in play">
+                    $820,350
+                  </PortfolioDetail>
+                  <PortfolioDetail heading="Total Transactions">
+                    254
+                  </PortfolioDetail>
+                  <PortfolioDetail heading="Current Round">
+                    Round of 32
+                  </PortfolioDetail>
+                  <PortfolioDetail heading="Total Games left">
+                    34
+                  </PortfolioDetail>
+                </Col>
+              </Row>
             </Card.Body>
           </Card>
         </Col>
@@ -57,22 +78,10 @@ export const Portfolio: React.FC<IPortfolioProps> = (
           <Card className="card-details">
             <Card.Header>
               <Card.Title className="portfolio-header-title">
-                <i className="fa fa-tachometer-alt"></i>Gameflow:
+                <i className="fa fa-clock"></i>Upcoming Games
               </Card.Title>
             </Card.Header>
-            <Card.Body>
-              <PortfolioDetail heading="Leader Value">$150,200</PortfolioDetail>
-              <PortfolioDetail heading="Total Money in play">
-                $820,350
-              </PortfolioDetail>
-              <PortfolioDetail heading="Total Transactions">
-                254
-              </PortfolioDetail>
-              <PortfolioDetail heading="Current Round">
-                Round of 32
-              </PortfolioDetail>
-              <PortfolioDetail heading="Total Games left">34</PortfolioDetail>
-            </Card.Body>
+            <Card.Body></Card.Body>
           </Card>
         </Col>
       </Row>

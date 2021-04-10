@@ -80,7 +80,7 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
         <Chart
           chartType="LineChart"
           width="100%"
-          height="200px"
+          height="175px"
           data={data}
           loader={loader}
           options={graphOptions}

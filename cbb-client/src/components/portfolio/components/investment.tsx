@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { ITeam } from "../../../models/team";
 
 export interface IInvestmentProps {}
 
@@ -16,7 +15,13 @@ export const Investment: React.FC<IInvestmentProps> = (
   return (
     <tr>
       <td className="logoTd">
-        <img id="6052" className="logo" src="/img/teams/Baylor.png" />
+        <img
+          id="6052"
+          className="logo"
+          src="/img/teams/Baylor.png"
+          onClick={handleTradeClick}
+        />
+        <span className="pointSpread">4.5</span>
       </td>
       <td>
         <span className="hideSmall">
