@@ -11,6 +11,7 @@ import { Trade } from "../trade/trade";
 import { Calculator } from "../calculator/calculator";
 import { Transactions } from "../transactions/transactions";
 import { Rules } from "../gamerules/rules";
+import { Leaderboard } from "../leaderboard/leaderboard";
 
 require("./cbbBluechips.scss");
 
@@ -38,6 +39,9 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         </ReactRoute>
         <ReactRoute exact path="/rules">
           <Rules />
+        </ReactRoute>
+        <ReactRoute exact path="/leaderboard">
+          <Leaderboard paypalDonationAmount={10} />
         </ReactRoute>
       </div>
     </ReactRouter>

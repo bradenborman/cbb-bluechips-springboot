@@ -1,5 +1,6 @@
 import { ITeam } from "../models/team";
 import { IMatchup } from "../models/matchup";
+import { ILeaderBoardUser } from "../models/leaderboardUser";
 
 export const team1: ITeam = {
   teamId: 1,
@@ -58,3 +59,36 @@ export const matchup2: IMatchup = {
   },
   startTime: "5:30 PM"
 };
+
+export const leadboardUsersTestdata: ILeaderBoardUser[] = [
+  {
+    ranking: 1,
+    name: "M. Atkinson",
+    networth: 530800
+  },
+  {
+    ranking: 2,
+    name: "J. Hughes",
+    networth: 372950
+  },
+  {
+    ranking: 3,
+    name: "T. Borman",
+    networth: 297750
+  },
+  {
+    ranking: 4,
+    name: "B. Pezold",
+    networth: 290100
+  },
+  {
+    ranking: 5,
+    name: "K. Borman	",
+    networth: 223050
+  },
+  {
+    ranking: 6,
+    name: "R. Hawkins	",
+    networth: 220350
+  }
+];

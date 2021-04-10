@@ -1,0 +1,32 @@
+#leaderboard-wrapper {
+  .card {
+    box-shadow: 2px 3px #1e5799;
+  }
+
+  #leadersTable {
+    font-size: 1.5em;
+    text-align: center;
+    table-layout: auto;
+    width: 100%;
+  }
+
+  #previousWinnersCard {
+    i.fa-trophy {
+      color: gold;
+      margin-right: 5px;
+    }
+  }
+
+  #donationSection {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .leadersTable {
+    font-size: 1em;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+}
