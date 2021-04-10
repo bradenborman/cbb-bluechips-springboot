@@ -20,7 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
+    "@types/aos": "^3.0.3",
     "@types/react-bootstrap": "^0.32.25",
+    "aos": "^2.3.4",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.5",

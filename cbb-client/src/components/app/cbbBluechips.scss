@@ -5,6 +5,8 @@
 @import "../portfolio/portfolio.scss";
 @import "../trade/trade.scss";
 @import "../calculator/calculator.scss";
+@import "../gamerules/rules.scss";
+@import "./socialmediabtns.scss";
 
 body,
 html {
@@ -14,6 +16,15 @@ html {
 
 html {
   overflow-y: scroll;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.theme-font {
+  color: #1e5799;
+  font-weight: bold;
 }
 
 @media (max-width: 575.98px) {

@@ -10,6 +10,7 @@ import { Portfolio } from "../portfolio/portfolio";
 import { Trade } from "../trade/trade";
 import { Calculator } from "../calculator/calculator";
 import { Transactions } from "../transactions/transactions";
+import { Rules } from "../gamerules/rules";
 
 require("./cbbBluechips.scss");
 
@@ -34,6 +35,9 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         </ReactRoute>
         <ReactRoute exact path="/transactions">
           <Transactions />
+        </ReactRoute>
+        <ReactRoute exact path="/rules">
+          <Rules />
         </ReactRoute>
       </div>
     </ReactRouter>

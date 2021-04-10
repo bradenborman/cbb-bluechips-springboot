@@ -1,0 +1,102 @@
+.article-wrapper {
+  margin-top: -15%;
+  padding: 10%;
+
+  h4 {
+    font-weight: bold;
+    font-size: 2.8em;
+  }
+  .subheading {
+    font-size: 1.8em;
+  }
+  .row {
+    margin-top: 10%;
+  }
+  .how-img {
+    text-align: center;
+  }
+
+  #introHelp {
+    #bustedImg {
+      width: 66%;
+      -ms-transform: rotate(-16deg); /* IE 9 */
+      -webkit-transform: rotate(-16deg); /* Safari 3-8 */
+      transform: rotate(-16deg);
+      border: 4px solid #af9f81;
+      box-shadow: 3px 5px 8px #654326;
+    }
+
+    #action-button-wrapper {
+      text-align: center;
+      margin-top: 20px;
+
+      button {
+        margin: 10px;
+      }
+    }
+  }
+
+  #howToPlay {
+    #networth_viewImg {
+      width: 70%;
+    }
+  }
+
+  #portfolioHelp {
+    #investments_exampleImg {
+      width: 90%;
+    }
+  }
+
+  #marketHelp {
+    #markets_exampleImg {
+      width: 80%;
+    }
+  }
+
+  #tradeHelp {
+    #trading_exampleImg {
+      width: 80%;
+    }
+  }
+
+  #groupHelp {
+    #group_exampleImg {
+      width: 80%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .article-wrapper {
+    img {
+      width: 100%;
+    }
+
+    img:nth-child(odd) {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    img:nth-child(even) {
+      margin-top: 10px;
+      margin-bottom: 100px;
+    }
+
+    h4 {
+      margin-top: 15px;
+      font-size: 1.7em;
+    }
+
+    .subheading {
+      font-size: 1em;
+      margin-top: 0px;
+      margin-bottom: 20px;
+    }
+
+    .btn-group-lg > .btn,
+    .btn-lg {
+      margin-bottom: 20px;
+    }
+  }
+}

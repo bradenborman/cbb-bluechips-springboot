@@ -1,8 +1,21 @@
 #calculator {
   font-size: 1.3em;
 
+  label {
+    margin: 0px;
+  }
+
   input {
-    margin-left: 5px;
-    max-width: 50px;
+    margin: auto;
+    max-width: 80px;
+    display: block;
+  }
+
+  .inputGroup {
+    background-color: lightgray;
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    padding: 0px;
   }
 }

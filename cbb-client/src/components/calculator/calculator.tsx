@@ -13,11 +13,10 @@ export const Calculator: React.FC<ICalculatorProps> = (
         <Col xl={8}>
           <Card>
             <Card.Body>
-              <label>Team 1 score:</label>
-              <input />
-
-              <label>Team 2 score:</label>
-              <input />
+              <div className="inputGroup">
+                <label>Final score:</label>
+                <input />
+              </div>
             </Card.Body>
           </Card>
         </Col>
