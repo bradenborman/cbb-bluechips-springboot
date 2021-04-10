@@ -27,7 +27,7 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
   const mappedLeaderboardUser = (
     users: ILeaderBoardUser[]
   ): JSX.Element[] | JSX.Element => {
-    return leadboardUsersTestdata
+    var x = leadboardUsersTestdata
       .slice(paginationIndex - 1, paginationIndex + 9)
       .map((user, index) => {
         return (
@@ -38,6 +38,25 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
           </tr>
         );
       });
+
+    if (x.length < 10) {
+      while (x.length < 10) {
+        const y = (
+          <tr key={x.length + 1}>
+            <td></td>
+            <td>
+              <span className="vaccant">Vaccant</span>
+            </td>
+            <td></td>
+          </tr>
+        );
+        x = [...x, y];
+      }
+    }
+
+    console.log(x);
+
+    return x;
   };
 
   return (

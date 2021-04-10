@@ -1,0 +1,34 @@
+table tr {
+  background-color: white;
+}
+
+.table-responsive {
+  background-color: white;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .showSmall {
+    display: block;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 480px) {
+  td {
+    display: block;
+    text-align: center;
+    font-size: 1.4em;
+    border-left: 4px solid black;
+  }
+  tr {
+    border-bottom: 2px solid black;
+  }
+  th {
+    display: none;
+  }
+  .name {
+    font-weight: bold;
+  }
+}

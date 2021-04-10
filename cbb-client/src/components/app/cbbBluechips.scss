@@ -6,6 +6,7 @@
 @import "../trade/trade.scss";
 @import "../calculator/calculator.scss";
 @import "../leaderboard/leaderboard.scss";
+@import "../transactions/transactions.scss";
 @import "../gamerules/rules.scss";
 @import "./socialmediabtns.scss";
 
@@ -26,6 +27,10 @@ html {
 .theme-font {
   color: #1e5799;
   font-weight: bold;
+}
+
+.showSmall {
+  display: none;
 }
 
 @media (max-width: 575.98px) {

@@ -55,9 +55,6 @@ export const IntroHelp: React.FC<IIntroHelpProps> = (
         <div className="how-img">
           <img
             id="bustedImg"
-            data-aos-delay="500"
-            data-aos="fade-right"
-            aos-duration="1000"
             className="rounded-circle img-fluid"
             src="img/how_to_imgs/busted.jpg"
             alt="Busted Bracket Img"

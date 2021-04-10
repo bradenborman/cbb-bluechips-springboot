@@ -5,6 +5,7 @@ import { Row, Col, Card } from "react-bootstrap";
 import { priorWinners } from "../../data/game-data";
 import { LeaderBoardTable } from "./components/leaderboardTable";
 import { leadboardUsersTestdata } from "../../data/test-data";
+import { ILeaderBoardUser } from "../../models/leaderboardUser";
 
 export interface ILeaderboardProps {
   paypalDonationAmount: number;

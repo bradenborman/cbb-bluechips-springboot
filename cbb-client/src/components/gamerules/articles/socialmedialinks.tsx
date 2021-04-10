@@ -5,6 +5,8 @@ export interface ISocialMediaLinksProps {}
 export const SocialMediaLinks: React.FC<ISocialMediaLinksProps> = (
   props: ISocialMediaLinksProps
 ) => {
+  //TODO: breakdown into interface with classname, link value, text etc
+
   return (
     <Row className="text-center">
       <div className="social__container">
