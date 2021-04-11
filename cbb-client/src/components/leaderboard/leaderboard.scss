@@ -28,6 +28,11 @@
           display: inline-block;
           margin: auto;
         }
+        .pagination-option {
+          .page-link {
+            min-width: 50px;
+          }
+        }
       }
     }
   }
@@ -44,11 +49,28 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-  .leadersTable {
-    font-size: 1em;
-  }
-  .card {
-    margin-bottom: 20px;
+@media only screen and (max-width: 992px) {
+  #leaderboard-wrapper {
+    #leaderboardCard {
+      margin-bottom: 20px;
+
+      #leadersTable {
+        font-size: 0.9em;
+        tfoot {
+          .pagination-option {
+            .page-link {
+              font-size: 1.5em;
+            }
+          }
+        }
+      }
+      .card {
+        margin-bottom: 20px;
+      }
+    }
+
+    #donationSection {
+      margin-bottom: 100px;
+    }
   }
 }

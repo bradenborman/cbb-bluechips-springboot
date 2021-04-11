@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { leadboardUsersTestdata } from "../../../data/test-data";
 import { Table, Pagination } from "react-bootstrap";
 import { ILeaderBoardUser } from "../../../models/leaderboardUser";
+import { OverlayTrigger } from "react-bootstrap";
+import { Tooltip } from "react-bootstrap";
 
 export interface ILeaderBoardTableProps {
   leaders: ILeaderBoardUser[];
@@ -53,9 +55,6 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
         x = [...x, y];
       }
     }
-
-    console.log(x);
-
     return x;
   };
 
@@ -77,21 +76,25 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
             <div className="leaderboard-pagination-wrapper">
               <Pagination>
                 <Pagination.First
+                  className="pagination-option"
                   disabled={paginationIndex == 1}
                   onClick={e => setPaginationIndex(1)}
                 />
                 <Pagination.Prev
+                  className="pagination-option"
                   disabled={paginationIndex == 1}
                   onClick={e => applyIndexChangeNegitive()}
                 />
-                <Pagination.Item active>
+                <Pagination.Item className="pagination-option">
                   {Math.ceil(paginationIndex / 10)}
                 </Pagination.Item>
                 <Pagination.Next
+                  className="pagination-option"
                   disabled={!isNextPage()}
                   onClick={e => applyIndexChangePositive()}
                 />
                 <Pagination.Last
+                  className="pagination-option"
                   disabled={!isNextPage()}
                   onClick={e =>
                     setPaginationIndex(

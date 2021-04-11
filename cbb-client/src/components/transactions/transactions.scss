@@ -16,19 +16,21 @@ table tr {
 }
 
 @media (max-width: 480px) {
-  td {
-    display: block;
-    text-align: center;
-    font-size: 1.4em;
-    border-left: 4px solid black;
-  }
-  tr {
-    border-bottom: 2px solid black;
-  }
-  th {
-    display: none;
-  }
-  .name {
-    font-weight: bold;
+  #transactions {
+    td {
+      display: block;
+      text-align: center;
+      font-size: 1.4em;
+      border-left: 4px solid black;
+    }
+    tr {
+      border-bottom: 2px solid black;
+    }
+    th {
+      display: none;
+    }
+    .name {
+      font-weight: bold;
+    }
   }
 }

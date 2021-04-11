@@ -12,6 +12,9 @@ export interface IPortfolioProps {}
 export const Portfolio: React.FC<IPortfolioProps> = (
   props: IPortfolioProps
 ) => {
+  //TODO: cleanup first info card make sleeker
+  //TODO: display upcoming games in card
+
   const investments = [<Investment />, <Investment />];
 
   const investmentCardBody = (): JSX.Element => {
