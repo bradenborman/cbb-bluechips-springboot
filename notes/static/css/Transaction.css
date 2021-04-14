@@ -1,0 +1,85 @@
+body {
+  background-color: #f2f2f2;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+.app {
+  margin-top: 45px;
+}
+
+table tr {
+  background-color: white;
+}
+
+.table-responsive {
+  background-color: white;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.search {
+  margin-bottom: 20px;
+}
+
+.searchWrapper {
+  position: -webkit-sticky;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 99;
+}
+
+.searchTag {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.tableHeaderTxt {
+  font-size: 1em;
+  font-family: "Bitter";
+}
+
+.clickAwayTagBtn {
+  color: red;
+  margin-right: 7px;
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.showSmall {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .showSmall {
+    display: block;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 480px) {
+  td {
+    display: block;
+    text-align: center;
+    font-size: 1.4em;
+    border-left: 4px solid black;
+  }
+  tr {
+    border-bottom: 2px solid black;
+  }
+  th {
+    display: none;
+  }
+  .name {
+    font-weight: bold;
+  }
+}

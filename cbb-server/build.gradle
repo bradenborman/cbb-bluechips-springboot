@@ -1,0 +1,82 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
+    id 'java'
+    id 'groovy'
+    id 'war'
+}
+
+allprojects {
+    ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
+}
+
+test {
+    exclude '**/*integration/**'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'Borman'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    implementation 'org.springframework:spring-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation("commons-io:commons-io:2.6")
+
+    compile "cglib:cglib:2.2"
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2'
+    compile group: "com.twilio.sdk", name: "twilio", version: "7.38.0"
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
+
+    implementation 'org.codehaus.groovy:groovy-all:2.4.11'
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
+
+task copyClient(dependsOn: ":cbb-client:clientBuild") {
+    doLast {
+        copy {
+            from new File(project(":cbb-client").getProjectDir(), "build")
+            into "src/main/resources/static"
+        }
+        copy {
+            from new File(project(":cbb-client").getProjectDir(), "build/index.html")
+            into "src/main/resources/templates"
+        }
+    }
+}
+
+task finalizeBuild(type: Copy, dependsOn: build) {
+    from "${buildDir}/libs/server-${version}.war"
+    into "${buildDir}/libs"
+    rename "server-${version}.war", "cbb-bluechips.war"
+    delete "server-${version}.war"
+}
+
+bootWar.dependsOn(copyClient)
+clean.dependsOn(":cbb-client:clientClean")
+build.finalizedBy(finalizeBuild)
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/Admin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/Header.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alfa Slab One"
+      rel="stylesheet"
+    />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <title>Admin Directory</title>
+    <style></style>
+  </head>
+  <body>
+    <header class="header">
+      <div id="logo"></div>
+      <h1>College Basketball's Bluechips ADMIN</h1>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="row setting_id">
+            <h4>Game Settings</h4>
+          </div>
+          <div class="list-group">
+            <a
+              href="/admin/update/teams"
+              class="list-group-item list-group-item-action"
+              >Lock/Update Teams</a
+            >
+            <a
+              href="/admin/set/seeds"
+              class="list-group-item list-group-item-action"
+              >Set Seeds</a
+            >
+            <a
+              href="/admin/set/round"
+              class="list-group-item list-group-item-action"
+              >Change Round<span
+                th:text="${roundId}"
+                class="badge badge-primary badge-pill"
+              ></span
+            ></a>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row setting_id">
+            <h4>Team Settings</h4>
+          </div>
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action disabled"
+              >Edit Team</a
+            >
+            <a
+              href="/admin/set/pointspread"
+              class="list-group-item list-group-item-action"
+              >Set Point Spreads</a
+            >
+            <a href="#" class="list-group-item list-group-item-action disabled"
+              >Update API Data</a
+            >
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row setting_id">
+            <h4>User Settings</h4>
+          </div>
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action disabled"
+              >Edit User</a
+            >
+            <a href="#" class="list-group-item list-group-item-action disabled"
+              >Delete User</a
+            >
+            <a
+              href="/admin/manage-groups"
+              class="list-group-item list-group-item-action"
+              >Manage Groups</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p style="margin-top: 25px;">
+            <a href="https://www.oddsshark.com/ncaab/odds">Odds Link</a>
+          </p>
+          <button
+            style="margin-top: 60px; float: right;"
+            onclick="resetGame()"
+            type="button"
+            class="btn btn-danger"
+          >
+            Reset Game
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button
+            style="margin-top: 60px; float: right;"
+            onclick="deleteAllPlayers()"
+            type="button"
+            class="btn btn-danger"
+          >
+            Delete All Players
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" style="margin-top: 20px;">
+          <a href="/portfolio">Back to portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        var token = $('meta[name="_csrf"]').attr("content");
+
+        $.ajaxSetup({
+          headers: { "X-CSRF-TOKEN": token }
+        });
+      });
+
+      function resetGame() {
+        var wantsToPlayAgain = confirm("Are you sure you want to reset game?");
+
+        if (wantsToPlayAgain) {
+          wantsToPlayAgain = confirm(
+            "Last Warning... are you sure you want to reset game?"
+          );
+
+          if (wantsToPlayAgain) {
+            $.post("/admin/resetGame", {}, function(result) {
+              console.log("DONE");
+            });
+          }
+        }
+      }
+
+      function deleteAllPlayers() {
+        var deletePlayers = confirm(
+          "Are you sure you want to Delete All Players?"
+        );
+        if (deletePlayers) {
+          deletePlayers = confirm(
+            "Last Warning... are you sure you want to Delete All Players?"
+          );
+
+          if (deletePlayers) {
+            $.post("/admin/deletePlayers", {}, function(result) {
+              console.log("DONE");
+            });
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

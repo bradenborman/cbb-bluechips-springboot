@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pointspead Calculator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
+      integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alfa Slab One"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../css/Header.css" />
+    <link rel="stylesheet" type="text/css" href="../css/Calculator.css" />
+    <link
+      rel="icon"
+      href="https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-155112023-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-155112023-1");
+
+      if (
+        !location.hostname.includes("local") &&
+        location.protocol !== "https:"
+      ) {
+        location.protocol = "https:";
+      }
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <div id="logo"></div>
+      <h1>College Basketball's Bluechips</h1>
+    </header>
+    <div class="container">
+      <nav>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Return to Home</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="row">
+        <div class="col-md-12">
+          <p id="pointSpreadCalHeader">
+            Please use this Point-spread calculator for testing
+          </p>
+          <div id="pointSpreadCal">
+            <div class="row">
+              <div class="col-sm-6">
+                Team 1's final score:<br />
+                <input
+                  maxlength="3"
+                  size="3"
+                  class="scoreInput"
+                  onkeyup="digitsOnly(this);"
+                  type="text"
+                  id="team1Score"
+                />
+              </div>
+              <div class="col-sm-6">
+                Team 2's final score:<br />
+                <input
+                  maxlength="3"
+                  size="3"
+                  class="scoreInput"
+                  onkeyup="digitsOnly(this);"
+                  type="text"
+                  id="team2Score"
+                />
+              </div>
+            </div>
+            <div class="row spreads">
+              <div class="col-sm-6">
+                Point spread for T1:<br />
+                <input
+                  maxlength="5"
+                  size="4"
+                  type="text"
+                  id="team1ps"
+                  pattern="^-?\d+(\.\d{1,2})?$"
+                />
+              </div>
+              <div class="col-sm-6">
+                Point spread for T2:<br />
+                <input
+                  maxlength="5"
+                  size="4"
+                  type="text"
+                  id="team2ps"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <p id="CoverdTeam">Covered: <span class="result"></span></p>
+            <p id="CoveredBy">Covered By: <span class="result"></span></p>
+            <p id="NewValue">
+              1 share pre-game of Team 1 valued at $5,000<br />would now be
+              valued at: <span class="result"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $(document).on("keyup", "#team1ps", function() {
+          var inputValue = $("#team1ps").val();
+          var inpObj = document.getElementById("team1ps");
+          if (inpObj.checkValidity()) {
+            $("#team2ps").val(inputValue * -1);
+            showOutcome();
+          } else {
+            $("#team2ps").val("");
+            updateOutcome("", "");
+          }
+        });
+
+        $(document).on("keyup", ".scoreInput", function() {
+          showOutcome();
+        });
+
+        $(".nav-link").on("click", function() {
+          var headerHeight = $("#stick").height();
+
+          var name = $(this)
+            .attr("id")
+            .replace("LINK", "");
+          var position = $("#" + name).offset().top - (headerHeight + 55);
+          $("HTML, BODY").animate(
+            {
+              scrollTop: position
+            },
+            750
+          );
+        });
+      });
+
+      function updateOutcome(coveredBy, coveredTeam) {
+        $("#CoveredBy .result").text(coveredBy);
+        $("#CoverdTeam .result").text(coveredTeam);
+      }
+
+      function showOutcome() {
+        var team1 = parseFloat($("#team1Score").val());
+        var team2 = parseFloat($("#team2Score").val());
+        var pointspread = parseFloat($("#team1ps").val());
+
+        if (!isNaN(team1) && !isNaN(team2) && !isNaN(pointspread)) {
+          if (team1 + pointspread != team2) {
+            var pointspread = parseFloat($("#team1ps").val());
+            var didTeamOneWin = team1 + pointspread > team2;
+            var winningTeam = didTeamOneWin ? "Team 1" : "Team 2";
+            var coveredBy = parseFloat(team1 + pointspread - team2);
+
+            updateOutcome(
+              coveredBy < 0 ? coveredBy * -1 : coveredBy,
+              winningTeam
+            );
+            $("#NewValue .result").text(
+              "$" + ReplaceNumberWithCommas(5000 + coveredBy * 100)
+            );
+          } else {
+            updateOutcome("0", "SPLIT");
+            $("#NewValue .result").text("$5,000");
+          }
+        } else {
+          updateOutcome("", "");
+          $("#NewValue .result").text("");
+        }
+      }
+
+      function ReplaceNumberWithCommas(yourNumber) {
+        if (yourNumber < 0) yourNumber = 0;
+
+        var n = yourNumber.toString().split(".");
+        n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return n.join(".");
+      }
+
+      function digitsOnly(obj) {
+        obj.value = obj.value.replace(/\D/g, "");
+      }
+    </script>
+  </body>
+</html>

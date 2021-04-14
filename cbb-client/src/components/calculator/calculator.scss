@@ -1,21 +1,29 @@
 #calculator {
   font-size: 1.3em;
 
-  label {
-    margin: 0px;
+  .teamSection {
+    label {
+      font-style: italic;
+    }
+
+    .input-group-text {
+      font-weight: bold;
+    }
+    input {
+      font-size: 1.4em;
+      text-align: center;
+    }
   }
 
-  input {
-    margin: auto;
-    max-width: 80px;
-    display: block;
-  }
-
-  .inputGroup {
-    background-color: lightgray;
-    display: inline-block;
+  #calculation-results {
     text-align: center;
-    margin: 10px;
-    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  #calculator {
+    .card {
+      margin-bottom: 20px;
+    }
   }
 }

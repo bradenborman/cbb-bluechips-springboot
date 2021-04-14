@@ -1,0 +1,47 @@
+.header {
+  padding: 15px 0 15px 0;
+  text-align: center;
+  background: linear-gradient(to bottom, #1e5799, #326b9b);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  font-family: "Alfa Slab One";
+  margin-bottom: 80px;
+}
+
+.header > h1 {
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.header a {
+  text-decoration: none;
+  color: white;
+}
+
+.header a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.badge-primary {
+  float: right;
+}
+
+.setting_id h4 {
+  padding-bottom: 27px;
+  text-align: center;
+  margin: auto;
+}
+
+.form {
+  padding: 50px;
+}
+
+@media screen and (max-width: 600px) {
+  .form {
+    padding: 10px;
+  }
+}

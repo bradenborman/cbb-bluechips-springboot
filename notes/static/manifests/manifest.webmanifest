@@ -1,0 +1,50 @@
+{
+  "name": "CBB Bluechips",
+  "short_name": "Home",
+  "description": "CBB Bluechips. The BEST Postseason College Basketball Investing game. ",
+  "theme_color": "#27609A",
+  "icons": [
+    {
+      "src": "https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png",
+      "type": "image/png",
+      "sizes": "320x307"
+    },
+    {
+      "src": "https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://www.cbb-bluechips.com/app-img.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "https://listimg.pinclipart.com/picdir/s/71-713825_clip-art-arrow-bar-chart-diagram-graph-growth.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ],
+  "start_url": "https://www.cbb-bluechips.com/",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "How to Play",
+      "url": "/rules",
+      "description": "Learn how to play CBB Bluechips 2021"
+    },
+    {
+      "name": "Leaderboard",
+      "url": "/leaderboard",
+      "description": "View leaderboard of current top players"
+    }
+  ]
+}

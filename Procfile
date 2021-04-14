@@ -1,1 +1,1 @@
-web java $JAVA_OPTS -Dserver.port=$PORT -jar build/libs/*.war
+web java $JAVA_OPTS -Dserver.port=$PORT -jar cbb-server/build/libs/*.war

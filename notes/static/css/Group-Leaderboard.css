@@ -1,0 +1,65 @@
+nav {
+  margin-bottom: 20px;
+}
+
+.card {
+  position: relative;
+  box-shadow: 2px 3px #1e5799;
+}
+
+h2.cardHeaderTxr {
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+#otherLeaderboardHeader {
+  margin-bottom: 17px;
+}
+
+.leaders {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.leadersTable {
+  font-size: 1.5em;
+  text-align: center;
+  table-layout: auto;
+  width: 100%;
+}
+
+.fa-print {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.print-title {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  nav {
+    margin-bottom: 0px;
+  }
+
+  #myGroups {
+    margin-top: 20px;
+  }
+
+  .cardHeaderTxr {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .leaders {
+    margin-top: 15px;
+  }
+  .leadersTable {
+    font-size: 1em;
+  }
+  #PreviousWinners {
+    margin-top: 20px;
+  }
+}
