@@ -1,0 +1,130 @@
+#landing-page {
+  .main {
+    margin-top: 50px;
+    border-radius: 40px;
+    background-color: white;
+    padding: 20px 20px 60px 20px;
+    margin-bottom: 40px;
+
+    .section {
+      padding: 15px 50px 0px 50px;
+
+      .tab-content h2 {
+        margin: 20px;
+        font-family: "Alfa Slab One";
+        text-align: center;
+      }
+
+      .form-group {
+        position: relative;
+        margin-bottom: 1.7rem;
+      }
+    }
+  }
+}
+
+.feature {
+  margin-top: 25px;
+}
+
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  opacity: 0.5;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  transform: translate3d(0, -115%, 0);
+  opacity: 1;
+}
+
+#recoverPassword:hover {
+  cursor: pointer;
+}
+
+button {
+  margin-top: 16px;
+}
+
+.title {
+  display: inline-block;
+  font-size: 5vh;
+}
+
+.title i {
+  color: #3d9970;
+}
+
+.links {
+  float: right;
+}
+
+.left {
+  padding: 20px 30px;
+}
+
+.how2Play {
+  margin: auto;
+  float: right;
+  width: 94%;
+}
+
+.how2Play h4 {
+  margin-top: 7px;
+  font-family: "Alfa Slab One";
+}
+
+.login {
+  margin: auto;
+  margin-top: 50px;
+  width: 75%;
+}
+
+.fa-cog {
+  color: grey;
+}
+
+.fa-dollar-sign {
+  color: green;
+}
+
+.fa-chart-line {
+  color: #4aa3e8;
+}
+
+.fa-user-plus,
+.fa-sign-in-alt {
+  color: grey;
+}
+
+#newFeatures h4 {
+  font-family: "Alfa Slab One";
+  text-align: center;
+}
+
+#newFeatures {
+  text-align: center;
+  padding: 25px;
+}
+
+footer {
+  padding: 40px;
+}
+
+#installBtn {
+  font-size: 0.7em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.my-hr {
+  display: none;
+}
+
+.floatingLbl {
+  cursor: text;
+}

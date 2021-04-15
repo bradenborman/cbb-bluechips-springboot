@@ -12,6 +12,7 @@ import { Calculator } from "../calculator/calculator";
 import { Transactions } from "../transactions/transactions";
 import { Rules } from "../gamerules/rules";
 import { Leaderboard } from "../leaderboard/leaderboard";
+import { LoignSignup } from "../landingpage/landingpage";
 
 require("./cbbBluechips.scss");
 
@@ -22,7 +23,10 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     <ReactRouter>
       <div id="app-wrapper">
         <Navbar />
-        <ReactRoute exact path={["/portfolio", "/"]}>
+        <ReactRoute exact path={["/"]}>
+          <LoignSignup />
+        </ReactRoute>
+        <ReactRoute exact path={["/portfolio"]}>
           <Portfolio />
         </ReactRoute>
         <ReactRoute exact path="/market">
