@@ -1,4 +1,4 @@
-package Borman.cbbbluechips.controllers.admin;
+package Borman.cbbbluechips.controllers.api.admin;
 
 import Borman.cbbbluechips.services.GameSettingsService;
 import Borman.cbbbluechips.services.TeamService;

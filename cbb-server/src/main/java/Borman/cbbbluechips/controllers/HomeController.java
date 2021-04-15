@@ -24,15 +24,15 @@ public class HomeController extends ControllerHelper {
         this.usersAllowedToSignUp = usersAllowedToSignUp;
     }
 
-    @RequestMapping("/")
-    public String welcome(Model model, @RequestParam(defaultValue = "false") String wasError) {
-        if (!wasError.equals("false"))
-            model.addAttribute("error", "Failed");
-
-        model.addAttribute("signUpAllowed", usersAllowedToSignUp);
-
-        return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()) ? "redirect:/portfolio" : "home";
-    }
+//    @RequestMapping("/")
+//    public String welcome(Model model, @RequestParam(defaultValue = "false") String wasError) {
+//        if (!wasError.equals("false"))
+//            model.addAttribute("error", "Failed");
+//
+//        model.addAttribute("signUpAllowed", usersAllowedToSignUp);
+//
+//        return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()) ? "redirect:/portfolio" : "home";
+//    }
 
     @RequestMapping("/settings")
     public String settings(Model model) {

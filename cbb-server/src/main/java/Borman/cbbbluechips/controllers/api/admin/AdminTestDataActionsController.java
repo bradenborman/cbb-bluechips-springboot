@@ -1,4 +1,4 @@
-package Borman.cbbbluechips.controllers.admin;
+package Borman.cbbbluechips.controllers.api.admin;
 
 import Borman.cbbbluechips.builders.TransactionBuilder;
 import Borman.cbbbluechips.daos.TransactionDao;
