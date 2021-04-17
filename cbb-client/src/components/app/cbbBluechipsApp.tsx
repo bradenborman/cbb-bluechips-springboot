@@ -13,6 +13,7 @@ import { Transactions } from "../transactions/transactions";
 import { Rules } from "../gamerules/rules";
 import { Leaderboard } from "../leaderboard/leaderboard";
 import { LoignSignup } from "../landingpage/landingpage";
+import { ActiveHomePageOption } from "../../models/enums/activeHomePageOption";
 
 require("./cbbBluechips.scss");
 
@@ -24,7 +25,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
       <div id="app-wrapper">
         <Navbar />
         <ReactRoute exact path={["/"]}>
-          <LoignSignup />
+          <LoignSignup selectedOption={ActiveHomePageOption.SIGNUP} />
         </ReactRoute>
         <ReactRoute exact path={["/portfolio"]}>
           <Portfolio />

@@ -11,6 +11,7 @@
 
       .tab-content h2 {
         margin: 20px;
+        margin-bottom: 40px;
         font-family: "Alfa Slab One";
         text-align: center;
       }
@@ -18,6 +19,37 @@
       .form-group {
         position: relative;
         margin-bottom: 1.7rem;
+
+        .form-control-placeholder {
+          position: absolute;
+          top: 0;
+          padding: 7px 0 0 13px;
+          transition: all 200ms;
+          opacity: 0.5;
+        }
+
+        .form-control:focus + .form-control-placeholder,
+        .form-control:valid + .form-control-placeholder {
+          font-size: 75%;
+          transform: translate3d(0, -115%, 0);
+          opacity: 1;
+        }
+
+        // TODO => add logic for selecting only value is not null  so that placeholder is in input
+
+        .form-control:invalid + .form-control-placeholder {
+          font-size: 75%;
+          font-style: italic;
+          transform: translate3d(0, -115%, 0);
+          opacity: 1;
+        }
+      }
+
+      #googleLogin {
+        position: absolute;
+        bottom: 8%;
+        width: 100%;
+        text-align: center;
       }
     }
   }
@@ -25,21 +57,6 @@
 
 .feature {
   margin-top: 25px;
-}
-
-.form-control-placeholder {
-  position: absolute;
-  top: 0;
-  padding: 7px 0 0 13px;
-  transition: all 200ms;
-  opacity: 0.5;
-}
-
-.form-control:focus + .form-control-placeholder,
-.form-control:valid + .form-control-placeholder {
-  font-size: 75%;
-  transform: translate3d(0, -115%, 0);
-  opacity: 1;
 }
 
 #recoverPassword:hover {
