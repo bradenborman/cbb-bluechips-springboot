@@ -1,11 +1,24 @@
-table tr {
-  background-color: white;
-}
-
 .table-responsive {
   background-color: white;
   padding: 25px;
   border-radius: 20px;
+
+  thead {
+    font-weight: bold;
+    .fa-minus-circle {
+      cursor: pointer;
+      color: red;
+    }
+  }
+
+  tr {
+    background-color: white;
+  }
+
+  td.name,
+  td.team {
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 600px) {

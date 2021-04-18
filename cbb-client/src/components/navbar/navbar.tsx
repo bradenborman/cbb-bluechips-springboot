@@ -6,7 +6,7 @@ export const Navbar: React.FC<INavbarProps> = (props: INavbarProps) => {
   let history = useHistory();
 
   const returnToHome = (e: any) => {
-    history.push("/");
+    history.push("/portfolio");
   };
 
   return (

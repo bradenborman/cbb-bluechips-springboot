@@ -71,7 +71,7 @@ export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
                 name="email_new"
                 id="email_new"
                 value={emailAddress}
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                pattern="^$|[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 onChange={e => setEmailAddress(e.target.value)}
                 className="form-control"
                 required

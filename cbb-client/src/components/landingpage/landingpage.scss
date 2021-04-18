@@ -34,14 +34,8 @@
           transform: translate3d(0, -115%, 0);
           opacity: 1;
         }
-
-        // TODO => add logic for selecting only value is not null  so that placeholder is in input
-
         .form-control:invalid + .form-control-placeholder {
-          font-size: 75%;
           font-style: italic;
-          transform: translate3d(0, -115%, 0);
-          opacity: 1;
         }
       }
 
