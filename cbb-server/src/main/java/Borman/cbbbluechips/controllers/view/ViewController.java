@@ -8,6 +8,7 @@ public class ViewController {
 
     @RequestMapping({
             "/",
+            "/login",
             "/portfolio",
             "/market",
             "/trade",

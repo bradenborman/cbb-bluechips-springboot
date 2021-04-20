@@ -3,13 +3,16 @@ package Borman.cbbbluechips.config.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -33,11 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         logger.info("Setting up security");
-//        http.csrf().disable();
-
+        http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/", "/rules", "/rules/**", "/terms-and-services", "/user/logout")
+                .antMatchers("/login", "/user/login")
                 .permitAll();
 
         http.authorizeRequests()
@@ -46,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
+                        "/",
                         "/portfolio",
                         "/leaderboard",
                         "/market",
@@ -63,17 +66,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .hasAnyAuthority("CBB_USER");
 
-        http.authorizeRequests().and().formLogin()//
-                .loginPage("/")
+        http.authorizeRequests().and().formLogin()
+                .loginPage("/login")
                 .loginProcessingUrl("/user/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/portfolio")
-                .failureUrl("/?wasError=true")
-                .and()
-                .logout()
-                .logoutUrl("/user/logout")
-                .logoutSuccessUrl("/");
+                .failureUrl("/?wasError=true");
 
         http.rememberMe()
                 .alwaysRemember(true)

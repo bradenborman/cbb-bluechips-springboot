@@ -24,10 +24,10 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     <ReactRouter>
       <div id="app-wrapper">
         <Navbar />
-        <ReactRoute exact path={["/"]}>
-          <LoignSignup selectedOption={ActiveHomePageOption.SIGNUP} />
+        <ReactRoute exact path={["/login"]}>
+          <LoignSignup selectedOption={ActiveHomePageOption.LOGIN} />
         </ReactRoute>
-        <ReactRoute exact path={["/portfolio"]}>
+        <ReactRoute exact path={["/", "/portfolio"]}>
           <Portfolio />
         </ReactRoute>
         <ReactRoute exact path="/market">
