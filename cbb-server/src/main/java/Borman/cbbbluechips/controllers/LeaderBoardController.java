@@ -39,15 +39,15 @@ public class LeaderBoardController extends ControllerHelper {
         this.userGroupService = userGroupService;
     }
 
-    @RequestMapping("")
-    public String portfolio(Model model) {
-        model.addAttribute("hasPayerDonated", userService.hasUserDonated(getLoggedInUserId()));
-        model.addAttribute("donationAmount", paypalConfig.getDonationAmount());
-        model.addAttribute("leaderboard", leaderboardService.getLeaders());
-        model.addAttribute("payouts", gameRules.getPayoutMap());
-        model.addAttribute("url", paypalConfig.getPayPalUrl());
-        return "leaderboard";
-    }
+//    @RequestMapping("")
+//    public String portfolio(Model model) {
+//        model.addAttribute("hasPayerDonated", userService.hasUserDonated(getLoggedInUserId()));
+//        model.addAttribute("donationAmount", paypalConfig.getDonationAmount());
+//        model.addAttribute("leaderboard", leaderboardService.getLeaders());
+//        model.addAttribute("payouts", gameRules.getPayoutMap());
+//        model.addAttribute("url", paypalConfig.getPayPalUrl());
+//        return "leaderboard";
+//    }
 
     @RequestMapping("/group/{groupId}")
     public String portfolio(@PathVariable String groupId, Model model) {

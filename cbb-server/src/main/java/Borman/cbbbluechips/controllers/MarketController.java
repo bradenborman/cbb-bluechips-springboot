@@ -32,16 +32,16 @@ public class MarketController {
         this.shouldDisplayAds = shouldDisplayAds;
     }
 
-    @GetMapping("")
-    public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
-        List<Team> teamsToReturn =  teamService.getAllTeams(!allTeams.toLowerCase().equals("true"));
-        ownsService.setTeamsUserOwns(teamsToReturn, getLoggedInUser().getID());
-        model.addAttribute("teams", teamsToReturn);
-        model.addAttribute("jumpMenu", JumpMenuList.buildQuickJumpList(teamsToReturn));
-        if(shouldDisplayAds)
-            model.addAttribute("ads", Ads.getDisplayAdds());
-        return "market";
-    }
+//    @GetMapping("")
+//    public String market(@RequestParam(defaultValue = "false") String allTeams, Model model, HttpServletRequest request, HttpServletResponse response) {
+//        List<Team> teamsToReturn =  teamService.getAllTeams(!allTeams.toLowerCase().equals("true"));
+//        ownsService.setTeamsUserOwns(teamsToReturn, getLoggedInUser().getID());
+//        model.addAttribute("teams", teamsToReturn);
+//        model.addAttribute("jumpMenu", JumpMenuList.buildQuickJumpList(teamsToReturn));
+//        if(shouldDisplayAds)
+//            model.addAttribute("ads", Ads.getDisplayAdds());
+//        return "market";
+//    }
 
     private User getLoggedInUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/terms-and-services")
 public class TermsAndServicesController {
 
-    @RequestMapping("")
-    public String termsAndServices() {
-        return "terms-and-services";
-    }
+//    @RequestMapping("")
+//    public String termsAndServices() {
+//        return "terms-and-services";
+//    }
 
 
 }

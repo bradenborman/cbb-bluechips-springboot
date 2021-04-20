@@ -110,7 +110,7 @@ export const Portfolio: React.FC<IPortfolioProps> = (
               <Link to={"/rules"}>How to Play</Link>
               <Link to={"/calculator"}>Calculator</Link>
               <Link to={"/settings"}>Settings</Link>
-              <Link to={"/logout"}>Logout</Link>
+              <Link to={"/user/logout"}>Logout</Link>
             </Card.Body>
           </Card>
         </Col>

@@ -66,13 +66,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .hasAnyAuthority("CBB_USER");
 
-        http.authorizeRequests().and().formLogin()
+        http.authorizeRequests()
+                .and()
+                .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/user/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/portfolio")
-                .failureUrl("/?wasError=true");
+                .successForwardUrl("/portfolio")
+                .failureUrl("/?wasError=true")
+                .and()
+                .logout()
+                .logoutUrl("/user/logout")
+                .logoutSuccessUrl("/login?test=true");
 
         http.rememberMe()
                 .alwaysRemember(true)

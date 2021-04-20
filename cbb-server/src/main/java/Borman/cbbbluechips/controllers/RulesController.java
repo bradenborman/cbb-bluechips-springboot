@@ -19,11 +19,11 @@ public class RulesController {
         this.calculatorService = calculatorService;
     }
 
-    @RequestMapping("")
-    public String portfolio(Model model) {
-        model.addAttribute("loggedIn", !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()));
-        return "rules";
-    }
+//    @RequestMapping("")
+//    public String portfolio(Model model) {
+//        model.addAttribute("loggedIn", !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()));
+//        return "rules";
+//    }
 
     @RequestMapping("/calculator")
     public String calculator(Model model) {

@@ -26,17 +26,17 @@ public class TransactionController extends ControllerHelper {
 
 
     //TODO SQL => also prevent duplicate tag being added
-    @RequestMapping("")
-    public String transactions(Model model, @RequestParam Map<String, String> params) {
-        List<SearchTag> tags = SearchTagUtility.parseTags(params);
-        if(tags != null && !tags.isEmpty()) {
-            model.addAttribute("searchTags", tags);
-            model.addAttribute("transactions", transactionService.getFilteredTransaction(tags));
-        }
-        else
-            model.addAttribute("transactions", transactionService.getLatest50Transactions());
-        return "transaction";
-    }
+//    @RequestMapping("")
+//    public String transactions(Model model, @RequestParam Map<String, String> params) {
+//        List<SearchTag> tags = SearchTagUtility.parseTags(params);
+//        if(tags != null && !tags.isEmpty()) {
+//            model.addAttribute("searchTags", tags);
+//            model.addAttribute("transactions", transactionService.getFilteredTransaction(tags));
+//        }
+//        else
+//            model.addAttribute("transactions", transactionService.getLatest50Transactions());
+//        return "transaction";
+//    }
 
     @RequestMapping("/analyse")
     public String analyseMyTransactions(Model model) {

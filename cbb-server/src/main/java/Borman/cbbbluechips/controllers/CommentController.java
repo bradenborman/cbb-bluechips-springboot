@@ -23,13 +23,13 @@ public class CommentController {
         this.shouldDisplayAds = shouldDisplayAds;
     }
 
-    @RequestMapping("")
-    public String comments(Model model) {
-        model.addAttribute("comments", commentService.getComments(getLoggedInUser().getID(), getLoggedInUser()));
-        if(shouldDisplayAds)
-            model.addAttribute("ads", Ads.getDisplayAdds());
-        return "comments-new";
-    }
+//    @RequestMapping("")
+//    public String comments(Model model) {
+//        model.addAttribute("comments", commentService.getComments(getLoggedInUser().getID(), getLoggedInUser()));
+//        if(shouldDisplayAds)
+//            model.addAttribute("ads", Ads.getDisplayAdds());
+//        return "comments-new";
+//    }
 
     @PostMapping("/submitReply")
     public String submitReply(@RequestParam("reply") String reply, @RequestParam("commentId") String parentId) {
