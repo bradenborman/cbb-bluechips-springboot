@@ -1,12 +1,15 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 export interface INavbarProps {}
 export const Navbar: React.FC<INavbarProps> = (props: INavbarProps) => {
   let history = useHistory();
+  let location: any = useLocation();
+
+  // Might use prop of isLoggedIn vs this because of rule page too being both log in and not
 
   const returnToHome = (e: any) => {
-    history.push("/portfolio");
+    if (location.pathname !== "/login") history.push("/portfolio");
   };
 
   return (

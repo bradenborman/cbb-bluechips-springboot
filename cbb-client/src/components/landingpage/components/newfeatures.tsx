@@ -8,26 +8,21 @@ export const NewFeatures: React.FC<INewFeaturesProps> = (
     <div id="newFeatures">
       <h4>2022 New Features</h4>
       <div className="feature">
-        <i className="fas fa-sms"></i> <b>Text Alerts</b>
+        <i className="fas fa-clock"></i> <b>Time of games</b>
         <p>
-          Subscribe to "text alerts" for instant price changing text
-          notifications once games have been played!
+          No longer will you have to visit another site to see the time of the
+          games played
         </p>
       </div>
       <div className="feature">
-        <i className="fab fa-rocketchat"></i> <b>Comment Threads</b>
-        <p>User can post questions or comments where others may reply.</p>
+        <i className="fas"></i> <b>Matchups</b>
+        {/* Icon need */}
+        <p>Market grouped by matchups rather than seed.</p>
       </div>
       <div className="feature">
-        <i className="fas fa-chart-bar"></i> <b>Posted Point Spread</b>
-        <p>
-          No longer will a trip to ESPN be necessary for gathering information
-          on the on the point spread
-        </p>
-      </div>
-      <div className="feature">
-        <i className="fas fa-user-friends"></i> <b>Groups</b>
-        <p>Keep tabs of all your buddies!</p>
+        <i className="fas"></i> <b>Re-worked front end</b>
+        {/* Icon need */}
+        <p>CBB 2022 is written in React and will be much quicker to navigate</p>
       </div>
       <div className="feature">
         <p>

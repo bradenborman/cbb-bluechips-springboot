@@ -28,6 +28,12 @@
           opacity: 0.5;
         }
 
+        .form-control {
+          &.error {
+            border: 1px solid red;
+          }
+        }
+
         .form-control:focus + .form-control-placeholder,
         .form-control:valid + .form-control-placeholder {
           font-size: 75%;

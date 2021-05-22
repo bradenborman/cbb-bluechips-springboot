@@ -3,6 +3,7 @@ import { Row, Col, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 
 import axios, { AxiosRequestConfig } from "axios";
+import classNames from "classnames";
 
 export interface ILoginProps {}
 export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
@@ -10,6 +11,8 @@ export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
 
   const [email, setEmail] = useState<string>("bradenborman@hotmail.com");
   const [password, setPassword] = useState<string>();
+
+  const [loginError, setLoginError] = useState<boolean>(false);
 
   const handleLogin = (e: any) => {
     e.preventDefault();
@@ -25,6 +28,8 @@ export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
       })
       .catch(error => {
         console.log("ERROR LOGGING IN");
+        setPassword(""); //clear out on failure
+        setLoginError(true);
       });
   };
 
@@ -39,7 +44,7 @@ export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
                 type="text"
                 name="email"
                 id="email"
-                className="form-control"
+                className={classNames("form-control", { error: loginError })}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
@@ -61,7 +66,7 @@ export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
                 name="password"
                 id="password"
                 value={password}
-                className="form-control"
+                className={classNames("form-control", { error: loginError })}
                 onChange={e => setPassword(e.target.value)}
                 required
               />
