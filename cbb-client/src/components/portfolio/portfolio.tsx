@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { PortfolioDetail } from "./components/portfolioDetail";
 import { Page } from "../general/page";
 import { InvestmentTable } from "./components/investmentTable";
@@ -110,7 +110,9 @@ export const Portfolio: React.FC<IPortfolioProps> = (
               <Link to={"/rules"}>How to Play</Link>
               <Link to={"/calculator"}>Calculator</Link>
               <Link to={"/settings"}>Settings</Link>
-              <Link to={"/user/logout"}>Logout</Link>
+              <a href="/user/logout" className="label">
+                Logout
+              </a>
             </Card.Body>
           </Card>
         </Col>

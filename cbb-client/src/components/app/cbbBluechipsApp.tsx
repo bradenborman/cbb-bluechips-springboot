@@ -27,7 +27,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         <ReactRoute exact path={["/login"]}>
           <LoignSignup selectedOption={ActiveHomePageOption.LOGIN} />
         </ReactRoute>
-        <ReactRoute exact path={["/", "/portfolio"]}>
+        <ReactRoute exact path={"/portfolio"}>
           <Portfolio />
         </ReactRoute>
         <ReactRoute exact path="/market">
@@ -42,7 +42,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         <ReactRoute exact path="/transactions">
           <Transactions />
         </ReactRoute>
-        <ReactRoute exact path="/rules">
+        <ReactRoute exact path={["/", "/rules"]}>
           <Rules />
         </ReactRoute>
         <ReactRoute exact path="/leaderboard">

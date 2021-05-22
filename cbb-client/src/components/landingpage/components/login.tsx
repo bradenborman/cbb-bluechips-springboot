@@ -1,32 +1,37 @@
 import React, { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
+import { useHistory } from "react-router";
+
 import axios, { AxiosRequestConfig } from "axios";
 
 export interface ILoginProps {}
 export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
-  const [email, setEmail] = useState<string>(),
-    [password, setPassword] = useState<string>();
+  const history: any = useHistory();
 
-  const handleSubmit = (e: any) => {
+  const [email, setEmail] = useState<string>("bradenborman@hotmail.com");
+  const [password, setPassword] = useState<string>();
+
+  const handleLogin = (e: any) => {
     e.preventDefault();
 
     const config: AxiosRequestConfig = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }
     };
 
-    axios.post(
-      "/user/login?email=" + email + "&password=" + password,
-      {},
-      config
-    );
+    axios
+      .post("/user/login?email=" + email + "&password=" + password, {}, config)
+      .then(response => {
+        history.replace("/portfolio");
+      })
+      .catch(error => {
+        console.log("ERROR LOGGING IN");
+      });
   };
 
   return (
     <div>
       <h2>Returning Users</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <Row>
           <Col md={12}>
             <div className="form-group">

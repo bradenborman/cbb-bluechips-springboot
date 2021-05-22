@@ -90,6 +90,10 @@ if (isProd) {
       "/api": {
         target: "http://localhost:8080",
         secure: false
+      },
+      "/user": {
+        target: "http://localhost:8080",
+        secure: false
       }
     }
   };

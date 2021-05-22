@@ -343,6 +343,13 @@ export const transactionTestData: ITransactionRecord[] = [
     dateTime: "	04/09/2021 02:33 PM"
   },
   {
+    username: "Mike Atkinson",
+    action: "BUY",
+    teamTraded: "Baylor",
+    amount: 52000,
+    dateTime: "	04/09/2021 02:33 PM"
+  },
+  {
     username: "Braden Borman",
     action: "BUY",
     teamTraded: "Duke",

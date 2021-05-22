@@ -3,16 +3,14 @@ package Borman.cbbbluechips.config.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -39,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/login", "/user/login")
+                .antMatchers("/login", "/user/login", "/user/logout")
                 .permitAll();
 
         http.authorizeRequests()
@@ -73,15 +71,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/user/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .successForwardUrl("/portfolio")
-                .failureUrl("/?wasError=true")
+                .successHandler((req, resp, auth) -> {
+                    logger.info("GRANTED");
+                    resp.setStatus(HttpStatus.OK.value());
+                }) // success authentication
+                .failureHandler((req, resp, ex) -> {
+                    logger.info("FORBIDDEN");
+                    resp.setStatus(HttpStatus.FORBIDDEN.value());
+                })
                 .and()
                 .logout()
                 .logoutUrl("/user/logout")
-                .logoutSuccessUrl("/login?test=true");
+                .deleteCookies("JSESSIONID", "remember-me-auto-login")
+                .logoutSuccessUrl("/login");
 
         http.rememberMe()
-                .alwaysRemember(true)
+                .alwaysRemember(false) //TODO
                 .key("1063")
                 .rememberMeCookieName("remember-me-auto-login")
                 .tokenValiditySeconds(10000000);
