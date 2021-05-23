@@ -4,6 +4,7 @@ import Borman.cbbbluechips.controllers.AuthenticatedController;
 import Borman.cbbbluechips.models.GameData;
 import Borman.cbbbluechips.models.Investment;
 import Borman.cbbbluechips.models.UserGameData;
+import Borman.cbbbluechips.models.fixtures.TestDataProvider;
 import Borman.cbbbluechips.services.InvestmentService;
 import Borman.cbbbluechips.services.PortfolioService;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +37,14 @@ public class PortfolioController extends AuthenticatedController {
 
     @GetMapping("/cbb-game-data")
     public ResponseEntity<GameData> cbbGameData() {
-        return ResponseEntity.ok(portfolioService.retrieveGameData());
+        return ResponseEntity.ok(TestDataProvider.gameDataFixture());
+//        return ResponseEntity.ok(portfolioService.retrieveGameData());
     }
 
     @GetMapping("/user-game-data")
     public ResponseEntity<UserGameData> userGameData() {
-        return ResponseEntity.ok(portfolioService.retrieveUsersGameData(retrieveLoggedInUserId()));
+        return ResponseEntity.ok(TestDataProvider.userGameDataFixture());
+//        return ResponseEntity.ok(portfolioService.retrieveUsersGameData(retrieveLoggedInUserId()));
     }
 
 }

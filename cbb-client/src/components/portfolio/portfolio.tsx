@@ -109,7 +109,7 @@ export const Portfolio: React.FC<IPortfolioProps> = (
           <PortfolioDetail heading="Transactions made">
             {userGameData?.userTransactionCount?.toLocaleString()}
           </PortfolioDetail>
-          <PortfolioDetail heading="Leader Value">
+          <PortfolioDetail heading="Leader's Networth">
             {userGameData?.userTransactionCount?.toLocaleString()}
           </PortfolioDetail>
         </div>
@@ -159,7 +159,7 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             <Card.Header>
               <Card.Title className="portfolio-header-title">
                 <i className="fa fa-folder" />
-                Portfolio: Braden Borman
+                Portfolio: {userGameData?.fullName}
               </Card.Title>
             </Card.Header>
             <Card.Body>
