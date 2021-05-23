@@ -7,7 +7,9 @@ sport-data-api:
   url: https://api.sportsdata.io/v3/cbb/scores/json/teams?key=${sport-data-api.apiKey}
 
 spring:
-  datasource:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
   jpa:
     properties:
       hibernate:
