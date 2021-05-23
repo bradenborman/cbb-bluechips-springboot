@@ -34,6 +34,13 @@
           }
         }
       }
+
+      tbody {
+        .loading-wrapper {
+          width: 100%; //@cant seem to center
+          padding: 100px 0px;
+        }
+      }
     }
   }
 

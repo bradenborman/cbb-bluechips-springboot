@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class LeaderboardService {
@@ -27,25 +26,7 @@ public class LeaderboardService {
     }
 
     public List<LeaderBoardUser> getLeaders() {
-        List<LeaderBoardUser> allBoard = ownsService.retrieveLeaderboard();
-        List<LeaderBoardUser> leaders = allBoard
-                .stream()
-                .limit(LEADERS_TO_DISPLAY_AMT)
-                .collect(Collectors.toList());
-
-        while (leaders.size() < LEADERS_TO_DISPLAY_AMT) {
-            leaders.add(new LeaderBoardUser("", leaders.size() + 1, 0.00, "Empty user.", false));
-        }
-
-        //ADD last 3 to board
-        allBoard.stream()
-                .skip(allBoard.size() - 3)
-                .forEach(leaders::add);
-
-
-        return leaders;
-
-        //.skip(15) to get everyone else mght need to test and make sure its 15 not 14
+        return ownsService.retrieveLeaderboard();
     }
 
 

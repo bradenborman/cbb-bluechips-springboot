@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { Page } from "../general/page";
 import { Row, Col, Card } from "react-bootstrap";
 import { priorWinners } from "../../data/game-data";
 import { LeaderBoardTable } from "./components/leaderboardTable";
-import { leadboardUsersTestdata } from "../../data/test-data";
 import { ILeaderBoardUser } from "../../models/leaderboardUser";
+
+import axios from "axios";
 
 export interface ILeaderboardProps {
   paypalDonationAmount: number;
@@ -14,6 +14,22 @@ export interface ILeaderboardProps {
 export const Leaderboard: React.FC<ILeaderboardProps> = (
   props: ILeaderboardProps
 ) => {
+  const [leaderboardData, setLeaderboardData] = useState<ILeaderBoardUser[]>(
+    []
+  );
+
+  useEffect(() => {
+    axios
+      .get("/api/leaderboard")
+      .then(response => {
+        setLeaderboardData(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   const pastWinners = priorWinners.map((user, index) => {
     return <li key={index}>{user}</li>;
   });
@@ -23,7 +39,7 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
       <Row>
         <Col lg={8}>
           <Card id="leaderboardCard">
-            <LeaderBoardTable leaders={leadboardUsersTestdata} />
+            <LeaderBoardTable leaders={leaderboardData} />
           </Card>
         </Col>
         <Col lg={4}>

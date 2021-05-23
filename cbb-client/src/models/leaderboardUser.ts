@@ -1,5 +1,7 @@
 export interface ILeaderBoardUser {
   ranking: number;
-  name: string;
-  networth: number;
+  userName: string;
+  value: number;
+  hasPayerDonated: boolean;
+  emailAddress: string;
 }

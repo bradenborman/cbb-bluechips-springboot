@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { leadboardUsersTestdata } from "../../../data/test-data";
 import { Table, Pagination } from "react-bootstrap";
 import { ILeaderBoardUser } from "../../../models/leaderboardUser";
-import { OverlayTrigger } from "react-bootstrap";
-import { Tooltip } from "react-bootstrap";
+import Loader from "react-loader-spinner";
 
 export interface ILeaderBoardTableProps {
   leaders: ILeaderBoardUser[];
@@ -29,14 +27,14 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
   const mappedLeaderboardUser = (
     users: ILeaderBoardUser[]
   ): JSX.Element[] | JSX.Element => {
-    var x = leadboardUsersTestdata
+    var x = props.leaders
       .slice(paginationIndex - 1, paginationIndex + 9)
-      .map((user, index) => {
+      .map((user: ILeaderBoardUser, index) => {
         return (
           <tr key={index}>
             <td>{user.ranking}</td>
-            <td>{user.name}</td>
-            <td>${user.networth.toLocaleString()}</td>
+            <td>{user.userName}</td>
+            <td>${user.value.toLocaleString()}</td>
           </tr>
         );
       });
@@ -58,6 +56,21 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
     return x;
   };
 
+  const getTableBody = (): JSX.Element[] | JSX.Element => {
+    if (
+      props.leaders != null &&
+      props.leaders != undefined &&
+      props.leaders.length > 0
+    )
+      return mappedLeaderboardUser(props.leaders);
+
+    return (
+      <div className="loading-wrapper">
+        <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
+      </div>
+    );
+  };
+
   return (
     <Table hover id="leadersTable">
       <thead>
@@ -69,7 +82,7 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
           <th scope="col">Networth</th>
         </tr>
       </thead>
-      <tbody>{mappedLeaderboardUser(props.leaders)}</tbody>
+      <tbody>{getTableBody()}</tbody>
       <tfoot>
         <tr>
           <td colSpan={3}>
