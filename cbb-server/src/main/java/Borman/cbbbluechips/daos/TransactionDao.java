@@ -74,8 +74,8 @@ public class TransactionDao {
         }
     }
 
-    public String getTransactionCountTotal() {
-        return String.valueOf(jdbcTemplate.queryForObject(TransactionSQL.getCountTotalTransactions, Integer.class));
+    public Integer getTransactionCountTotal() {
+        return jdbcTemplate.queryForObject(TransactionSQL.getCountTotalTransactions, Integer.class);
     }
 
 

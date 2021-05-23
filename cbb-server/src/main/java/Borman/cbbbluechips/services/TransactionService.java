@@ -100,7 +100,7 @@ public class TransactionService {
         return transaction;
     }
 
-    String getTransactionCountTotal() {
+    Integer getTransactionCountTotal() {
         return transactionDao.getTransactionCountTotal();
     }
 

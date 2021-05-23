@@ -8,6 +8,7 @@ import { Investment } from "./components/investment";
 import { portfilioTip1, portfilioTip2 } from "../../data/staticMessages";
 import { IInvestment } from "../../models/investment";
 import axios from "axios";
+import { IGamedata } from "../../models/gameData";
 
 export interface IPortfolioProps {}
 
@@ -17,28 +18,45 @@ export const Portfolio: React.FC<IPortfolioProps> = (
   //TODO: cleanup first info card make sleeker
   //TODO: display upcoming games in card
 
-  const [userInvestments, setUserInvestments] = useState<IInvestment[]>(null); 
+  const [userInvestments, setUserInvestments] = useState<IInvestment[]>(null);
+  const [gameDetails, setGameDetails] = useState<IGamedata>(null);
 
   useEffect(() => {
     axios
       .get("/api/user-investments")
-      .then((response) => {
+      .then(response => {
         setUserInvestments(response.data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("/api/cbb-game-data")
+      .then(response => {
+        setGameDetails(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
+  const investments =
+    userInvestments != null
+      ? userInvestments.map((investment, index) => {
+          return <Investment key={index} investment={investment} />;
+        })
+      : null;
 
-
-  const investments = userInvestments != null ? userInvestments.map((investment, index) => {
-    return <Investment key={index} investment={investment} />
-  }) : null;
-
-  const grandTotalUserInvested: number = userInvestments!= null ? userInvestments.reduce((total, inv) => total = total + inv.marketPrice, 0) : 0
-
+  const grandTotalUserInvested: number =
+    userInvestments != null
+      ? userInvestments.reduce(
+          (total, inv) => (total = total + inv.marketPrice),
+          0
+        )
+      : 0;
 
   const investmentCardBody = (): JSX.Element => {
     if (userInvestments == null) {
@@ -84,16 +102,20 @@ export const Portfolio: React.FC<IPortfolioProps> = (
                 </Col>
                 <Col>
                   <PortfolioDetail heading="Total Money in play">
-                    $820,350
+                    {gameDetails.totalMoneyInPlay != null
+                      ? gameDetails.totalMoneyInPlay.toLocaleString()
+                      : ""}
                   </PortfolioDetail>
                   <PortfolioDetail heading="Total Transactions">
-                    254
+                    {gameDetails.totalTransactionsCount != null
+                      ? gameDetails.totalTransactionsCount.toLocaleString()
+                      : ""}
                   </PortfolioDetail>
                   <PortfolioDetail heading="Current Round">
                     Round of 32
                   </PortfolioDetail>
                   <PortfolioDetail heading="Total Games left">
-                    34
+                    todo
                   </PortfolioDetail>
                 </Col>
               </Row>
@@ -117,7 +139,9 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             <Card.Header>
               <Card.Title className="portfolio-header-title">
                 <i className="fa fa-money-bill-alt"></i>My Investments
-                <span id="investmentTotalAmt">(${grandTotalUserInvested.toLocaleString()})</span>
+                <span id="investmentTotalAmt">
+                  (${grandTotalUserInvested.toLocaleString()})
+                </span>
               </Card.Title>
             </Card.Header>
             {investmentCardBody()}

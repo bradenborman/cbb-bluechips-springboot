@@ -1,6 +1,7 @@
 package Borman.cbbbluechips.models;
 
 
+@Deprecated
 public class Portfolio {
 
     private double portfolioValue;
