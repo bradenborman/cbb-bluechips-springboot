@@ -26,6 +26,16 @@
     <meta name="author" content="Braden Borman" />
   </head>
   <body>
+    <script>
+      if (
+        !location.hostname.includes("local") &&
+        location.protocol !== "https:"
+      ) {
+        location.protocol = "https:";
+      } else if (location.hostname.includes("herokuapp")) {
+        window.location.replace("https://www.cbb-bluechips.com/");
+      }
+    </script>
     <div id="root"></div>
   </body>
 </html>
