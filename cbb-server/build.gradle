@@ -54,10 +54,10 @@ dependencies {
 
 task copyClient(dependsOn: ":cbb-client:clientBuild") {
 
-    doFirst{
-        delete "src/main/resources/static"
-        delete "src/main/resources/templates"
-    }
+//    doFirst{
+//        delete "src/main/resources/static"
+//        delete "src/main/resources/templates"
+//    }
 
     doLast {
         copy {
@@ -82,7 +82,7 @@ task finalizeBuild(type: Copy, dependsOn: build) {
     delete "server-${version}.war"
 }
 
-bootWar.dependsOn(copyClient)
+processResources.dependsOn(copyClient)
 clean.dependsOn(":cbb-client:clientClean")
 build.finalizedBy(finalizeBuild)
 
