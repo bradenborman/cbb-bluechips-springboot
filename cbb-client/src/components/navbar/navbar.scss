@@ -1,9 +1,9 @@
 #header-wrapper {
-  padding-top: 1px;
+  padding-top: 0px;
   background: linear-gradient(to bottom, #1e5799, #326b9b);
   position: -webkit-sticky; /* Safari */
   position: sticky;
-  top: -1px;
+  top: 0px;
   z-index: 99;
 
   .header {
@@ -16,22 +16,9 @@
     font-weight: lighter;
     letter-spacing: 2px;
     padding: 15px;
-    transition: all 0.1s;
-
-    h1 {
-      font-size: 2em;
-      transition: all 0.1s;
-    }
-
-    &.stuck {
-      padding: 7px;
-
-      > h1 {
-        font-size: 1.7em;
-      }
-    }
 
     > h1 {
+      font-size: 2em;
       color: white;
       margin: 0px;
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -42,20 +29,10 @@
 
 @media screen and (max-width: 600px) {
   #header-wrapper {
-    padding-top: 0px;
-    top: 0px;
-
     .header {
       > h1 {
+        font-size: 1.2em;
         font-weight: 300;
-      }
-
-      &.stuck {
-        padding: 7px;
-
-        > h1 {
-          font-size: 0.9em;
-        }
       }
     }
   }

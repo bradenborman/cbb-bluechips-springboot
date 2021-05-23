@@ -115,8 +115,10 @@
 }
 
 @media screen and (max-width: 600px) {
-  .table td,
-  .table th {
-    padding: 0px !important;
+  #portfolio-wrapper {
+    .table td,
+    .table th {
+      padding: 0px !important;
+    }
   }
 }
