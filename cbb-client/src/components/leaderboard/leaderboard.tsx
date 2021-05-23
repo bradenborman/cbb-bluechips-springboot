@@ -4,6 +4,7 @@ import { Row, Col, Card } from "react-bootstrap";
 import { priorWinners } from "../../data/game-data";
 import { LeaderBoardTable } from "./components/leaderboardTable";
 import { ILeaderBoardUser } from "../../models/leaderboardUser";
+import Loader from "react-loader-spinner";
 
 import axios from "axios";
 
@@ -14,9 +15,7 @@ export interface ILeaderboardProps {
 export const Leaderboard: React.FC<ILeaderboardProps> = (
   props: ILeaderboardProps
 ) => {
-  const [leaderboardData, setLeaderboardData] = useState<ILeaderBoardUser[]>(
-    []
-  );
+  const [leaderboardData, setLeaderboardData] = useState<ILeaderBoardUser[]>();
 
   useEffect(() => {
     axios
@@ -34,13 +33,21 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
     return <li key={index}>{user}</li>;
   });
 
+  const buildLeaderboard = (): JSX.Element => {
+    if (leaderboardData != null && leaderboardData != undefined)
+      return <LeaderBoardTable leaders={leaderboardData} />;
+    return (
+      <div className="loading-wrapper">
+        <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
+      </div>
+    );
+  };
+
   return (
     <Page pageId="leaderboard-wrapper">
       <Row>
         <Col lg={8}>
-          <Card id="leaderboardCard">
-            <LeaderBoardTable leaders={leaderboardData} />
-          </Card>
+          <Card id="leaderboardCard">{buildLeaderboard()}</Card>
         </Col>
         <Col lg={4}>
           <Card id="previousWinnersCard">

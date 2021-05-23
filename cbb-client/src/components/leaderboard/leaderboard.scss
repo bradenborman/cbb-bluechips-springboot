@@ -4,6 +4,13 @@
   }
 
   #leaderboardCard {
+    padding: 0px 2vw;
+
+    .loading-wrapper {
+      text-align: center;
+      padding: 100px 0px;
+    }
+
     #leadersTable {
       font-size: 1.5em;
       text-align: center;
@@ -13,6 +20,18 @@
 
       .vaccant {
         visibility: hidden;
+      }
+
+      thead {
+        th:nth-child(1) {
+          width: 20%;
+        }
+        th:nth-child(2) {
+          width: 60%;
+        }
+        th:nth-child(3) {
+          width: 20%;
+        }
       }
 
       tfoot {
@@ -32,13 +51,6 @@
           .page-link {
             min-width: 50px;
           }
-        }
-      }
-
-      tbody {
-        .loading-wrapper {
-          width: 100%; //@cant seem to center
-          padding: 100px 0px;
         }
       }
     }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Table, Pagination } from "react-bootstrap";
 import { ILeaderBoardUser } from "../../../models/leaderboardUser";
-import Loader from "react-loader-spinner";
 
 export interface ILeaderBoardTableProps {
   leaders: ILeaderBoardUser[];
@@ -56,21 +55,6 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
     return x;
   };
 
-  const getTableBody = (): JSX.Element[] | JSX.Element => {
-    if (
-      props.leaders != null &&
-      props.leaders != undefined &&
-      props.leaders.length > 0
-    )
-      return mappedLeaderboardUser(props.leaders);
-
-    return (
-      <div className="loading-wrapper">
-        <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
-      </div>
-    );
-  };
-
   return (
     <Table hover id="leadersTable">
       <thead>
@@ -82,7 +66,7 @@ export const LeaderBoardTable: React.FC<ILeaderBoardTableProps> = (
           <th scope="col">Networth</th>
         </tr>
       </thead>
-      <tbody>{getTableBody()}</tbody>
+      <tbody>{mappedLeaderboardUser(props.leaders)}</tbody>
       <tfoot>
         <tr>
           <td colSpan={3}>

@@ -16,11 +16,11 @@
     font-weight: lighter;
     letter-spacing: 2px;
     padding: 15px;
-    transition: all 0.5s;
+    transition: all 0.1s;
 
     h1 {
       font-size: 2em;
-      transition: all 0.75s;
+      transition: all 0.1s;
     }
 
     &.stuck {
