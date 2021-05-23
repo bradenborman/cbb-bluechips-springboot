@@ -20,7 +20,7 @@ public class ViewController {
             "/rules",
             "/leaderboard"
     })
-    public String getView() {
+    public String view() {
         return "index";
     }
 
