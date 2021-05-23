@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Card, Table } from "react-bootstrap";
-import { Link, Route } from "react-router-dom";
+import { Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { PortfolioDetail } from "./components/portfolioDetail";
 import { Page } from "../general/page";
 import { InvestmentTable } from "./components/investmentTable";
@@ -79,6 +79,34 @@ export const Portfolio: React.FC<IPortfolioProps> = (
     return <InvestmentTable>{investments}</InvestmentTable>;
   };
 
+  const getGameDataItems = (): JSX.Element => {
+    if (gameDetails != null) {
+      return (
+        <Col>
+          <PortfolioDetail heading="Total Money in play">
+            {gameDetails.totalMoneyInPlay.toLocaleString()}
+          </PortfolioDetail>
+          <PortfolioDetail heading="Total Transactions">
+            {gameDetails.totalTransactionsCount}
+          </PortfolioDetail>
+          <PortfolioDetail heading="Current Round">
+            {" "}
+            Round of {gameDetails.currentRound}
+          </PortfolioDetail>
+          <PortfolioDetail heading="Total Games left">
+            {gameDetails.gamesLeft}
+          </PortfolioDetail>
+        </Col>
+      );
+    }
+
+    return (
+      <Col>
+        <p>Loading..</p>
+      </Col>
+    );
+  };
+
   return (
     <Page pageId="portfolio-wrapper">
       <Row className="game-data">
@@ -93,31 +121,12 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             <Card.Body>
               <Row noGutters={true}>
                 <Col>
-                  <PortfolioDetail heading="Networth">$100,000</PortfolioDetail>
-                  <PortfolioDetail heading="Capital">$100,000</PortfolioDetail>
-                  <PortfolioDetail heading="Ranking">12</PortfolioDetail>
-                  <PortfolioDetail heading="Leader Value">
-                    $150,200
-                  </PortfolioDetail>
+                  <PortfolioDetail heading="Networth">k</PortfolioDetail>
+                  <PortfolioDetail heading="Capital">y</PortfolioDetail>
+                  <PortfolioDetail heading="Ranking">x</PortfolioDetail>
+                  <PortfolioDetail heading="Leader Value">z</PortfolioDetail>
                 </Col>
-                <Col>
-                  <PortfolioDetail heading="Total Money in play">
-                    {gameDetails.totalMoneyInPlay != null
-                      ? gameDetails.totalMoneyInPlay.toLocaleString()
-                      : ""}
-                  </PortfolioDetail>
-                  <PortfolioDetail heading="Total Transactions">
-                    {gameDetails.totalTransactionsCount != null
-                      ? gameDetails.totalTransactionsCount.toLocaleString()
-                      : ""}
-                  </PortfolioDetail>
-                  <PortfolioDetail heading="Current Round">
-                    Round of 32
-                  </PortfolioDetail>
-                  <PortfolioDetail heading="Total Games left">
-                    todo
-                  </PortfolioDetail>
-                </Col>
+                {getGameDataItems()}
               </Row>
             </Card.Body>
           </Card>

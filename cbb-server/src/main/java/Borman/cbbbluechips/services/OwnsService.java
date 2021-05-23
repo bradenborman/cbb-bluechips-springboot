@@ -34,6 +34,7 @@ public class OwnsService {
         return (tradeRequest.getVolume() <= ownsDao.getAmountOfSharesOwned(tradeRequest)) && tradeRequest.getVolume() > 0;
     }
 
+    //cash/fundsAvailable
     public double getFundsAvailable(String userId) {
         return ownsDao.getFundsAvailable(userId);
     }
@@ -81,15 +82,20 @@ public class OwnsService {
         return ownsDao.getUsersWhoOwnedTeamWithTextAlertOn(teamId);
     }
 
+    public double retrieveUserNetWorthById(String id) {
+        double portfolioValue = ownsDao.getPortfolioValue(id);
+        double cash = ownsDao.getFundsAvailable(id);
+        return portfolioValue + cash;
+    }
 
 
-    String getLeadersValue() {
+    String retrieveLeadersValue() {
         List<User> playersId = getUsersWithSetNetworth();
         Optional<User> leader = playersId.stream().max(Comparator.comparing(User::getCash));
         return leader.map(user -> String.valueOf(user.getCash())).orElse("0");
     }
 
-    List<LeaderBoardUser> getLeaders() {
+    List<LeaderBoardUser> retrieveLeaderboard() {
         List<User> playersId = getUsersWithSetNetworth();
         playersId.sort(Comparator.comparing(User::getCash).reversed());
         List<LeaderBoardUser> leaders = new ArrayList<>();

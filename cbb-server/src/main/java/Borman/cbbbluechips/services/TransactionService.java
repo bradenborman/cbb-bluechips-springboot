@@ -132,4 +132,8 @@ public class TransactionService {
                 .collect(Collectors.toList());
     }
 
+    public int transactionCountByUser(String userId) {
+        return getTransactionsByUser(userId).size();
+    }
+
 }

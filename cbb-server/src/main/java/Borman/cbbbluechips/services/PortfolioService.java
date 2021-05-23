@@ -1,36 +1,29 @@
 package Borman.cbbbluechips.services;
 
-import Borman.cbbbluechips.builders.PortfolioBuilder;
 import Borman.cbbbluechips.models.GameData;
-import Borman.cbbbluechips.models.Portfolio;
-import Borman.cbbbluechips.models.User;
+import Borman.cbbbluechips.models.UserGameData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PortfolioService {
 
+    private static final Logger logger = LoggerFactory.getLogger(PortfolioService.class);
 
     private OwnsService ownsService;
     private GameSettingsService gameSettingsService;
     private TransactionService transactionService;
+    private UserService userService;
+    private LeaderboardService leaderboardService;
 
-    public PortfolioService(OwnsService ownsService, GameSettingsService gameSettingsService, TransactionService transactionService) {
+    public PortfolioService(OwnsService ownsService, GameSettingsService gameSettingsService,
+                            TransactionService transactionService, UserService userService, LeaderboardService leaderboardService) {
         this.ownsService = ownsService;
         this.gameSettingsService = gameSettingsService;
         this.transactionService = transactionService;
-    }
-
-
-    @Deprecated
-    public Portfolio getPortfolioDetails(User user) {
-        return PortfolioBuilder.aPortfolio()
-                .withPortfolioValue(ownsService.getPortfolioValue(user.getID()))
-                .withCash(user.getCash())
-                .withLeadersValue(ownsService.getLeadersValue())
-                .withRoundOfPlay(gameSettingsService.getCurrentRound())
-                .withMyTransactionsCount(String.valueOf(transactionService.getTransactionsByUser(user.getID()).size()))
-                .withTotalMoneyInPlay(ownsService.getTotalMoneyInPlay())
-                .build();
+        this.userService = userService;
+        this.leaderboardService = leaderboardService;
     }
 
     public GameData retrieveGameData() {
@@ -40,4 +33,25 @@ public class PortfolioService {
         gameData.setTotalTransactionsCount(transactionService.getTransactionCountTotal());
         return gameData;
     }
+
+    public UserGameData retrieveUsersGameData(String userId) {
+        UserGameData x = new UserGameData();
+        logger.info("Getting users net-worth");
+        x.setNetWorth(ownsService.retrieveUserNetWorthById(userId));
+
+        logger.info("Getting users cash");
+        x.setCash(userService.getUserCashById(userId));
+
+        logger.info("Getting users full-name");
+        x.setFullName(userService.getUserFullName(userId));
+
+        logger.info("Getting users leaderboard pos");
+        x.setLeaderboardPosition(leaderboardService.getUsersLeaderPosition(userId));
+
+        logger.info("Getting users transaction count");
+        x.setUserTransactionCount(transactionService.transactionCountByUser(userId));
+
+        return x;
+    }
+
 }

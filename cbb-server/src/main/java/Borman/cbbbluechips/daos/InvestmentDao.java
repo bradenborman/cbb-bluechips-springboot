@@ -23,7 +23,7 @@ public class InvestmentDao {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
             return namedParameterJdbcTemplate.query(OwnsSQL.getTeamsUserOwnsSQL, params, new InvestmentRowMapper());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return null;
         }
     }
 

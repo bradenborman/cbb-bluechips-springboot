@@ -82,7 +82,7 @@ task finalizeBuild(type: Copy, dependsOn: build) {
     delete "server-${version}.war"
 }
 
-processResources.dependsOn(copyClient)
+bootWar.dependsOn(copyClient)
 clean.dependsOn(":cbb-client:clientClean")
 build.finalizedBy(finalizeBuild)
 

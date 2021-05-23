@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 
 export interface IPortfolioDetailProps {
   heading: string;
-  children: string;
+  children: any;
 }
 export const PortfolioDetail: React.FC<IPortfolioDetailProps> = (
   props: IPortfolioDetailProps

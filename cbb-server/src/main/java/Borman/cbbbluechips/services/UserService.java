@@ -51,6 +51,13 @@ public class UserService {
         userDao.deleteUser(UserId);
     }
 
+    public User getUserById(String userId) {
+        return userDao.getUserById(userId);
+    }
+
+    public double getUserCashById(String userId) {
+        return getUserById(userId).getCash();
+    }
 
     void addProceedsToUser(String userId, double moneyToAdd) {
         userDao.addCashToUser(userId, moneyToAdd);
@@ -70,8 +77,12 @@ public class UserService {
         return user != null ? String.format("%s %s", user.getFirstName(), user.getLastName()) : "No User Found.";
     }
 
-    public User getUserLoggedIn(String id) {
-        return userDao.getUserByIdLoggedIn(id);
+    public User retrieveUserById(String id) {
+        return userDao.retrieveUserById(id);
+    }
+
+    public String retrieveUserEmailById(String id) {
+        return userDao.retrieveUserById(id).getEmail();
     }
 
     public boolean doesUserSubscribeToTextAlerts(String userId) {

@@ -80,7 +80,7 @@ public class UserDao {
     }
 
     //Throws Error that will log out user --
-    public User getUserByIdLoggedIn(String userId) {
+    public User retrieveUserById(String userId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
         try {
             return namedParameterJdbcTemplate.queryForObject(UserSQL.getUserById, params, new UserRowMapper());

@@ -15,16 +15,19 @@ public class LeaderboardService {
 
     OwnsService ownsService;
     UserGroupService userGroupService;
+    UserService userService;
     int LEADERS_TO_DISPLAY_AMT;
 
-    public LeaderboardService(OwnsService ownsService, UserGroupService userGroupService,  @Qualifier("leadersToDisplay") int LEADERS_TO_DISPLAY_AMT) {
+    public LeaderboardService(OwnsService ownsService, UserGroupService userGroupService, UserService userService,
+                              @Qualifier("leadersToDisplay") int LEADERS_TO_DISPLAY_AMT) {
         this.ownsService = ownsService;
         this.userGroupService = userGroupService;
+        this.userService = userService;
         this.LEADERS_TO_DISPLAY_AMT = LEADERS_TO_DISPLAY_AMT;
     }
 
     public List<LeaderBoardUser> getLeaders() {
-        List<LeaderBoardUser> allBoard = ownsService.getLeaders();
+        List<LeaderBoardUser> allBoard = ownsService.retrieveLeaderboard();
         List<LeaderBoardUser> leaders = allBoard
                 .stream()
                 .limit(LEADERS_TO_DISPLAY_AMT)
@@ -47,8 +50,19 @@ public class LeaderboardService {
 
 
     public int getUsersLeaderPosition(User user) {
-        return ownsService.getLeaders().stream()
+        return ownsService.retrieveLeaderboard()
+                .stream()
                 .filter(entry -> entry.getEmailAddress().equals(user.getEmail()))
+                .findFirst()
+                .orElse(new LeaderBoardUser("", -1, 0, "", false)).getRanking();
+    }
+
+    //TODO takes forever -- might look into making this straight up sql
+    public int getUsersLeaderPosition(String userId) {
+        String userEmail = userService.retrieveUserEmailById(userId);
+        return ownsService.retrieveLeaderboard()
+                .stream()
+                .filter(entry -> entry.getEmailAddress().equals(userEmail))
                 .findFirst()
                 .orElse(new LeaderBoardUser("", -1, 0, "", false)).getRanking();
     }
