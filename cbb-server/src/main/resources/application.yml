@@ -8,8 +8,7 @@ sport-data-api:
 
 spring:
   thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+    prefix: classpath:/static/
   jpa:
     properties:
       hibernate:
