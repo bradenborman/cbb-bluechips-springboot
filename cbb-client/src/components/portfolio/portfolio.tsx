@@ -9,6 +9,7 @@ import { portfilioTip1, portfilioTip2 } from "../../data/staticMessages";
 import { IInvestment } from "../../models/investment";
 import axios from "axios";
 import { IGamedata } from "../../models/gameData";
+import { IUserGamedata } from "../../models/userGameData";
 
 export interface IPortfolioProps {}
 
@@ -18,8 +19,9 @@ export const Portfolio: React.FC<IPortfolioProps> = (
   //TODO: cleanup first info card make sleeker
   //TODO: display upcoming games in card
 
-  const [userInvestments, setUserInvestments] = useState<IInvestment[]>(null);
-  const [gameDetails, setGameDetails] = useState<IGamedata>(null);
+  const [userInvestments, setUserInvestments] = useState<IInvestment[]>();
+  const [gameData, setGameData] = useState<IGamedata>();
+  const [userGameData, setUserGameGata] = useState<IUserGamedata>();
 
   useEffect(() => {
     axios
@@ -36,7 +38,19 @@ export const Portfolio: React.FC<IPortfolioProps> = (
     axios
       .get("/api/cbb-game-data")
       .then(response => {
-        setGameDetails(response.data);
+        setGameData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("/api/user-game-data")
+      .then(response => {
+        console.log(response.data);
+        setUserGameGata(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -79,31 +93,61 @@ export const Portfolio: React.FC<IPortfolioProps> = (
     return <InvestmentTable>{investments}</InvestmentTable>;
   };
 
-  const getGameDataItems = (): JSX.Element => {
-    if (gameDetails != null) {
+  const getUserGameDataItems = (): JSX.Element => {
+    if (userGameData != null || userGameData != undefined) {
       return (
-        <Col>
-          <PortfolioDetail heading="Total Money in play">
-            {gameDetails.totalMoneyInPlay.toLocaleString()}
+        <div>
+          <PortfolioDetail heading="Networth">
+            ${userGameData?.netWorth?.toLocaleString()}
           </PortfolioDetail>
-          <PortfolioDetail heading="Total Transactions">
-            {gameDetails.totalTransactionsCount}
+          <PortfolioDetail heading="Capital">
+            ${userGameData?.cash?.toLocaleString()}
           </PortfolioDetail>
-          <PortfolioDetail heading="Current Round">
-            {" "}
-            Round of {gameDetails.currentRound}
+          <PortfolioDetail heading="My leaderboard Pos">
+            {userGameData?.leaderboardPosition}
           </PortfolioDetail>
-          <PortfolioDetail heading="Total Games left">
-            {gameDetails.gamesLeft}
+          <PortfolioDetail heading="Transactions made">
+            {userGameData?.userTransactionCount?.toLocaleString()}
           </PortfolioDetail>
-        </Col>
+          <PortfolioDetail heading="Leader Value">
+            {userGameData?.userTransactionCount?.toLocaleString()}
+          </PortfolioDetail>
+        </div>
       );
     }
 
     return (
-      <Col>
+      <div>
         <p>Loading..</p>
-      </Col>
+      </div>
+    );
+  };
+
+  const getGameDataItems = (): JSX.Element => {
+    if (gameData != null) {
+      return (
+        <div>
+          <PortfolioDetail heading="Total Money in play">
+            {gameData.totalMoneyInPlay.toLocaleString()}
+          </PortfolioDetail>
+          <PortfolioDetail heading="Total Transactions">
+            {gameData.totalTransactionsCount}
+          </PortfolioDetail>
+          <PortfolioDetail heading="Current Round">
+            {" "}
+            Round of {gameData.currentRound}
+          </PortfolioDetail>
+          <PortfolioDetail heading="Total Games left">
+            {gameData.gamesLeft}
+          </PortfolioDetail>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <p>Loading..</p>
+      </div>
     );
   };
 
@@ -120,13 +164,8 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             </Card.Header>
             <Card.Body>
               <Row noGutters={true}>
-                <Col>
-                  <PortfolioDetail heading="Networth">k</PortfolioDetail>
-                  <PortfolioDetail heading="Capital">y</PortfolioDetail>
-                  <PortfolioDetail heading="Ranking">x</PortfolioDetail>
-                  <PortfolioDetail heading="Leader Value">z</PortfolioDetail>
-                </Col>
-                {getGameDataItems()}
+                <Col>{getUserGameDataItems()}</Col>
+                <Col>{getGameDataItems()}</Col>
               </Row>
             </Card.Body>
           </Card>

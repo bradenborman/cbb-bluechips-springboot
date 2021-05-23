@@ -46,7 +46,8 @@ public class PortfolioService {
         x.setFullName(userService.getUserFullName(userId));
 
         logger.info("Getting users leaderboard pos");
-        x.setLeaderboardPosition(leaderboardService.getUsersLeaderPosition(userId));
+//        x.setLeaderboardPosition(leaderboardService.getUsersLeaderPosition(userId));
+        x.setLeaderboardPosition(1000);
 
         logger.info("Getting users transaction count");
         x.setUserTransactionCount(transactionService.transactionCountByUser(userId));

@@ -86,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login");
 
         http.rememberMe()
-                .alwaysRemember(false) //TODO
+                .alwaysRemember(true)
                 .key("1063")
                 .rememberMeCookieName("remember-me-auto-login")
                 .tokenValiditySeconds(10000000);
