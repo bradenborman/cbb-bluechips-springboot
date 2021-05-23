@@ -42,15 +42,19 @@
 
 @media screen and (max-width: 600px) {
   #header-wrapper {
+    padding-top: 0px;
+    top: 0px;
+
     .header {
       > h1 {
-        font-size: 0.8em;
         font-weight: 300;
       }
 
       &.stuck {
+        padding: 7px;
+
         > h1 {
-          font-size: 0.6em;
+          font-size: 0.9em;
         }
       }
     }

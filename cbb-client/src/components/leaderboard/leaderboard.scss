@@ -73,6 +73,10 @@
     #leaderboardCard {
       margin-bottom: 20px;
 
+      .loading-wrapper {
+        padding: 50px 0px;
+      }
+
       #leadersTable {
         font-size: 0.9em;
         tfoot {

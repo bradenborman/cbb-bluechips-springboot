@@ -39,7 +39,7 @@ export const Navbar: React.FC<INavbarProps> = (props: INavbarProps) => {
         ref={headerRef}
         className={classNames("header", { stuck: sticky })}
       >
-        <h1 onClick={returnToHome}>College Basketball's Bluechips</h1>
+        <h1 onClick={returnToHome}>CBB Bluechips</h1>
       </header>
     </div>
   );

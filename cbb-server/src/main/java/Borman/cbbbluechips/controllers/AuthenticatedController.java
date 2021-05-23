@@ -11,7 +11,7 @@ public abstract class AuthenticatedController {
 
     protected String retrieveLoggedInUserId() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        logger.info("User {} logged in", user.getID());
+//        logger.info("User {} logged in", user.getID());
         return user.getID();
     }
 
