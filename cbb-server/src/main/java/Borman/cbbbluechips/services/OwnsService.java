@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Deprecated
 public class OwnsService {
 
     private OwnsDao ownsDao;
@@ -24,6 +25,7 @@ public class OwnsService {
         this.userDao = userDao;
     }
 
+    @Deprecated
     public List<Owns> getTeamsUserOwns(String user) {
         return ownsDao.getTeamsUserOwns(user);
     }

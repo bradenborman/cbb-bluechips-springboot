@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Card, Table } from "react-bootstrap";
 import { Link, Route } from "react-router-dom";
 import { PortfolioDetail } from "./components/portfolioDetail";
@@ -6,6 +6,8 @@ import { Page } from "../general/page";
 import { InvestmentTable } from "./components/investmentTable";
 import { Investment } from "./components/investment";
 import { portfilioTip1, portfilioTip2 } from "../../data/staticMessages";
+import { IInvestment } from "../../models/investment";
+import axios from "axios";
 
 export interface IPortfolioProps {}
 
@@ -15,10 +17,31 @@ export const Portfolio: React.FC<IPortfolioProps> = (
   //TODO: cleanup first info card make sleeker
   //TODO: display upcoming games in card
 
-  const investments = [<Investment />, <Investment />];
+  const [userInvestments, setUserInvestments] = useState<IInvestment[]>(null); 
+
+  useEffect(() => {
+    axios
+      .get("/api/user-investments")
+      .then((response) => {
+        setUserInvestments(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+
+
+  const investments = userInvestments != null ? userInvestments.map((investment, index) => {
+    return <Investment key={index} investment={investment} />
+  }) : null;
+
+  const grandTotalUserInvested: number = userInvestments!= null ? userInvestments.reduce((total, inv) => total = total + inv.marketPrice, 0) : 0
+
 
   const investmentCardBody = (): JSX.Element => {
-    if (investments == null) {
+    if (userInvestments == null) {
       return (
         <Card.Body id="emptyPortfolioTips">
           <Card.Text id="main">
@@ -94,7 +117,7 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             <Card.Header>
               <Card.Title className="portfolio-header-title">
                 <i className="fa fa-money-bill-alt"></i>My Investments
-                <span id="investmentTotalAmt">($42,600)</span>
+                <span id="investmentTotalAmt">(${grandTotalUserInvested.toLocaleString()})</span>
               </Card.Title>
             </Card.Header>
             {investmentCardBody()}

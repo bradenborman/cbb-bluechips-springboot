@@ -63,6 +63,10 @@ task copyClient(dependsOn: ":cbb-client:clientBuild") {
             from new File(project(":cbb-client").getProjectDir(), "build/index.html")
             into "src/main/resources/templates"
         }
+        copy {
+            from new File(project(":cbb-client").getProjectDir(), "build/error.html")
+            into "src/main/resources/templates"
+        }
     }
 }
 

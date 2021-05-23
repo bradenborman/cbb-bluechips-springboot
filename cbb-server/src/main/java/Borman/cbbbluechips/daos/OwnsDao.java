@@ -30,6 +30,7 @@ public class OwnsDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Deprecated()
     public List<Owns> getTeamsUserOwns(String userId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);

@@ -1,5 +1,5 @@
 security:
-  require-ssl: true
+  require-ssl: false
 
 server:
   tomcat:

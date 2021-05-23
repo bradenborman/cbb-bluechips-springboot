@@ -65,34 +65,38 @@
         }
       }
 
-      th {
-        text-align: center;
-      }
+      .table-responsive {
+        padding: 0px 20px; //padding on top and botton only
 
-      #investment-records {
-        td {
-          line-height: 50px;
+        th {
           text-align: center;
         }
 
-        td.logoTd {
-          position: relative;
-          .logo {
-            height: 50px;
-            width: 50px;
-            margin-right: 5px;
-            cursor: pointer;
+        #investment-records {
+          td {
+            line-height: 50px;
+            text-align: center;
           }
-          .pointSpread {
-            position: absolute;
-            top: 7px;
-            right: 7px;
-            line-height: 1.2em;
-            padding: 2px;
-            font-size: 0.9em;
-            border-radius: 3px;
-            background-color: rgb(248, 226, 226);
-            font-weight: bold;
+
+          td.logoTd {
+            position: relative;
+            .logo {
+              height: 50px;
+              width: 50px;
+              margin-right: 5px;
+              cursor: pointer;
+            }
+            .pointSpread {
+              position: absolute;
+              top: 7px;
+              right: 7px;
+              line-height: 1.2em;
+              padding: 2px;
+              font-size: 0.9em;
+              border-radius: 3px;
+              background-color: rgb(248, 226, 226);
+              font-weight: bold;
+            }
           }
         }
       }

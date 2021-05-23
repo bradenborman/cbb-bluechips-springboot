@@ -1,7 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router";
+import { IInvestment } from "../../../models/investment";
 
-export interface IInvestmentProps {}
+export interface IInvestmentProps {
+  investment: IInvestment;
+}
 
 export const Investment: React.FC<IInvestmentProps> = (
   props: IInvestmentProps
@@ -9,28 +12,28 @@ export const Investment: React.FC<IInvestmentProps> = (
   let history = useHistory();
 
   const handleTradeClick = (e: any) => {
-    history.push("/trade/" + 1);
+    history.push(`/trade/${props.investment.teamId}`);
   };
 
   return (
     <tr>
       <td className="logoTd">
         <img
-          id="6052"
+          id={props.investment.teamId}
           className="logo"
-          src="/img/teams/Baylor.png"
+          src={`/img/teams/${props.investment.teamName}.png`}
           onClick={handleTradeClick}
         />
-        <span className="pointSpread">4.5</span>
+        <span className="pointSpread">{props.investment.nextPointSpread}</span>
       </td>
       <td>
         <span className="hideSmall">
-          <span>Baylor</span>
+          <span>{props.investment.teamName}</span>
         </span>
       </td>
-      <td>4</td>
-      <td>$9,500</td>
-      <td>$38,000</td>
+      <td>{props.investment.amountOwned}</td>
+      <td>${props.investment.marketPrice.toLocaleString()}</td>
+      <td>${(props.investment.marketPrice * props.investment.amountOwned).toLocaleString()}</td>
       <td className="hideSmall">
         <button
           type="button"

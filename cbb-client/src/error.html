@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <title>Error Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Allerta Stencil"
+      rel="stylesheet"
+    />
+
+    <style>
+      .wrapperr {
+        margin: 40px;
+      }
+
+      h1 {
+        margin: 50px;
+        text-align: center;
+        font-family: "Allerta Stencil", sans-serif;
+        font-size: 2em;
+      }
+
+      .status {
+        width: 200px;
+        margin: auto;
+        background-color: #f07575;
+        border: 2px solid red;
+        border-radius: 50px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapperr">
+      <div class="status">
+        <h1 th:text="${status}"></h1>
+      </div>
+    </div>
+    <div class="container mt-3">
+      <div class="media border p-3">
+        <div class="media-body">
+          <h4>Date</h4>
+          <p th:text="${timestamp}"></p>
+        </div>
+      </div>
+      <br />
+      <div class="media border p-3">
+        <div class="media-body">
+          <h4>Path</h4>
+          <p th:text="${path}"></p>
+        </div>
+      </div>
+      <br />
+      <div class="media border p-3">
+        <div class="media-body">
+          <h4>Error</h4>
+          <p th:text="${error}"></p>
+        </div>
+      </div>
+      <br />
+      <div class="media border p-3">
+        <div class="media-body">
+          <h4>Message</h4>
+          <p th:text="${message}"></p>
+        </div>
+      </div>
+      <br />
+      <div class="media border p-3">
+        <div class="media-body">
+          <h4>User Action</h4>
+          <a href="/">Return to Shield Portal</a>
+        </div>
+      </div>
+      <br />
+    </div>
+  </body>
+</html>

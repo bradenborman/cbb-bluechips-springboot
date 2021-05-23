@@ -46,7 +46,7 @@ const config = {
     }),
     new CopyWebpackPlugin([
       { from: "src/img", to: "img" },
-      // { from: "src/error.html", to: "" },
+      { from: "src/error.html", to: "" },
       { from: "src/lib/fonts", to: "fonts" },
       { from: "src/lib/webfonts", to: "webfonts" },
       {

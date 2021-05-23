@@ -19,6 +19,7 @@ public class PortfolioService {
         this.transactionService = transactionService;
     }
 
+
     public Portfolio getPortfolioDetails(User user) {
         return PortfolioBuilder.aPortfolio()
                 .withPortfolioValue(ownsService.getPortfolioValue(user.getID()))

@@ -1,6 +1,5 @@
 package Borman.cbbbluechips.models;
 
-import java.util.List;
 
 public class Portfolio {
 

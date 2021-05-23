@@ -4,6 +4,7 @@ package Borman.cbbbluechips.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Deprecated
 @JsonIgnoreProperties({"ownsId", "teamId", "userId"})
 public class Owns {
 
