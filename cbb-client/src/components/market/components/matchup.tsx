@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import { TeamCard } from "./teamcard";
 import { IMatchup } from "../../../models/matchup";
@@ -11,6 +11,8 @@ export interface IMatchupProps {
 export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
   const matchupTxt =
     props.matchup.team1.teamName + " vs " + props.matchup.team2.teamName;
+
+  const [collapsed, setCollapsed] = useState<boolean>(true);
 
   return (
     <Row className="match-up">
@@ -30,7 +32,9 @@ export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
               />
             </Card.Text>
           </Card.Header>
-          <Card.Body className="match-up-body">
+          <Card.Body
+            className={classNames("match-up-body", { collapsed: collapsed })}
+          >
             <Row>
               <Col lg={6}>
                 <TeamCard team={props.matchup.team1} />
@@ -40,6 +44,16 @@ export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
               </Col>
             </Row>
           </Card.Body>
+          <div
+            onClick={e => setCollapsed(!collapsed)}
+            className="match-up-expander-wrapper"
+          >
+            <i
+              className={classNames("fa fa-caret-down", {
+                collapsed: collapsed
+              })}
+            />
+          </div>
         </Card>
       </Col>
     </Row>
