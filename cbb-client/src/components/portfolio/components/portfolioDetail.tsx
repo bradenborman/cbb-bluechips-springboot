@@ -9,8 +9,9 @@ export const PortfolioDetail: React.FC<IPortfolioDetailProps> = (
   props: IPortfolioDetailProps
 ) => {
   return (
-    <Card.Text className="portfolio-header-detail">
-      <span className="detail-header">{props.heading}</span>: {props.children}
-    </Card.Text>
+    <div className="portfolio-header-detail">
+      <div className="detail-header">{props.heading}</div>
+      <div className="detail-fact">{props.children}</div>
+    </div>
   );
 };

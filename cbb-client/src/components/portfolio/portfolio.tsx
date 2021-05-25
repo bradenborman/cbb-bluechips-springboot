@@ -10,6 +10,7 @@ import { IInvestment } from "../../models/investment";
 import axios from "axios";
 import { IGamedata } from "../../models/gameData";
 import { IUserGamedata } from "../../models/userGameData";
+import Loader from "react-loader-spinner";
 
 export interface IPortfolioProps {}
 
@@ -73,6 +74,13 @@ export const Portfolio: React.FC<IPortfolioProps> = (
       : 0;
 
   const investmentCardBody = (): JSX.Element => {
+    if (userInvestments == undefined) {
+      return (
+        <div className="loading-wrapper">
+          <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
+        </div>
+      );
+    }
     if (userInvestments == null) {
       return (
         <Card.Body id="emptyPortfolioTips">
@@ -93,48 +101,40 @@ export const Portfolio: React.FC<IPortfolioProps> = (
     return <InvestmentTable>{investments}</InvestmentTable>;
   };
 
-  const getUserGameDataItems = (): JSX.Element => {
-    if (userGameData != null || userGameData != undefined) {
+  const getPortfolioData = (): JSX.Element => {
+    if (gameData != null && userGameData != null) {
       return (
-        <div>
+        <div className="portfolio-detail-wrapper">
           <PortfolioDetail heading="Networth">
-            ${userGameData?.netWorth?.toLocaleString()}
+            <span className="money-field">
+              ${userGameData?.netWorth?.toLocaleString()}
+            </span>
           </PortfolioDetail>
           <PortfolioDetail heading="Capital">
-            ${userGameData?.cash?.toLocaleString()}
+            <span className="money-field">
+              ${userGameData?.cash?.toLocaleString()}
+            </span>
           </PortfolioDetail>
           <PortfolioDetail heading="My leaderboard Pos">
-            {userGameData?.leaderboardPosition}
+            {userGameData?.leaderboardPosition.toLocaleString()}
           </PortfolioDetail>
           <PortfolioDetail heading="Transactions made">
             {userGameData?.userTransactionCount?.toLocaleString()}
           </PortfolioDetail>
           <PortfolioDetail heading="Leader's Networth">
-            {userGameData?.userTransactionCount?.toLocaleString()}
+            <span className="money-field">
+              ${userGameData?.userTransactionCount?.toLocaleString()}
+            </span>
           </PortfolioDetail>
-        </div>
-      );
-    }
-
-    return (
-      <div>
-        <p>Loading..</p>
-      </div>
-    );
-  };
-
-  const getGameDataItems = (): JSX.Element => {
-    if (gameData != null) {
-      return (
-        <div>
           <PortfolioDetail heading="Total Money in play">
-            {gameData.totalMoneyInPlay.toLocaleString()}
+            <span className="money-field">
+              ${gameData.totalMoneyInPlay.toLocaleString()}
+            </span>
           </PortfolioDetail>
           <PortfolioDetail heading="Total Transactions">
-            {gameData.totalTransactionsCount}
+            {gameData.totalTransactionsCount.toLocaleString()}
           </PortfolioDetail>
           <PortfolioDetail heading="Current Round">
-            {" "}
             Round of {gameData.currentRound}
           </PortfolioDetail>
           <PortfolioDetail heading="Total Games left">
@@ -145,8 +145,8 @@ export const Portfolio: React.FC<IPortfolioProps> = (
     }
 
     return (
-      <div>
-        <p>Loading..</p>
+      <div className="loading-wrapper">
+        <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
       </div>
     );
   };
@@ -164,8 +164,7 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             </Card.Header>
             <Card.Body>
               <Row noGutters={true}>
-                <Col>{getUserGameDataItems()}</Col>
-                <Col>{getGameDataItems()}</Col>
+                <Col>{getPortfolioData()}</Col>
               </Row>
             </Card.Body>
           </Card>

@@ -38,7 +38,7 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
       return <LeaderBoardTable leaders={leaderboardData} />;
     return (
       <div className="loading-wrapper">
-        <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
+        <Loader type="TailSpin" color="#00BFFF" />
       </div>
     );
   };

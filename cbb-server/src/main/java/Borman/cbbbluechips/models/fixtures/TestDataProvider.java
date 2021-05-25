@@ -9,8 +9,8 @@ public class TestDataProvider {
         UserGameData x = new UserGameData();
         x.setNetWorth(50000);
         x.setCash(15000);
-        x.setFullName("TEST USER");
-        x.setLeaderboardPosition(1000);
+        x.setFullName("Braden Borman");
+        x.setLeaderboardPosition(211);
         x.setUserTransactionCount(58);
         return x;
     }
