@@ -5,17 +5,18 @@
   position: sticky;
   top: 0px;
   z-index: 99;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
 
-  .header {
+  header {
     text-align: center;
-    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
     width: 100%;
     font-family: "Alfa Slab One", sans-serif;
     font-size: 1.2em;
-    margin-bottom: 25px;
+
     font-weight: lighter;
     letter-spacing: 2px;
-    padding: 15px;
+    padding-top: 15px;
 
     > h1 {
       font-size: 2em;
@@ -23,6 +24,20 @@
       margin: 0px;
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
       cursor: pointer;
+    }
+  }
+
+  .nav-item {
+    a {
+      color: white;
+    }
+
+    .dropdown-item {
+      color: black;
+
+      .fa {
+        margin: 0px 8px 0px 0px;
+      }
     }
   }
 }
@@ -33,6 +48,12 @@
       > h1 {
         font-size: 1.2em;
         font-weight: 300;
+      }
+    }
+
+    .nav-item {
+      a {
+        font-size: 0.9em;
       }
     }
   }

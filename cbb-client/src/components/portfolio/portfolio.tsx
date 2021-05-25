@@ -159,7 +159,7 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             <Card.Header>
               <Card.Title className="portfolio-header-title">
                 <i className="fa fa-folder" />
-                Portfolio: {userGameData?.fullName}
+                {userGameData?.fullName}
               </Card.Title>
             </Card.Header>
             <Card.Body>
@@ -192,22 +192,6 @@ export const Portfolio: React.FC<IPortfolioProps> = (
               </Card.Title>
             </Card.Header>
             {investmentCardBody()}
-          </Card>
-        </Col>
-        <Col xl={4}>
-          <Card className="portfolioLinks">
-            <Card.Body>
-              <Link to={"/market"}>Market</Link>
-              <Link to={"/transactions"}>Transactions</Link>
-              <Link to={"/leaderboard"}>Leaderboard</Link>
-              <Link to={"/groups"}>Groups</Link>
-              <Link to={"/rules"}>How to Play</Link>
-              <Link to={"/calculator"}>Calculator</Link>
-              <Link to={"/settings"}>Settings</Link>
-              <a href="/user/logout" className="label">
-                Logout
-              </a>
-            </Card.Body>
           </Card>
         </Col>
       </Row>
