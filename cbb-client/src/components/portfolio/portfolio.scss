@@ -66,16 +66,6 @@
           padding-left: 1vw;
           position: relative;
           font-size: 1.1em;
-
-          // &::after {
-          //   content: " ";
-          //   position: absolute;
-          //   border-bottom: 1px solid black;
-          //   left: 20px;
-          //   bottom: 0;
-          //   height: 100%;
-          //   width: 30px;
-          // }
         }
       }
     }
@@ -163,6 +153,14 @@
     .table td,
     .table th {
       padding: 0px !important;
+    }
+  }
+
+  .row.game-data {
+    .portfolio-detail-wrapper {
+      .portfolio-header-detail {
+        width: 50%;
+      }
     }
   }
 }
