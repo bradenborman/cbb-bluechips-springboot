@@ -36,7 +36,8 @@
     "react-loader-spinner": "^4.0.0",
     "react-router-dom": "^5.1.2",
     "reselect": "^3.0.1",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

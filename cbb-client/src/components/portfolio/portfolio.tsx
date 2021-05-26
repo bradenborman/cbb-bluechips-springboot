@@ -50,7 +50,6 @@ export const Portfolio: React.FC<IPortfolioProps> = (
     axios
       .get("/api/user-game-data")
       .then(response => {
-        console.log(response.data);
         setUserGameGata(response.data);
       })
       .catch(error => {

@@ -18,6 +18,10 @@
     letter-spacing: 2px;
     padding-top: 15px;
 
+    &.pad-bottom {
+      padding-bottom: 8px;
+    }
+
     > h1 {
       font-size: 2em;
       color: white;

@@ -7,6 +7,7 @@ import { ActiveHomePageOption } from "../../models/enums/activeHomePageOption";
 import { GoogleLogin } from "./components/googleLogin";
 
 export interface LoignSignup {
+  setIsLoggedIn: (x: boolean) => void;
   selectedOption: ActiveHomePageOption;
 }
 export const LoignSignup: React.FC<LoignSignup> = (props: LoignSignup) => {
@@ -37,11 +38,11 @@ export const LoignSignup: React.FC<LoignSignup> = (props: LoignSignup) => {
                   </span>
                 }
               >
-                <Login />
+                <Login setIsLoggedIn={props.setIsLoggedIn} />
               </Tab>
             </Tabs>
 
-            <GoogleLogin />
+            {/* <GoogleLogin /> */}
           </Col>
           <div className="my-hr"></div>
           <Col lg={6} className="section">

@@ -22,7 +22,6 @@ export const Leaderboard: React.FC<ILeaderboardProps> = (
       .get("/api/leaderboard")
       .then(response => {
         setLeaderboardData(response.data);
-        console.log(response.data);
       })
       .catch(error => {
         console.log(error);

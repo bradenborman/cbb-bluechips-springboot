@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import javax.servlet.http.Cookie;
+
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -74,6 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler((req, resp, auth) -> {
                     logger.info("GRANTED");
                     resp.setStatus(HttpStatus.OK.value());
+                    Cookie frontEndLoggedInFlag = new Cookie("_live", "true");
+                    frontEndLoggedInFlag.setMaxAge(10000000);
+                    frontEndLoggedInFlag.setPath("/");
+                    resp.addCookie(frontEndLoggedInFlag);
                 }) // success authentication
                 .failureHandler((req, resp, ex) -> {
                     logger.info("FORBIDDEN");
@@ -82,7 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/user/logout")
-                .deleteCookies("JSESSIONID", "remember-me-auto-login")
+                .deleteCookies("JSESSIONID", "remember-me-auto-login", "_live")
                 .logoutSuccessUrl("/login");
 
         http.rememberMe()

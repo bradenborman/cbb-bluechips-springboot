@@ -5,7 +5,10 @@ import { useHistory } from "react-router";
 import axios, { AxiosRequestConfig } from "axios";
 import classNames from "classnames";
 
-export interface ILoginProps {}
+export interface ILoginProps {
+  setIsLoggedIn: (x: boolean) => void;
+}
+
 export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
   const history: any = useHistory();
 
@@ -24,6 +27,7 @@ export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
     axios
       .post("/user/login?email=" + email + "&password=" + password, {}, config)
       .then(response => {
+        props.setIsLoggedIn(true);
         history.replace("/portfolio");
       })
       .catch(error => {

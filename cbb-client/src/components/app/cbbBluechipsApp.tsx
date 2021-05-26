@@ -4,6 +4,8 @@ import {
   Route as ReactRoute
 } from "react-router-dom";
 
+import Cookies from "universal-cookie";
+
 import { Navbar } from "../navbar/navbar";
 import { Market } from "../market/Market";
 import { Portfolio } from "../portfolio/portfolio";
@@ -12,7 +14,7 @@ import { Calculator } from "../calculator/calculator";
 import { Transactions } from "../transactions/transactions";
 import { Rules } from "../gamerules/rules";
 import { Leaderboard } from "../leaderboard/leaderboard";
-import { LoignSignup } from "../landingpage/landingpage";
+import { LoignSignup } from "../landingpage/loignSignup";
 import { ActiveHomePageOption } from "../../models/enums/activeHomePageOption";
 
 require("./cbbBluechips.scss");
@@ -20,12 +22,21 @@ require("./cbbBluechips.scss");
 export interface IAppProps {}
 
 export const App: React.FC<IAppProps> = (props: IAppProps) => {
+  const cookies = new Cookies();
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
+    cookies.get("_live") != undefined
+  ); //_live is cookie used at login to flag front end for nav
+
   return (
     <ReactRouter>
       <div id="app-wrapper">
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn} />
         <ReactRoute exact path={"/login"}>
-          <LoignSignup selectedOption={ActiveHomePageOption.LOGIN} />
+          <LoignSignup
+            setIsLoggedIn={setIsLoggedIn}
+            selectedOption={ActiveHomePageOption.LOGIN}
+          />
         </ReactRoute>
         <ReactRoute exact path={["/", "/portfolio"]}>
           <Portfolio />

@@ -31,19 +31,16 @@ public class UserService {
     }
 
     @Transactional
-    public String createNewUser(String fname, String lname, String email_new, String password_new) {
+    public void createNewUser(String fname, String lname, String email_new, String password_new) {
         User user = new User(UserNameUtility.titleCaseConversion(fname), UserNameUtility.titleCaseConversion(lname), email_new, password_new);
-        if (!isUserAlreadyPresent(user.getEmail())) {
+        if (isUserAlreadyPresent(user.getEmail())) {
+            logger.info(String.format("%s already in database", user.getEmail()));
+        } else {
             user.setCash(STARTING_CASH);
             String userId = userDao.createNewUser(user);
             user.setID(userId);//Do I need to set this still? Investigate
-
             emailService.sendTermsAndServices(user.getEmail());
-
-            return "?newUser=" + user.getEmail();
-        } else
-            logger.info(String.format("%s already in database", user.getEmail()));
-        return "?wasError=true&message=user_already_exists";
+        }
     }
 
 

@@ -154,12 +154,22 @@
     .table th {
       padding: 0px !important;
     }
-  }
 
-  .row.game-data {
-    .portfolio-detail-wrapper {
-      .portfolio-header-detail {
-        width: 50%;
+    .row.game-data {
+      .portfolio-detail-wrapper {
+        text-align: center;
+        .portfolio-header-detail {
+          text-align: center;
+          width: 50%;
+
+          div.detail-header {
+            text-align: center;
+          }
+
+          div.detail-fact {
+            text-align: center;
+          }
+        }
       }
     }
   }
