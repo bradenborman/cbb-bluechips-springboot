@@ -2,8 +2,9 @@ package Borman.cbbbluechips.controllers.api;
 
 import Borman.cbbbluechips.controllers.AuthenticatedController;
 import Borman.cbbbluechips.email.EmailService;
-import Borman.cbbbluechips.models.paypal.PaypalDonationRequest;
 import Borman.cbbbluechips.models.User;
+import Borman.cbbbluechips.models.paypal.PaypalDonationRequest;
+import Borman.cbbbluechips.models.requests.CreateUserRequest;
 import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.TransactionService;
 import Borman.cbbbluechips.services.UserGroupService;
@@ -18,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/api")
@@ -45,17 +45,11 @@ public class UserController extends AuthenticatedController {
     }
 
     @PostMapping("/create-user")
-    public synchronized ResponseEntity<Void> createUser(@RequestParam(value = "fname") String fname,
-                                                        @RequestParam(value = "lname") String lname,
-                                                        @RequestParam(value = "email_new") String email_new,
-                                                        @RequestParam(value = "password_new") String password_new) {
+    public synchronized ResponseEntity<Void> createUser(@RequestBody CreateUserRequest createUserRequest) {
         if (usersAllowedToSignUp)
-            userService.createNewUser(fname, lname, email_new, password_new);
-
+            userService.createNewUser(createUserRequest);
         return ResponseEntity.ok().build();
     }
-
-
 
     //TODO
     @PostMapping("/delete")

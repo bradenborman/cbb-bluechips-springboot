@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 
 import Cookies from "universal-cookie";
-import { useHistory, useLocation } from "react-router";
 
 import { Navbar } from "../navbar/navbar";
 import { Market } from "../market/Market";
@@ -24,30 +23,17 @@ export interface IAppProps {}
 
 export const App: React.FC<IAppProps> = (props: IAppProps) => {
   const cookies = new Cookies();
-  let history = useHistory();
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
     cookies.get("_live") != undefined
   ); //_live is cookie used at login to flag front end for nav
-
-  //Tracks cookie to remove nav if cookie is deleted
-  useEffect(() => {
-    setInterval(() => {
-      if (cookies.get("_live") == undefined) {
-        history.push("/user/logout");
-      }
-    }, 800);
-  }, []);
 
   return (
     <ReactRouter>
       <div id="app-wrapper">
         <Navbar isLoggedIn={isLoggedIn} />
         <ReactRoute exact path={"/login"}>
-          <LoignSignup
-            setIsLoggedIn={setIsLoggedIn}
-            selectedOption={ActiveHomePageOption.LOGIN}
-          />
+          <LoignSignup setIsLoggedIn={setIsLoggedIn} />
         </ReactRoute>
         <ReactRoute exact path={["/", "/portfolio"]}>
           <Portfolio />

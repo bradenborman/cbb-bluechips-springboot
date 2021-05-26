@@ -1,23 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Tabs, Tab } from "react-bootstrap";
 import { NewFeatures } from "./components/newfeatures";
 import { SignUp } from "./components/signup";
 import { Login } from "./components/login";
 import { ActiveHomePageOption } from "../../models/enums/activeHomePageOption";
-import { GoogleLogin } from "./components/googleLogin";
 
 export interface LoignSignup {
   setIsLoggedIn: (x: boolean) => void;
-  selectedOption: ActiveHomePageOption;
 }
 export const LoignSignup: React.FC<LoignSignup> = (props: LoignSignup) => {
+  const [selectedOption, setSelectedOption] = useState<ActiveHomePageOption>(
+    ActiveHomePageOption.SIGNUP
+  );
+  const [emailToAttemptLogin, setEmailToAttemptLogin] = useState<string>();
+
+  const handleLogin = (emailEntered: string) => {
+    setSelectedOption(ActiveHomePageOption.LOGIN);
+    setEmailToAttemptLogin(emailEntered);
+  };
+
   return (
     <div id="landing-page" className="container">
       <div className="main">
         <Row>
           <Col lg={6} className="section">
             <Tabs
-              defaultActiveKey={props.selectedOption}
+              defaultActiveKey={selectedOption}
               id="uncontrolled-tab-example"
             >
               <Tab
@@ -28,7 +36,7 @@ export const LoignSignup: React.FC<LoignSignup> = (props: LoignSignup) => {
                   </span>
                 }
               >
-                <SignUp />
+                <SignUp handleLogin={handleLogin} />
               </Tab>
               <Tab
                 eventKey={ActiveHomePageOption.LOGIN}
@@ -38,7 +46,10 @@ export const LoignSignup: React.FC<LoignSignup> = (props: LoignSignup) => {
                   </span>
                 }
               >
-                <Login setIsLoggedIn={props.setIsLoggedIn} />
+                <Login
+                  emailToAttemptLogin={emailToAttemptLogin}
+                  setIsLoggedIn={props.setIsLoggedIn}
+                />
               </Tab>
             </Tabs>
 

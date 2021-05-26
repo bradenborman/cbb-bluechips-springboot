@@ -3,6 +3,7 @@ package Borman.cbbbluechips.services;
 import Borman.cbbbluechips.daos.UserDao;
 import Borman.cbbbluechips.email.EmailService;
 import Borman.cbbbluechips.models.User;
+import Borman.cbbbluechips.models.requests.CreateUserRequest;
 import Borman.cbbbluechips.utilities.UserNameUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +32,15 @@ public class UserService {
     }
 
     @Transactional
-    public void createNewUser(String fname, String lname, String email_new, String password_new) {
-        User user = new User(UserNameUtility.titleCaseConversion(fname), UserNameUtility.titleCaseConversion(lname), email_new, password_new);
+    public void createNewUser(CreateUserRequest request) {
+
+        User user = new User(
+                UserNameUtility.titleCaseConversion(request.getFirstName()),
+                UserNameUtility.titleCaseConversion(request.getLastName()),
+                request.getEmail(),
+                request.getPassword()
+        );
+
         if (isUserAlreadyPresent(user.getEmail())) {
             logger.info(String.format("%s already in database", user.getEmail()));
         } else {

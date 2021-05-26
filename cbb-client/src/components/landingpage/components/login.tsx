@@ -6,13 +6,14 @@ import axios, { AxiosRequestConfig } from "axios";
 import classNames from "classnames";
 
 export interface ILoginProps {
+  emailToAttemptLogin: string | null;
   setIsLoggedIn: (x: boolean) => void;
 }
 
 export const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
   const history: any = useHistory();
 
-  const [email, setEmail] = useState<string>("bradenborman@hotmail.com");
+  const [email, setEmail] = useState<string>(props?.emailToAttemptLogin);
   const [password, setPassword] = useState<string>();
 
   const [loginError, setLoginError] = useState<boolean>(false);

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Row, Col, FormControl, Button } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { validateEmail } from "../../../utilities/signupValidation";
+import axios from "axios";
 
-export interface ISignUpProps {}
+export interface ISignUpProps {
+  handleLogin: (email: string) => void;
+}
 export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
   const [firstName, setFirstName] = useState<string>(),
     [lastName, setLastName] = useState<string>(),
@@ -14,7 +17,23 @@ export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
     let isValid: boolean = true;
     isValid = validateEmail(emailAddress);
 
-    if (isValid) console.log("Submitting Request");
+    if (isValid) {
+      alert("Submitting Request");
+      axios
+        .post("/api/create-user", {
+          firstName,
+          lastName,
+          email: emailAddress,
+          password
+        })
+        .then(response => {
+          alert("USER WAS MADE");
+          props.handleLogin(emailAddress);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
 
   return (
