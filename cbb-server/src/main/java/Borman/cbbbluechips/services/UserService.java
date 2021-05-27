@@ -20,11 +20,14 @@ public class UserService {
     UserDao userDao;
     EmailService emailService;
     private final int STARTING_CASH;
+    private final boolean SIGNUP_ALLOWED;
 
-    public UserService(UserDao userDao, @Qualifier("startingCash") final int STARTING_CASH, EmailService emailService) {
+    public UserService(UserDao userDao, @Qualifier("startingCash") final int STARTING_CASH, EmailService emailService,
+                       @Qualifier("signUpAllowed") boolean SIGNUP_ALLOWED) {
         this.userDao = userDao;
         this.emailService = emailService;
         this.STARTING_CASH = STARTING_CASH;
+        this.SIGNUP_ALLOWED = SIGNUP_ALLOWED;
     }
 
     public List<User> getAllUsers() {
@@ -32,22 +35,25 @@ public class UserService {
     }
 
     @Transactional
-    public void createNewUser(CreateUserRequest request) {
+    public void createUser(CreateUserRequest request) {
+        if (SIGNUP_ALLOWED) {
 
-        User user = new User(
-                UserNameUtility.titleCaseConversion(request.getFirstName()),
-                UserNameUtility.titleCaseConversion(request.getLastName()),
-                request.getEmail(),
-                request.getPassword()
-        );
+            if (isUserAlreadyPresent(request.getEmail())) {
+                logger.info(String.format("%s already in database", request.getEmail()));
+            } else {
 
-        if (isUserAlreadyPresent(user.getEmail())) {
-            logger.info(String.format("%s already in database", user.getEmail()));
-        } else {
-            user.setCash(STARTING_CASH);
-            String userId = userDao.createNewUser(user);
-            user.setID(userId);//Do I need to set this still? Investigate
-            emailService.sendTermsAndServices(user.getEmail());
+                User user = new User(
+                        UserNameUtility.titleCaseConversion(request.getFirstName()),
+                        UserNameUtility.titleCaseConversion(request.getLastName()),
+                        request.getEmail(),
+                        request.getPassword()
+                );
+
+                user.setCash(STARTING_CASH);
+                String userId = userDao.createNewUser(user);
+                user.setID(userId);//Do I need to set this still? Investigate
+                emailService.sendTermsAndServices(user.getEmail());
+            }
         }
     }
 

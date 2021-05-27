@@ -11,7 +11,6 @@ import Borman.cbbbluechips.services.UserGroupService;
 import Borman.cbbbluechips.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,23 +30,19 @@ public class UserController extends AuthenticatedController {
     OwnsService ownsService;
     TransactionService transactionService;
     UserGroupService userGroupService;
-    boolean usersAllowedToSignUp;
 
     public UserController(UserService userService, EmailService emailService, OwnsService ownsService,
-                          TransactionService transactionService, UserGroupService userGroupService,
-                          @Qualifier("signUpAllowed") boolean signUpAllowed) {
+                          TransactionService transactionService, UserGroupService userGroupService) {
         this.userService = userService;
         this.emailService = emailService;
         this.ownsService = ownsService;
         this.transactionService = transactionService;
         this.userGroupService = userGroupService;
-        this.usersAllowedToSignUp = signUpAllowed;
     }
 
     @PostMapping("/create-user")
     public synchronized ResponseEntity<Void> createUser(@RequestBody CreateUserRequest createUserRequest) {
-        if (usersAllowedToSignUp)
-            userService.createNewUser(createUserRequest);
+        userService.createUser(createUserRequest);
         return ResponseEntity.ok().build();
     }
 
