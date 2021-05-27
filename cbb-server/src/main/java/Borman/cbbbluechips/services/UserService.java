@@ -4,6 +4,7 @@ import Borman.cbbbluechips.daos.UserDao;
 import Borman.cbbbluechips.email.EmailService;
 import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.models.requests.CreateUserRequest;
+import Borman.cbbbluechips.models.responses.PhoneNumberDetails;
 import Borman.cbbbluechips.utilities.UserNameUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,10 +97,6 @@ public class UserService {
         return userDao.retrieveUserById(id).getEmail();
     }
 
-    public boolean doesUserSubscribeToTextAlerts(String userId) {
-        return userDao.doesUserSubscribeToTextAlerts(userId);
-    }
-
     public void toggleTextAlertSubscription(boolean textStatus, String userIdLoggedIn) {
         if (textStatus)
             userDao.subscribeUserToTextAlerts(userIdLoggedIn);
@@ -113,10 +110,6 @@ public class UserService {
         if ("".equals(phoneNumber))
             userDao.unSubscribeUserToTextAlerts(UserId);
 
-    }
-
-    public String getUserPhoneNumber(String userid) {
-        return userDao.getUserPhoneNumber(userid);
     }
 
     public User getUserByEmail(String emailToRecover) {
@@ -134,4 +127,10 @@ public class UserService {
         userDao.updateHasPlayerPaidTrue(userId);
     }
 
+    public PhoneNumberDetails retrievePhoneNumberDetails(String userId) {
+        PhoneNumberDetails x = new PhoneNumberDetails();
+        x.setPhoneNumber(userDao.getUserPhoneNumber(userId));
+        x.setSubscribedToMessages(userDao.doesUserSubscribeToTextAlerts(userId));
+        return x;
+    }
 }

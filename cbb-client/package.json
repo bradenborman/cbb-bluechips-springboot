@@ -28,7 +28,6 @@
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.5",
     "cross-env": "^5.2.0",
-    "lodash": "^4.17.15",
     "paypal-rest-sdk": "^1.8.1",
     "query-string": "^7.0.0",
     "react": "^16.12.0",
@@ -39,7 +38,8 @@
     "react-router-dom": "^5.1.2",
     "reselect": "^3.0.1",
     "typescript": "^3.7.2",
-    "universal-cookie": "^4.0.4"
+    "universal-cookie": "^4.0.4",
+    "use-debounce": "^6.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

@@ -54,10 +54,10 @@ dependencies {
 
 task copyClient(dependsOn: ":cbb-client:clientBuild") {
 
-//    doFirst{
-//        delete "src/main/resources/static"
-//        delete "src/main/resources/templates"
-//    }
+    doFirst{
+        delete "src/main/resources/static"
+        delete "src/main/resources/templates"
+    }
 
     doLast {
         copy {

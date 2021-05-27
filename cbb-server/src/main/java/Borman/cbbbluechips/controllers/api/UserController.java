@@ -2,9 +2,9 @@ package Borman.cbbbluechips.controllers.api;
 
 import Borman.cbbbluechips.controllers.AuthenticatedController;
 import Borman.cbbbluechips.email.EmailService;
-import Borman.cbbbluechips.models.User;
 import Borman.cbbbluechips.models.paypal.PaypalDonationRequest;
 import Borman.cbbbluechips.models.requests.CreateUserRequest;
+import Borman.cbbbluechips.models.responses.PhoneNumberDetails;
 import Borman.cbbbluechips.services.OwnsService;
 import Borman.cbbbluechips.services.TransactionService;
 import Borman.cbbbluechips.services.UserGroupService;
@@ -12,12 +12,8 @@ import Borman.cbbbluechips.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/api")
@@ -46,13 +42,28 @@ public class UserController extends AuthenticatedController {
         return ResponseEntity.ok().build();
     }
 
-    //TODO
-    @PostMapping("/delete")
-    String deleteUser() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        deleteAllTracesFromUser(user.getID());
-        return "redirect:../users/logout";
+    @DeleteMapping("/delete-user")
+    ResponseEntity<Void> deleteUser() {
+        String userId = retrieveLoggedInUserId();
+        userGroupService.deleteUserFromAllGroups(userId);
+        transactionService.deleteUser(userId);
+        ownsService.deleteUser(userId);
+        userService.deleteUser(userId);
+        return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/user-phone-number-details")
+    public ResponseEntity<PhoneNumberDetails> phoneNumberDetails() {
+        String userId = retrieveLoggedInUserId();
+        return ResponseEntity.ok(userService.retrievePhoneNumberDetails(userId));
+    }
+
+    @PostMapping("/update-phone-number")
+    public ResponseEntity<Void> updatePhoneNumber(@RequestParam(value = "phoneNumber") String phoneNumber) {
+        userService.updatePhoneNumber(phoneNumber,retrieveLoggedInUserId());
+        return ResponseEntity.ok().build();
+    }
+
 
     //TODO
     @PostMapping("/paypal-transaction-complete")
@@ -63,13 +74,5 @@ public class UserController extends AuthenticatedController {
         return ResponseEntity.ok(true);
     }
 
-    //TODO
-    @Transactional
-    private void deleteAllTracesFromUser(String userId) {
-        userGroupService.deleteUserFromAllGroups(userId);
-        transactionService.deleteUser(userId);
-        ownsService.deleteUser(userId);
-        userService.deleteUser(userId);
-    }
 
 }

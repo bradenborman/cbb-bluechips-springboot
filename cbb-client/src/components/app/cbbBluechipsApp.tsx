@@ -16,6 +16,7 @@ import { Rules } from "../gamerules/rules";
 import { Leaderboard } from "../leaderboard/leaderboard";
 import { LoignSignup } from "../landingpage/loignSignup";
 import { ActiveHomePageOption } from "../../models/enums/activeHomePageOption";
+import { Settings } from "../settings-page/settings";
 
 require("./cbbBluechips.scss");
 
@@ -46,6 +47,9 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         </ReactRoute>
         <ReactRoute exact path="/calculator">
           <Calculator />
+        </ReactRoute>
+        <ReactRoute exact path="/settings">
+          <Settings />
         </ReactRoute>
         <ReactRoute exact path="/transactions">
           <Transactions />

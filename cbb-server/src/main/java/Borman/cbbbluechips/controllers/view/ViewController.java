@@ -13,6 +13,7 @@ public class ViewController {
             "/login",
             "/portfolio",
             "/market",
+            "/settings",
             "/trade",
             "/trade/*",
             "/calculator",
