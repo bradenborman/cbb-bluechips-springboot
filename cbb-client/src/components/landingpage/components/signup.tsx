@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { validateEmail } from "../../../utilities/signupValidation";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 
-export interface ISignUpProps {
-  handleLogin: (email: string) => void;
-}
+export interface ISignUpProps {}
 export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
-  const [firstName, setFirstName] = useState<string>(),
-    [lastName, setLastName] = useState<string>(),
-    [emailAddress, setEmailAddress] = useState<string>(),
-    [password, setPassword] = useState<string>();
+  const [firstName, setFirstName] = useState<string>(""),
+    [lastName, setLastName] = useState<string>(""),
+    [emailAddress, setEmailAddress] = useState<string>(""),
+    [password, setPassword] = useState<string>("");
+
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
     isValid = validateEmail(emailAddress);
 
     if (isValid) {
-      alert("Submitting Request");
+      setSubmitting(true);
       axios
         .post("/api/create-user", {
           firstName,
@@ -27,13 +28,22 @@ export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
           password
         })
         .then(response => {
-          alert("USER WAS MADE");
-          props.handleLogin(emailAddress);
+          window.location.href = `/login?email=${emailAddress}`;
         })
         .catch(error => {
           console.log(error);
         });
     }
+  };
+
+  const getButtonText = () => {
+    if (submitting)
+      return (
+        <React.Fragment>
+          <Loader type="ThreeDots" color="white" height={30} width={30} />
+        </React.Fragment>
+      );
+    else return <React.Fragment>Sign Up</React.Fragment>;
   };
 
   return (
@@ -127,7 +137,7 @@ export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
           </Col>
           <Col lg={4}>
             <Button type="submit" className="btn-block">
-              Submit
+              {getButtonText()}
             </Button>
           </Col>
         </Row>

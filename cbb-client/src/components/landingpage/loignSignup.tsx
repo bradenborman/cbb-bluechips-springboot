@@ -4,20 +4,25 @@ import { NewFeatures } from "./components/newfeatures";
 import { SignUp } from "./components/signup";
 import { Login } from "./components/login";
 import { ActiveHomePageOption } from "../../models/enums/activeHomePageOption";
+import queryString from "query-string";
+import { useLocation } from "react-router";
 
 export interface LoignSignup {
   setIsLoggedIn: (x: boolean) => void;
 }
 export const LoignSignup: React.FC<LoignSignup> = (props: LoignSignup) => {
-  const [selectedOption, setSelectedOption] = useState<ActiveHomePageOption>(
-    ActiveHomePageOption.SIGNUP
-  );
-  const [emailToAttemptLogin, setEmailToAttemptLogin] = useState<string>();
+  const { search } = useLocation();
+  const urlParams = queryString.parse(search);
 
-  const handleLogin = (emailEntered: string) => {
-    setSelectedOption(ActiveHomePageOption.LOGIN);
-    setEmailToAttemptLogin(emailEntered);
-  };
+  const [selectedOption, setSelectedOption] = useState<ActiveHomePageOption>(
+    urlParams.email != null
+      ? ActiveHomePageOption.LOGIN
+      : ActiveHomePageOption.SIGNUP
+  );
+
+  const [emailToAttemptLogin, setEmailToAttemptLogin] = useState<string>(
+    urlParams.email?.toString()
+  );
 
   return (
     <div id="landing-page" className="container">
@@ -36,7 +41,7 @@ export const LoignSignup: React.FC<LoignSignup> = (props: LoignSignup) => {
                   </span>
                 }
               >
-                <SignUp handleLogin={handleLogin} />
+                <SignUp />
               </Tab>
               <Tab
                 eventKey={ActiveHomePageOption.LOGIN}
