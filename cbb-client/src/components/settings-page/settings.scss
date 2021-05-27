@@ -1,2 +1,13 @@
 #settings-wrapper {
+  #phone-number-input-wrapper {
+    margin-top: 30px;
+
+    label {
+      display: block;
+    }
+
+    .fa-exclamation {
+      color: red;
+    }
+  }
 }

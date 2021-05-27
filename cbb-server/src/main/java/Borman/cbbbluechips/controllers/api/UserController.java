@@ -60,10 +60,16 @@ public class UserController extends AuthenticatedController {
 
     @PostMapping("/update-phone-number")
     public ResponseEntity<Void> updatePhoneNumber(@RequestParam(value = "phoneNumber") String phoneNumber) {
-        userService.updatePhoneNumber(phoneNumber,retrieveLoggedInUserId());
-        return ResponseEntity.ok().build();
+        boolean success = userService.updatePhoneNumber(phoneNumber, retrieveLoggedInUserId());
+        return success ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
+    //TODO
+    @PostMapping("/update-text-alert-status")
+    public ResponseEntity<Void> updateTextAlert(@RequestParam(value = "textStatus") boolean textStatus) {
+        userService.toggleTextAlertSubscription(textStatus, retrieveLoggedInUserId());
+        return ResponseEntity.ok().build();
+    }
 
     //TODO
     @PostMapping("/paypal-transaction-complete")

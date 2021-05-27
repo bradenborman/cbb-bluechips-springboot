@@ -43,16 +43,6 @@
 //        return "settings";
 //    }
 //
-//    @PostMapping("/settings/updateTextAlert")
-//    public ResponseEntity<String> updateTextAlert(@RequestParam(value = "textStatus") boolean textStatus) {
-//        userService.toggleTextAlertSubscription(textStatus, getLoggedInUserId());
-//        return ResponseEntity.ok("OKAY");
-//    }
 //
-//    @PostMapping("/settings/updatePhoneNumber")
-//    public ResponseEntity<String> updatePhoneNumber(@RequestParam(value = "phoneNumber") String phoneNumber) {
-//        userService.updatePhoneNumber(phoneNumber, getLoggedInUserId());
-//        return ResponseEntity.ok("OKAY");
-//    }
 //
 //}

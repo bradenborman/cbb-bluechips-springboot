@@ -104,12 +104,15 @@ public class UserService {
             userDao.unSubscribeUserToTextAlerts(userIdLoggedIn);
     }
 
-    public void updatePhoneNumber(String phoneNumber, String UserId) {
+    public boolean updatePhoneNumber(String phoneNumber, String UserId) {
         logger.info(String.format("Request to change Phone Number: %s by user: %s", phoneNumber, UserId));
         userDao.updatePhoneNumber(phoneNumber, UserId);
         if ("".equals(phoneNumber))
             userDao.unSubscribeUserToTextAlerts(UserId);
 
+        //TODO => update with validation. Will display red ! on front end if error
+
+        return true;
     }
 
     public User getUserByEmail(String emailToRecover) {
