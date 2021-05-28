@@ -3,7 +3,6 @@ package Borman.cbbbluechips.models;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
 
 public class Team {
 
@@ -12,6 +11,7 @@ public class Team {
     private boolean eliminated;
     private boolean locked;
     private String seed;
+    @Deprecated
     private String logoULR;
     private LocalDateTime nextGameTime;
     private String nextTeamPlaying;

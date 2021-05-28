@@ -31,9 +31,14 @@ public class TeamDao {
         return jdbcTemplate.query(TeamSQL.getTournamentTeams, new TeamRowMapper());
     }
 
+    public Team getTeamByIdWithSharesOutstanding(String teamId) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
+        return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamByIdWithSharesOutstanding, params, new TeamRowDetailedMapper());
+    }
+
     public Team getTeamById(String teamId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
-        return namedParameterJdbcTemplate.query(TeamSQL.getTeamById, params, new TeamRowMapper()).get(0);
+        return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamById, params, new TeamRowMapper());
     }
 
     public double getCurrentMarketPrice(String teamId) {
@@ -56,12 +61,13 @@ public class TeamDao {
         return jdbcTemplate.query(TeamSQL.getAllTeamsWithSharesOutstandingDetail, new TeamRowDetailedMapper());
     }
 
+    @Deprecated
     public String getSharesOutstandingForTeam(String teamId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
             String amount = namedParameterJdbcTemplate.queryForObject(TeamSQL.getSharesOutstanding, params, String.class);
             return amount != null ? amount : "0";
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.toString());
             return "0";
         }
@@ -75,7 +81,7 @@ public class TeamDao {
                     .addValue("teamPlayingShortName", teamPlayingShortName);
 
             namedParameterJdbcTemplate.update(TeamSQL.updateNextTeamPlaying, params);
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Failed to Update Next TeamPlaying");
         }
     }
@@ -84,8 +90,8 @@ public class TeamDao {
     public String getTeamPlayingNext(String teamId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
-           return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamPlayingNext, params, String.class);
-        }catch (Exception e) {
+            return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamPlayingNext, params, String.class);
+        } catch (Exception e) {
             System.out.println("Failed to getTeamPlayingNext");
             return "";
         }
@@ -100,7 +106,7 @@ public class TeamDao {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
             String ps = namedParameterJdbcTemplate.queryForObject(TeamSQL.getNextPointSpread, params, String.class);
             return ps != null ? ps : "0";
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Failed to getNextPointSpread");
             return "0";
         }
@@ -111,7 +117,7 @@ public class TeamDao {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamShortName", teamShortName);
             return namedParameterJdbcTemplate.queryForObject(TeamSQL.getNameByShortName, params, String.class);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -120,9 +126,9 @@ public class TeamDao {
     public boolean isTeamLocked(String teamId) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
-            String result =  namedParameterJdbcTemplate.queryForObject(TeamSQL.getLockedStatusByTeam, params, String.class);
+            String result = namedParameterJdbcTemplate.queryForObject(TeamSQL.getLockedStatusByTeam, params, String.class);
             return "1".equals(result);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

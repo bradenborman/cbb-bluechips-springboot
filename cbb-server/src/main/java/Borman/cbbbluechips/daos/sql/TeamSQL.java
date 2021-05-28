@@ -8,6 +8,12 @@ public class TeamSQL {
 
     public static final String getTeamById = "SELECT * FROM teams WHERE Team_ID = :teamId;";
 
+    public static final String getTeamByIdWithSharesOutstanding = "SELECT teams.Team_ID, name, seed, Is_Locked, point_spread, is_out, Logo_URL, " +
+            "Current_Market_Price, Next_Team_Playing, Point_Spread, Sum(Amount_Owned) as Amount_Owned, teams.Name " +
+            "FROM teams " +
+            "left JOIN owns ON teams.Team_ID = owns.Team_ID " +
+            "WHERE teams.Team_ID = :teamId;";
+
     public static final String getTeamName = "SELECT Name FROM teams where Team_ID = :teamId;";
 
     public static final String getSharesOutstanding = "SELECT Sum(Amount_Owned) FROM owns " +

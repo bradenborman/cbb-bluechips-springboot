@@ -10,8 +10,12 @@ public class TeamExchangeDetailsResponse {
     private String teamId;
     private String teamName;
     private double currentMarketPrice;
+    private String sharesOutstanding;
+    private String seed;
     private String teamPlayingNext;
     private String startTime;
+    private boolean locked;
+    private String pointSpread;
 
 
     private int amountSharesOwned;
@@ -61,6 +65,14 @@ public class TeamExchangeDetailsResponse {
         this.currentMarketPrice = currentMarketPrice;
     }
 
+    public String getSeed() {
+        return seed;
+    }
+
+    public void setSeed(String seed) {
+        this.seed = seed;
+    }
+
     public String getTeamPlayingNext() {
         return teamPlayingNext;
     }
@@ -99,5 +111,29 @@ public class TeamExchangeDetailsResponse {
 
     public void setTopHolders(List<String> topHolders) {
         this.topHolders = topHolders;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    public String getPointSpread() {
+        return pointSpread;
+    }
+
+    public void setPointSpread(String pointSpread) {
+        this.pointSpread = pointSpread;
+    }
+
+    public String getSharesOutstanding() {
+        return sharesOutstanding;
+    }
+
+    public void setSharesOutstanding(String sharesOutstanding) {
+        this.sharesOutstanding = sharesOutstanding;
     }
 }

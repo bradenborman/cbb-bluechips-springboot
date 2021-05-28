@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { useParams } from "react-router";
 import { Row, Col, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { Page } from "../general/page";
-import { ITeam } from "../../models/team";
-import { team1 } from "../../data/test-data";
 import { TransactionSlider } from "./components/transactionSlider";
+
+import axios from "axios";
+import { ITeamExchangeDetailsResponse } from "../../models/teamExchangeDetailsResponse";
+
 export interface ITradeProps {}
 export const Trade: React.FC<ITradeProps> = (props: ITradeProps) => {
   let { teamId } = useParams();
 
-  const team: ITeam = team1;
+  const [
+    teamExchangeDetailsResponse,
+    setTeamExchangeDetailsResponse
+  ] = useState<ITeamExchangeDetailsResponse>();
+
+  useEffect(() => {
+    // axios
+    //   .get(`/api//exchange-details/${teamId}`)
+    //   .then(response => {
+    //     setTeamExchangeDetailsResponse(response.data);
+    //     console.log(response.data)
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+  }, []);
 
   //TODO: show capital available
   //TODO: show team data: name, current price, point spread

@@ -7,6 +7,7 @@ import Borman.cbbbluechips.utilities.ExchangeUtility;
 
 import java.util.List;
 
+//Smart builder -- not just a getter/setter
 public final class TeamExchangeDetailsResponseBuilder {
 
     TeamExchangeDetailsResponse teamExchangeDetailsResponse;
@@ -19,16 +20,20 @@ public final class TeamExchangeDetailsResponseBuilder {
         return new TeamExchangeDetailsResponseBuilder();
     }
 
-    public TeamExchangeDetailsResponseBuilder populateWithUser(User user) {
+    public TeamExchangeDetailsResponseBuilder populateChildrenWithUser(User user) {
         teamExchangeDetailsResponse.setUserId(user.getID());
         teamExchangeDetailsResponse.setPurchasingPower(user.getCash());
         return this;
     }
 
-    public TeamExchangeDetailsResponseBuilder populatWithTeam(Team team) {
+    public TeamExchangeDetailsResponseBuilder populateChildrenWithTeam(Team team) {
         teamExchangeDetailsResponse.setTeamId(team.getTeamId());
         teamExchangeDetailsResponse.setTeamName(team.getTeamName());
+        teamExchangeDetailsResponse.setSeed(team.getSeed());
+        teamExchangeDetailsResponse.setLocked(team.isLocked());
+        teamExchangeDetailsResponse.setPointSpread(team.getNextPointSpread());
         teamExchangeDetailsResponse.setTeamPlayingNext(team.getNextTeamPlaying());
+        teamExchangeDetailsResponse.setSharesOutstanding(team.getSharesOutstanding());
         teamExchangeDetailsResponse.setStartTime(ExchangeUtility.setStartTimeFormatted(team.getNextGameTime()));
         teamExchangeDetailsResponse.setCurrentMarketPrice(team.getCurrentMarketPrice());
         return this;
@@ -74,8 +79,13 @@ public final class TeamExchangeDetailsResponseBuilder {
         return this;
     }
 
-    public TeamExchangeDetailsResponseBuilder withMaximumCanPurchase(int maximumCanPurchase) {
-        teamExchangeDetailsResponse.setMaximumCanPurchase(maximumCanPurchase);
+    public TeamExchangeDetailsResponseBuilder withMaximumCanPurchase() {
+        teamExchangeDetailsResponse.setMaximumCanPurchase(
+                ExchangeUtility.calculateAvailableCanPurchase(
+                        this.teamExchangeDetailsResponse.getPurchasingPower(),
+                        this.teamExchangeDetailsResponse.getCurrentMarketPrice()
+                )
+        );
         return this;
     }
 

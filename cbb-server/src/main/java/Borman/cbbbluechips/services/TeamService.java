@@ -57,7 +57,7 @@ public class TeamService {
         priceMap.put("64", String.valueOf(gameRules.getStartingPricePerShare()));
         List<String> rounds = Arrays.asList("32", "16", "8", "4", "2", "1");
         rounds.forEach(round -> {
-           Optional<MarketValue> matchedValueForRound = onlySelectedTeam.stream()
+            Optional<MarketValue> matchedValueForRound = onlySelectedTeam.stream()
                     .filter(marketValue -> marketValue.getRoundId().equals(round))
                     .findFirst();
 
@@ -66,6 +66,10 @@ public class TeamService {
         return String.join(" ", priceMap.values());
     }
 
+
+    public Team getTeamByIdWithSharesOutstanding(String teamId) {
+        return teamDao.getTeamByIdWithSharesOutstanding(teamId);
+    }
 
     public Team getTeamById(String teamId) {
         return teamDao.getTeamById(teamId);
