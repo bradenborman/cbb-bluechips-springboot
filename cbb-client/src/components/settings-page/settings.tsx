@@ -94,10 +94,11 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
   return (
     <Page pageId="settings-wrapper">
       <Row>
-        <Col lg={8}></Col>
-        <Col id="user-settings" lg={4}>
+        <Col id="game-settings" lg={8} md={7}>
+          <h2>Game Settings</h2>
+        </Col>
+        <Col id="user-settings" lg={4} md={5}>
           <h2>User Settings</h2>
-
           <div className="wrapper" id="phone-number-input-wrapper">
             <label htmlFor="phoneNumberInput">
               <span className="topic">Phone Number</span>
@@ -108,6 +109,9 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
                 aria-describedby="inputGroup-sizing-sm"
                 id="phoneNumberInput"
                 value={phoneNumber}
+                type="tel"
+                pattern="[0-9]+"
+                maxLength={10}
                 onChange={handlePhoneChangeUpdate}
               />
               <InputGroup.Prepend>

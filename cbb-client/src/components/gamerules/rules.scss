@@ -69,6 +69,8 @@
 
 @media screen and (max-width: 600px) {
   .article-wrapper {
+    padding: 1vh 2.5vw;
+
     img {
       width: 100%;
     }
@@ -97,6 +99,14 @@
     .btn-group-lg > .btn,
     .btn-lg {
       margin-bottom: 20px;
+    }
+
+    .row {
+      margin-bottom: 0px;
+    }
+
+    .card {
+      margin-bottom: 2vh;
     }
   }
 }

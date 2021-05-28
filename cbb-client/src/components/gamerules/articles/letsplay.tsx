@@ -1,15 +1,8 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { useHistory } from "react-router";
 
 export interface ILetsPlayProps {}
 export const LetsPlay: React.FC<ILetsPlayProps> = (props: ILetsPlayProps) => {
-  let history = useHistory();
-
-  const handlPortfolioLinkClick = (e: any) => {
-    history.push("/portfolio");
-  };
-
   return (
     <Row>
       <Col md={12}>
@@ -24,15 +17,7 @@ export const LetsPlay: React.FC<ILetsPlayProps> = (props: ILetsPlayProps) => {
           ready to experience March Madness like you never have before with
           College Basketball Bluechips!
         </p>
-        <div>
-          <button
-            type="button"
-            onClick={handlPortfolioLinkClick}
-            className="btn btn-outline-primary btn-lg"
-          >
-            Back to Portfolio
-          </button>
-        </div>
+        <div></div>
       </Col>
     </Row>
   );

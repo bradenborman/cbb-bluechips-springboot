@@ -17,36 +17,18 @@ export const IntroHelp: React.FC<IIntroHelpProps> = (
     history.push("/portfolio");
   };
 
-  const getActionButtons = (): JSX.Element => {
-    if (props.signedIn)
+  const getActionButtons = (): JSX.Element | null => {
+    if (!props.signedIn)
       return (
-        <div>
-          <button
-            type="button"
-            onClick={handlPortfolioLinkClick}
-            className="btn btn-outline-primary btn-lg"
-          >
-            Back to Portfolio
-          </button>
-          <button
-            type="button"
-            onClick={handlePointSpreadCalcLinkClick}
-            className="btn btn-outline-primary btn-lg"
-          >
-            Point-spread Calculator
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={e => alert()}
+          className="btn btn-outline-primary btn-lg"
+        >
+          Sign Up
+        </button>
       );
-
-    return (
-      <button
-        type="button"
-        onClick={e => alert()}
-        className="btn btn-outline-primary btn-lg"
-      >
-        Sign Up
-      </button>
-    );
+    return null;
   };
 
   return (

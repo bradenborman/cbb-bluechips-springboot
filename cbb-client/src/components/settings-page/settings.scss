@@ -1,7 +1,15 @@
 #settings-wrapper {
+  #game-settings {
+    h2 {
+      text-align: center;
+      font-family: "Alfa Slab One", sans-serif;
+    }
+  }
+
   #user-settings {
     h2 {
       text-align: center;
+      font-family: "Alfa Slab One", sans-serif;
     }
 
     .wrapper {
@@ -19,6 +27,10 @@
       .fa-exclamation {
         color: red;
       }
+
+      input:invalid {
+        border: 2px solid red;
+      }
     }
 
     #text-alert-status-wrapper {
@@ -32,6 +44,15 @@
     #delete-account-wrapper {
       button {
         max-width: 150px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  #settings-wrapper {
+    #user-settings {
+      .wrapper {
+        padding: 1vh 3vw;
       }
     }
   }
