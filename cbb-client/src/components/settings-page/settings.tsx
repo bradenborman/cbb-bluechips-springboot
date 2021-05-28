@@ -17,8 +17,8 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
   );
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isUserSubscribedToMessages, setIsUserSubscribedToMessages] = useState<
-    string
-  >("");
+    boolean
+  >(false);
 
   const debounced = useDebouncedCallback((phoneNumber: any) => {
     axios
@@ -38,7 +38,7 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
       .then(response => {
         setPhoneNumber(response.data.phoneNumber);
         setPhoneNumberThinking(false);
-        setIsUserSubscribedToMessages(response.data.isSubscribedToMessages);
+        setIsUserSubscribedToMessages(response.data.subscribedToMessages);
       })
       .catch(error => {
         console.log(error);
@@ -58,10 +58,29 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
     }
   };
 
+  const callForupdateTextAlert = (subscribed: boolean) => {
+    if (
+      (subscribed && phoneNumber != "" && phoneNumber != null) ||
+      !subscribed
+    ) {
+      axios
+        .post(`/api/update-text-alert-status?textStatus=${subscribed}`)
+        .then(response => {
+          setIsUserSubscribedToMessages(subscribed);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  };
+
   const handlePhoneChangeUpdate = (e: any) => {
     setPhoneNumber(e.target.value);
     setPhoneNumberThinking(true);
     debounced(e.target.value);
+
+    if (e.target.value == null || e.target.value == "")
+      setIsUserSubscribedToMessages(false);
   };
 
   const getPhoneNumberUpdateStatusIcon = (): JSX.Element => {
@@ -75,14 +94,14 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
   return (
     <Page pageId="settings-wrapper">
       <Row>
-        <Col lg={10}></Col>
-        <Col lg={2}>
-          <button onClick={handleDeleteAccount} className="btn-block">
-            Delete Account
-          </button>
+        <Col lg={8}></Col>
+        <Col id="user-settings" lg={4}>
+          <h2>User Settings</h2>
 
-          <div id="phone-number-input-wrapper">
-            <label htmlFor="phoneNumberInput">Phone Number</label>
+          <div className="wrapper" id="phone-number-input-wrapper">
+            <label htmlFor="phoneNumberInput">
+              <span className="topic">Phone Number</span>
+            </label>
             <InputGroup className="mb-3">
               <FormControl
                 aria-label="Small"
@@ -97,6 +116,36 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
                 </InputGroup.Text>
               </InputGroup.Prepend>
             </InputGroup>
+          </div>
+
+          <div className="wrapper" id="text-alert-status-wrapper">
+            <p>
+              <span className="topic">Text Alerts</span> are sent out as a team
+              you own in your porfilio changes price. This quick notification
+              allows you to know when the team is un-locked and open for
+              trading.
+            </p>
+            <label htmlFor="phoneNumberInput">
+              I wish to subscribe to text alerts
+            </label>
+            <input
+              checked={isUserSubscribedToMessages || false}
+              onChange={e => {
+                callForupdateTextAlert(!isUserSubscribedToMessages);
+              }}
+              type="checkbox"
+            />
+          </div>
+
+          <div className="wrapper" id="delete-account-wrapper">
+            <p>
+              <span className="topic">Leaving CBB Bluechips</span> is easy.
+              Click the button below and all data will be removed. This is
+              permanent; no un-doing.
+            </p>
+            <button onClick={handleDeleteAccount} className="btn-block">
+              Delete Account
+            </button>
           </div>
         </Col>
       </Row>

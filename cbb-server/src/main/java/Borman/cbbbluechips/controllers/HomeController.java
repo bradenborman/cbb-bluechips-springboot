@@ -33,16 +33,6 @@
 ////
 ////        return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName()) ? "redirect:/portfolio" : "home";
 ////    }
-//
-//    @RequestMapping("/settings")
-//    public String settings(Model model) {
-//        String userid = getLoggedInUserId();
-//        model.addAttribute("textAlert", userService.doesUserSubscribeToTextAlerts(userid));
-//        model.addAttribute("phoneNumber", userService.getUserPhoneNumber(userid));
-//        model.addAttribute("groups", userGroupService.getDetailedGroupsData(userid));
-//        return "settings";
-//    }
-//
-//
+////
 //
 //}

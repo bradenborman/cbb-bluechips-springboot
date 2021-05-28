@@ -9,9 +9,6 @@ export interface IMarketProps {}
 export const Market: React.FC<IMarketProps> = (props: IMarketProps) => {
   return (
     <Page pageId="market-wrapper">
-      <nav>
-        <Link to="/portfolio">Portfolio</Link>
-      </nav>
       <Matchup matchup={matchup1} />
       <Matchup matchup={matchup2} />
     </Page>

@@ -98,6 +98,7 @@ public class UserService {
     }
 
     public void toggleTextAlertSubscription(boolean textStatus, String userIdLoggedIn) {
+        logger.info("Toggle-ing text alerts: {}", textStatus);
         if (textStatus)
             userDao.subscribeUserToTextAlerts(userIdLoggedIn);
         else

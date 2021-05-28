@@ -1,13 +1,38 @@
 #settings-wrapper {
-  #phone-number-input-wrapper {
-    margin-top: 30px;
-
-    label {
-      display: block;
+  #user-settings {
+    h2 {
+      text-align: center;
     }
 
-    .fa-exclamation {
-      color: red;
+    .wrapper {
+      margin-top: 5vh;
+      .topic {
+        font-weight: bold;
+      }
+    }
+
+    #phone-number-input-wrapper {
+      label {
+        display: block;
+      }
+
+      .fa-exclamation {
+        color: red;
+      }
+    }
+
+    #text-alert-status-wrapper {
+      input[type="checkbox"] {
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    #delete-account-wrapper {
+      button {
+        max-width: 150px;
+      }
     }
   }
 }

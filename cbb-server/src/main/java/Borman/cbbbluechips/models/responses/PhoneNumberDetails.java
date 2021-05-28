@@ -3,7 +3,7 @@ package Borman.cbbbluechips.models.responses;
 public class PhoneNumberDetails {
 
     private String phoneNumber;
-    private boolean isSubscribedToMessages;
+    private boolean subscribedToMessages;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -14,11 +14,10 @@ public class PhoneNumberDetails {
     }
 
     public boolean isSubscribedToMessages() {
-        return isSubscribedToMessages;
+        return subscribedToMessages;
     }
 
     public void setSubscribedToMessages(boolean subscribedToMessages) {
-        isSubscribedToMessages = subscribedToMessages;
+        this.subscribedToMessages = subscribedToMessages;
     }
-
 }

@@ -64,7 +64,6 @@ public class UserController extends AuthenticatedController {
         return success ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
-    //TODO
     @PostMapping("/update-text-alert-status")
     public ResponseEntity<Void> updateTextAlert(@RequestParam(value = "textStatus") boolean textStatus) {
         userService.toggleTextAlertSubscription(textStatus, retrieveLoggedInUserId());
