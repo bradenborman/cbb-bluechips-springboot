@@ -5,6 +5,7 @@ import { Nav, NavDropdown } from "react-bootstrap";
 
 export interface INavbarProps {
   isLoggedIn: boolean;
+  adminPriv: boolean;
 }
 export const Navbar: React.FC<INavbarProps> = (props: INavbarProps) => {
   let history = useHistory();
@@ -12,6 +13,17 @@ export const Navbar: React.FC<INavbarProps> = (props: INavbarProps) => {
 
   const returnToHome = (e: any) => {
     if (location.pathname !== "/login") history.push("/portfolio");
+  };
+
+  const getAdminLink = (): JSX.Element => {
+    if (props.adminPriv)
+      return (
+        <NavDropdown.Item href="/admin">
+          <i className="fa fa-user-lock" />
+          Admin
+        </NavDropdown.Item>
+      );
+    else return null;
   };
 
   const getApplicationLinks = () => {
@@ -49,6 +61,7 @@ export const Navbar: React.FC<INavbarProps> = (props: INavbarProps) => {
               <i className="fa fa-user-cog" />
               Settings
             </NavDropdown.Item>
+            {getAdminLink()}
             <NavDropdown.Divider />
             <NavDropdown.Item href="/user/logout">
               <i className="fa fa-sign-out-alt" />

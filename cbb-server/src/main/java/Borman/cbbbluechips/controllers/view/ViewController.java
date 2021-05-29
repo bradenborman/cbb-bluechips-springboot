@@ -11,6 +11,8 @@ public class ViewController {
             "",
             "/",
             "/login",
+            "/admin",
+            "/admin/*",
             "/portfolio",
             "/market",
             "/settings",

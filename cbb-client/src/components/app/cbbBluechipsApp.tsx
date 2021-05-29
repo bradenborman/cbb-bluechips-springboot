@@ -15,8 +15,9 @@ import { Transactions } from "../transactions/transactions";
 import { Rules } from "../gamerules/rules";
 import { Leaderboard } from "../leaderboard/leaderboard";
 import { LoignSignup } from "../landingpage/loignSignup";
-import { ActiveHomePageOption } from "../../models/enums/activeHomePageOption";
 import { Settings } from "../settings-page/settings";
+import { Admin } from "../admin/admin";
+import axios from "axios";
 
 require("./cbbBluechips.scss");
 
@@ -29,10 +30,23 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
     cookies.get("_live") != undefined
   ); //_live is cookie used at login to flag front end for nav
 
+  const [adminPriv, setAdminPriv] = useState<boolean>(false);
+
+  useEffect(() => {
+    axios
+      .get("/api/admin-role-check")
+      .then(response => {
+        setAdminPriv(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <ReactRouter>
       <div id="app-wrapper">
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} adminPriv={adminPriv} />
         <ReactRoute exact path={"/login"}>
           <LoignSignup setIsLoggedIn={setIsLoggedIn} />
         </ReactRoute>
@@ -50,6 +64,9 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
         </ReactRoute>
         <ReactRoute exact path="/settings">
           <Settings />
+        </ReactRoute>
+        <ReactRoute exact path="/admin">
+          <Admin />
         </ReactRoute>
         <ReactRoute exact path="/transactions">
           <Transactions />

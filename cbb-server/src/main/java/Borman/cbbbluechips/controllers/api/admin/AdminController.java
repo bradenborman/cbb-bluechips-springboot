@@ -1,36 +1,40 @@
-//package Borman.cbbbluechips.controllers.api.admin;
-//
-//import Borman.cbbbluechips.models.usergroups.DeleteGroupRequest;
-//import Borman.cbbbluechips.services.*;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//
-//import java.util.Arrays;
-//
-//@Controller
-//@RequestMapping("/admin")
-//public class AdminController {
-//
-//    AdminService adminService;
-//    GameSettingsService settingsService;
-//    UserService userService;
-//    UserGroupService userGroupService;
-//    TransactionService transactionService;
-//    OwnsService ownsService;
-//
-//    public AdminController(AdminService adminService, GameSettingsService settingsService, UserService userService, UserGroupService userGroupService, TransactionService transactionService, OwnsService ownsService) {
-//        this.adminService = adminService;
-//        this.settingsService = settingsService;
-//        this.userService = userService;
-//        this.userGroupService = userGroupService;
-//        this.transactionService = transactionService;
-//        this.ownsService = ownsService;
-//    }
-//
+package Borman.cbbbluechips.controllers.api.admin;
+
+import Borman.cbbbluechips.controllers.AuthenticatedController;
+import Borman.cbbbluechips.services.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/api")
+public class AdminController extends AuthenticatedController {
+
+    AdminService adminService;
+    GameSettingsService settingsService;
+    UserService userService;
+    UserGroupService userGroupService;
+    TransactionService transactionService;
+    OwnsService ownsService;
+
+    public AdminController(AdminService adminService, GameSettingsService settingsService, UserService userService, UserGroupService userGroupService, TransactionService transactionService, OwnsService ownsService) {
+        this.adminService = adminService;
+        this.settingsService = settingsService;
+        this.userService = userService;
+        this.userGroupService = userGroupService;
+        this.transactionService = transactionService;
+        this.ownsService = ownsService;
+    }
+
+    @GetMapping("/admin-role-check")
+    public ResponseEntity<Boolean> adminRoleCheck() {
+        boolean isAdmin = retrieveLoggedInUser().getAuthorities()
+                .stream().anyMatch(x -> x.getAuthority().equals("CBB_ADMIN"));
+        return ResponseEntity.ok(isAdmin);
+    }
+
+
 //    @PostMapping("/update-price")
 //    public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice,
 //                                    @RequestParam(value = "roundSelector") int roundId,
@@ -70,13 +74,13 @@
 //        userGroupService.deleteGroup(deleteGroupRequest.getGroupId());
 //        return ResponseEntity.ok().build();
 //    }
-//
+
 //    @PostMapping("/resetGame")
 //    public String resetGame() {
 //        settingsService.resetGame();
 //        return "redirect:/admin";
 //    }
-//
+
 //    //TODO clean up -- dont use where cluse --> just delete whole table data
 //    @PostMapping("/deletePlayers")
 //    public String deletePlayers() {
@@ -90,5 +94,5 @@
 //
 //        return "redirect:/users/logout";
 //    }
-//
-//}
+
+}
