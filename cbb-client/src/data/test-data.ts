@@ -9,7 +9,7 @@ export const team1: ITeam = {
   sharesOutstanding: 36,
   imgSrcName: "Duke.png",
   marketPrice: 5000,
-  isLocked: true,
+  isLocked: false,
   pointSpread: 7.5,
   priceHistory: ["64:5000", "32:4500", "16:6400"],
   teamplayingNextName: "Kentucky"
@@ -22,7 +22,7 @@ export const team2: ITeam = {
   sharesOutstanding: 84,
   imgSrcName: "Kentucky.png",
   marketPrice: 5000,
-  isLocked: true,
+  isLocked: false,
   pointSpread: -7.5,
   priceHistory: ["64:5000", "32:6500"],
   teamplayingNextName: "Duke"
@@ -31,7 +31,7 @@ export const team2: ITeam = {
 export const matchup1: IMatchup = {
   team1,
   team2,
-  startTime: "12:55 AM"
+  startTime: "1:45 PM"
 };
 
 export const matchup2: IMatchup = {
@@ -57,7 +57,7 @@ export const matchup2: IMatchup = {
     pointSpread: -5,
     priceHistory: ["64:5000"]
   },
-  startTime: "12:30 PM"
+  startTime: "3:30 PM"
 };
 
 export const matchup3: IMatchup = {
@@ -83,7 +83,7 @@ export const matchup3: IMatchup = {
     pointSpread: -5,
     priceHistory: ["64:5000"]
   },
-  startTime: "5:30 PM"
+  startTime: "7:30 PM"
 };
 
 export const matchup4: IMatchup = {
@@ -109,7 +109,7 @@ export const matchup4: IMatchup = {
     pointSpread: -5,
     priceHistory: ["64:5000"]
   },
-  startTime: "11:45 PM"
+  startTime: "9:45 PM"
 };
 
 export const transactionTestData: ITransactionRecord[] = [
