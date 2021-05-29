@@ -37,11 +37,6 @@ public class CCBConfig {
         return startingCash;
     }
 
-    @Bean("leadersToDisplay")
-    public int getLeadersToDisplay(@Value("${game-rules.leaderboard.displayamount}") int leaders) {
-        return leaders;
-    }
-
     @Bean("admins")
     public List<String> getAdmins(@Value("${admins}") String[] admins) {
         return Arrays.asList(admins);

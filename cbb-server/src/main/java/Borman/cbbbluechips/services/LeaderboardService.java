@@ -2,7 +2,6 @@ package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.models.LeaderBoardUser;
 import Borman.cbbbluechips.models.User;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,20 +14,17 @@ public class LeaderboardService {
     OwnsService ownsService;
     UserGroupService userGroupService;
     UserService userService;
-    int LEADERS_TO_DISPLAY_AMT;
 
-    public LeaderboardService(OwnsService ownsService, UserGroupService userGroupService, UserService userService,
-                              @Qualifier("leadersToDisplay") int LEADERS_TO_DISPLAY_AMT) {
+    public LeaderboardService(OwnsService ownsService, UserGroupService userGroupService,
+                              UserService userService) {
         this.ownsService = ownsService;
         this.userGroupService = userGroupService;
         this.userService = userService;
-        this.LEADERS_TO_DISPLAY_AMT = LEADERS_TO_DISPLAY_AMT;
     }
 
     public List<LeaderBoardUser> getLeaders() {
         return ownsService.retrieveLeaderboard();
     }
-
 
     public int getUsersLeaderPosition(User user) {
         return ownsService.retrieveLeaderboard()
