@@ -10,10 +10,15 @@ spring:
   thymeleaf:
     prefix: classpath:/static/
   datasource:
-    tomcat:
-      testWhileIdle: true
-      timeBetweenEvictionRunsMillis: 60000
-      validationQuery: Select Current_Round FROM game_info
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: ${db.username}
+    password: ${db.password}
+    url: ${db.url}
+  #    GET CREDS FROM CLEARDB_DATABASE_URL and break apart
+  #    tomcat:
+  #      testWhileIdle: true
+  #      timeBetweenEvictionRunsMillis: 60000
+  #      validationQuery: Select Current_Round FROM game_info
   jpa:
     properties:
       hibernate:

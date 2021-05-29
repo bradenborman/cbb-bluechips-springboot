@@ -1,35 +1,46 @@
-.table-responsive {
-  background-color: white;
-  padding: 25px;
-  border-radius: 20px;
-
-  thead {
-    font-weight: bold;
+#transactions {
+  #filter-text {
+    margin: 5px 10px;
     .fa-minus-circle {
       cursor: pointer;
       color: red;
     }
   }
 
-  tr {
+  .table-responsive {
     background-color: white;
-  }
+    padding: 25px;
+    border-radius: 20px;
 
-  td.name,
-  td.team {
-    cursor: pointer;
+    thead {
+      font-weight: bold;
+    }
+
+    tr {
+      background-color: white;
+    }
+
+    td.name,
+    td.team {
+      cursor: pointer;
+    }
   }
 }
-
 @media screen and (max-width: 600px) {
-  .showSmall {
-    display: block;
-    font-weight: bold;
+  #transactions {
+    .showSmall {
+      display: block;
+      font-weight: bold;
+    }
   }
 }
 
 @media (max-width: 480px) {
   #transactions {
+    #filter-text {
+      font-size: 0.9em;
+    }
+
     td {
       display: block;
       text-align: center;

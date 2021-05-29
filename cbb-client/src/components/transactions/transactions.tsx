@@ -61,11 +61,11 @@ export const Transactions: React.FC<ITransactionsProps> = (
       <Row>
         <Col lg={12}>
           <Card>
+            <Card.Text id="filter-text">
+              Active Filter: {getActiveFilterText()}
+            </Card.Text>
             <Table responsive>
               <thead>
-                <tr>
-                  <td colSpan={5}>Active Filter: {getActiveFilterText()}</td>
-                </tr>
                 <tr className="thead-light">
                   <th>
                     <i className="fas fa-user"></i> Name
