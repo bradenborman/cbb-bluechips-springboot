@@ -14,11 +14,14 @@ spring:
     username: ${db.username}
     password: ${db.password}
     url: ${db.url}
-  #    GET CREDS FROM CLEARDB_DATABASE_URL and break apart
-  #    tomcat:
-  #      testWhileIdle: true
-  #      timeBetweenEvictionRunsMillis: 60000
-  #      validationQuery: Select Current_Round FROM game_info
+    validationQuery: Select Current_Round FROM game_info
+    #    GET CREDS FROM CLEARDB_DATABASE_URL and break apart
+    hikari:
+      idle-timeout: 10000
+      minimum-idle: 1
+      maximum-pool-size: 5
+      connection-test-query: Select Current_Round FROM game_info
+      connectionTimeout: 30000
   jpa:
     properties:
       hibernate:
