@@ -70,6 +70,12 @@ public class UserController extends AuthenticatedController {
         return ResponseEntity.ok().build();
     }
 
+    //TODO -> need to make db table
+    @PostMapping("/update-point-spead-alert-status")
+    public ResponseEntity<Void> updatePointSpreadWarning(@RequestParam(value = "sendAlerts") boolean sendAlerts) {
+        return ResponseEntity.ok().build();
+    }
+
     //TODO
     @PostMapping("/paypal-transaction-complete")
     ResponseEntity<Boolean> payEntryFee(@RequestBody PaypalDonationRequest paypalDonationRequest) {

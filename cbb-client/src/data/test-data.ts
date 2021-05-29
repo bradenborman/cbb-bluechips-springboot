@@ -49,10 +49,10 @@ export const matchup2: IMatchup = {
   },
   team2: {
     teamId: 4,
-    teamName: "Michigan",
+    teamName: "Utah",
     seed: 10,
     sharesOutstanding: 79,
-    imgSrcName: "Michigan.png",
+    imgSrcName: "Utah.png",
     marketPrice: 5000,
     isLocked: false,
     pointSpread: -5,

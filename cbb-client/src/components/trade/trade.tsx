@@ -40,26 +40,18 @@ export const Trade: React.FC<ITradeProps> = (props: ITradeProps) => {
       <Row>
         <Col lg={12}>
           <Card>
-            <Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col sm={12} md={6} lg={4}>
-                    <TransactionSlider buy max={10} />
-                  </Col>
-                  <Col sm={12} md={6} lg={4}>
-                    <TransactionSlider sell max={5} />
-                  </Col>
-                  <Col md={12} lg={4}>
-                    <div id="top-holders" className="text-center">
-                      <h3>Top Shareholders:</h3>
-                      <div>M. Atkinson: 40</div>
-                      <div>K. Borman: 23</div>
-                      <div>Z. Lavy: 22</div>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card.Header>
+            <Card.Header></Card.Header>
+            <Card.Body>
+              <Row>
+                <Col md={6} lg={4}>
+                  <TransactionSlider buy max={10} />
+                </Col>
+                <Col md={6} lg={4}>
+                  <TransactionSlider sell max={5} />
+                </Col>
+                <Col md={12} lg={4}></Col>
+              </Row>
+            </Card.Body>
           </Card>
         </Col>
       </Row>

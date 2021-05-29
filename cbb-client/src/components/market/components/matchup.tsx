@@ -9,10 +9,31 @@ export interface IMatchupProps {
 }
 
 export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
-  const matchupTxt =
-    props.matchup.team1.teamName + " vs " + props.matchup.team2.teamName;
-
   const [collapsed, setCollapsed] = useState<boolean>(true);
+
+  const matchupPreview = (): JSX.Element => {
+    return (
+      <React.Fragment>
+        <div className="team-name-with-img">
+          <img
+            className="team-icon"
+            src={"/img/teams/" + props.matchup.team1.imgSrcName}
+            loading="lazy"
+          />
+          {props.matchup.team1.teamName}
+        </div>
+        <div className="vs">vs</div>
+        <div className="team-name-with-img">
+          {props.matchup.team2.teamName}
+          <img
+            className="team-icon"
+            src={"/img/teams/" + props.matchup.team2.imgSrcName}
+            loading="lazy"
+          />
+        </div>
+      </React.Fragment>
+    );
+  };
 
   return (
     <Row className="match-up">
@@ -20,7 +41,7 @@ export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
         <Card className="match-up-card">
           <Card.Header className="match-up-header">
             <Card.Text>
-              {matchupTxt}
+              {matchupPreview()}
               <span className="start-time">
                 <i className="fas fa-clock" /> {props.matchup.startTime}
               </span>

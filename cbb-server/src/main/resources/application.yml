@@ -9,6 +9,11 @@ sport-data-api:
 spring:
   thymeleaf:
     prefix: classpath:/static/
+  datasource:
+    tomcat:
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      validationQuery: Select Current_Round FROM game_info
   jpa:
     properties:
       hibernate:

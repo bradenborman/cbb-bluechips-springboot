@@ -20,6 +20,8 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
     boolean
   >(false);
 
+  const [pointSpreadWarning, setPointSpreadWarning] = useState<boolean>(false);
+
   const debounced = useDebouncedCallback((phoneNumber: any) => {
     axios
       .post(`/api/update-phone-number?phoneNumber=${phoneNumber}`)
@@ -58,7 +60,18 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
     }
   };
 
-  const callForupdateTextAlert = (subscribed: boolean) => {
+  const callForTogglePointSpreadAlerts = (sendAlert: boolean) => {
+    axios
+      .post(`/api/update-point-spead-alert-status?sendAlerts=${sendAlert}`)
+      .then(response => {
+        setPointSpreadWarning(sendAlert);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const callForUpdateTextAlert = (subscribed: boolean) => {
     if (
       (subscribed && phoneNumber != "" && phoneNumber != null) ||
       !subscribed
@@ -96,6 +109,22 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
       <Row>
         <Col id="game-settings" lg={8} md={7}>
           <h2>Game Settings</h2>
+          <div className="wrapper" id="show-pointspread-alert-wrapper">
+            <p>
+              <span className="topic">Point Spread Warning</span> are triggerd
+              on the trade screen. They put into english what must happen for
+              the team to increase in value.
+            </p>
+
+            <input
+              checked={pointSpreadWarning || false}
+              onChange={e => {
+                callForTogglePointSpreadAlerts(!pointSpreadWarning);
+              }}
+              type="checkbox"
+            />
+            <label htmlFor="phoneNumberInput">Subscribe to warnings</label>
+          </div>
         </Col>
         <Col id="user-settings" lg={4} md={5}>
           <h2>User Settings</h2>
@@ -129,16 +158,15 @@ export const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
               allows you to know when the team is un-locked and open for
               trading.
             </p>
-            <label htmlFor="phoneNumberInput">
-              I wish to subscribe to text alerts
-            </label>
+
             <input
               checked={isUserSubscribedToMessages || false}
               onChange={e => {
-                callForupdateTextAlert(!isUserSubscribedToMessages);
+                callForUpdateTextAlert(!isUserSubscribedToMessages);
               }}
               type="checkbox"
             />
+            <label htmlFor="phoneNumberInput">Subscribe to text alerts</label>
           </div>
 
           <div className="wrapper" id="delete-account-wrapper">

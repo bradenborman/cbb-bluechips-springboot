@@ -91,10 +91,6 @@
     input[type="range"] {
       margin-bottom: 15px;
     }
-
-    #top-holders {
-      margin-top: 50px;
-    }
   }
 }
 
@@ -113,13 +109,17 @@
         padding: 8px;
       }
     }
-
-    #top-holders {
-      margin-top: 30px;
-    }
   }
 }
 
-//EXTRA SMALL => xs
 @media screen and (max-width: 600px) {
+  #trade-wrapper {
+    .row {
+      margin-bottom: 0px;
+    }
+
+    .card {
+      margin-bottom: 2vh;
+    }
+  }
 }

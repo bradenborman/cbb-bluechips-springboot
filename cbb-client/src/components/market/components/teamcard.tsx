@@ -63,11 +63,6 @@ export const TeamCard: React.FC<ITeamCardProps> = (props: ITeamCardProps) => {
   return (
     <Card className="team-card">
       <Card.Title className="team-main-details">
-        <img
-          className="team-icon"
-          src={"/img/teams/" + props.team.imgSrcName}
-          loading="lazy"
-        />
         <span className="team-name">{props.team.teamName}</span>
         <Card.Text className="current-market-price">
           ${formattedMarketPrice}

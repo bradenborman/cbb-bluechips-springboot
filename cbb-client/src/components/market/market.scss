@@ -16,9 +16,27 @@ body {
           // background: linear-gradient(to bottom, #1e5799, #326b9b);
           color: black;
           font-weight: bold;
+          padding: 0px;
+
+          .vs {
+            display: inline;
+            margin: 7px;
+            font-size: 0.7em;
+          }
+
+          .team-name-with-img {
+            display: inline;
+
+            .team-icon {
+              width: 70px;
+              height: 70px;
+              margin: 0px;
+            }
+          }
 
           .start-time {
             display: block;
+            margin: 0px 0px 10px 20px;
           }
 
           i.fa-lock,
@@ -47,7 +65,7 @@ body {
           }
 
           &.card-body {
-            padding: 0px;
+            padding: 20px;
           }
 
           .lock-message {
@@ -58,11 +76,10 @@ body {
             margin-bottom: 5px;
             border: 1px solid rgb(92, 92, 92);
             background-color: #ffffff;
-            margin: 10px;
+            margin: 20px 0px;
 
             .team-main-details.card-title {
-              margin-bottom: 0px;
-              margin-left: 8px;
+              padding: 10px;
               text-align: left;
               font-size: 1.3em;
 
@@ -70,15 +87,8 @@ body {
                 font-family: "Alfa Slab One", sans-serif;
               }
 
-              .team-icon {
-                height: 75px;
-                width: 75px;
-                margin: 0px 0px 0px 0px;
-              }
-
               .current-market-price {
                 float: right;
-                margin: 20px;
                 font-weight: bold;
               }
             }
