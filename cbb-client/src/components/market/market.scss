@@ -1,22 +1,24 @@
-body {
-  #market-wrapper {
-    .match-up {
-      margin-bottom: 30px;
+#market-wrapper {
+  .match-up {
+    margin-bottom: 30px;
 
-      .card.match-up-card {
-        border: 1px solid black;
-        box-shadow: 2px 3px #1e5799;
-        background-color: white;
+    .card.match-up-card {
+      border: 1px solid black;
+      box-shadow: 2px 3px #1e5799;
+      background-color: white;
 
-        .card-header {
-          font-size: 1.3em;
-        }
+      .card-header {
+        font-size: 1.3em;
+      }
 
-        .match-up-header {
-          // background: linear-gradient(to bottom, #1e5799, #326b9b);
-          color: black;
-          font-weight: bold;
-          padding: 0px;
+      .match-up-header {
+        // background: linear-gradient(to bottom, #1e5799, #326b9b);
+        color: black;
+        font-weight: bold;
+        padding: 0px;
+
+        .team-name-matchup-wrapper {
+          text-align: center;
 
           .vs {
             display: inline;
@@ -33,122 +35,154 @@ body {
               margin: 0px;
             }
           }
+        }
+        .start-time {
+          text-align: center;
+          display: block;
+          margin-bottom: 10px;
+        }
 
-          .start-time {
-            display: block;
-            margin: 0px 0px 10px 20px;
-          }
+        // i.fa-lock,
+        // i.fa-unlock {
+        //   position: absolute;
+        //   right: 10px;
+        //   top: 10px;
+        //   font-size: 1.3em;
+        // }
+        // i.fa-unlock {
+        //   color: rgb(146, 144, 144);
+        // }
+        // i.fa-lock {
+        //   color: rgb(0, 0, 0);
+        // }
+      }
 
-          i.fa-lock,
-          i.fa-unlock {
-            position: absolute;
-            right: 10px;
-            top: 10px;
+      .match-up-body {
+        text-align: center;
+        overflow: hidden;
+        transition: max-height 1s;
+        max-height: 1000px;
+
+        &.collapsed {
+          max-height: 0;
+        }
+
+        &.card-body {
+          padding: 0px 15px 0px 15px;
+        }
+
+        .lock-message {
+          margin-bottom: 10px;
+        }
+
+        .team-card {
+          margin-bottom: 5px;
+          border: 1px solid rgb(92, 92, 92);
+          background-color: #ffffff;
+          margin: 20px 0px;
+
+          .team-main-details.card-title {
+            padding: 10px;
+            text-align: left;
             font-size: 1.3em;
-          }
-          i.fa-unlock {
-            color: rgb(146, 144, 144);
-          }
-          i.fa-lock {
-            color: rgb(0, 0, 0);
-          }
-        }
 
-        .match-up-body {
-          text-align: center;
-          overflow: hidden;
-          transition: max-height 1s;
-          max-height: 1000px;
-
-          &.collapsed {
-            max-height: 0;
-          }
-
-          &.card-body {
-            padding: 20px;
-          }
-
-          .lock-message {
-            margin-bottom: 10px;
-          }
-
-          .team-card {
-            margin-bottom: 5px;
-            border: 1px solid rgb(92, 92, 92);
-            background-color: #ffffff;
-            margin: 20px 0px;
-
-            .team-main-details.card-title {
-              padding: 10px;
-              text-align: left;
-              font-size: 1.3em;
-
-              .team-name {
-                font-family: "Alfa Slab One", sans-serif;
-              }
-
-              .current-market-price {
-                float: right;
-                font-weight: bold;
-              }
+            .team-name {
+              font-family: "Alfa Slab One", sans-serif;
             }
 
-            .card-body {
-              padding: 0px;
-            }
-            .point-spread-bar {
-              margin: 0px;
-              padding: 5px 0px;
-              background-color: rgb(243, 243, 243);
-              border-top: 1px solid rgb(219, 219, 219);
-              border-bottom: 1px solid rgb(219, 219, 219);
-
-              .underdog {
-                color: green;
-              }
-
-              .favorite {
-                color: red;
-              }
-            }
-            .trade-btn-wrapper {
-              text-align: right;
-              margin: 20px 30px;
-              button {
-                min-width: 70px;
-              }
-            }
-
-            .seed-info {
-              float: left;
-            }
-            .shares-outstanding {
-              font-style: italic;
+            .current-market-price {
               float: right;
+              font-weight: bold;
             }
           }
-        }
 
-        .match-up-expander-wrapper {
-          text-align: center;
-          padding: 5px;
-          margin-top: 3px;
-          cursor: pointer;
+          .card-body {
+            padding: 0px;
+          }
+          .point-spread-bar {
+            margin: 0px;
+            padding: 5px 0px;
+            background-color: rgb(243, 243, 243);
+            border-top: 1px solid rgb(219, 219, 219);
+            border-bottom: 1px solid rgb(219, 219, 219);
 
-          .fa-caret-down {
-            font-size: 2em;
-            transition: all 1s;
-            transform: scale(1);
-            filter: blur(1px);
-
-            &.collapsed {
-              transform: rotate(-90deg) scale(1.5);
-              -ms-transform: scale(1.5);
-              filter: blur(0px);
+            .underdog {
+              color: green;
             }
+
+            .favorite {
+              color: red;
+            }
+          }
+          .trade-btn-wrapper {
+            text-align: right;
+            margin: 20px 30px;
+            button {
+              min-width: 70px;
+            }
+          }
+
+          .seed-info {
+            float: left;
+          }
+          .shares-outstanding {
+            font-style: italic;
+            float: right;
           }
         }
       }
+
+      .match-up-expander-wrapper {
+        text-align: center;
+        padding: 5px;
+        margin-top: 3px;
+        cursor: pointer;
+
+        .fa-caret-down {
+          font-size: 2em;
+          transition: all 1s;
+          transform: scale(1);
+          filter: blur(1px);
+
+          &.collapsed {
+            transform: rotate(-90deg) scale(1.5);
+            -ms-transform: scale(1.5);
+            filter: blur(0px);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #market-wrapper {
+    .match-up {
+      .card.match-up-card {
+        .match-up-header {
+          .team-name-matchup-wrapper {
+            font-size: 0.7em;
+            .team-name-with-img {
+              .team-icon {
+                width: 50px;
+                height: 50px;
+                margin: 0px;
+              }
+            }
+          }
+
+          .start-time {
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+    .row {
+      margin-bottom: 0px;
+    }
+
+    .card {
+      margin-bottom: 2vh;
     }
   }
 }

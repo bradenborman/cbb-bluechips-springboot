@@ -13,7 +13,7 @@ export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
 
   const matchupPreview = (): JSX.Element => {
     return (
-      <React.Fragment>
+      <div className="team-name-matchup-wrapper">
         <div className="team-name-with-img">
           <img
             className="team-icon"
@@ -31,7 +31,7 @@ export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
             loading="lazy"
           />
         </div>
-      </React.Fragment>
+      </div>
     );
   };
 
@@ -45,12 +45,12 @@ export const Matchup: React.FC<IMatchupProps> = (props: IMatchupProps) => {
               <span className="start-time">
                 <i className="fas fa-clock" /> {props.matchup.startTime}
               </span>
-              <i
+              {/* <i
                 className={classNames(
                   { "fa fa-unlock": !props.matchup.team1.isLocked },
                   { "fa fa-lock": props.matchup.team1.isLocked }
                 )}
-              />
+              /> */}
             </Card.Text>
           </Card.Header>
           <Card.Body

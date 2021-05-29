@@ -61,6 +61,58 @@ export const matchup2: IMatchup = {
   startTime: "5:30 PM"
 };
 
+export const matchup3: IMatchup = {
+  team1: {
+    teamId: 3,
+    teamName: "Tennessee",
+    seed: 1,
+    sharesOutstanding: 64,
+    imgSrcName: "Tennessee.png",
+    marketPrice: 5000,
+    isLocked: false,
+    pointSpread: 5,
+    priceHistory: ["64:5000"]
+  },
+  team2: {
+    teamId: 4,
+    teamName: "Virginia",
+    seed: 10,
+    sharesOutstanding: 79,
+    imgSrcName: "Virginia.png",
+    marketPrice: 5000,
+    isLocked: false,
+    pointSpread: -5,
+    priceHistory: ["64:5000"]
+  },
+  startTime: "8:30 PM"
+};
+
+export const matchup4: IMatchup = {
+  team1: {
+    teamId: 3,
+    teamName: "Michigan",
+    seed: 1,
+    sharesOutstanding: 64,
+    imgSrcName: "Michigan.png",
+    marketPrice: 5000,
+    isLocked: false,
+    pointSpread: 5,
+    priceHistory: ["64:5000"]
+  },
+  team2: {
+    teamId: 4,
+    teamName: "Dayton",
+    seed: 10,
+    sharesOutstanding: 79,
+    imgSrcName: "Dayton.png",
+    marketPrice: 5000,
+    isLocked: false,
+    pointSpread: -5,
+    priceHistory: ["64:5000"]
+  },
+  startTime: "8:45 PM"
+};
+
 export const transactionTestData: ITransactionRecord[] = [
   {
     username: "Mike Atkinson",
