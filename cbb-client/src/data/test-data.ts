@@ -1,6 +1,5 @@
 import { ITeam } from "../models/team";
 import { IMatchup } from "../models/matchup";
-import { ILeaderBoardUser } from "../models/leaderboardUser";
 import { ITransactionRecord } from "../models/transactionRecord";
 
 export const team1: ITeam = {
@@ -32,7 +31,7 @@ export const team2: ITeam = {
 export const matchup1: IMatchup = {
   team1,
   team2,
-  startTime: "2:30 PM"
+  startTime: "12:55 AM"
 };
 
 export const matchup2: IMatchup = {
@@ -58,7 +57,7 @@ export const matchup2: IMatchup = {
     pointSpread: -5,
     priceHistory: ["64:5000"]
   },
-  startTime: "5:30 PM"
+  startTime: "12:30 PM"
 };
 
 export const matchup3: IMatchup = {
@@ -84,7 +83,7 @@ export const matchup3: IMatchup = {
     pointSpread: -5,
     priceHistory: ["64:5000"]
   },
-  startTime: "8:30 PM"
+  startTime: "5:30 PM"
 };
 
 export const matchup4: IMatchup = {
@@ -110,7 +109,7 @@ export const matchup4: IMatchup = {
     pointSpread: -5,
     priceHistory: ["64:5000"]
   },
-  startTime: "8:45 PM"
+  startTime: "11:45 PM"
 };
 
 export const transactionTestData: ITransactionRecord[] = [
