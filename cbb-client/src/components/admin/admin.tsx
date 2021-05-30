@@ -12,10 +12,7 @@ export interface IAdminProps {}
 export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
   return (
     <Page pageId="admin-wrapper">
-      <Tab.Container
-        id="list-group-tabs-example"
-        defaultActiveKey="#game-settings"
-      >
+      <Tab.Container id="admin-menu" defaultActiveKey="#game-settings">
         <Row>
           <Col lg={3}>
             <ListGroup>
