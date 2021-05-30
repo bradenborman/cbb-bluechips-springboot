@@ -2,7 +2,7 @@ import React from "react";
 import { Page } from "../general/page";
 import { Row, Col, Tab, ListGroup } from "react-bootstrap";
 import { GameSettings } from "./components/gameSettings";
-import { UpdateSeeds } from "./components/UpdateSeeds";
+// import { UpdateSeeds } from "./components/UpdateSeeds";
 import { PointSpreads } from "./components/pointSpreads";
 import { MatchupMaker } from "./components/matchupMaker";
 import { UserSettings } from "./components/userSettings";
@@ -39,7 +39,7 @@ export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
                 <GameSettings />
               </Tab.Pane>
               <Tab.Pane eventKey="#update-seeds">
-                <UpdateSeeds />
+                <h2>TEST</h2>
               </Tab.Pane>
               <Tab.Pane eventKey="#set-point-spreads">
                 <PointSpreads />
