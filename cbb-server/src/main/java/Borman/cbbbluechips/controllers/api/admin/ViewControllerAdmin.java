@@ -38,11 +38,6 @@ public class ViewControllerAdmin {
         return "team_update";
     }
 
-    @RequestMapping("/set/seeds")
-    public String setSeeds(Model model) {
-        model.addAttribute("allTeams", teamService.getAllTeams(false));
-        return "set_seeds";
-    }
 
     @RequestMapping("/set/round")
     public String setRound(Model model) {

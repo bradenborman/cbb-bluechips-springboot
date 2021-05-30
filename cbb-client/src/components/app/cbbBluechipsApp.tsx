@@ -34,7 +34,7 @@ export const App: React.FC<IAppProps> = (props: IAppProps) => {
 
   useEffect(() => {
     axios
-      .get("/api/admin-role-check")
+      .get("/api/admin/role-check")
       .then(response => {
         setAdminPriv(response.data);
       })

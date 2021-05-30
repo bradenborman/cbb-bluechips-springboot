@@ -1,14 +1,17 @@
 package Borman.cbbbluechips.controllers.api.admin;
 
 import Borman.cbbbluechips.controllers.AuthenticatedController;
+import Borman.cbbbluechips.models.Team;
 import Borman.cbbbluechips.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/admin")
 public class AdminController extends AuthenticatedController {
 
     AdminService adminService;
@@ -17,21 +20,31 @@ public class AdminController extends AuthenticatedController {
     UserGroupService userGroupService;
     TransactionService transactionService;
     OwnsService ownsService;
+    TeamService teamService;
 
-    public AdminController(AdminService adminService, GameSettingsService settingsService, UserService userService, UserGroupService userGroupService, TransactionService transactionService, OwnsService ownsService) {
+    public AdminController(AdminService adminService, GameSettingsService settingsService,
+                           UserService userService, UserGroupService userGroupService,
+                           TransactionService transactionService, OwnsService ownsService,
+                           TeamService teamService) {
         this.adminService = adminService;
         this.settingsService = settingsService;
         this.userService = userService;
         this.userGroupService = userGroupService;
         this.transactionService = transactionService;
         this.ownsService = ownsService;
+        this.teamService = teamService;
     }
 
-    @GetMapping("/admin-role-check")
+    @GetMapping("/role-check")
     public ResponseEntity<Boolean> adminRoleCheck() {
         boolean isAdmin = retrieveLoggedInUser().getAuthorities()
                 .stream().anyMatch(x -> x.getAuthority().equals("CBB_ADMIN"));
         return ResponseEntity.ok(isAdmin);
+    }
+
+    @GetMapping("/all-teams")
+    public ResponseEntity<List<Team>> allTeams() {
+        return ResponseEntity.ok(teamService.getAllTeams(false));
     }
 
 
