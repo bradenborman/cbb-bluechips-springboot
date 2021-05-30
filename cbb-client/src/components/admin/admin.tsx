@@ -1,6 +1,6 @@
 import React from "react";
 import { Page } from "../general/page";
-import { Row, Col, Card, Nav, Button, Tab, ListGroup } from "react-bootstrap";
+import { Row, Col, Tab, ListGroup } from "react-bootstrap";
 import { GameSettings } from "./components/gameSettings";
 import { UpdateSeeds } from "./components/UpdateSeeds";
 import { PointSpreads } from "./components/pointSpreads";
