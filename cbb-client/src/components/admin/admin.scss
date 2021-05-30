@@ -1,0 +1,33 @@
+#admin-wrapper {
+  #game-settings-wrapper {
+    form {
+      margin-bottom: 50px;
+
+      button {
+        margin-top: 0px;
+        font-size: smaller;
+        display: block;
+        font-weight: bold;
+      }
+    }
+
+    #current-round-form {
+      #current-round-radio-wrapper {
+        span {
+          margin-right: 20px;
+          input[type="radio"] {
+            margin-right: 5px;
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+
+    #sign-up-allowed-form {
+      input[type="checkbox"] {
+        margin-right: 5px;
+        display: inline;
+      }
+    }
+  }
+}

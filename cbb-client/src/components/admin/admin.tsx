@@ -1,26 +1,34 @@
 import React from "react";
 import { Page } from "../general/page";
 import { Row, Col, Card, Nav, Button, Tab, ListGroup } from "react-bootstrap";
+import { GameSettings } from "./components/gameSettings";
+import { UpdateSeeds } from "./components/UpdateSeeds";
+import { PointSpreads } from "./components/pointSpreads";
+import { MatchupMaker } from "./components/matchupMaker";
+import { UserSettings } from "./components/userSettings";
 
 export interface IAdminProps {}
 
 export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
   return (
     <Page pageId="admin-wrapper">
-      <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+      <Tab.Container
+        id="list-group-tabs-example"
+        defaultActiveKey="#game-settings"
+      >
         <Row>
-          <Col sm={3}>
+          <Col lg={3}>
             <ListGroup>
-              <ListGroup.Item action href="#link1">
+              <ListGroup.Item action href="#game-settings">
                 Game Settings
               </ListGroup.Item>
-              <ListGroup.Item action href="#link2">
+              <ListGroup.Item action href="#update-seeds">
                 Update Seeds
               </ListGroup.Item>
-              <ListGroup.Item action href="#link3">
+              <ListGroup.Item action href="#set-point-spreads">
                 Set Point Spreads
               </ListGroup.Item>
-              <ListGroup.Item action href="#link4">
+              <ListGroup.Item action href="#matchups">
                 Define Matchups
               </ListGroup.Item>
               <ListGroup.Item action href="#link5">
@@ -28,36 +36,22 @@ export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
               </ListGroup.Item>
             </ListGroup>
           </Col>
-          <Col sm={4}>
+          <Col lg={9}>
             <Tab.Content>
-              <Tab.Pane eventKey="#link1">
-                <Card>
-                  <Card.Header>
-                    <h2>Game Settings</h2>
-                  </Card.Header>
-                  <ul>
-                    <li>Set current round</li>
-                    <li>Sign up toggle</li>
-                    <li>Reset Game</li>
-                    <li>Delete Players</li>
-                  </ul>
-                </Card>
+              <Tab.Pane eventKey="#game-settings">
+                <GameSettings />
               </Tab.Pane>
-              <Tab.Pane eventKey="#link2">
-                <h2>Update Seeds</h2>
+              <Tab.Pane eventKey="#update-seeds">
+                <UpdateSeeds />
               </Tab.Pane>
-              <Tab.Pane eventKey="#link3">
-                <h2>Set Point Spreads</h2>
+              <Tab.Pane eventKey="#set-point-spreads">
+                <PointSpreads />
               </Tab.Pane>
-              <Tab.Pane eventKey="#link4">
-                <h2>Define Matchups</h2>
+              <Tab.Pane eventKey="#matchups">
+                <MatchupMaker />
               </Tab.Pane>
               <Tab.Pane eventKey="#link5">
-                <h2>User Settings</h2>
-                <ul>
-                  <li>Edit User</li>
-                  <li>Delete User</li>
-                </ul>
+                <UserSettings />
               </Tab.Pane>
             </Tab.Content>
           </Col>

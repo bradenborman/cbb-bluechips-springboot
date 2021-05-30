@@ -10,13 +10,15 @@ public abstract class AuthenticatedController {
     private static final Logger logger = LoggerFactory.getLogger(AuthenticatedController.class);
 
     protected String retrieveLoggedInUserId() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        logger.info("User {} logged in", user.getID());
-        return user.getID();
+        return retrieveLoggedInUser().getID();
     }
 
     protected User retrieveLoggedInUser() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        try {
+            return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to cast user. More than likely not logged in on 8081");
+        }
     }
 
 }
