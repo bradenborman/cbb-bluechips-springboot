@@ -43,8 +43,8 @@ public class GameSettingsService {
             settingsDao.updateCurrentRound(round);
     }
 
-    public List<Team> getTeamsPlayingTodayWithNoPointSpreadSet() {
-       return settingsDao.getTeamsPlayingTodayWithNoPointSpreadSet();
+    public List<Team> getTeamsPlayingToday() {
+       return settingsDao.getTeamsPlayingToday();
     }
 
     @Transactional

@@ -13,7 +13,7 @@ public class TeamDataValidator {
     //TODO broken --> null pointer
     public static boolean anyTeamsMissingPointSpread(List<Team> allTeams) {
         boolean x =  allTeams.stream()
-                .anyMatch(team -> (team.getNextPointSpread() == null && (team.getNextTeamPlaying() != null || !team.getNextTeamPlaying().equals(""))));
+                .anyMatch(team -> (team.getPointSpread() == null && (team.getNextTeamPlaying() != null || !team.getNextTeamPlaying().equals(""))));
 
         if(x)
             logger.warn("Today's matches contains a team with point spread not set");

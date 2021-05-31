@@ -53,6 +53,11 @@ public class AdminController extends AuthenticatedController {
         return ResponseEntity.ok(teamService.getAllTeams(false));
     }
 
+    @GetMapping("/teams-playing-today")
+    public ResponseEntity<List<Team>> teamsPlayingToday() {
+        return ResponseEntity.ok(settingsService.getTeamsPlayingToday());
+    }
+
     @PostMapping("/update-seed")
     public ResponseEntity<Void> updateSeeds(@RequestBody UpdateSeedRequest updateSeedRequest) {
         adminService.processUpdateSeedRequest(updateSeedRequest);

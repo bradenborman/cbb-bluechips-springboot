@@ -15,7 +15,7 @@ public class Team {
     private String logoULR;
     private LocalDateTime nextGameTime;
     private String nextTeamPlaying;
-    private String nextPointSpread;
+    private String pointSpread;
     private double currentMarketPrice;
     private String sharesOutstanding;
     private String priceHistoryString;
@@ -86,12 +86,12 @@ public class Team {
         this.nextTeamPlaying = nextTeamPlaying;
     }
 
-    public String getNextPointSpread() {
-        return nextPointSpread;
+    public String getPointSpread() {
+        return pointSpread;
     }
 
-    public void setNextPointSpread(String nextPointSpread) {
-        this.nextPointSpread = nextPointSpread;
+    public void setPointSpread(String pointSpread) {
+        this.pointSpread = pointSpread;
     }
 
     public double getCurrentMarketPrice() {

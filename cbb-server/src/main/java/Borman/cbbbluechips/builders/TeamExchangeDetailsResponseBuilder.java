@@ -31,7 +31,7 @@ public final class TeamExchangeDetailsResponseBuilder {
         teamExchangeDetailsResponse.setTeamName(team.getTeamName());
         teamExchangeDetailsResponse.setSeed(team.getSeed());
         teamExchangeDetailsResponse.setLocked(team.isLocked());
-        teamExchangeDetailsResponse.setPointSpread(team.getNextPointSpread());
+        teamExchangeDetailsResponse.setPointSpread(team.getPointSpread());
         teamExchangeDetailsResponse.setTeamPlayingNext(team.getNextTeamPlaying());
         teamExchangeDetailsResponse.setSharesOutstanding(team.getSharesOutstanding());
         teamExchangeDetailsResponse.setStartTime(ExchangeUtility.setStartTimeFormatted(team.getNextGameTime()));

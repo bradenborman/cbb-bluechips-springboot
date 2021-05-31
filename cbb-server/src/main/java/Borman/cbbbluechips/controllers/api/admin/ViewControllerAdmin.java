@@ -45,7 +45,7 @@ public class ViewControllerAdmin {
 
     @RequestMapping("/set/pointspread")
     public String setPointSpread(Model model) {
-        model.addAttribute("teams", gameSettingsService.getTeamsPlayingTodayWithNoPointSpreadSet());
+        model.addAttribute("teams", gameSettingsService.getTeamsPlayingToday());
         return "set_pointspread";
     }
 

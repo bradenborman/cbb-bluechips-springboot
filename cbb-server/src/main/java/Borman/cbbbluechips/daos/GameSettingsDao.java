@@ -34,7 +34,7 @@ public class GameSettingsDao {
     }
 
 
-    public List<Team> getTeamsPlayingTodayWithNoPointSpreadSet() {
+    public List<Team> getTeamsPlayingToday() {
         String sql = "SELECT * FROM teams WHERE Next_Team_Playing is not null AND seed > 0;";
         return jdbcTemplate.query(sql, new TeamRowMapper());
     }

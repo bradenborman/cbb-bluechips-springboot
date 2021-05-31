@@ -15,7 +15,7 @@ export const UpdateSeeds: React.FC<IUpdateSeedsProps> = (
 
   useEffect(() => {
     axios
-      .get("/api/admin/all-teams")
+      .get(`/api/admin/all-teams`)
       .then(response => {
         console.log(response);
         setAllTeamsData(response.data);
