@@ -16,7 +16,7 @@ export const GameSettings: React.FC<IGameSettingsProps> = (
           <label>Current Round</label>
           <div id="current-round-radio-wrapper">
             <span>
-              <input type="radio" name="cr" value="64" checked required />
+              <input type="radio" name="cr" value="64" required />
               64
             </span>
             <span>
@@ -44,7 +44,7 @@ export const GameSettings: React.FC<IGameSettingsProps> = (
         </form>
 
         <form id="sign-up-allowed-form">
-          <input type="checkbox" checked />
+          <input type="checkbox" />
           <label>Sign Up Allowed</label>
           <button type="submit">Submit</button>
         </form>

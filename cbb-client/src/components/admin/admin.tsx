@@ -2,17 +2,17 @@ import React from "react";
 import { Page } from "../general/page";
 import { Row, Col, Tab, ListGroup } from "react-bootstrap";
 import { GameSettings } from "./components/gameSettings";
-// import { UpdateSeeds } from "./components/UpdateSeeds";
 import { PointSpreads } from "./components/pointSpreads";
 import { MatchupMaker } from "./components/matchupMaker";
 import { UserSettings } from "./components/userSettings";
+import { UpdateSeeds } from "./components/updateSeeds";
 
 export interface IAdminProps {}
 
 export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
   return (
     <Page pageId="admin-wrapper">
-      <Tab.Container id="admin-menu" defaultActiveKey="#game-settings">
+      <Tab.Container id="admin-menu" defaultActiveKey="#update-seeds">
         <Row>
           <Col lg={3}>
             <ListGroup>
@@ -28,7 +28,7 @@ export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
               <ListGroup.Item action href="#matchups">
                 Define Matchups
               </ListGroup.Item>
-              <ListGroup.Item action href="#link5">
+              <ListGroup.Item action href="#user-settings">
                 User Settings
               </ListGroup.Item>
             </ListGroup>
@@ -39,7 +39,7 @@ export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
                 <GameSettings />
               </Tab.Pane>
               <Tab.Pane eventKey="#update-seeds">
-                <h2>TEST</h2>
+                <UpdateSeeds />
               </Tab.Pane>
               <Tab.Pane eventKey="#set-point-spreads">
                 <PointSpreads />
@@ -47,7 +47,7 @@ export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
               <Tab.Pane eventKey="#matchups">
                 <MatchupMaker />
               </Tab.Pane>
-              <Tab.Pane eventKey="#link5">
+              <Tab.Pane eventKey="#user-settings">
                 <UserSettings />
               </Tab.Pane>
             </Tab.Content>

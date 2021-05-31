@@ -30,4 +30,31 @@
       }
     }
   }
+
+  #seed-settings-wrapper {
+    input.team-seed-input {
+      max-width: 30px;
+      margin-left: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #admin-wrapper {
+    #current-round-form {
+      #current-round-radio-wrapper {
+        span {
+          display: block;
+        }
+      }
+    }
+
+    .row {
+      margin-bottom: 0px;
+    }
+
+    .card {
+      margin-top: 2vh;
+    }
+  }
 }
