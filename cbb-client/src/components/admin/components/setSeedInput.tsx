@@ -17,15 +17,17 @@ export const SetSeedInput: React.FC<ISetSeedInputProps> = (
   );
 
   const makeUpdateCall = useDebouncedCallback((newSeed: any) => {
-    // axios
-    //     .post(`/api/=${activeSeed}`)
-    //     .then(response => {
-    //         console.log(response)
-    //     })
-    //     .catch(x => {
-    //         console.log(x);
-    //     });
-    alert("Calling to update seed: " + newSeed);
+    axios
+      .post(`/api/admin/update-seed`, {
+        teamName: props.team.teamName,
+        newSeed: activeSeed
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(x => {
+        console.log(x);
+      });
   }, 1500);
 
   const handleChange = (e: any) => {

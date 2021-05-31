@@ -2,7 +2,6 @@ package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.builders.MarketValueBuilder;
 import Borman.cbbbluechips.builders.UpdatePointSpreadRequestBuilder;
-import Borman.cbbbluechips.builders.UpdateSeedRequestBuilder;
 import Borman.cbbbluechips.config.SportsDataApiConfig;
 import Borman.cbbbluechips.daos.AdminDao;
 import Borman.cbbbluechips.daos.TeamDao;
@@ -59,15 +58,10 @@ public class AdminService {
         return Arrays.asList(Objects.requireNonNull(response.getBody()));
     }
 
-    public void processUpdateSeedRequest(List<String> allTeams, List<String> seedsValue) {
-        if (allTeams.size() != seedsValue.size())
-            System.out.println("Error. Not same size");
-        List<UpdateSeedRequest> updates = new ArrayList<>();
-        for (int x = 0; x < allTeams.size(); x++)
-            updates.add(UpdateSeedRequestBuilder.anUpdateSeedRequest().withTeamName(allTeams.get(x)).withNewSeed(seedsValue.get(x)).build());
-        updates.removeIf(team -> Integer.parseInt(team.getNewSeed()) <= 0);
-        adminDao.setSeedsToDefault();
-        updates.forEach(team -> adminDao.updateSeedRequest(team));
+    //Version 2/ Used 2022
+    public void processUpdateSeedRequest(UpdateSeedRequest updateSeedRequest) {
+        logger.info("Updating {}'s seed to {}", updateSeedRequest.getTeamName(), updateSeedRequest.getNewSeed());
+        adminDao.updateSeedRequest(updateSeedRequest);
     }
 
     public void updateLockedAndEliminated(String teamName, boolean isEliminated, boolean isLocked) {
@@ -111,7 +105,6 @@ public class AdminService {
     }
 
 
-
     public void validateChangeOfPointSpread(List<UpdatePointSpreadRequest> updates) {
 
         BiPredicate<UpdatePointSpreadRequest, UpdatePointSpreadRequest> hasOpposite = (request, bulk) -> (swapPointSpreadToOppo(request.getNextPointSpread()).equals(String.valueOf(bulk.getNextPointSpread())));
@@ -125,16 +118,15 @@ public class AdminService {
 
 
     private String swapPointSpreadToOppo(double pointSpread) {
-        return  String.valueOf((pointSpread * -1));
+        return String.valueOf((pointSpread * -1));
     }
 
 
     private double attemptToGetPointSpread(String pointSpread) {
 
         try {
-           return Double.parseDouble(pointSpread);
-        }
-        catch (Exception e) {
+            return Double.parseDouble(pointSpread);
+        } catch (Exception e) {
             return 0;
         }
     }

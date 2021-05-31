@@ -2,11 +2,11 @@ package Borman.cbbbluechips.controllers.api.admin;
 
 import Borman.cbbbluechips.controllers.AuthenticatedController;
 import Borman.cbbbluechips.models.Team;
+import Borman.cbbbluechips.models.UpdateSeedRequest;
 import Borman.cbbbluechips.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,7 +43,13 @@ public class AdminController extends AuthenticatedController {
 
     @GetMapping("/all-teams")
     public ResponseEntity<List<Team>> allTeams() {
-       return ResponseEntity.ok(teamService.getAllTeams(false));
+        return ResponseEntity.ok(teamService.getAllTeams(false));
+    }
+
+    @PostMapping("/update-seed")
+    public ResponseEntity<Void> updateSeeds(@RequestBody UpdateSeedRequest updateSeedRequest) {
+        adminService.processUpdateSeedRequest(updateSeedRequest);
+        return ResponseEntity.ok().build();
     }
 
 //    @PostMapping("/update-price")
@@ -61,11 +67,6 @@ public class AdminController extends AuthenticatedController {
 //        return "redirect:/admin/update/teams";
 //    }
 //
-//    @PostMapping("/update-seeds")
-//    public String updateSeeds(@RequestParam(value = "teamName") String[] teamName, @RequestParam(value = "seed") String[] newSeed) {
-//        adminService.processUpdateSeedRequest(Arrays.asList(teamName), Arrays.asList(newSeed));
-//        return "redirect:/admin";
-//    }
 //
 //    @PostMapping("/update/current-round")
 //    public String updateRound(@RequestParam(value = "round") String round) {
