@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row } from "react-bootstrap";
+import Loader from "react-loader-spinner";
 
 import axios from "axios";
 import { ITeam } from "../../../models/team";
+import { SetSeedInput } from "../components/setSeedInput";
 
 export interface IUpdateSeedsProps {}
 
@@ -23,18 +25,17 @@ export const UpdateSeeds: React.FC<IUpdateSeedsProps> = (
       });
   }, []);
 
-  const seedInput = (team: ITeam): JSX.Element => {
-    return (
-      <div>
-        {team.teamName}
-        <input className="team-seed-input" value={team.seed} />
-      </div>
-    );
-  };
-
-  const getInputs = (): JSX.Element | null => {
-    if (allTeamsData != null) return <div>{seedInput(allTeamsData[0])}</div>;
-    return null;
+  const getInputs = (): JSX.Element[] | JSX.Element | null => {
+    if (allTeamsData == null || allTeamsData == undefined)
+      return (
+        <div className="loading-wrapper">
+          <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
+        </div>
+      );
+    else
+      return allTeamsData.map((team: ITeam, index) => (
+        <SetSeedInput key={index} team={team} />
+      ));
   };
 
   return (
@@ -42,7 +43,9 @@ export const UpdateSeeds: React.FC<IUpdateSeedsProps> = (
       <Card.Header>
         <h2>Update Seeds</h2>
       </Card.Header>
-      <Card.Body>{getInputs()}</Card.Body>
+      <Card.Body>
+        <Row>{getInputs()}</Row>
+      </Card.Body>
     </Card>
   );
 };

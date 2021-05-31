@@ -1,11 +1,11 @@
 import React from "react";
 import { Page } from "../general/page";
 import { Row, Col, Tab, ListGroup } from "react-bootstrap";
-import { GameSettings } from "./components/gameSettings";
-import { PointSpreads } from "./components/pointSpreads";
-import { MatchupMaker } from "./components/matchupMaker";
-import { UserSettings } from "./components/userSettings";
-import { UpdateSeeds } from "./components/updateSeeds";
+import { GameSettings } from "./pages/gameSettings";
+import { PointSpreads } from "./pages/pointSpreads";
+import { MatchupMaker } from "./pages/matchupMaker";
+import { UserSettings } from "./pages/userSettings";
+import { UpdateSeeds } from "./pages/updateSeeds";
 
 export interface IAdminProps {}
 

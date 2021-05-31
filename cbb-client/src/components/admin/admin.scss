@@ -32,9 +32,25 @@
   }
 
   #seed-settings-wrapper {
-    input.team-seed-input {
-      max-width: 30px;
-      margin-left: 5px;
+    .card-body {
+      .loading-wrapper {
+        width: 100%;
+        text-align: center;
+      }
+
+      .set {
+        font-weight: bold;
+        input.team-seed-input {
+          box-shadow: green 2px 2px;
+        }
+      }
+
+      input.team-seed-input {
+        max-width: 30px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
     }
   }
 }
