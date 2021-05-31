@@ -37,7 +37,9 @@ export const SetSeedInput: React.FC<ISetSeedInputProps> = (
 
   return (
     <Col
-      className={classNames({ set: props.team.seed > 0 || activeSeed > 0 })}
+      className={classNames({
+        set: props.team.seed > 0 || Number(activeSeed) > 0
+      })}
       lg={4}
     >
       <input
