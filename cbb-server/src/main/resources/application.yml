@@ -23,7 +23,7 @@ spring:
       maximum-pool-size: 5
       connection-test-query: Select Current_Round FROM game_info
       connectionTimeout: 30000
-      maxLifetime: 600000
+      maxLifetime: 290000
   jpa:
     properties:
       hibernate:

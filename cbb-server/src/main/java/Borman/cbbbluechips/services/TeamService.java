@@ -28,6 +28,7 @@ public class TeamService {
         this.gameRules = gameRules;
     }
 
+    //TODO - look into pulling apart and then joining with sql
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.getAllTeamsWithSharesOutstandingDetail() : teamDao.getAllTeams();
 

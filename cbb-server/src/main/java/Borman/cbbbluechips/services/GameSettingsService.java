@@ -2,6 +2,7 @@ package Borman.cbbbluechips.services;
 
 import Borman.cbbbluechips.daos.GameSettingsDao;
 import Borman.cbbbluechips.models.Team;
+import Borman.cbbbluechips.models.responses.GameSettingsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +23,14 @@ public class GameSettingsService {
     public GameSettingsService(GameSettingsDao settingsDao, @Qualifier("startingCash") int startingCash) {
         this.settingsDao = settingsDao;
         this.startingCash = startingCash;
+    }
+
+
+    public GameSettingsResponse gameSettings() {
+        GameSettingsResponse response = new GameSettingsResponse();
+        response.setCurrentRound(getCurrentRound());
+        response.setSignUpAllowed(true);
+        return response;
     }
 
     public String getCurrentRound() {

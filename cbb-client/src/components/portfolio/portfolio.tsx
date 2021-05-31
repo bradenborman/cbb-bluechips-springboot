@@ -11,6 +11,7 @@ import axios from "axios";
 import { IGamedata } from "../../models/gameData";
 import { IUserGamedata } from "../../models/userGameData";
 import Loader from "react-loader-spinner";
+import { getDisplayTextCurrentRound } from "../../utilities/currentRoundUtility";
 
 export interface IPortfolioProps {}
 
@@ -134,7 +135,7 @@ export const Portfolio: React.FC<IPortfolioProps> = (
             {gameData.totalTransactionsCount.toLocaleString()}
           </PortfolioDetail>
           <PortfolioDetail heading="Current Round">
-            Round of {gameData.currentRound}
+            {getDisplayTextCurrentRound(gameData.currentRound)}
           </PortfolioDetail>
           <PortfolioDetail heading="Total Games left">
             {gameData.gamesLeft}

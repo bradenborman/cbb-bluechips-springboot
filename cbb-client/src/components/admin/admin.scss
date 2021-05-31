@@ -4,6 +4,13 @@
     font-family: "Alfa Slab One", sans-serif;
   }
 
+  .card-body {
+    .loading-wrapper {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
   #game-settings-wrapper {
     form {
       margin-bottom: 50px;
@@ -38,11 +45,6 @@
 
   #seed-settings-wrapper {
     .card-body {
-      .loading-wrapper {
-        width: 100%;
-        text-align: center;
-      }
-
       .set {
         font-weight: bold;
         input.team-seed-input {

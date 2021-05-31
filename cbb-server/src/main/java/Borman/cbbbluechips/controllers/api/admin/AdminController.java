@@ -3,6 +3,7 @@ package Borman.cbbbluechips.controllers.api.admin;
 import Borman.cbbbluechips.controllers.AuthenticatedController;
 import Borman.cbbbluechips.models.Team;
 import Borman.cbbbluechips.models.UpdateSeedRequest;
+import Borman.cbbbluechips.models.responses.GameSettingsResponse;
 import Borman.cbbbluechips.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,12 @@ public class AdminController extends AuthenticatedController {
         return ResponseEntity.ok(isAdmin);
     }
 
+    //TODO add signup allowed to response and database from property
+    @GetMapping("/game-settings")
+    public ResponseEntity<GameSettingsResponse> gameSettings() {
+        return ResponseEntity.ok(settingsService.gameSettings());
+    }
+
     @GetMapping("/all-teams")
     public ResponseEntity<List<Team>> allTeams() {
         return ResponseEntity.ok(teamService.getAllTeams(false));
@@ -51,6 +58,13 @@ public class AdminController extends AuthenticatedController {
         adminService.processUpdateSeedRequest(updateSeedRequest);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/update-current-round")
+    public ResponseEntity<Void> updateRound(@RequestParam(value = "round") String round) {
+        settingsService.updateRound(round);
+        return ResponseEntity.ok().build();
+    }
+
 
 //    @PostMapping("/update-price")
 //    public String updateMarketPrice(@RequestParam(value = "teamName") String teamName, @RequestParam(value = "nextRoundPrice") double nextRoundPrice,
@@ -68,11 +82,6 @@ public class AdminController extends AuthenticatedController {
 //    }
 //
 //
-//    @PostMapping("/update/current-round")
-//    public String updateRound(@RequestParam(value = "round") String round) {
-//        settingsService.updateRound(round);
-//        return "redirect:/admin";
-//    }
 //
 //
 //    @PostMapping("/update-pointspread")
