@@ -9,7 +9,6 @@ export interface IGameSettingsProps {}
 export const GameSettings: React.FC<IGameSettingsProps> = (
   props: IGameSettingsProps
 ) => {
-  const [gameData, setGameData] = useState<IGameSettingsResponse>();
   const [currentRoundState, setCurrentRoundState] = useState<string>();
   const [signUpAllowed, setSignUpAllowed] = useState<boolean>();
 
@@ -18,7 +17,6 @@ export const GameSettings: React.FC<IGameSettingsProps> = (
       .get("/api/admin/game-settings")
       .then(response => {
         console.log(response);
-        setGameData(response.data);
         setCurrentRoundState(response.data.currentRound);
         setSignUpAllowed(response.data.signUpAllowed);
       })
@@ -40,7 +38,7 @@ export const GameSettings: React.FC<IGameSettingsProps> = (
   };
 
   const gameSettings = (): JSX.Element => {
-    if (gameData == null || gameData == undefined) {
+    if (currentRoundState == null || currentRoundState == undefined) {
       return (
         <div className="loading-wrapper">
           <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />

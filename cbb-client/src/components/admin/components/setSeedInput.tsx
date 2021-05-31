@@ -13,7 +13,7 @@ export const SetSeedInput: React.FC<ISetSeedInputProps> = (
   props: ISetSeedInputProps
 ) => {
   const [activeSeed, setActiveSeed] = useState<string>(
-    props.team.seed.toString()
+    props.team?.seed?.toString()
   );
 
   const makeUpdateCall = useDebouncedCallback((newSeed: any) => {
