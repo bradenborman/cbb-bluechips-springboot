@@ -30,13 +30,14 @@ public class TeamService {
 
     public List<Team> getAllTeams(boolean onlyTeamsInTournament) {
         List<Team> allTeams = onlyTeamsInTournament ? teamDao.getAllTeamsWithSharesOutstandingDetail() : teamDao.getAllTeams();
-        List<MarketValue> historicalData = priceHistoryService.fetchAllPriceHistory();
 
 //        if(TeamDataValidator.anyTeamsMissingPointSpread(allTeams))
 //            emailService.sendSetPointSpreadReminderEmail();
 
-        if (onlyTeamsInTournament)
+        if (onlyTeamsInTournament) {
+            List<MarketValue> historicalData = priceHistoryService.fetchAllPriceHistory();
             allTeams.forEach(team -> applyTeamPriceHistory(team, historicalData));
+        }
 
         return allTeams;
     }
