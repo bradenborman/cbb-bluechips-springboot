@@ -41,6 +41,11 @@ public class TeamDao {
         return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamById, params, new TeamRowMapper());
     }
 
+    public Team getTeamBySportsDataId(String sportsDataId) {
+        MapSqlParameterSource params = new MapSqlParameterSource().addValue("sportsDataId", sportsDataId);
+        return namedParameterJdbcTemplate.queryForObject(TeamSQL.getTeamBySportsDataId, params, new TeamRowMapper());
+    }
+
     public double getCurrentMarketPrice(String teamId) {
         MapSqlParameterSource params = new MapSqlParameterSource().addValue("teamId", teamId);
         return namedParameterJdbcTemplate.queryForObject(OwnsSQL.getCurrentMarketPrice, params, Double.class);
@@ -97,6 +102,7 @@ public class TeamDao {
         }
     }
 
+    @Deprecated
     public void resetNextTeamPlayingForAll() {
         jdbcTemplate.update(TeamSQL.resetNextTeamPlayingForAll);
     }

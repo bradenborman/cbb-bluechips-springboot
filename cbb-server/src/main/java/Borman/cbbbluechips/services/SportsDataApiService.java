@@ -1,7 +1,9 @@
 package Borman.cbbbluechips.services;
 
+import Borman.cbbbluechips.builders.MatchupBuilder;
 import Borman.cbbbluechips.config.SportsDataApiConfig;
 import Borman.cbbbluechips.daos.TeamDao;
+import Borman.cbbbluechips.models.Matchup;
 import Borman.cbbbluechips.models.SportsDataAPI.SportsDataGamesToday;
 import Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import Borman.cbbbluechips.utilities.SportsDataDateUtility;
@@ -13,9 +15,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class SportsDataApiService {
@@ -40,6 +44,7 @@ public class SportsDataApiService {
         return Arrays.asList(Objects.requireNonNull(response.getBody()));
     }
 
+    @Deprecated
     void updateTeamsPlayingToday() {
         logger.info("Re-setting all teams playing.");
         teamDao.resetNextTeamPlayingForAll();
@@ -48,6 +53,25 @@ public class SportsDataApiService {
             updateTeamNextGame(game.getAwayTeam(), game.getHomeTeamId());
             updateTeamNextGame(game.getHomeTeam(), game.getAwayTeamId());
         });
+    }
+
+    public void createMatchUps() {
+        logger.info("Re-setting all teams playing.");
+        List<SportsDataGamesToday> updatedTeamInfo = callGamesByDay();
+
+        List<Matchup> matchups = updatedTeamInfo.stream()
+                .peek(x -> logger.info("Updating {} vs {} matchup.", x.getHomeTeam(), x.getAwayTeam()))
+                .map(gameToday -> MatchupBuilder.aMatchup()
+                        .withDateOfGame(LocalDate.now())
+                        .withTeam1(teamDao.getTeamBySportsDataId(gameToday.getHomeTeamId()))
+                        .withTeam2(teamDao.getTeamBySportsDataId(gameToday.getAwayTeamId()))
+                        .build())
+                .collect(Collectors.toList());
+
+        logger.info("{} matchups created for today", matchups.size());
+
+        //TODO store them in DB -> uncomment cron in SportsDataUpdater and use static date from 2019
+
     }
 
     private List<SportsDataGamesToday> callGamesByDay() {
@@ -61,10 +85,12 @@ public class SportsDataApiService {
         return Arrays.asList(Objects.requireNonNull(response.getBody()));
     }
 
+    @Deprecated
     private void updateTeamNextGame(String teamPlayingShortName, String teamToUpdateId) {
         logger.info("UPDATE GAME: teamID: {} plays {}", teamToUpdateId, teamPlayingShortName);
         String fullName = teamDao.getNameByShortName(teamPlayingShortName);
         teamDao.updateNextTeamPlayingByTeamID(teamToUpdateId, fullName != null ? fullName : teamPlayingShortName);
     }
+
 
 }

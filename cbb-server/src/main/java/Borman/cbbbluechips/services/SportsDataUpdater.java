@@ -33,11 +33,14 @@ public class SportsDataUpdater {
 //    }
 
 
+//    @Scheduled(cron = "0/30 * * * * ?")
     @Scheduled(cron = "0 0 5 * * ?") //Every day at 5am
     public void updateNextTeamPlayingAndOdds() {
         logger.info("Scheduled task hit: updateTeamsPlayingToday.");
-        if(shouldMakeApiCall)
-            sportsDataApiService.updateTeamsPlayingToday();
+        if(shouldMakeApiCall) {
+//            sportsDataApiService.updateTeamsPlayingToday();
+            sportsDataApiService.createMatchUps();
+        }
         else
             logger.info("ENV VAR Make_Api_Call set to false");
     }

@@ -17,8 +17,9 @@ public class SportsDataDateUtility {
         String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
         int day = date.getDayOfMonth();
 
-        //Return test data if off season //TODO YEAR LOGIC IS OFF SINCE DIFFENT YEARS FOR CHECKS
-        return String.format("%s-%s-%s", date.getYear(), month, day);
+        return SECOND_ROUND_2019;
+        //TODO test data!
+//        return String.format("%s-%s-%s", date.getYear(), month, day);
 
 //        return isPastSeasonStart
 //                .and(isBeforeOffSeason)
