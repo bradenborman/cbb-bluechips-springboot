@@ -25,7 +25,7 @@ export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
               <ListGroup.Item action href="#set-point-spreads">
                 Set Point Spreads
               </ListGroup.Item>
-              <ListGroup.Item action href="#matchups">
+              <ListGroup.Item action href="#sportsDataMatchupResponses">
                 Define Matchups
               </ListGroup.Item>
               <ListGroup.Item action href="#user-settings">
@@ -44,7 +44,7 @@ export const Admin: React.FC<IAdminProps> = (props: IAdminProps) => {
               <Tab.Pane eventKey="#set-point-spreads">
                 <PointSpreads />
               </Tab.Pane>
-              <Tab.Pane eventKey="#matchups">
+              <Tab.Pane eventKey="#sportsDataMatchupResponses">
                 <MatchupMaker />
               </Tab.Pane>
               <Tab.Pane eventKey="#user-settings">

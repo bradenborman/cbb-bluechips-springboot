@@ -1,9 +1,9 @@
 package Borman.cbbbluechips.services;
 
-import Borman.cbbbluechips.builders.MatchupBuilder;
+import Borman.cbbbluechips.builders.SportsDataMatchupResponseBuilder;
 import Borman.cbbbluechips.config.SportsDataApiConfig;
 import Borman.cbbbluechips.daos.TeamDao;
-import Borman.cbbbluechips.models.Matchup;
+import Borman.cbbbluechips.models.SportsDataMatchupResponse;
 import Borman.cbbbluechips.models.SportsDataAPI.SportsDataGamesToday;
 import Borman.cbbbluechips.models.SportsDataAPI.SportsDataTeam;
 import Borman.cbbbluechips.utilities.SportsDataDateUtility;
@@ -59,16 +59,16 @@ public class SportsDataApiService {
         logger.info("Re-setting all teams playing.");
         List<SportsDataGamesToday> updatedTeamInfo = callGamesByDay();
 
-        List<Matchup> matchups = updatedTeamInfo.stream()
+        List<SportsDataMatchupResponse> sportsDataMatchupResponses = updatedTeamInfo.stream()
                 .peek(x -> logger.info("Updating {} vs {} matchup.", x.getHomeTeam(), x.getAwayTeam()))
-                .map(gameToday -> MatchupBuilder.aMatchup()
+                .map(gameToday -> SportsDataMatchupResponseBuilder.aMatchup()
                         .withDateOfGame(LocalDate.now())
                         .withTeam1(teamDao.getTeamBySportsDataId(gameToday.getHomeTeamId()))
                         .withTeam2(teamDao.getTeamBySportsDataId(gameToday.getAwayTeamId()))
                         .build())
                 .collect(Collectors.toList());
 
-        logger.info("{} matchups created for today", matchups.size());
+        logger.info("{} matchups created for today", sportsDataMatchupResponses.size());
 
         //TODO store them in DB -> uncomment cron in SportsDataUpdater and use static date from 2019
 

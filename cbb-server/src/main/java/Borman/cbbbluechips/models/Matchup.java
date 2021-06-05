@@ -1,45 +1,51 @@
 package Borman.cbbbluechips.models;
 
-import java.time.LocalDate;
-
 public class Matchup {
 
-    private Team team1;
-    private Team team2;
+    private String matchupId;
+    private String teamOneId;
+    private String teamTwoId;
+    private String matchupDate;
+    private String matchupStartTime;
 
-    private LocalDate dateOfGame;
-    private String startTime;
-
-    public Team getTeam1() {
-        return team1;
+    public String getMatchupId() {
+        return matchupId;
     }
 
-    public void setTeam1(Team team1) {
-        this.team1 = team1;
+    public void setMatchupId(String matchupId) {
+        this.matchupId = matchupId;
     }
 
-    public Team getTeam2() {
-        return team2;
+    public String getTeamOneId() {
+        return teamOneId;
     }
 
-    public void setTeam2(Team team2) {
-        this.team2 = team2;
+    public void setTeamOneId(String teamOneId) {
+        this.teamOneId = teamOneId;
     }
 
-    public LocalDate getDateOfGame() {
-        return dateOfGame;
+    public String getTeamTwoId() {
+        return teamTwoId;
     }
 
-    public void setDateOfGame(LocalDate dateOfGame) {
-        this.dateOfGame = dateOfGame;
+    public void setTeamTwoId(String teamTwoId) {
+        this.teamTwoId = teamTwoId;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getMatchupDate() {
+        return matchupDate;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setMatchupDate(String matchupDate) {
+        this.matchupDate = matchupDate;
+    }
+
+    public String getMatchupStartTime() {
+        return matchupStartTime;
+    }
+
+    public void setMatchupStartTime(String matchupStartTime) {
+        this.matchupStartTime = matchupStartTime;
     }
 
 }
