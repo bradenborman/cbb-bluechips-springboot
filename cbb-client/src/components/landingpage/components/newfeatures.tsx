@@ -17,7 +17,7 @@ export const NewFeatures: React.FC<INewFeaturesProps> = (
       <div className="feature">
         <i className="fas"></i> <b>Matchups</b>
         {/* Icon need */}
-        <p>Market grouped by sportsDataMatchupResponses rather than seed.</p>
+        <p>Market grouped by matchups rather than seed.</p>
       </div>
       <div className="feature">
         <i className="fas"></i> <b>Re-worked front end</b>
